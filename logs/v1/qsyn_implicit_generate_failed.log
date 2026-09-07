@@ -1,0 +1,19 @@
+Checking Synthesis ...
+Done Synthesis ...
+
+
+Total FPGA Logic Elements:    Invalid number
+Total FPGA memory registers:  Invalid number
+Total FPGA memory bits:       Invalid number
+Error (10170): Verilog HDL syntax error at sudx_scan_solver.sv(114) near text: "for";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: /data/project/tsmc65/users/perezba/ws/AlwaysSudx/hw/xlrs/sudx_scan/sudx_scan_solver.sv Line: 114
+
+Error (10170): Verilog HDL syntax error at sudx_scan_solver.sv(123) near text: "end";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: /data/project/tsmc65/users/perezba/ws/AlwaysSudx/hw/xlrs/sudx_scan/sudx_scan_solver.sv Line: 123
+
+Error (10170): Verilog HDL syntax error at sudx_scan_solver.sv(127) near text: "end";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: /data/project/tsmc65/users/perezba/ws/AlwaysSudx/hw/xlrs/sudx_scan/sudx_scan_solver.sv Line: 127
+
+Error (10170): Verilog HDL syntax error at sudx_scan_solver.sv(134) near text: "end";  expecting "endmodule". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: /data/project/tsmc65/users/perezba/ws/AlwaysSudx/hw/xlrs/sudx_scan/sudx_scan_solver.sv Line: 134
+
+
+For more details see qsyn_output_files/sudx_scan.map.rpt
+
+

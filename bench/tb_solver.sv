@@ -14,10 +14,12 @@ module tb_solver;
     string path, line, output_path;
     integer fin, fout, count = 0, cycles, mask, digit, code;
     integer limit = 2000000;
+    integer expect_fail = 0;
     initial begin
         if (!$value$plusargs("PUZZLES=%s", path)) $fatal(1, "Missing PUZZLES");
         if (!$value$plusargs("OUT=%s", output_path)) output_path = "cycles.txt";
         code = $value$plusargs("LIMIT=%d", limit);
+        code = $value$plusargs("EXPECT_FAIL=%d", expect_fail);
         fin = $fopen(path, "r");
         fout = $fopen(output_path, "w");
         if (!fin || !fout) $fatal(1, "Cannot open regression files");
@@ -29,6 +31,7 @@ module tb_solver;
             for (int c = 0; c < 81; c++) begin
                 if (line[c] == "." || line[c] == "0") input_flat[c] = 0;
                 else if (line[c] >= "1" && line[c] <= "9") input_flat[c] = 4'(line[c] - "0");
+                else if (line[c] >= "A" && line[c] <= "F") input_flat[c] = 4'(line[c] - "A" + 10);
                 else $fatal(1, "Bad puzzle character");
             end
             repeat (2) @(negedge clk);
@@ -42,6 +45,12 @@ module tb_solver;
             end
             count++;
             if (!done) $fatal(1, "TIMEOUT puzzle %0d limit %0d", count, limit);
+            if (expect_fail) begin
+                if (success) $fatal(1, "Incorrect success on unsatisfiable puzzle %0d", count);
+                $fdisplay(fout, "%0d %0d PASS_UNSAT", count, cycles);
+                $fflush(fout);
+                continue;
+            end
             if (!success) $fatal(1, "NOSOL puzzle %0d", count);
             for (int c = 0; c < 81; c++) begin
                 digit = output_flat[c];

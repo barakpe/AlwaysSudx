@@ -104,27 +104,41 @@ module sudx_scan_solver (
     logic [3:0] init_box;
     assign init_box = box_of(row, col);
 
-    // ---------------- MRV scan (combinational, over all 81 cells) ----------------
+    // Balanced tournament: 128 padded leaves, seven compare/mux levels.
+    // Equal counts choose the left child, preserving the course raster tie-break.
     logic [3:0] best_r, best_c, best_cnt;
-    logic       any_unassigned;
-    always_comb begin
-        best_cnt       = 4'd10;   // sentinel, larger than any real count (max 9)
-        best_r         = 4'd0;
-        best_c         = 4'd0;
-        any_unassigned = 1'b0;
-        for (int r = 0; r < 9; r++) begin
-            for (int c = 0; c < 9; c++) begin
-                if (!fixed_cell[r][c] && cell_val[r][c] == 4'd0) begin
-                    any_unassigned = 1'b1;
-                    if (popcount9(row_used[r] | col_used[c] | box_used[box_of(r[3:0], c[3:0])]) < best_cnt) begin
-                        best_cnt = popcount9(row_used[r] | col_used[c] | box_used[box_of(r[3:0], c[3:0])]);
-                        best_r   = r[3:0];
-                        best_c   = c[3:0];
-                    end
-                end
-            end
+    logic any_unassigned;
+    wire [3:0] min_count [1:255];
+    wire [3:0] min_row   [1:255];
+    wire [3:0] min_col   [1:255];
+    genvar c, n;
+    generate
+    for (c = 0; c < 128; c++) begin : MRV_LEAF
+        if (c < 81) begin : CELL
+            localparam integer R = c / 9;
+            localparam integer C = c % 9;
+            localparam integer B = (R / 3)*3 + C / 3;
+            assign min_count[128+c] = (!fixed_cell[R][C] && cell_val[R][C] == 0)
+                ? popcount9(row_used[R] | col_used[C] | box_used[B]) : 4'd10;
+            assign min_row[128+c] = 4'(R);
+            assign min_col[128+c] = 4'(C);
+        end else begin : PAD
+            assign min_count[128+c] = 4'd10;
+            assign min_row[128+c] = 0;
+            assign min_col[128+c] = 0;
         end
     end
+    for (n = 1; n < 128; n++) begin : MRV_NODE
+        wire left_wins = min_count[2*n] <= min_count[2*n+1];
+        assign min_count[n] = left_wins ? min_count[2*n] : min_count[2*n+1];
+        assign min_row[n] = left_wins ? min_row[2*n] : min_row[2*n+1];
+        assign min_col[n] = left_wins ? min_col[2*n] : min_col[2*n+1];
+    end
+    endgenerate
+    assign best_cnt = min_count[1];
+    assign best_r = min_row[1];
+    assign best_c = min_col[1];
+    assign any_unassigned = best_cnt != 4'd10;
 
     logic [3:0] best_box;
     assign best_box = box_of(best_r, best_c);
