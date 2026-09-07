@@ -1,307 +1,269 @@
-//==============================================================================
-// sudoku_solver_mrv.sv
-//
-// Same interface/behavior as sudoku_solver.sv, but picks which cell to fill
-// next using the Minimum Remaining Values (MRV) heuristic instead of fixed
-// raster order: at each step it scans all unfilled cells and chooses the one
-// with the fewest legal candidate digits, then tries the smallest legal
-// digit there. This tends to prune the search tree dramatically vs. a fixed
-// cell order, at the cost of needing an explicit decision stack (since the
-// "previous cell" during backtracking is no longer just "one earlier in
-// raster order" -- it can be any cell) and a bigger per-cycle combinational
-// scan (81 candidate-count computations instead of 1).
-//
-// Ports are identical to sudoku_solver.sv: same start/busy/done/success
-// control signals, same puzzle_in/solved_puzzle packed widths.
-//==============================================================================
-
-module sudx_scan_solver (
-    input  logic                 clk,
-    input  logic                 rst_n,
-    input  logic                 start,
-    input  logic [8:0][8:0][3:0] puzzle_in,      // [row][col], 0 = empty, 1-9 = given
-    output logic                 busy,
-    output logic                 done,
-    output logic                 success,
+// Batched constraint propagation with a decision-only RAM stack.
+// Every forced assignment carries its decision depth. Backtracking clears a
+// whole level in parallel, then retries its saved alternative digit. Givens
+// and root-level deductions have depth zero and are never undone.
+module sudx_scan_solver #(
+    parameter bit HIDDEN_SINGLES = 1'b0
+) (
+    input logic clk, rst_n, start,
+    input logic [8:0][8:0][3:0] puzzle_in,
+    output logic done, success,
     output logic [8:0][8:0][3:0] solved_puzzle
 );
-
-    // Which "third" (0,1,2) a 0-8 row/col index belongs to (avoids a /3 op)
-    function automatic logic [1:0] third(input logic [3:0] x);
-        case (x)
-            4'd0, 4'd1, 4'd2: third = 2'd0;
-            4'd3, 4'd4, 4'd5: third = 2'd1;
-            default:          third = 2'd2;
-        endcase
-    endfunction
-
-    // 3x3 box index (0-8) for a given row/col
-    function automatic logic [3:0] box_of(input logic [3:0] r, input logic [3:0] c);
-        box_of = ({2'b00, third(r)} * 4'd3) + {2'b00, third(c)};
-    endfunction
-
-    // Number of digits 1-9 NOT set in `used`
-    function automatic logic [3:0] popcount9(input logic [9:0] used);
-        logic [3:0] cnt;
-        cnt = 4'd0;
-        for (int d = 1; d <= 9; d++) if (!used[d]) cnt = cnt + 4'd1;
-        popcount9 = cnt;
-    endfunction
-
-    // Smallest digit >= start_d (1-9) not set in mask. Returns {found, digit}.
-    function automatic logic [4:0] find_next_digit(input logic [9:0] mask, input logic [3:0] start_d);
-        logic       fnd;
-        logic [3:0] res;
-        fnd = 1'b0;
-        res = 4'd0;
-        for (int d = 1; d <= 9; d++) begin
-            if (!fnd && (d >= int'(start_d)) && !mask[d]) begin
-                res = d[3:0];
-                fnd = 1'b1;
-            end
-        end
-        find_next_digit = {fnd, res};
-    endfunction
-
-    typedef enum logic [2:0] {S_IDLE, S_INIT, S_ADVANCE, S_BACKTRACK, S_DONE} state_t;
+    typedef enum logic [3:0] {
+        IDLE, INIT, SCAN, APPLY, PICK_ROWS, PICK_CELL, PLACE,
+        BACK_READ, BACK_APPLY, FINISH_OK, FINISH_FAIL
+    } state_t;
     state_t state;
 
-    // Board storage
-    logic [3:0] cell_val   [0:8][0:8];   // current value, 0 = empty
-    logic       fixed_cell [0:8][0:8];   // 1 = given, never touched by search
+    logic [80:0][8:0] value;
+    logic [6:0] assigned_depth [0:80];
+    logic [6:0] depth;
+    logic [80:0][8:0] candidate;
+    logic [80:0] empty_q;
+    logic [26:0][8:0] used_q;
+    logic invalid_input, conflict_q;
+    wire [80:0][3:0] input_flat = puzzle_in;
+    logic [80:0][3:0] output_flat;
+    assign solved_puzzle = output_flat;
 
-    // bit d (1..9) set => digit d already used in this row/col/box. bit0 unused.
-    logic [9:0] row_used [0:8];
-    logic [9:0] col_used [0:8];
-    logic [9:0] box_used [0:8];
+    function automatic logic [8:0] first_digit(input logic [8:0] v);
+        // Prefix reductions make the one-hot priority explicit.
+        for (int d = 0; d < 9; d++) begin
+            first_digit[d] = v[d] && ((v & (9'h1ff >> (9-d))) == 0);
+        end
+    endfunction
+    function automatic logic [3:0] count9(input logic [8:0] v);
+        logic [1:0] a, b, c;
+        a = {1'b0,v[0]} + {1'b0,v[1]} + {1'b0,v[2]};
+        b = {1'b0,v[3]} + {1'b0,v[4]} + {1'b0,v[5]};
+        c = {1'b0,v[6]} + {1'b0,v[7]} + {1'b0,v[8]};
+        return {2'b0,a} + {2'b0,b} + {2'b0,c};
+    endfunction
+    function automatic integer unit_cell(input integer u, k);
+        if (u < 9) return u*9+k;
+        if (u < 18) return k*9+u-9;
+        return (((u-18)/3)*3+k/3)*9+((u-18)%3)*3+k%3;
+    endfunction
 
-    // Decision stack: one entry per cell the search itself has filled in
-    // (givens are never pushed). Max depth = 81 cells.
-    logic [3:0] stack_row   [0:80];
-    logic [3:0] stack_col   [0:80];
-    logic [3:0] stack_digit [0:80];
-    logic [6:0] sp;   // number of entries currently on the stack (0-81)
-
-    // Internal unpacked mirror of puzzle_in for the same reason as the
-    // raster-order version: some tools don't support a variable index
-    // reaching directly into a packed multi-dimensional port.
-    logic [3:0] puzzle_in_copy [0:8][0:8];
-    genvar gr, gc;
+    // Recompute occupancy from the board; bulk rollback needs no mask undo log.
+    wire [26:0][8:0] occupied, duplicate, support, multiple, unique_digit;
+    wire [26:0] bad_unit, no_home;
+    genvar u, k, c, r, n;
     generate
-        for (gr = 0; gr < 9; gr = gr + 1) begin : G_ROW
-            for (gc = 0; gc < 9; gc = gc + 1) begin : G_COL
-                assign puzzle_in_copy[gr][gc] = puzzle_in[gr][gc];
+        for (u = 0; u < 27; u++) begin : UNITS
+            wire [8:0][8:0] values, candidates;
+            for (k = 0; k < 9; k++) begin : MEMBERS
+                localparam integer C = unit_cell(u,k);
+                assign values[k] = value[C];
+                assign candidates[k] = candidate[C];
+            end
+            sudx_union9 board_union(values, occupied[u], duplicate[u]);
+            sudx_union9 candidate_union(candidates, support[u], multiple[u]);
+            assign unique_digit[u] = support[u] & ~multiple[u];
+            assign bad_unit[u] = |duplicate[u];
+            assign no_home[u] = |(~(used_q[u] | support[u]));
+        end
+    endgenerate
+
+    wire [80:0][8:0] forced;
+    wire [80:0] forced_cell, dead_cell;
+    generate
+        for (c = 0; c < 81; c++) begin : CELLS
+            localparam integer R = c/9;
+            localparam integer C = c%9;
+            localparam integer B = (R/3)*3+C/3;
+            wire [8:0] naked = (candidate[c] == first_digit(candidate[c]))
+                               ? candidate[c] : 9'd0;
+            wire [8:0] hidden = HIDDEN_SINGLES
+                ? candidate[c] & (unique_digit[R] | unique_digit[9+C] | unique_digit[18+B])
+                : 9'd0;
+            assign forced[c] = naked | hidden;
+            assign forced_cell[c] = |forced[c];
+            assign dead_cell[c] = (empty_q[c] && candidate[c] == 0)
+                || (forced[c] != first_digit(forced[c]));
+        end
+    endgenerate
+
+    // MRV is used only when propagation stalls. Split its tournament at row
+    // boundaries so selection does not lengthen every propagation cycle.
+    wire [3:0] row_count [0:8][1:31];
+    wire [6:0] row_index [0:8][1:31];
+    logic [3:0] row_count_q [0:8];
+    logic [6:0] row_index_q [0:8];
+    wire [3:0] global_count [1:31];
+    wire [6:0] global_index [1:31];
+    generate
+        for (r = 0; r < 9; r++) begin : ROW_MRV
+            for (k = 0; k < 16; k++) begin : LEAF
+                if (k < 9) begin : REAL_CELL
+                    assign row_count[r][16+k] = empty_q[r*9+k]
+                        ? count9(candidate[r*9+k]) : 4'd15;
+                    assign row_index[r][16+k] = 7'(r*9+k);
+                end else begin : PAD
+                    assign row_count[r][16+k] = 4'd15;
+                    assign row_index[r][16+k] = 7'd0;
+                end
+            end
+            for (n = 1; n < 16; n++) begin : MIN
+                wire left_wins = row_count[r][2*n] <= row_count[r][2*n+1];
+                assign row_count[r][n] = left_wins ? row_count[r][2*n] : row_count[r][2*n+1];
+                assign row_index[r][n] = left_wins ? row_index[r][2*n] : row_index[r][2*n+1];
             end
         end
+        for (k = 0; k < 16; k++) begin : GLOBAL_LEAF
+            if (k < 9) begin : REAL_ROW
+                assign global_count[16+k] = row_count_q[k];
+                assign global_index[16+k] = row_index_q[k];
+            end else begin : PAD
+                assign global_count[16+k] = 4'd15;
+                assign global_index[16+k] = 7'd0;
+            end
+        end
+        for (n = 1; n < 16; n++) begin : GLOBAL_MIN
+            wire left_wins = global_count[2*n] <= global_count[2*n+1];
+            assign global_count[n] = left_wins ? global_count[2*n] : global_count[2*n+1];
+            assign global_index[n] = left_wins ? global_index[2*n] : global_index[2*n+1];
+        end
     endgenerate
 
-    // ---------------- INIT scan pointer ----------------
-    logic [3:0] row, col;
-    logic       at_last_cell;
-    assign at_last_cell = (row == 4'd8) && (col == 4'd8);
-    logic [3:0] init_val;
-    assign init_val = puzzle_in_copy[row][col];
-    logic [3:0] init_box;
-    assign init_box = box_of(row, col);
-
-    // Balanced tournament: 128 padded leaves, seven compare/mux levels.
-    // Equal counts choose the left child, preserving the course raster tie-break.
-    logic [3:0] best_r, best_c, best_cnt;
-    logic any_unassigned;
-    wire [3:0] min_count [1:255];
-    wire [3:0] min_row   [1:255];
-    wire [3:0] min_col   [1:255];
-    genvar c, n;
-    generate
-    for (c = 0; c < 128; c++) begin : MRV_LEAF
-        if (c < 81) begin : CELL
-            localparam integer R = c / 9;
-            localparam integer C = c % 9;
-            localparam integer B = (R / 3)*3 + C / 3;
-            assign min_count[128+c] = (!fixed_cell[R][C] && cell_val[R][C] == 0)
-                ? popcount9(row_used[R] | col_used[C] | box_used[B]) : 4'd10;
-            assign min_row[128+c] = 4'(R);
-            assign min_col[128+c] = 4'(C);
-        end else begin : PAD
-            assign min_count[128+c] = 4'd10;
-            assign min_row[128+c] = 0;
-            assign min_col[128+c] = 0;
+    logic [6:0] chosen_cell;
+    wire [8:0] chosen_mask = candidate[chosen_cell];
+    wire [8:0] chosen_digit = first_digit(chosen_mask);
+    // A stack entry is {cell index, not-yet-tried candidate bits}. Only guesses
+    // consume entries. Resetless synchronous read/write permits M9K inference.
+    logic [15:0] decisions [0:80];
+    logic [15:0] top;
+    wire [6:0] top_cell = top[15:9];
+    wire [8:0] alternatives = top[8:0];
+    wire [8:0] retry_digit = first_digit(alternatives);
+    always_ff @(posedge clk) begin
+        if (rst_n) begin
+            if (state == PLACE)
+                decisions[depth] <= {chosen_cell, chosen_mask & ~chosen_digit};
+            else if (state == BACK_APPLY && alternatives != 0)
+                decisions[depth-7'd1] <= {top_cell, alternatives & ~retry_digit};
+            if (state == BACK_READ && depth != 0) top <= decisions[depth-7'd1];
         end
     end
-    for (n = 1; n < 128; n++) begin : MRV_NODE
-        wire left_wins = min_count[2*n] <= min_count[2*n+1];
-        assign min_count[n] = left_wins ? min_count[2*n] : min_count[2*n+1];
-        assign min_row[n] = left_wins ? min_row[2*n] : min_row[2*n+1];
-        assign min_col[n] = left_wins ? min_col[2*n] : min_col[2*n+1];
-    end
-    endgenerate
-    assign best_cnt = min_count[1];
-    assign best_r = min_row[1];
-    assign best_c = min_col[1];
-    assign any_unassigned = best_cnt != 4'd10;
-
-    logic [3:0] best_box;
-    assign best_box = box_of(best_r, best_c);
-    logic [9:0] best_mask;
-    assign best_mask = row_used[best_r] | col_used[best_c] | box_used[best_box];
-    logic [4:0] best_search;
-    assign best_search = find_next_digit(best_mask, 4'd1);
-    wire adv_found       = best_search[4];
-    wire [3:0] adv_digit = best_search[3:0];
-
-    // ---------------- Top-of-stack lookup (for backtracking) ----------------
-    logic [6:0] top_idx;
-    assign top_idx = sp - 7'd1;   // only meaningful when sp > 0
-    logic [3:0] top_r, top_c, top_d;
-    assign top_r = stack_row[top_idx];
-    assign top_c = stack_col[top_idx];
-    assign top_d = stack_digit[top_idx];
-    logic [3:0] top_box;
-    assign top_box = box_of(top_r, top_c);
-    logic [9:0] top_mask_excl;
-    assign top_mask_excl = (row_used[top_r] | col_used[top_c] | box_used[top_box]) & ~(10'b1 << top_d);
-    logic [4:0] top_search;
-    assign top_search = find_next_digit(top_mask_excl, top_d + 4'd1);
-    wire top_found            = top_search[4];
-    wire [3:0] top_next_digit = top_search[3:0];
 
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            state   <= S_IDLE;
-            busy    <= 1'b0;
-            done    <= 1'b0;
-            success <= 1'b0;
-            row     <= 4'd0;
-            col     <= 4'd0;
-            sp      <= 7'd0;
+            state <= IDLE;
+            done <= 0; success <= 0; depth <= 0;
+            value <= '0; candidate <= '0; empty_q <= '0; used_q <= '0;
+            invalid_input <= 0; conflict_q <= 0; chosen_cell <= 0;
+            for (int c = 0; c < 81; c++) assigned_depth[c] <= 0;
             for (int r = 0; r < 9; r++) begin
-                row_used[r] <= 10'd0;
-                col_used[r] <= 10'd0;
-                box_used[r] <= 10'd0;
-                for (int c = 0; c < 9; c++) begin
-                    cell_val[r][c]   <= 4'd0;
-                    fixed_cell[r][c] <= 1'b0;
-                end
+                row_count_q[r] <= 15;
+                row_index_q[r] <= 0;
             end
         end else begin
             case (state)
-                //--------------------------------------------------------
-                S_IDLE: begin
-                    done    <= 1'b0;
-                    success <= 1'b0;
-                    if (start) begin
-                        busy  <= 1'b1;
-                        row   <= 4'd0;
-                        col   <= 4'd0;
-                        sp    <= 7'd0;
-                        for (int r = 0; r < 9; r++) begin
-                            row_used[r] <= 10'd0;
-                            col_used[r] <= 10'd0;
-                            box_used[r] <= 10'd0;
+                IDLE: if (start) state <= INIT;
+                INIT: begin
+                    logic bad;
+                    bad = 0;
+                    for (int c = 0; c < 81; c++) begin
+                        value[c] <= input_flat[c] == 0 ? 9'd0 : (9'd1 << (input_flat[c]-4'd1));
+                        assigned_depth[c] <= 0;
+                        bad = bad | (input_flat[c] > 9);
+                    end
+                    invalid_input <= bad;
+                    depth <= 0; done <= 0; success <= 0;
+                    state <= SCAN;
+                end
+                SCAN: begin
+                    for (int c = 0; c < 81; c++) begin
+                        candidate[c] <= value[c] != 0 ? 9'd0 :
+                            ~(occupied[c/9] | occupied[9+c%9] | occupied[18+(c/27)*3+(c%9)/3]);
+                        empty_q[c] <= value[c] == 0;
+                    end
+                    used_q <= occupied;
+                    conflict_q <= (|bad_unit) | invalid_input;
+                    state <= APPLY;
+                end
+                APPLY: begin
+                    // Contradictions must win over completion, including when
+                    // a batch assigned conflicting forced digits in a unit.
+                    if (conflict_q || (|dead_cell) || (|no_home)) state <= BACK_READ;
+                    else if (!(|empty_q)) state <= FINISH_OK;
+                    else if (|forced_cell) begin
+                        for (int c = 0; c < 81; c++) if (forced_cell[c]) begin
+                            value[c] <= forced[c];
+                            assigned_depth[c] <= depth;
                         end
-                        state <= S_INIT;
+                        state <= SCAN;
+                    end else state <= PICK_ROWS;
+                end
+                PICK_ROWS: begin
+                    for (int r = 0; r < 9; r++) begin
+                        row_count_q[r] <= row_count[r][1];
+                        row_index_q[r] <= row_index[r][1];
+                    end
+                    state <= PICK_CELL;
+                end
+                PICK_CELL: begin
+                    chosen_cell <= global_index[1];
+                    state <= PLACE;
+                end
+                PLACE: begin
+                    for (int c = 0; c < 81; c++) if (chosen_cell == 7'(c)) begin
+                        value[c] <= chosen_digit;
+                        assigned_depth[c] <= depth+7'd1;
+                    end
+                    depth <= depth+7'd1;
+                    state <= SCAN;
+                end
+                BACK_READ: state <= depth == 0 ? FINISH_FAIL : BACK_APPLY;
+                BACK_APPLY: begin
+                    for (int c = 0; c < 81; c++) begin
+                        if (assigned_depth[c] == depth) value[c] <= 0;
+                        if (top_cell == 7'(c) && alternatives != 0) value[c] <= retry_digit;
+                    end
+                    if (alternatives != 0) state <= SCAN;
+                    else begin
+                        depth <= depth-7'd1;
+                        state <= BACK_READ;
                     end
                 end
-
-                //--------------------------------------------------------
-                // Load one cell per cycle (raster order), build masks
-                S_INIT: begin
-                    cell_val[row][col]   <= init_val;
-                    fixed_cell[row][col] <= (init_val != 4'd0);
-                    if (init_val != 4'd0) begin
-                        row_used[row]     <= row_used[row]     | (10'b1 << init_val);
-                        col_used[col]     <= col_used[col]     | (10'b1 << init_val);
-                        box_used[init_box]<= box_used[init_box]| (10'b1 << init_val);
-                    end
-                    if (at_last_cell) begin
-                        state <= S_ADVANCE;
-                    end else if (col == 4'd8) begin
-                        col <= 4'd0;
-                        row <= row + 4'd1;
-                    end else begin
-                        col <= col + 4'd1;
-                    end
-                end
-
-                //--------------------------------------------------------
-                // Pick the unfilled cell with fewest candidates, try its
-                // smallest legal digit.
-                S_ADVANCE: begin
-                    if (!any_unassigned) begin
-                        state   <= S_DONE;
-                        success <= 1'b1;
-                    end else if (!adv_found) begin
-                        // most-constrained cell has zero legal digits: contradiction
-                        state <= S_BACKTRACK;
-                    end else begin
-                        cell_val[best_r][best_c] <= adv_digit;
-                        row_used[best_r]         <= row_used[best_r]   | (10'b1 << adv_digit);
-                        col_used[best_c]         <= col_used[best_c]   | (10'b1 << adv_digit);
-                        box_used[best_box]       <= box_used[best_box] | (10'b1 << adv_digit);
-                        stack_row[sp]            <= best_r;
-                        stack_col[sp]            <= best_c;
-                        stack_digit[sp]          <= adv_digit;
-                        sp                       <= sp + 7'd1;
-                        // stay in S_ADVANCE; next cycle picks the next cell
-                    end
-                end
-
-                //--------------------------------------------------------
-                // Undo/retry the most recent decision (LIFO order)
-                S_BACKTRACK: begin
-                    if (sp == 7'd0) begin
-                        state   <= S_DONE;
-                        success <= 1'b0;
-                    end else if (top_found) begin
-                        cell_val[top_r][top_c] <= top_next_digit;
-                        row_used[top_r]        <= (row_used[top_r]   & ~(10'b1 << top_d)) | (10'b1 << top_next_digit);
-                        col_used[top_c]        <= (col_used[top_c]   & ~(10'b1 << top_d)) | (10'b1 << top_next_digit);
-                        box_used[top_box]      <= (box_used[top_box] & ~(10'b1 << top_d)) | (10'b1 << top_next_digit);
-                        stack_digit[top_idx]   <= top_next_digit;
-                        state                  <= S_ADVANCE;   // sp unchanged, pick next cell fresh
-                    end else begin
-                        cell_val[top_r][top_c] <= 4'd0;
-                        row_used[top_r]        <= row_used[top_r]   & ~(10'b1 << top_d);
-                        col_used[top_c]        <= col_used[top_c]   & ~(10'b1 << top_d);
-                        box_used[top_box]      <= box_used[top_box] & ~(10'b1 << top_d);
-                        sp                     <= sp - 7'd1;
-                        // stay in S_BACKTRACK; pop further next cycle
-                    end
-                end
-
-                //--------------------------------------------------------
-                S_DONE: begin
-                    busy <= 1'b0;
-                    done <= 1'b1;
-                    if (start) begin
-                        row   <= 4'd0;
-                        col   <= 4'd0;
-                        sp    <= 7'd0;
-                        busy  <= 1'b1;
-                        done  <= 1'b0;
-                        success <= 1'b0;
-                        for (int r = 0; r < 9; r++) begin
-                            row_used[r] <= 10'd0;
-                            col_used[r] <= 10'd0;
-                            box_used[r] <= 10'd0;
-                        end
-                        state <= S_INIT;
-                    end
-                end
-
-                default: state <= S_IDLE;
+                FINISH_OK: begin done <= 1; success <= 1; end
+                FINISH_FAIL: begin done <= 1; success <= 0; end
+                default: state <= IDLE;
             endcase
         end
     end
+    always_comb begin
+        for (int c = 0; c < 81; c++) begin
+            output_flat[c] = 0;
+            for (int d = 0; d < 9; d++) if (value[c][d]) output_flat[c] = 4'(d+1);
+        end
+    end
+endmodule
 
-    // Output the current grid contents (valid/meaningful once done && success)
-    genvar or_, oc_;
+// Balanced union/multiplicity tree. A digit is repeated if it repeats inside
+// either child or appears in both children. With candidate masks this identifies
+// hidden singles; with placed digits it detects illegal simultaneous writes.
+module sudx_union9 (
+    input wire [8:0][8:0] masks,
+    output wire [8:0] present,
+    output wire [8:0] repeated
+);
+    genvar k, n;
+    wire [8:0] any_digit [1:31];
+    wire [8:0] many_digit [1:31];
     generate
-        for (or_ = 0; or_ < 9; or_ = or_ + 1) begin : O_ROW
-            for (oc_ = 0; oc_ < 9; oc_ = oc_ + 1) begin : O_COL
-                assign solved_puzzle[or_][oc_] = cell_val[or_][oc_];
-            end
+        for (k = 0; k < 16; k++) begin : LEAF
+            if (k < 9) assign any_digit[16+k] = masks[k];
+            else assign any_digit[16+k] = 9'd0;
+            assign many_digit[16+k] = 9'd0;
+        end
+        for (n = 1; n < 16; n++) begin : MERGE
+            assign any_digit[n] = any_digit[2*n] | any_digit[2*n+1];
+            assign many_digit[n] = many_digit[2*n] | many_digit[2*n+1]
+                                    | (any_digit[2*n] & any_digit[2*n+1]);
         end
     endgenerate
-
+    assign present = any_digit[1];
+    assign repeated = many_digit[1];
 endmodule
