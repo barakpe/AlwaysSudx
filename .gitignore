@@ -1,0 +1,14 @@
+/sim/
+/hw/gen_fpga/
+/hw/xlrs/*/db/
+/hw/xlrs/*/incremental_db/
+/hw/xlrs/*/qsyn_output_files/
+/hw/xlrs/*/*.qpf
+/hw/xlrs/*/*.qsf
+/hw/xlrs/*/*.sdc
+/hw/xlrs/*/*.qws
+/hw/xlrs/*/greybox_tmp/
+__pycache__/
+**/rtl_work/
+/hw/xlrs/*/*.tgz
+/sw/apps/*/build/
