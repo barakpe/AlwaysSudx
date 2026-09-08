@@ -1,0 +1,59 @@
+Compiling Application ineqsudx_scan
+/project/tsmc65/users/perezba/ws/AlwaysSudxIneqBuild/sim
+User Name is perezba , hashed to unique port number 10695
+
+PY: starting up on localhost port 10695
+PY: waiting for a simulation session connection
+PY connection from ('127.0.0.1', 49116)
+PY: received Hello from System-Verilog!
+
+PY: sending data back to the client
+k5_server.py: Detected system clock speed 100 MHz
+Currently Baudrate can be updated only in FPGA , keeping simulation default baudrate 20000000
+PY: Changing UART baudrate  to 20000000
+PY: Changing UART interface clk_div_cntr to 4 (decimal)
+Configuring TB Uart clk_div_cntr to 4
+Server in app_mode, launching ineqsudx_scan
+Loading app ineqsudx_scan for thread 0
+Loading app by sim-fast-back-door mode /project/tsmc65/users/perezba/ws/AlwaysSudxIneqBuild/sw/apps/ineqsudx_scan/build/instr_loadmem.txt
+Loading app by sim-fast-back-door mode /project/tsmc65/users/perezba/ws/AlwaysSudxIneqBuild/sw/apps/ineqsudx_scan/build/data_loadmem.txt
+Enabled thread 0
+DONE launch_app ineqsudx_scan, launch_type = spmt for thread 0
+HELLO SUDOKU SOLVER
+pyshell: Opening file /project/tsmc65/users/perezba/ws/AlwaysSudxIneqBuild/sw/apps/ineqsudx_scan/../sud_shared/sudoku_input_ineq/dev/p7_impossible.txt of type r , file Index is 0
+Loading from app_src_dir/../sud_shared/sudoku_input_ineq/dev/p7_impossible.txt to address 0x40000000 , byte length : 81
+Loaded 81 bytes
+pyshell: Closing file /project/tsmc65/users/perezba/ws/AlwaysSudxIneqBuild/sw/apps/ineqsudx_scan/../sud_shared/sudoku_input_ineq/dev/p7_impossible.txt, file Index is 0
+=== Input ===
++---+---+---+---+---+---+---+---+---+
+| 9 < . | . | . | . | . | . | . | . |
++---+---+---+---+---+---+---+---+---+
+| . | . | . | . | . | . | . | . | . |
++---+---+---+---+---+---+---+---+---+
+| . | . | . | . | . | . | . | . | . |
++---+---+---#---+---+---#---+---+---+
+| . | . | . | . | . | . | . | . | . |
++---+---+---+---+---+---+---+---+---+
+| . | . | . | . | . | . | . | . | . |
++---+---+---+---+---+---+---+---+---+
+| . | . | . | . | . | . | . | . | . |
++---+---+---#---+---+---#---+---+---+
+| . | . | . | . | . | . | . | . | . |
++---+---+---+---+---+---+---+---+---+
+| . | . | . | . | . | . | . | . | . |
++---+---+---+---+---+---+---+---+---+
+| . | . | . | . | . | . | . | . | . |
++---+---+---+---+---+---+---+---+---+
+
+Solving in progress...
+
+Seting up performance measuring
+
+Sudoku solve                                                   267 cycles
+
+App reported non-solved.
+
+ pyshell: Quitting Application upon sim_finish()/bm_quit_app() message received over UART
+Thread 0 DONE quit_app detected
+No active thread
+Server is Quitting

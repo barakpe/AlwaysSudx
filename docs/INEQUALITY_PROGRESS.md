@@ -24,13 +24,16 @@ the supplied, unmodified updated shared library. The timer is unchanged.
   Actual 0x50 encodes right < and below <. Right < and below > is 0x60.
 * `verify_inequalities()` prints `FAIL vert ineq` for horizontal failures too.
   The actual indexing/comparison is correct; only its diagnostic is mislabeled.
+* The input and solved example diagrams reverse some vertical signs, including
+  the border between 3 and 7. Follow the byte encoding and supplied checker.
 * `dev/p6_contradiction` and `dev/p7_impossible` are intentionally unsatisfiable,
   despite the README's general solvability guarantee. Tests expect rejection.
 
 Baseline validation: all 21 official RTL cases (19 solved, 2 rejected), 300
 generated cases, and 3,700 classic cases pass. The complete K5 application
 passes both checkers on `ineq/set0/sparse1` at 267 reported cycles. Standalone
-synthesis is in progress; no frequency or bitstream claim is made yet.
+synthesis subsequently completed at 51.77 MHz; all 19 solvable application
+cases pass both course checkers. No full-system v0 image was requested.
 
 ## Measurements
 
@@ -65,14 +68,13 @@ two MRV selection cycles and the guess cycle. Restoring a nonempty alternative
 costs two extra cycles; exhausted frames skip unnecessary reads. Decision-stack
 writes now use an explicit if/else-if to infer a single RAM write port.
 
-A separate build worktree will preserve v0's source while its standalone fitter
-runs. All source snapshots remain immutable during their builds.
+A separate build worktree preserves v0's source during physical experiments. All source snapshots remain immutable during their builds.
 
 ## Completed synthesis comparison and selected v2
 
 | Version | Standalone Fmax | Fitted LEs | Full-system status |
 |---|---:|---:|---|
-| ineq-v0: value-based baseline | 51.77 MHz | See archived fit report | No full build requested for this baseline |
+| ineq-v0: value-based baseline | 51.77 MHz | 24,875 | No full build requested for this baseline |
 | ineq-v1: packed domain engine | 45.55 MHz | 24,517 | Bitstream generated; 40.98 MHz, does not meet its configured 50 MHz timing |
 | ineq-v2: pipelined domain engine | 69.62 MHz | 22,580 | Full build in progress |
 
@@ -83,8 +85,8 @@ programming. Its raw full-system timing reports are checked in.
 v2 splits each logical propagation round into SCAN (register unit reductions)
 and DOMAIN (apply local cuts and decide progress). Its 4,341 main regression
 executions pass, plus six targeted edge cases: 4,347 total executions, consisting
-of 4,306 solved cases and 41 expected rejections. The official application suite
-is being measured on this exact production source. Hardware execution is pending.
+of 4,306 solved cases and 41 expected rejections. All 19 solvable official application cases pass both checkers on this exact
+production source. Mean cycles/Fmax is 4.6697 us, 24.76% lower than v0. Hardware execution is pending.
 The solver still starts on the SOLVE command; computation and the official
 measurement window retain their original relationship.
 

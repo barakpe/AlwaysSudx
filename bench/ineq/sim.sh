@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 SUDX_BOARD="$1"
+SUDX_EXPECT="${3:-solved}"
 SUDX_LABEL="${SUDX_BOARD//\//_}"
 SUDX_OUT="$(realpath -m "$2")"
 source "$(dirname "$0")/../env.sh"
@@ -12,5 +13,10 @@ launch_k5_app ineqsudx_scan -asl sud_shared -gpv "$SUDX_BOARD" > "$SUDX_OUT/$SUD
 wait "$SUDX_SIM_PID"
 grep -E 'Sudoku solve|checker|App reported' "$SUDX_OUT/$SUDX_LABEL.app.log"
 ! grep -q 'FAILED\|FAIL:' "$SUDX_OUT/$SUDX_LABEL.app.log"
-grep -q 'Solved board PASSED basic Sudoku checker' "$SUDX_OUT/$SUDX_LABEL.app.log"
-grep -q 'Solved board PASSED inequalities checker' "$SUDX_OUT/$SUDX_LABEL.app.log"
+if [ "$SUDX_EXPECT" = unsolved ]; then
+    grep -q 'App reported non-solved.' "$SUDX_OUT/$SUDX_LABEL.app.log"
+    ! grep -q 'Solved board PASSED' "$SUDX_OUT/$SUDX_LABEL.app.log"
+else
+    grep -q 'Solved board PASSED basic Sudoku checker' "$SUDX_OUT/$SUDX_LABEL.app.log"
+    grep -q 'Solved board PASSED inequalities checker' "$SUDX_OUT/$SUDX_LABEL.app.log"
+fi

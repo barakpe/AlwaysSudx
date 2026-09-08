@@ -1,0 +1,147 @@
+xrun command: xrun -sv -f $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f -UNBUFFERED -delay_trigger +define+XMEM_INTRFC +define+MAX10_FPGA +define+CRNT_XLR=ineqsudx_scan
+TOOL:	xrun(64)	23.09-s013: Started on Sep 08, 2026 at 18:29:34 UTC
+xrun(64): 23.09-s013: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
+file: /project/tsmc65/users/perezba/ws/AlwaysSudxIneqBuild/hw/xlrs/ineqsudx_scan/ineqsudx_def_pkg.sv
+	package worklib.ineqsudx_def_pkg:sv
+		errors: 0, warnings: 0
+file: /project/tsmc65/users/perezba/ws/AlwaysSudxIneqBuild/hw/xlrs/ineqsudx_scan/ineqsudx_scan.sv
+	module worklib.ineqsudx_scan:sv
+		errors: 0, warnings: 0
+file: /project/tsmc65/users/perezba/ws/AlwaysSudxIneqBuild/hw/xlrs/ineqsudx_scan/ineqsudx_scan_solver.sv
+	module worklib.ineqsudx_scan_solver:sv
+		errors: 0, warnings: 0
+	module worklib.ineqsudx_union9:sv
+		errors: 0, warnings: 0
+	Elaborating the design hierarchy:
+		Caching library 'worklib' ....... Done
+	Top level design units:
+		xbox_def_pkg
+		mem_intf_pkg
+		ineqsudx_def_pkg
+		k5_pkg
+		seg7_art_pkg
+		k5_smart_uart_pkg
+		sock
+		k5_tb_tasks_pkg
+		$unit_0x7e95c2a4
+		k5_tb
+    $fatal("NUM_MEMS other than 2 not supported by mannix_mem_farm_lite.sv");
+                                                                          |
+xmelab: *W,STRINT (/project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mannix_mem_farm_lite.sv,157|74): String literal argument supplied to integer parameter.
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.uart_tx:sv <0x2a70d129>
+			streams:  11, words:  6333
+		worklib.k5_uart_tb:sv <0x7979b104>
+			streams:  17, words: 27927
+		worklib.mannix_mem_farm_lite:sv <0x3c271057>
+			streams:  45, words: 47694
+		worklib.ineqsudx_scan:sv <0x3c3cd35b>
+			streams:  18, words: 49011
+		worklib.xmem_spram:sv <0x5cdb1b23>
+			streams:   0, words:     0
+		worklib.xbox:sv <0x22b03ba9>
+			streams:  34, words: 13395
+		worklib.k5_com:sv <0x11d6a061>
+			streams:   6, words:  2416
+		worklib.k5_sys_regs_mem_access:sv <0x1045fd15>
+			streams:  36, words: 17118
+		worklib.uart_tx:sv <0x75b6d4bc>
+			streams:  10, words:  6070
+		worklib.uart_rx:sv <0x1edeea62>
+			streams:  14, words:  7505
+		worklib.k5_uart_access:sv <0x2edb0f00>
+			streams:  52, words: 22083
+		worklib.k5_sys_access:sv <0x1112a14c>
+			streams:   5, words:  1935
+		worklib.k5_sch:sv <0x2fbc1388>
+			streams:   8, words:  3649
+		worklib.k5_pcmem:sv <0x4b790198>
+			streams:   9, words:  2610
+		worklib.dp_ram:sv <0x6764bd6e>
+			streams:   4, words:  1160
+		worklib.k5_dpram:sv <0x131cff60>
+			streams:   0, words:     0
+		worklib.dp_ram:sv <0x74c5c308>
+			streams:   4, words:  1176
+		worklib.k5_dpram:sv <0x48a99be0>
+			streams:   0, words:     0
+		worklib.k5_spram:sv <0x58f63846>
+			streams:   0, words:     0
+		worklib.k5_tcm:sv <0x014867ec>
+			streams:  36, words: 17337
+		worklib.k5_spram:sv <0x4bbb467e>
+			streams:   0, words:     0
+		worklib.k5_tcm:sv <0x11c72384>
+			streams:  36, words: 17337
+		worklib.mul_final:sv <0x4da6d5a5>
+			streams:   2, words:   741
+		worklib.mul_base:sv <0x67108430>
+			streams:   3, words:  1574
+		worklib.k5_dx:sv <0x33ebe46c>
+			streams:  28, words: 12768
+		worklib.k5_xbox_sys:sv <0x2df3f9ca>
+			streams:  16, words:  3328
+		worklib.k5_tb:sv <0x38a7c663>
+			streams:  13, words:  6832
+		worklib.sp_ram:sv <0x745aa0d3>
+			streams:   7, words:  2866
+		worklib.sp_ram:sv <0x5da05e78>
+			streams:   7, words:  2837
+		worklib.xbox_mfarm:sv <0x1b4a5247>
+			streams:  53, words: 28349
+		worklib.xbox_xlr_wrap:sv <0x0748cf6b>
+			streams:  22, words: 16467
+		worklib.sp_ram:sv <0x5d50ec1a>
+			streams:  35, words: 16244
+		worklib.ineqsudx_scan_solver:sv <0x03d7c509>
+			streams: 130, words: 109050
+		worklib.ineqsudx_union9:sv <0x18871545>
+			streams:   7, words:  2123
+		worklib.k5_sys:sv <0x7d3a03d6>
+			streams: 121, words: 39591
+		worklib.k5_dx_comb:sv <0x62b2ea0a>
+			streams:  22, words: 37684
+		worklib.k5_core:sv <0x05aecd90>
+			streams:  88, words: 45292
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                  Instances  Unique
+		Modules:                106      32
+		Interfaces:               5       5
+		Verilog packages:         8       8
+		Registers:              922     796
+		Scalar wires:          1899       -
+		Expanded wires:         972     108
+		Vectored wires:        5935       -
+		Always blocks:          222      91
+		Initial blocks:           7       7
+		Cont. assignments:     6962     423
+		Pseudo assignments:     190       -
+		Compilation units:        1       1
+		Process Clocks:         176       4
+		Simulation timescale:   1ps
+	Writing initial simulation snapshot: worklib.k5_tb:sv
+xmsim: *W,RNMBF: Failed to re-read the args file:  $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f.  This could result in the loss of user defined plus options.
+Loading snapshot worklib.k5_tb:sv .................... Done
+xcelium> source /tools/cadence/XCELIUM/23.09.013/tools/xcelium/files/xmsimrc
+xcelium> run
+
+
+ uart_tb.sv: UART TB INFO: DFLT_BAUDRATE = 115200     , CLK_DIV_CNTR =867       
+User Name is perezba hashed to unique port number 10695
+Assigned port localhost:10695
+Waiting for server connection
+uart_tb.sv: PY: Hello from Python, got your message: Hello from System-Verilog!
+uart_tb.sv: Remote Python changed UART clk_div_cntr value to     4 (decimal)
+uart_tb.sv: Remote Python changed UART ns_per_bit_actual from 8680.000000 to 50.000000 
+
+
+ 59114525ns uart_tb.sv: Detected remote quit command. Quitting 
+
+
+Simulation complete via $finish(1) at time 59114525 NS + 1
+/project/tsmc65/shared/k5_share/kuntz5/src/tb/k5_uart_tb.sv:305                                     $finish ;
+xcelium> exit
+TOOL:	xrun(64)	23.09-s013: Exiting on Sep 08, 2026 at 18:30:08 UTC  (total: 00:00:34)
