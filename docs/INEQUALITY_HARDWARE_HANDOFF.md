@@ -71,7 +71,8 @@ solutions. Preserve the application logs as the hardware validation record.
 
 ## Interpreting speed
 
-The physical board uses the course's default 50 MHz clock. Competition score
+The release manifest states the configured physical clock (50 MHz unless a
+lower-clock build is explicitly identified). Competition score
 uses application cycles divided by the standalone `qsyn_xlr` Fmax. These are
 different measurements: a standalone Fmax above 50 MHz does not mean this SOF
 runs the board above 50 MHz.

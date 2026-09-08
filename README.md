@@ -1,80 +1,99 @@
-# AlwaysSudx
+# AlwaysSudx — inequality Sudoku on FPGA
 
-Classic 9x9 Sudoku accelerator for DDP26 K5-XBOX. **Final version: v5.**
+This branch contains the hackathon inequality variant, `ineqsudx_scan`.
+The hardware-validated classic v5 remains on `main` and tag `v5`.
 
-- hard1 course score: **8.31 us**, versus **251.20 us** for our course MRV baseline.
-- **3.20x better mean core cycles/Fmax than opus** on 3,191 published holdout runs.
-- **17,219 accelerator LEs**, **58.10 MHz** standalone Fmax.
-- Full-system `.sof` and `.svf` built; **50 MHz timing passes**.
-- 3,704 solvable-board runs, 35 rejection tests, and all four course app checks pass.
-- Physical FPGA testing is the remaining user-side validation.
+The selected variant is **ineq-v2**, a pipelined domain-propagation solver with
+packed RAM snapshots. It passes **4,347 RTL executions**, including classic
+Sudoku, inequality Sudoku, encoding corner cases, and expected rejections.
+Standalone synthesis achieves **69.62 MHz** using **22,580 fitted LEs**.
+Full-system build status and actual application performance are recorded in the
+results and release notes; standalone Fmax is not a claim about the programmed
+board clock.
 
-[Full design walkthrough with code examples](docs/DESIGN_WALKTHROUGH.md)
-· [Measurements and caveats](RESULTS.md) · [Readable architecture](docs/BATCH_DESIGN.md)
-· [Hardware handoff](docs/HARDWARE_HANDOFF.md)
+## Read the design
 
-## Algorithm
+- [Simple, detailed design explanation](docs/INEQUALITY_DESIGN.md): masks,
+  inequalities, propagation, hidden singles, MRV, rollback, RAM packing, and why
+  adding a pipeline stage improved the result.
+- [Results](docs/INEQUALITY_RESULTS.md): named-board application counts and
+  cycles/Fmax comparisons, with measured timing and resources.
+- [Experiment history](docs/INEQUALITY_PROGRESS.md): what was tried, retained,
+  or rejected, including the slower-clock v1 experiment.
+- [Hardware handoff](docs/INEQUALITY_HARDWARE_HANDOFF.md): installation, exact
+  application commands, checker expectations, and artifact verification.
+- [Classic v5 results](RESULTS.md): the separate original solver's historical
+  measurements. The user subsequently reported exact hardware/simulation cycle
+  agreement on all four course boards: hard1 483, easy1 267, 20blanks 267,
+  and 51blanks 291.
 
-The solver applies naked and hidden singles to all forced cells in a batch.
-When propagation stalls, a pipelined MRV tournament chooses a guess. Only guesses
-enter a small RAM stack. Per-cell depth tags let rollback clear an entire failed
-level in parallel. Balanced mask trees detect occupancy, duplicates, hidden singles
-and missing-digit contradictions. Contradictions take priority over completion.
+## Implementation
 
-The wrapper retains the course register protocol and 32+32+17-byte transactions;
-fixed slices replace expensive general indexing. Only production Verilog changed.
-The C driver and shared library remain byte-for-byte course copies.
+```text
+hw/xlrs/ineqsudx_scan/
+    ineqsudx_scan_solver.sv    domain engine and balanced reduction helper
+    ineqsudx_scan.sv           unchanged host protocol; retains inequality bits
+    ineqsudx_def_pkg.sv        hardware/software register definitions
+    ineqsudx_scan.f            course source list
 
-## Course commands
+sw/apps/ineqsudx_scan/         application, header, and enum contract
+sw/apps/sud_shared/           supplied hackathon library and official boards
+bench/ineq/                  course-command wrappers and RTL regressions
+logs/ineq-v0/                functional baseline and standalone measurements
+logs/ineq-v1/                packed engine; includes failed 50 MHz timing report
+logs/ineq-v2/                pipelined engine and release evidence
+```
 
-This repository is an isolated K5 tree. Accelerator and app names remain
-`sudx_scan` so the C application needs no changes. Source this in each terminal:
+All solving is in Verilog. The only application behavior change is the
+course-required `verify(board)` call. The supplied shared C library is unmodified.
+The original timing window and SETUP/SOLVE commands are retained.
 
-```sh
+## Reproduce on the cloud
+
+Source the helper to select this checkout as the course project:
+
+```bash
 source bench/env.sh
-```
-
-It loads the installed course environment, then selects this repository without
-changing account setup. Synthesis:
-
-```sh
-cd "$MY_K5_XLRS/sudx_scan"
-qsyn_xlr sudx_scan -all
-```
-
-Simulation, terminal one:
-
-```sh
 set_k5_terminal
-launch_k5_sim sudx_scan
+launch_k5_app ineqsudx_scan -asl sud_shared -gpv ineq/set0/single
 ```
 
-Terminal two:
+In a second terminal, select the same project and start the simulator:
 
-```sh
+```bash
+source bench/env.sh
 set_k5_terminal
-launch_k5_app sudx_scan -asl sud_shared -gpv hard1
+launch_k5_sim ineqsudx_scan
 ```
 
-`bash bench/fpga.sh` runs the course `comp_fpga sudx_scan` command and collects its
-Desktop-linked output back into this repository. Existing artifacts are protected
-from overwrite. Generated files live in `hw/gen_fpga/prog_files/`.
+The direct RTL regression supplements the official application checker:
 
-Regression automation uses the same Xcelium tool: `bench/rtl.sh`, plus the unchanged
-K5 flow via `bench/sim.sh`. No substitute FPGA synthesis tool or puzzle-specific
-hardware is used.
+```bash
+bash bench/ineq/rtl.sh bench/ineq/puzzles/official.txt logs/local/official
+bash bench/ineq/rtl.sh bench/ineq/puzzles/heldout.txt logs/local/heldout
+```
 
-## Git history and provenance
+Synthesis and bitstream generation use the provided course utilities:
 
-`v0` is the verified course MRV baseline; `v1` balances selection; `v2` introduces
-batch propagation; `v3` reduces wrapper area; `v4` simplifies cell writes; `v5` adds
-hidden singles and is fully built. Each change is a separate commit. Intermediate
-area-only milestones are explicitly marked in RESULTS.md.
+```bash
+cd "$MY_K5_XLRS/ineqsudx_scan"
+qsyn_xlr ineqsudx_scan -all
 
-Course source: local ex3.1 commit `7b86385457f066c5a1872778cacd5f64ab6415de`,
-https://github.com/DDP26-summer/ex3.1 . Baseline adaptation only renamed the MRV
-module and output port. Course documents were copied from the user's AlwaysSud
-repositories. Comparison RTL and original puzzle sets come from AlwaysSud opus
-commit `5a227db`. Puzzle data is used only by verification, never as hardware
-constants. GitHub: https://github.com/barakpe/AlwaysSudx . Programming artifacts are
-published as release assets; generated build caches are not source-controlled.
+cd "$MY_K5_PROJ/hw/gen_fpga"
+comp_fpga ineqsudx_scan
+```
+
+The course also supports `comp_fpga ineqsudx_scan -mhz 40` for a 40 MHz system.
+Choose a physical clock that meets the full-system timing report. Solver
+selection uses application cycles divided by **standalone** Fmax; a frequency
+below 50 MHz is acceptable when that ratio improves.
+
+## Versions and releases
+
+`ineq-v0` preserves the first verified baseline; `ineq-v1` records the packed
+domain redesign; `ineq-v2` records the pipeline improvement. Experimental sources
+and measurements remain under `bench/ineq/experiments` and `logs/experiment-*`.
+
+Use the GitHub release assets for programming files, the course submission TGZ,
+source ZIP, explanation, and SHA-256 provenance. A release's notes identify its
+configured hardware clock and whether execution on a physical board was tested.

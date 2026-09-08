@@ -67,3 +67,30 @@ writes now use an explicit if/else-if to infer a single RAM write port.
 
 A separate build worktree will preserve v0's source while its standalone fitter
 runs. All source snapshots remain immutable during their builds.
+
+## Completed synthesis comparison and selected v2
+
+| Version | Standalone Fmax | Fitted LEs | Full-system status |
+|---|---:|---:|---|
+| ineq-v0: value-based baseline | 51.77 MHz | See archived fit report | No full build requested for this baseline |
+| ineq-v1: packed domain engine | 45.55 MHz | 24,517 | Bitstream generated; 40.98 MHz, does not meet its configured 50 MHz timing |
+| ineq-v2: pipelined domain engine | 69.62 MHz | 22,580 | Full build in progress |
+
+v1 is preserved as an instructive failed physical-design direction. Its SOF/SVF
+are archived locally under artifacts/ineq-v1-timing-failed, not recommended for
+programming. Its raw full-system timing reports are checked in.
+
+v2 splits each logical propagation round into SCAN (register unit reductions)
+and DOMAIN (apply local cuts and decide progress). Its 4,341 main regression
+executions pass, plus six targeted edge cases: 4,347 total executions, consisting
+of 4,306 solved cases and 41 expected rejections. The official application suite
+is being measured on this exact production source. Hardware execution is pending.
+The solver still starts on the SOLVE command; computation and the official
+measurement window retain their original relationship.
+
+User clarification: frequencies below 50 MHz are welcome if cycles/Fmax improves.
+The installed course utility supports `comp_fpga ineqsudx_scan -mhz <integer>`;
+no shared-source edits are necessary. A negative timing slack only disqualifies
+that image at its configured clock, not the underlying solver architecture.
+v1's 19-case unweighted mean score is 6.6936 us versus v0's 6.2066 us, so reducing
+its configured clock would not reverse this standalone-score comparison.

@@ -50,7 +50,7 @@ for milestone in ['ineq-v0', 'ineq-v1', 'ineq-v2']:
     base = ROOT / 'logs' / milestone
     reports = base / 'synthesis'
     data = {'rtl': {}, 'application': apps(base / 'app')}
-    for group in ['official', 'classic', 'generated', 'heldout', 'rejects']:
+    for group in ['official', 'classic', 'generated', 'heldout', 'rejects', 'contract']:
         entries = rtl(base / group / 'cycles.txt')
         if not entries:
             continue

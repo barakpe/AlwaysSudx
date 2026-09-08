@@ -1,8 +1,9 @@
 # How the inequality solver works
 
-This document explains the new variant and the architectural experiments.
-Measured results and the selected release are recorded separately in
-`INEQUALITY_PROGRESS.md`; an experimental idea is not a speed claim.
+This document explains the inequality variant, the unsuccessful experiments,
+and the selected pipelined domain engine (`ineq-v2`). Measured results are in
+`INEQUALITY_RESULTS.md`; build status and the experiment history are in
+`INEQUALITY_PROGRESS.md`.
 
 ## What stays the same
 
@@ -102,9 +103,11 @@ The conceptual foundation is constraint propagation interleaved with search:
 
 ## Why propagation takes multiple rounds
 
-All combinational deductions in a round use the same registered domains.
-Updates become visible together at the clock edge. This avoids a long
-combinational path extending across an entire chain of inequalities.
+All deductions in a logical round use the same registered domains. The final
+engine splits each round across two clock cycles: SCAN registers Sudoku unit
+summaries; DOMAIN applies those summaries and neighboring inequality masks.
+Domains remain unchanged during SCAN and update together at the end of DOMAIN.
+This prevents a combinational path extending across an entire inequality chain.
 
 ```text
 A < B < C, each initially {1,...,9}
@@ -169,7 +172,7 @@ next_domain = current_domain
 ```
 
 A naked single is automatic: when a domain has one candidate, that cell is
-assigned. On the next round its digit is removed from its peers.
+assigned. On the next logical round its digit is removed from its peers.
 
 For hidden singles, each row, column, and box combines nine domain masks in a
 balanced tree. The tree tracks which digits occur at least once and which
@@ -180,6 +183,49 @@ branch is contradictory.
 Singleton peer elimination leaves the singleton's own domain intact. Duplicate
 singletons are detected separately per unit. This avoids removing a cell's
 own assigned digit merely because it is present in the row occupancy mask.
+
+## Why the final engine is pipelined
+
+The first domain engine attempted unit reductions, candidate pruning, and a
+board-wide progress decision in one cycle. It passed simulation but the full
+system reached only 40.98 MHz, below its configured 50 MHz clock. Generating a
+bitstream did not make that design ready for operation at that clock. The course supports lower-clock builds
+through `comp_fpga ineqsudx_scan -mhz 40`. A frequency below 50 MHz is acceptable
+when cycles/Fmax improves; full-system timing must meet whichever clock the
+bitstream actually uses. In this experiment v1 also lost the unweighted mean
+score: 6.69 us versus v0's 6.21 us across 19 supplied solvable cases.
+
+The final engine inserts registers between unit reductions and local pruning:
+
+```text
+SCAN:
+    detect singleton digits
+    combine row/column/box occupancy
+    find unique digit support and unit contradictions
+    register the summaries
+
+DOMAIN:
+    intersect domains with registered Sudoku restrictions
+    intersect with neighboring inequality restrictions
+    check for contradiction, completion, or progress
+    update all domains together
+
+progress -> SCAN again
+stable   -> MRV selection and a guess
+failure  -> read and restore a parent snapshot
+```
+
+The extra cycle is deliberate. The circuit no longer needs to traverse the
+entire reduction-and-pruning path between registers. Standalone synthesis
+improved from 45.55 to 69.62 MHz, while fitted logic decreased from 24,517 to
+22,580 LEs. More registers can result in fewer logic elements because separating
+stages changes logic sharing and packing. The measured report, rather than a
+register-count intuition, decides this tradeoff.
+
+This is also why a comparison based only on core cycles would have chosen the
+wrong version. The competition includes host overhead and normalizes by the
+standalone clock period. Actual FPGA readiness additionally requires the full
+system to meet its configured clock.
 
 ## Guessing and rollback
 

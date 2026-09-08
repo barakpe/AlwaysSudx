@@ -28,7 +28,7 @@ slacks = [float(x) for x in re.findall(r'^Slack\s*:\s*(-?[\d.]+)', timing, re.M)
 assert slacks and min(slacks) >= 0, 'Full-system timing is not closed: '+str(slacks)
 assert ' Setup ' in timing and ' Hold ' in timing, 'Incomplete timing summary'
 
-syn = ROOT / 'hw/xlrs/ineqsudx_scan/qsyn_output_files'
+syn = ROOT / record.get('standalone_output_dir', 'hw/xlrs/ineqsudx_scan/qsyn_output_files')
 for file, marker in [
     ('map_ineqsudx_scan.log','Analysis & Synthesis was successful'),
     ('fit_ineqsudx_scan.log','Fitter was successful'),
