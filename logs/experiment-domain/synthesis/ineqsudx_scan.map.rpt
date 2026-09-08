@@ -1,0 +1,1242 @@
+Analysis & Synthesis report for ineqsudx_scan
+Tue Sep  8 13:34:04 2026
+Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. State Machine - |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state
+ 10. Registers Removed During Synthesis
+ 11. Removed Registers Triggering Further Register Optimizations
+ 12. General Register Statistics
+ 13. Inverted Register Statistics
+ 14. Registers Packed Into Inferred Megafunctions
+ 15. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 16. Source assignments for ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|altsyncram:snapshots_rtl_0|altsyncram_08d1:auto_generated
+ 17. Parameter Settings for User Entity Instance: mem_intf_read:mem_intf_read
+ 18. Parameter Settings for User Entity Instance: mem_intf_write:mem_intf_write
+ 19. Parameter Settings for User Entity Instance: ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver
+ 20. Parameter Settings for Inferred Entity Instance: ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|altsyncram:snapshots_rtl_0
+ 21. altsyncram Parameter Settings by Entity Instance
+ 22. Post-Synthesis Netlist Statistics for Top Partition
+ 23. Elapsed Time Per Partition
+ 24. Analysis & Synthesis Messages
+ 25. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2025  Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Altera and sold by Altera or its authorized distributors.  Please
+refer to the Altera Software License Subscription Agreements 
+on the Quartus Prime software download page.
+
+
+
++--------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                         ;
++------------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Tue Sep  8 13:34:02 2026           ;
+; Quartus Prime Version              ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
+; Revision Name                      ; ineqsudx_scan                                   ;
+; Top-level Entity Name              ; qsyn_dummy_xlr_wrap                             ;
+; Family                             ; MAX 10                                          ;
+; Total logic elements               ; 26,455                                          ;
+;     Total combinational functions  ; 25,784                                          ;
+;     Dedicated logic registers      ; 3,075                                           ;
+; Total registers                    ; 3075                                            ;
+; Total pins                         ; 120                                             ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 59,049                                          ;
+; Embedded Multiplier 9-bit elements ; 0                                               ;
+; Total PLLs                         ; 0                                               ;
+; UFM blocks                         ; 0                                               ;
+; ADC blocks                         ; 0                                               ;
++------------------------------------+-------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                               ;
++------------------------------------------------------------------+---------------------+--------------------+
+; Option                                                           ; Setting             ; Default Value      ;
++------------------------------------------------------------------+---------------------+--------------------+
+; Device                                                           ; 10M50DAF484C7G      ;                    ;
+; Top-level entity name                                            ; qsyn_dummy_xlr_wrap ; ineqsudx_scan      ;
+; Family name                                                      ; MAX 10              ; Cyclone V          ;
+; Maximum processors allowed for parallel compilation              ; 1                   ;                    ;
+; Use smart compilation                                            ; Off                 ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                  ; On                 ;
+; Enable compact report table                                      ; Off                 ; Off                ;
+; Restructure Multiplexers                                         ; Auto                ; Auto               ;
+; Create Debugging Nodes for IP Cores                              ; Off                 ; Off                ;
+; Preserve fewer node names                                        ; On                  ; On                 ;
+; Intel FPGA IP Evaluation Mode                                    ; Enable              ; Enable             ;
+; Verilog Version                                                  ; Verilog_2001        ; Verilog_2001       ;
+; VHDL Version                                                     ; VHDL_1993           ; VHDL_1993          ;
+; State Machine Processing                                         ; Auto                ; Auto               ;
+; Safe State Machine                                               ; Off                 ; Off                ;
+; Extract Verilog State Machines                                   ; On                  ; On                 ;
+; Extract VHDL State Machines                                      ; On                  ; On                 ;
+; Ignore Verilog initial constructs                                ; Off                 ; Off                ;
+; Iteration limit for constant Verilog loops                       ; 5000                ; 5000               ;
+; Iteration limit for non-constant Verilog loops                   ; 250                 ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                          ; On                  ; On                 ;
+; Infer RAMs from Raw Logic                                        ; On                  ; On                 ;
+; Parallel Synthesis                                               ; On                  ; On                 ;
+; DSP Block Balancing                                              ; Auto                ; Auto               ;
+; NOT Gate Push-Back                                               ; On                  ; On                 ;
+; Power-Up Don't Care                                              ; On                  ; On                 ;
+; Remove Redundant Logic Cells                                     ; Off                 ; Off                ;
+; Remove Duplicate Registers                                       ; On                  ; On                 ;
+; Ignore CARRY Buffers                                             ; Off                 ; Off                ;
+; Ignore CASCADE Buffers                                           ; Off                 ; Off                ;
+; Ignore GLOBAL Buffers                                            ; Off                 ; Off                ;
+; Ignore ROW GLOBAL Buffers                                        ; Off                 ; Off                ;
+; Ignore LCELL Buffers                                             ; Off                 ; Off                ;
+; Ignore SOFT Buffers                                              ; On                  ; On                 ;
+; Limit AHDL Integers to 32 Bits                                   ; Off                 ; Off                ;
+; Optimization Technique                                           ; Balanced            ; Balanced           ;
+; Carry Chain Length                                               ; 70                  ; 70                 ;
+; Auto Carry Chains                                                ; On                  ; On                 ;
+; Auto Open-Drain Pins                                             ; On                  ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                            ; Off                 ; Off                ;
+; Auto ROM Replacement                                             ; On                  ; On                 ;
+; Auto RAM Replacement                                             ; On                  ; On                 ;
+; Auto DSP Block Replacement                                       ; On                  ; On                 ;
+; Auto Shift Register Replacement                                  ; Auto                ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                  ; Auto                ; Auto               ;
+; Auto Clock Enable Replacement                                    ; On                  ; On                 ;
+; Strict RAM Replacement                                           ; Off                 ; Off                ;
+; Allow Synchronous Control Signals                                ; On                  ; On                 ;
+; Force Use of Synchronous Clear Signals                           ; Off                 ; Off                ;
+; Auto RAM Block Balancing                                         ; On                  ; On                 ;
+; Auto RAM to Logic Cell Conversion                                ; Off                 ; Off                ;
+; Auto Resource Sharing                                            ; Off                 ; Off                ;
+; Allow Any RAM Size For Recognition                               ; Off                 ; Off                ;
+; Allow Any ROM Size For Recognition                               ; Off                 ; Off                ;
+; Allow Any Shift Register Size For Recognition                    ; Off                 ; Off                ;
+; Use LogicLock Constraints during Resource Balancing              ; On                  ; On                 ;
+; Ignore translate_off and synthesis_off directives                ; Off                 ; Off                ;
+; Timing-Driven Synthesis                                          ; On                  ; On                 ;
+; Report Parameter Settings                                        ; On                  ; On                 ;
+; Report Source Assignments                                        ; On                  ; On                 ;
+; Report Connectivity Checks                                       ; On                  ; On                 ;
+; Ignore Maximum Fan-Out Assignments                               ; Off                 ; Off                ;
+; Synchronization Register Chain Length                            ; 2                   ; 2                  ;
+; Power Optimization During Synthesis                              ; Normal compilation  ; Normal compilation ;
+; HDL message level                                                ; Level2              ; Level2             ;
+; Suppress Register Optimization Related Messages                  ; Off                 ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report         ; 5000                ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report               ; 5000                ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report        ; 100                 ; 100                ;
+; Clock MUX Protection                                             ; On                  ; On                 ;
+; Auto Gated Clock Conversion                                      ; Off                 ; Off                ;
+; Block Design Naming                                              ; Auto                ; Auto               ;
+; SDC constraint protection                                        ; Off                 ; Off                ;
+; Synthesis Effort                                                 ; Auto                ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal     ; On                  ; On                 ;
+; Pre-Mapping Resynthesis Optimization                             ; Off                 ; Off                ;
+; Analysis & Synthesis Message Level                               ; Medium              ; Medium             ;
+; Disable Register Merging Across Hierarchies                      ; Auto                ; Auto               ;
+; Resource Aware Inference For Block RAM                           ; On                  ; On                 ;
++------------------------------------------------------------------+---------------------+--------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 2      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                                                                        ;
++-----------------------------------------------------------------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path                                                        ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                                             ; Library ;
++-----------------------------------------------------------------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------------------------------------------------+---------+
+; ../../../../../../../../shared/k5_share/k5_xbox/hw/xbox/xbox_def_pkg.sv                 ; yes             ; User SystemVerilog HDL File  ; /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_def_pkg.sv                                                          ;         ;
+; ../../../../../../../../shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_intf_read.sv  ; yes             ; User SystemVerilog HDL File  ; /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_intf_read.sv                                           ;         ;
+; ../../../../../../../../shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_intf_write.sv ; yes             ; User SystemVerilog HDL File  ; /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_intf_write.sv                                          ;         ;
+; ../../../../../../../../shared/k5_share/k5_xbox/hw/xbox/host_regs_intrf.sv              ; yes             ; User SystemVerilog HDL File  ; /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/host_regs_intrf.sv                                                       ;         ;
+; /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv         ; yes             ; User SystemVerilog HDL File  ; /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv                                          ;         ;
+; ineqsudx_def_pkg.sv                                                                     ; yes             ; User SystemVerilog HDL File  ; /project/tsmc65/users/perezba/ws/AlwaysSudxIneq/logs/experiment-domain/rtl_work/ineqsudx_scan/ineqsudx_def_pkg.sv        ;         ;
+; ineqsudx_scan.sv                                                                        ; yes             ; User SystemVerilog HDL File  ; /project/tsmc65/users/perezba/ws/AlwaysSudxIneq/logs/experiment-domain/rtl_work/ineqsudx_scan/ineqsudx_scan.sv           ;         ;
+; ineqsudx_scan_solver.sv                                                                 ; yes             ; User SystemVerilog HDL File  ; /project/tsmc65/users/perezba/ws/AlwaysSudxIneq/logs/experiment-domain/rtl_work/ineqsudx_scan/ineqsudx_scan_solver.sv    ;         ;
+; ineqsudx_scan_enums.svh                                                                 ; yes             ; Auto-Found Unspecified File  ; /data/project/tsmc65/users/perezba/ws/AlwaysSudxIneq/sw/apps/ineqsudx_scan/ineqsudx_scan_enums.svh                       ;         ;
+; altsyncram.tdf                                                                          ; yes             ; Megafunction                 ; /data/project/tsmc65/shared/quartus_install/intelFPGA_lite/24.1std/quartus/libraries/megafunctions/altsyncram.tdf        ;         ;
+; stratix_ram_block.inc                                                                   ; yes             ; Megafunction                 ; /data/project/tsmc65/shared/quartus_install/intelFPGA_lite/24.1std/quartus/libraries/megafunctions/stratix_ram_block.inc ;         ;
+; lpm_mux.inc                                                                             ; yes             ; Megafunction                 ; /data/project/tsmc65/shared/quartus_install/intelFPGA_lite/24.1std/quartus/libraries/megafunctions/lpm_mux.inc           ;         ;
+; lpm_decode.inc                                                                          ; yes             ; Megafunction                 ; /data/project/tsmc65/shared/quartus_install/intelFPGA_lite/24.1std/quartus/libraries/megafunctions/lpm_decode.inc        ;         ;
+; aglobal241.inc                                                                          ; yes             ; Megafunction                 ; /data/project/tsmc65/shared/quartus_install/intelFPGA_lite/24.1std/quartus/libraries/megafunctions/aglobal241.inc        ;         ;
+; a_rdenreg.inc                                                                           ; yes             ; Megafunction                 ; /data/project/tsmc65/shared/quartus_install/intelFPGA_lite/24.1std/quartus/libraries/megafunctions/a_rdenreg.inc         ;         ;
+; altrom.inc                                                                              ; yes             ; Megafunction                 ; /data/project/tsmc65/shared/quartus_install/intelFPGA_lite/24.1std/quartus/libraries/megafunctions/altrom.inc            ;         ;
+; altram.inc                                                                              ; yes             ; Megafunction                 ; /data/project/tsmc65/shared/quartus_install/intelFPGA_lite/24.1std/quartus/libraries/megafunctions/altram.inc            ;         ;
+; altdpram.inc                                                                            ; yes             ; Megafunction                 ; /data/project/tsmc65/shared/quartus_install/intelFPGA_lite/24.1std/quartus/libraries/megafunctions/altdpram.inc          ;         ;
+; db/altsyncram_08d1.tdf                                                                  ; yes             ; Auto-Generated Megafunction  ; /project/tsmc65/users/perezba/ws/AlwaysSudxIneq/logs/experiment-domain/rtl_work/ineqsudx_scan/db/altsyncram_08d1.tdf     ;         ;
++-----------------------------------------------------------------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimated Total logic elements              ; 26,455    ;
+;                                             ;           ;
+; Total combinational functions               ; 25784     ;
+; Logic element usage by number of LUT inputs ;           ;
+;     -- 4 input functions                    ; 19915     ;
+;     -- 3 input functions                    ; 4184      ;
+;     -- <=2 input functions                  ; 1685      ;
+;                                             ;           ;
+; Logic elements by mode                      ;           ;
+;     -- normal mode                          ; 25722     ;
+;     -- arithmetic mode                      ; 62        ;
+;                                             ;           ;
+; Total registers                             ; 3075      ;
+;     -- Dedicated logic registers            ; 3075      ;
+;     -- I/O registers                        ; 0         ;
+;                                             ;           ;
+; I/O pins                                    ; 120       ;
+; Total memory bits                           ; 59049     ;
+;                                             ;           ;
+; Embedded Multiplier 9-bit elements          ; 0         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; clk~input ;
+; Maximum fan-out                             ; 3804      ;
+; Total fan-out                               ; 119726    ;
+; Average fan-out                             ; 4.01      ;
++---------------------------------------------+-----------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                                                                      ;
++------------------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------------------------------------------------------------------------------------------------------+----------------------+--------------+
+; Compilation Hierarchy Node                           ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                                                                                                    ; Entity Name          ; Library Name ;
++------------------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------------------------------------------------------------------------------------------------------+----------------------+--------------+
+; |qsyn_dummy_xlr_wrap                                 ; 25784 (469)         ; 3075 (334)                ; 59049       ; 0          ; 0            ; 0       ; 0         ; 120  ; 0            ; 0          ; |qsyn_dummy_xlr_wrap                                                                                                                   ; qsyn_dummy_xlr_wrap  ; work         ;
+;    |ineqsudx_scan:ineqsudx_scan|                     ; 25315 (797)         ; 2741 (677)                ; 59049       ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan                                                                                       ; ineqsudx_scan        ; work         ;
+;       |ineqsudx_scan_solver:solver|                  ; 24518 (23006)       ; 2064 (2064)               ; 59049       ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver                                                           ; ineqsudx_scan_solver ; work         ;
+;          |altsyncram:snapshots_rtl_0|                ; 0 (0)               ; 0 (0)                     ; 59049       ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|altsyncram:snapshots_rtl_0                                ; altsyncram           ; work         ;
+;             |altsyncram_08d1:auto_generated|         ; 0 (0)               ; 0 (0)                     ; 59049       ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|altsyncram:snapshots_rtl_0|altsyncram_08d1:auto_generated ; altsyncram_08d1      ; work         ;
+;          |ineqsudx_union9:UNITS[0].board_union|      ; 30 (30)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[0].board_union                      ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[0].candidate_union|  ; 24 (24)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[0].candidate_union                  ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[10].board_union|     ; 35 (35)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[10].board_union                     ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[10].candidate_union| ; 23 (23)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[10].candidate_union                 ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[11].board_union|     ; 31 (31)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[11].board_union                     ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[11].candidate_union| ; 22 (22)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[11].candidate_union                 ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[12].board_union|     ; 20 (20)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[12].board_union                     ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[12].candidate_union| ; 21 (21)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[12].candidate_union                 ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[13].board_union|     ; 31 (31)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[13].board_union                     ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[13].candidate_union| ; 24 (24)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[13].candidate_union                 ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[14].board_union|     ; 33 (33)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[14].board_union                     ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[14].candidate_union| ; 21 (21)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[14].candidate_union                 ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[15].board_union|     ; 45 (45)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[15].board_union                     ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[15].candidate_union| ; 22 (22)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[15].candidate_union                 ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[16].board_union|     ; 30 (30)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[16].board_union                     ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[16].candidate_union| ; 19 (19)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[16].candidate_union                 ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[17].board_union|     ; 39 (39)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[17].board_union                     ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[17].candidate_union| ; 22 (22)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[17].candidate_union                 ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[18].board_union|     ; 21 (21)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[18].board_union                     ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[18].candidate_union| ; 24 (24)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[18].candidate_union                 ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[19].board_union|     ; 26 (26)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[19].board_union                     ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[19].candidate_union| ; 28 (28)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[19].candidate_union                 ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[1].board_union|      ; 30 (30)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[1].board_union                      ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[1].candidate_union|  ; 23 (23)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[1].candidate_union                  ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[20].board_union|     ; 24 (24)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[20].board_union                     ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[20].candidate_union| ; 30 (30)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[20].candidate_union                 ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[21].board_union|     ; 33 (33)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[21].board_union                     ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[21].candidate_union| ; 18 (18)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[21].candidate_union                 ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[22].board_union|     ; 39 (39)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[22].board_union                     ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[22].candidate_union| ; 23 (23)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[22].candidate_union                 ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[23].board_union|     ; 35 (35)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[23].board_union                     ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[23].candidate_union| ; 27 (27)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[23].candidate_union                 ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[24].board_union|     ; 30 (30)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[24].board_union                     ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[24].candidate_union| ; 20 (20)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[24].candidate_union                 ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[25].board_union|     ; 36 (36)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[25].board_union                     ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[25].candidate_union| ; 22 (22)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[25].candidate_union                 ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[26].board_union|     ; 35 (35)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[26].board_union                     ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[26].candidate_union| ; 21 (21)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[26].candidate_union                 ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[2].board_union|      ; 21 (21)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[2].board_union                      ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[2].candidate_union|  ; 26 (26)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[2].candidate_union                  ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[3].board_union|      ; 36 (36)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[3].board_union                      ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[3].candidate_union|  ; 19 (19)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[3].candidate_union                  ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[4].board_union|      ; 40 (40)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[4].board_union                      ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[4].candidate_union|  ; 25 (25)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[4].candidate_union                  ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[5].board_union|      ; 21 (21)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[5].board_union                      ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[5].candidate_union|  ; 23 (23)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[5].candidate_union                  ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[6].board_union|      ; 55 (55)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[6].board_union                      ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[6].candidate_union|  ; 21 (21)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[6].candidate_union                  ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[7].board_union|      ; 38 (38)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[7].board_union                      ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[7].candidate_union|  ; 21 (21)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[7].candidate_union                  ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[8].board_union|      ; 34 (34)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[8].board_union                      ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[8].candidate_union|  ; 26 (26)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[8].candidate_union                  ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[9].board_union|      ; 43 (43)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[9].board_union                      ; ineqsudx_union9      ; work         ;
+;          |ineqsudx_union9:UNITS[9].candidate_union|  ; 26 (26)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[9].candidate_union                  ; ineqsudx_union9      ; work         ;
++------------------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------------------------------------------------------------------------------------------------------+----------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                                                  ;
++------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------+
+; Name                                                                                                                         ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size  ; MIF  ;
++------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------+
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|altsyncram:snapshots_rtl_0|altsyncram_08d1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 81           ; 729          ; 81           ; 729          ; 59049 ; None ;
++------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+-------+------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state                                                                                      ;
++-------------------+-------------------+-----------------+------------------+-----------------+-------------+-----------------+-----------------+--------------+------------+------------+
+; Name              ; state.FINISH_FAIL ; state.FINISH_OK ; state.BACK_APPLY ; state.BACK_READ ; state.PLACE ; state.PICK_CELL ; state.PICK_ROWS ; state.DOMAIN ; state.INIT ; state.IDLE ;
++-------------------+-------------------+-----------------+------------------+-----------------+-------------+-----------------+-----------------+--------------+------------+------------+
+; state.IDLE        ; 0                 ; 0               ; 0                ; 0               ; 0           ; 0               ; 0               ; 0            ; 0          ; 0          ;
+; state.INIT        ; 0                 ; 0               ; 0                ; 0               ; 0           ; 0               ; 0               ; 0            ; 1          ; 1          ;
+; state.DOMAIN      ; 0                 ; 0               ; 0                ; 0               ; 0           ; 0               ; 0               ; 1            ; 0          ; 1          ;
+; state.PICK_ROWS   ; 0                 ; 0               ; 0                ; 0               ; 0           ; 0               ; 1               ; 0            ; 0          ; 1          ;
+; state.PICK_CELL   ; 0                 ; 0               ; 0                ; 0               ; 0           ; 1               ; 0               ; 0            ; 0          ; 1          ;
+; state.PLACE       ; 0                 ; 0               ; 0                ; 0               ; 1           ; 0               ; 0               ; 0            ; 0          ; 1          ;
+; state.BACK_READ   ; 0                 ; 0               ; 0                ; 1               ; 0           ; 0               ; 0               ; 0            ; 0          ; 1          ;
+; state.BACK_APPLY  ; 0                 ; 0               ; 1                ; 0               ; 0           ; 0               ; 0               ; 0            ; 0          ; 1          ;
+; state.FINISH_OK   ; 0                 ; 1               ; 0                ; 0               ; 0           ; 0               ; 0               ; 0            ; 0          ; 1          ;
+; state.FINISH_FAIL ; 1                 ; 0               ; 0                ; 0               ; 0           ; 0               ; 0               ; 0            ; 0          ; 1          ;
++-------------------+-------------------+-----------------+------------------+-----------------+-------------+-----------------+-----------------+--------------+------------+------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                                ;
++---------------------------------------------------------------------------+---------------------------------------------------------------------------------------+
+; Register name                                                             ; Reason for Removal                                                                    ;
++---------------------------------------------------------------------------+---------------------------------------------------------------------------------------+
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[0][6] ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[0][5] ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[0][4] ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[1][6] ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[1][5] ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[2][6] ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[2][5] ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[3][6] ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[4][6] ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[4][4] ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[5][6] ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[6][6] ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[8][5] ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|state[3..9,11..31]                            ; Merged with ineqsudx_scan:ineqsudx_scan|state[10]                                     ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[7][4] ; Merged with ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[7][3] ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[7][5] ; Merged with ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[7][3] ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[6][5] ; Merged with ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[6][4] ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[3][4] ; Merged with ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[3][3] ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[8][6] ; Merged with ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[6][4] ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[6][4] ; Merged with ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[5][5] ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[5][5] ; Merged with ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[4][5] ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[4][5] ; Merged with ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[2][4] ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[80][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[79][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[78][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[77][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[76][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[75][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[74][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[73][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[72][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[71][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[70][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[69][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[68][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[67][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[66][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[65][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[64][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[63][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[62][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[61][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[60][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[59][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[58][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[57][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[56][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[55][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[54][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[53][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[52][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[51][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[50][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[49][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[48][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[47][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[46][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[45][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[44][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[43][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[42][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[41][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[40][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[39][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[38][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[37][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[36][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[35][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[34][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[33][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[32][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[31][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[30][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[29][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[28][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[27][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[26][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[25][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[24][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[23][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[22][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[21][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[20][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[19][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[18][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[17][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[16][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[15][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[14][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[13][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[12][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[11][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[10][0]  ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[9][0]   ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[8][0]   ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[7][0]   ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[6][0]   ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[5][0]   ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[4][0]   ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[3][0]   ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[2][0]   ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[1][0]   ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[0][0]   ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|top[0]            ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|state[10]                                     ; Stuck at GND due to stuck port data_in                                                ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state~9           ; Lost fanout                                                                           ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state~10          ; Lost fanout                                                                           ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state~11          ; Lost fanout                                                                           ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state~12          ; Lost fanout                                                                           ;
+; Total Number of Removed Registers = 136                                   ;                                                                                       ;
++---------------------------------------------------------------------------+---------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                                           ;
++--------------------------------------------------------------------------+---------------------------+----------------------------------------------------------------+
+; Register name                                                            ; Reason for Removal        ; Registers Removed due to This Register                         ;
++--------------------------------------------------------------------------+---------------------------+----------------------------------------------------------------+
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[80][0] ; Stuck at GND              ; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|top[0] ;
+;                                                                          ; due to stuck port data_in ;                                                                ;
++--------------------------------------------------------------------------+---------------------------+----------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 3075  ;
+; Number of registers using Synchronous Clear  ; 15    ;
+; Number of registers using Synchronous Load   ; 52    ;
+; Number of registers using Asynchronous Clear ; 1845  ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 2748  ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-------------------------------------------------------------------------------------+
+; Inverted Register Statistics                                                        ;
++---------------------------------------------------------------------------+---------+
+; Inverted Register                                                         ; Fan out ;
++---------------------------------------------------------------------------+---------+
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[7][3] ; 4       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[7][2] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[7][1] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[7][0] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[6][0] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[6][1] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[6][2] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[6][3] ; 4       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[4][3] ; 4       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[5][3] ; 4       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[5][2] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[5][1] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[5][0] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[4][0] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[4][1] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[4][2] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[3][3] ; 3       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[2][3] ; 3       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[0][3] ; 3       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[1][3] ; 3       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[3][2] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[3][1] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[3][0] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[2][0] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[2][1] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[2][2] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[1][2] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[1][1] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[1][0] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[0][0] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[0][1] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[0][2] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[8][2] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[8][3] ; 2       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[8][1] ; 1       ;
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_count_q[8][0] ; 1       ;
+; Total number of inverted registers = 36                                   ;         ;
++---------------------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Packed Into Inferred Megafunctions                                                                                                                        ;
++------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------+
+; Register Name                                                                      ; Megafunction                                                            ; Type ;
++------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------+
+; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|saved_domains[0..80][0..8] ; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|snapshots_rtl_0 ; RAM  ;
++------------------------------------------------------------------------------------+-------------------------------------------------------------------------+------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                               ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------+
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[0][8]   ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[1][7]   ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[2][8]   ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[3][8]   ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[4][5]   ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[5][12]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[6][15]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[7][7]   ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[8][11]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[9][6]   ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[10][11] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[11][2]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[12][9]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[13][14] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[14][15] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[15][4]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[16][8]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[17][6]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[18][2]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[19][4]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[20][12] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[21][4]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[22][14] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[23][7]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[24][12] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[25][3]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[26][10] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[27][6]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[28][6]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[29][10] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[30][14] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[31][14] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[32][6]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[33][11] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[34][11] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[35][5]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[36][12] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[37][3]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[38][11] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[39][9]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[40][8]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[41][5]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[42][3]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[43][8]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[44][15] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[45][11] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[46][14] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[47][9]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[48][9]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[49][11] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[50][5]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[51][15] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[52][13] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[53][8]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[54][5]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[55][7]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[56][8]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[57][14] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[58][4]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[59][7]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[60][12] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[61][14] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[62][4]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[63][9]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[64][15] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[65][9]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[66][2]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[67][6]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[68][5]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[69][2]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[70][2]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[71][10] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[72][11] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[73][9]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[74][9]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[75][10] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[76][13] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[77][3]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[78][3]  ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[79][11] ;
+; 3:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|decisions[80][10] ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[6][1] ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[7][1] ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|row_index_q[3][1] ;
+; 5:1                ; 7 bits    ; 21 LEs        ; 14 LEs               ; 7 LEs                  ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|depth[4]          ;
+; 128:1              ; 15 bits   ; 1275 LEs      ; 810 LEs              ; 465 LEs                ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|top[7]            ;
+; 24:1               ; 32 bits   ; 512 LEs       ; 512 LEs              ; 0 LEs                  ; Yes        ; |qsyn_dummy_xlr_wrap|dummy_dout[1]~reg0                                                        ;
+; 9:1                ; 4 bits    ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|chosen_cell[2]    ;
+; 10:1               ; 2 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|state[10]                                     ;
+; 13:1               ; 2 bits    ; 16 LEs        ; 6 LEs                ; 10 LEs                 ; Yes        ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|state[0]                                      ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|mem_intf_read.mem_size_bytes[0]               ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|mem_intf_write.mem_size_bytes[0]              ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector42        ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1         ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector13        ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector248       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector22        ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector67        ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector281       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector29        ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector97        ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector51        ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector322       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector61        ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector73        ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector122       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector84        ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector356       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector146       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector104       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector391       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector110       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector131       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector178       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector140       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector425       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector200       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector160       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector461       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector165       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector222       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector187       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector192       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector499       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector213       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector528       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector230       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector275       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector556       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector237       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector257       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector313       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector587       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector264       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector344       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector290       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector303       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector622       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector381       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector328       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector664       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector338       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector364       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector420       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector371       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector696       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector401       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector457       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector406       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector732       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector437       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector493       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector446       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector767       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector472       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector519       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector803       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector484       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector507       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector835       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector538       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector579       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector857       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector541       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector619       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector562       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector570       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector892       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector601       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector652       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector605       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector928       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector632       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector685       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector646       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector968       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector724       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector670       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1004      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector677       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector706       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector763       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1042      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector714       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector742       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector793       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector752       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1078      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector781       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector821       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1113      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector787       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector813       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1135      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector883       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector838       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector852       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1165      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector919       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector867       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1199      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector880       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector902       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector957       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector910       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1234      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector943       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector991       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1273      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector946       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1031      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector978       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector988       ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1308      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1063      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1015      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1022      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1346      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1104      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1050      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1060      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1383      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1087      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1131      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1416      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1096      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1123      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1445      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1147      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1195      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1159      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1470      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1176      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1228      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1180      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1504      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1262      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1210      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1545      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1221      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1243      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1303      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1582      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1258      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1336      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1281      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1612      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1293      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1319      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1375      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1325      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1648      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1355      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1405      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1361      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1686      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1432      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1391      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1720      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1400      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1423      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1748      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1496      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1451      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1776      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1464      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1531      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1482      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1814      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1489      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1514      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1569      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1848      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1526      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1603      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1555      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1884      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1562      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1589      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1642      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1920      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1596      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1626      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1678      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1960      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1634      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1660      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1717      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1990      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1671      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1741      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1694      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2027      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1703      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1733      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2053      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1804      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1757      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1766      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2080      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1785      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1841      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1797      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2119      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1823      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1879      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1829      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2158      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1855      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1915      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1868      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2190      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1951      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1893      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2226      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1905      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1981      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1927      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2262      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1940      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1969      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2017      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2302      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector1973      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2050      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2005      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2009      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2333      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2035      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2365      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2067      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2110      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2076      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2381      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2093      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2147      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2404      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2102      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2130      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2184      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2434      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2137      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2162      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2217      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2460      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2170      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2202      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2252      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2491      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2210      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2237      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2289      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2242      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2512      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2324      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2274      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2542      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2283      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2354      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2308      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2320      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2572      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2341      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2585      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2372      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2396      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2386      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2423      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2414      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2450      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2480      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2444      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2505      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2469      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2530      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2498      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2527      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2559      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2550      ;
+; 3:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2578      ;
+; 128:1              ; 9 bits    ; 765 LEs       ; 495 LEs              ; 270 LEs                ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Mux0              ;
+; 8:1                ; 4 bits    ; 20 LEs        ; 16 LEs               ; 4 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2592      ;
+; 130:1              ; 60 bits   ; 5160 LEs      ; 120 LEs              ; 5040 LEs               ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|mem_intf_write.mem_data[17][5]                ;
+; 130:1              ; 68 bits   ; 5848 LEs      ; 204 LEs              ; 5644 LEs               ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|mem_intf_write.mem_data[9][5]                 ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 4 LEs                ; 8 LEs                  ; No         ; |qsyn_dummy_xlr_wrap|ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|Selector2601      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|altsyncram:snapshots_rtl_0|altsyncram_08d1:auto_generated ;
++---------------------------------+--------------------+------+----------------------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                                         ;
++---------------------------------+--------------------+------+----------------------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                                          ;
++---------------------------------+--------------------+------+----------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: mem_intf_read:mem_intf_read ;
++-------------------+-------+----------------------------------------------+
+; Parameter Name    ; Value ; Type                                         ;
++-------------------+-------+----------------------------------------------+
+; BYTE_WIDTH        ; 8     ; Signed Integer                               ;
+; NUM_BYTES_IN_LINE ; 32    ; Signed Integer                               ;
++-------------------+-------+----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: mem_intf_write:mem_intf_write ;
++-------------------+-------+------------------------------------------------+
+; Parameter Name    ; Value ; Type                                           ;
++-------------------+-------+------------------------------------------------+
+; BYTE_WIDTH        ; 8     ; Signed Integer                                 ;
+; NUM_BYTES_IN_LINE ; 32    ; Signed Integer                                 ;
++-------------------+-------+------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver ;
++----------------+-------+-----------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                        ;
++----------------+-------+-----------------------------------------------------------------------------+
+; HIDDEN_SINGLES ; 1     ; Unsigned Binary                                                             ;
++----------------+-------+-----------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|altsyncram:snapshots_rtl_0 ;
++------------------------------------+----------------------+-------------------------------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                                                    ;
++------------------------------------+----------------------+-------------------------------------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                                                 ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                                              ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                                            ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                                            ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                                          ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                                                 ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                                                                 ;
+; WIDTH_A                            ; 729                  ; Untyped                                                                 ;
+; WIDTHAD_A                          ; 7                    ; Untyped                                                                 ;
+; NUMWORDS_A                         ; 81                   ; Untyped                                                                 ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                                                 ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                                                 ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                                                 ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                                                 ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                                                 ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                                                 ;
+; WIDTH_B                            ; 729                  ; Untyped                                                                 ;
+; WIDTHAD_B                          ; 7                    ; Untyped                                                                 ;
+; NUMWORDS_B                         ; 81                   ; Untyped                                                                 ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                                                 ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                                                 ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                                                 ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                                                                 ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                                                 ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                                                 ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                                                 ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                                 ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                                                 ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                                                 ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                                 ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                                                 ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                                                                 ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                                                 ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                                                 ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                                                 ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                                                 ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                                                 ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                                                 ;
+; INIT_FILE                          ; UNUSED               ; Untyped                                                                 ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                                                 ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                                                 ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                                                                 ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                                                 ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                                                                 ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                                                 ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                                                 ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                                                 ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                                                 ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                                                 ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                                                 ;
+; DEVICE_FAMILY                      ; MAX 10               ; Untyped                                                                 ;
+; CBXI_PARAMETER                     ; altsyncram_08d1      ; Untyped                                                                 ;
++------------------------------------+----------------------+-------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                                                               ;
++-------------------------------------------+------------------------------------------------------------------------------------+
+; Name                                      ; Value                                                                              ;
++-------------------------------------------+------------------------------------------------------------------------------------+
+; Number of entity instances                ; 1                                                                                  ;
+; Entity Instance                           ; ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|altsyncram:snapshots_rtl_0 ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                                                          ;
+;     -- WIDTH_A                            ; 729                                                                                ;
+;     -- NUMWORDS_A                         ; 81                                                                                 ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                                       ;
+;     -- WIDTH_B                            ; 729                                                                                ;
+;     -- NUMWORDS_B                         ; 81                                                                                 ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                                                             ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                                       ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                               ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                                          ;
++-------------------------------------------+------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 120                         ;
+; cycloneiii_ff         ; 3075                        ;
+;     CLR               ; 295                         ;
+;     CLR SLD           ; 32                          ;
+;     ENA               ; 1215                        ;
+;     ENA CLR           ; 1513                        ;
+;     ENA CLR SLD       ; 5                           ;
+;     ENA SCLR SLD      ; 15                          ;
+; cycloneiii_lcell_comb ; 25784                       ;
+;     arith             ; 62                          ;
+;         2 data inputs ; 36                          ;
+;         3 data inputs ; 26                          ;
+;     normal            ; 25722                       ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 13                          ;
+;         2 data inputs ; 1635                        ;
+;         3 data inputs ; 4158                        ;
+;         4 data inputs ; 19915                       ;
+; cycloneiii_ram_block  ; 729                         ;
+;                       ;                             ;
+; Max LUT depth         ; 25.00                       ;
+; Average LUT depth     ; 13.08                       ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:13:22     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+    Info: Copyright (C) 2025  Altera Corporation. All rights reserved.
+    Info: Your use of Altera Corporation's design tools, logic functions 
+    Info: and other software and tools, and any partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Altera Program License 
+    Info: Subscription Agreement, the Altera Quartus Prime License Agreement,
+    Info: the Altera IP License Agreement, or other applicable license
+    Info: agreement, including, without limitation, that your use is for
+    Info: the sole purpose of programming logic devices manufactured by
+    Info: Altera and sold by Altera or its authorized distributors.  Please
+    Info: refer to the Altera Software License Subscription Agreements 
+    Info: on the Quartus Prime software download page.
+    Info: Processing started: Tue Sep  8 13:18:39 2026
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off ineqsudx_scan -c ineqsudx_scan
+Info (12021): Found 1 design units, including 0 entities, in source file /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_def_pkg.sv
+    Info (12022): Found design unit 1: xbox_def_pkg (SystemVerilog) File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_def_pkg.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_intf_read.sv
+    Info (12023): Found entity 1: mem_intf_read File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_intf_read.sv Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_intf_write.sv
+    Info (12023): Found entity 1: mem_intf_write File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_intf_write.sv Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/host_regs_intrf.sv
+    Info (12023): Found entity 1: host_regs_intrf File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/host_regs_intrf.sv Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv
+    Info (12023): Found entity 1: qsyn_dummy_xlr_wrap File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv Line: 4
+Info (12021): Found 1 design units, including 0 entities, in source file ineqsudx_def_pkg.sv
+    Info (12022): Found design unit 1: ineqsudx_def_pkg (SystemVerilog) File: /project/tsmc65/users/perezba/ws/AlwaysSudxIneq/logs/experiment-domain/rtl_work/ineqsudx_scan/ineqsudx_def_pkg.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file ineqsudx_scan.sv
+    Info (12023): Found entity 1: ineqsudx_scan File: /project/tsmc65/users/perezba/ws/AlwaysSudxIneq/logs/experiment-domain/rtl_work/ineqsudx_scan/ineqsudx_scan.sv Line: 4
+Info (12021): Found 2 design units, including 2 entities, in source file ineqsudx_scan_solver.sv
+    Info (12023): Found entity 1: ineqsudx_scan_solver File: /project/tsmc65/users/perezba/ws/AlwaysSudxIneq/logs/experiment-domain/rtl_work/ineqsudx_scan/ineqsudx_scan_solver.sv Line: 5
+    Info (12023): Found entity 2: ineqsudx_union9 File: /project/tsmc65/users/perezba/ws/AlwaysSudxIneq/logs/experiment-domain/rtl_work/ineqsudx_scan/ineqsudx_scan_solver.sv Line: 264
+Info (12127): Elaborating entity "qsyn_dummy_xlr_wrap" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at qsyn_dummy_xlr_wrap_hri.sv(42): object "host_regs_read_pulse_s" assigned a value but never read File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv Line: 42
+Info (12128): Elaborating entity "mem_intf_read" for hierarchy "mem_intf_read:mem_intf_read" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv Line: 34
+Warning (12158): Entity "mem_intf_read" contains only dangling pins File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv Line: 34
+Info (12128): Elaborating entity "mem_intf_write" for hierarchy "mem_intf_write:mem_intf_write" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv Line: 35
+Warning (12158): Entity "mem_intf_write" contains only dangling pins File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv Line: 35
+Info (12128): Elaborating entity "host_regs_intrf" for hierarchy "host_regs_intrf:host_regs_intrf" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv Line: 36
+Warning (12158): Entity "host_regs_intrf" contains only dangling pins File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv Line: 36
+Info (12128): Elaborating entity "ineqsudx_scan" for hierarchy "ineqsudx_scan:ineqsudx_scan" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv Line: 74
+Warning (10230): Verilog HDL assignment warning at ineqsudx_scan.sv(85): truncated value with size 32 to match size of target (16) File: /project/tsmc65/users/perezba/ws/AlwaysSudxIneq/logs/experiment-domain/rtl_work/ineqsudx_scan/ineqsudx_scan.sv Line: 85
+Warning (10230): Verilog HDL assignment warning at ineqsudx_scan.sv(145): truncated value with size 32 to match size of target (6) File: /project/tsmc65/users/perezba/ws/AlwaysSudxIneq/logs/experiment-domain/rtl_work/ineqsudx_scan/ineqsudx_scan.sv Line: 145
+Warning (10230): Verilog HDL assignment warning at ineqsudx_scan.sv(168): truncated value with size 32 to match size of target (6) File: /project/tsmc65/users/perezba/ws/AlwaysSudxIneq/logs/experiment-domain/rtl_work/ineqsudx_scan/ineqsudx_scan.sv Line: 168
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "board" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "board_ps" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "solver_puzzle_out" into its bus
+Info (12128): Elaborating entity "ineqsudx_scan_solver" for hierarchy "ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver" File: /project/tsmc65/users/perezba/ws/AlwaysSudxIneq/logs/experiment-domain/rtl_work/ineqsudx_scan/ineqsudx_scan.sv Line: 249
+Warning (10036): Verilog HDL or VHDL warning at ineqsudx_scan_solver.sv(69): object "domain_changed" assigned a value but never read File: /project/tsmc65/users/perezba/ws/AlwaysSudxIneq/logs/experiment-domain/rtl_work/ineqsudx_scan/ineqsudx_scan_solver.sv Line: 69
+Warning (10036): Verilog HDL or VHDL warning at ineqsudx_scan_solver.sv(69): object "domain_dead" assigned a value but never read File: /project/tsmc65/users/perezba/ws/AlwaysSudxIneq/logs/experiment-domain/rtl_work/ineqsudx_scan/ineqsudx_scan_solver.sv Line: 69
+Warning (10036): Verilog HDL or VHDL warning at ineqsudx_scan_solver.sv(69): object "edge_present" assigned a value but never read File: /project/tsmc65/users/perezba/ws/AlwaysSudxIneq/logs/experiment-domain/rtl_work/ineqsudx_scan/ineqsudx_scan_solver.sv Line: 69
+Info (10264): Verilog HDL Case Statement information at ineqsudx_scan_solver.sv(62): all case item expressions in this case statement are onehot File: /project/tsmc65/users/perezba/ws/AlwaysSudxIneq/logs/experiment-domain/rtl_work/ineqsudx_scan/ineqsudx_scan_solver.sv Line: 62
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "puzzle_in" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "solved_puzzle" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "row_count" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "row_index" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "puzzle_in" into its bus
+Info (10008): Verilog HDL or VHDL information: EDA Netlist Writer cannot regroup multidimensional array "solved_puzzle" into its bus
+Info (12128): Elaborating entity "ineqsudx_union9" for hierarchy "ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|ineqsudx_union9:UNITS[0].board_union" File: /project/tsmc65/users/perezba/ws/AlwaysSudxIneq/logs/experiment-domain/rtl_work/ineqsudx_scan/ineqsudx_scan_solver.sv Line: 103
+Warning (12161): Node "host_regs_intrf:host_regs_intrf|host_regs_intrf.host_regs_read_pulse[9]" is stuck at GND because node is in wire loop and does not have a source File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/host_regs_intrf.sv Line: 3
+Warning (12161): Node "host_regs_intrf:host_regs_intrf|host_regs_intrf.host_regs_read_pulse[8]" is stuck at GND because node is in wire loop and does not have a source File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/host_regs_intrf.sv Line: 3
+Warning (12161): Node "host_regs_intrf:host_regs_intrf|host_regs_intrf.host_regs_read_pulse[7]" is stuck at GND because node is in wire loop and does not have a source File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/host_regs_intrf.sv Line: 3
+Warning (12161): Node "host_regs_intrf:host_regs_intrf|host_regs_intrf.host_regs_read_pulse[6]" is stuck at GND because node is in wire loop and does not have a source File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/host_regs_intrf.sv Line: 3
+Warning (12161): Node "host_regs_intrf:host_regs_intrf|host_regs_intrf.host_regs_read_pulse[5]" is stuck at GND because node is in wire loop and does not have a source File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/host_regs_intrf.sv Line: 3
+Warning (12161): Node "host_regs_intrf:host_regs_intrf|host_regs_intrf.host_regs_read_pulse[4]" is stuck at GND because node is in wire loop and does not have a source File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/host_regs_intrf.sv Line: 3
+Warning (12161): Node "host_regs_intrf:host_regs_intrf|host_regs_intrf.host_regs_read_pulse[3]" is stuck at GND because node is in wire loop and does not have a source File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/host_regs_intrf.sv Line: 3
+Warning (12161): Node "host_regs_intrf:host_regs_intrf|host_regs_intrf.host_regs_read_pulse[2]" is stuck at GND because node is in wire loop and does not have a source File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/host_regs_intrf.sv Line: 3
+Warning (12161): Node "host_regs_intrf:host_regs_intrf|host_regs_intrf.host_regs_read_pulse[1]" is stuck at GND because node is in wire loop and does not have a source File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/host_regs_intrf.sv Line: 3
+Warning (12161): Node "host_regs_intrf:host_regs_intrf|host_regs_intrf.host_regs_read_pulse[15]" is stuck at GND because node is in wire loop and does not have a source File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/host_regs_intrf.sv Line: 3
+Warning (12161): Node "host_regs_intrf:host_regs_intrf|host_regs_intrf.host_regs_read_pulse[14]" is stuck at GND because node is in wire loop and does not have a source File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/host_regs_intrf.sv Line: 3
+Warning (12161): Node "host_regs_intrf:host_regs_intrf|host_regs_intrf.host_regs_read_pulse[13]" is stuck at GND because node is in wire loop and does not have a source File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/host_regs_intrf.sv Line: 3
+Warning (12161): Node "host_regs_intrf:host_regs_intrf|host_regs_intrf.host_regs_read_pulse[12]" is stuck at GND because node is in wire loop and does not have a source File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/host_regs_intrf.sv Line: 3
+Warning (12161): Node "host_regs_intrf:host_regs_intrf|host_regs_intrf.host_regs_read_pulse[11]" is stuck at GND because node is in wire loop and does not have a source File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/host_regs_intrf.sv Line: 3
+Warning (12161): Node "host_regs_intrf:host_regs_intrf|host_regs_intrf.host_regs_read_pulse[10]" is stuck at GND because node is in wire loop and does not have a source File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/host_regs_intrf.sv Line: 3
+Warning (12161): Node "host_regs_intrf:host_regs_intrf|host_regs_intrf.host_regs_read_pulse[0]" is stuck at GND because node is in wire loop and does not have a source File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/host_regs_intrf.sv Line: 3
+Warning (276027): Inferred dual-clock RAM node "ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|snapshots_rtl_0" from synchronous design logic.  The read-during-write behavior of a dual-clock RAM is undefined and may not match the behavior of the original design.
+Info (19000): Inferred 1 megafunctions from design logic
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|snapshots_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 729
+        Info (286033): Parameter WIDTHAD_A set to 7
+        Info (286033): Parameter NUMWORDS_A set to 81
+        Info (286033): Parameter WIDTH_B set to 729
+        Info (286033): Parameter WIDTHAD_B set to 7
+        Info (286033): Parameter NUMWORDS_B set to 81
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK1
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+Info (12130): Elaborated megafunction instantiation "ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|altsyncram:snapshots_rtl_0"
+Info (12133): Instantiated megafunction "ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|altsyncram:snapshots_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "729"
+    Info (12134): Parameter "WIDTHAD_A" = "7"
+    Info (12134): Parameter "NUMWORDS_A" = "81"
+    Info (12134): Parameter "WIDTH_B" = "729"
+    Info (12134): Parameter "WIDTHAD_B" = "7"
+    Info (12134): Parameter "NUMWORDS_B" = "81"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK1"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_08d1.tdf
+    Info (12023): Found entity 1: altsyncram_08d1 File: /project/tsmc65/users/perezba/ws/AlwaysSudxIneq/logs/experiment-domain/rtl_work/ineqsudx_scan/db/altsyncram_08d1.tdf Line: 28
+Info (13000): Registers with preset signals will power-up high File: /project/tsmc65/users/perezba/ws/AlwaysSudxIneq/logs/experiment-domain/rtl_work/ineqsudx_scan/ineqsudx_scan_solver.sv Line: 218
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 4 registers lost all their fanouts during netlist optimizations.
+Info (144001): Generated suppressed messages file /project/tsmc65/users/perezba/ws/AlwaysSudxIneq/logs/experiment-domain/rtl_work/ineqsudx_scan/qsyn_output_files/ineqsudx_scan.map.smsg
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 16 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[0]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv Line: 27
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[1]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv Line: 27
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[2]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv Line: 27
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[3]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv Line: 27
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[4]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv Line: 27
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[5]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv Line: 27
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[6]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv Line: 27
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[7]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv Line: 27
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[8]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv Line: 27
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[9]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv Line: 27
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[10]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv Line: 27
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[11]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv Line: 27
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[12]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv Line: 27
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[13]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv Line: 27
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[14]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv Line: 27
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[15]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap_hri.sv Line: 27
+Info (21057): Implemented 27333 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 63 input pins
+    Info (21059): Implemented 57 output pins
+    Info (21061): Implemented 26484 logic cells
+    Info (21064): Implemented 729 RAM segments
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 44 warnings
+    Info: Peak virtual memory: 658 megabytes
+    Info: Processing ended: Tue Sep  8 13:34:05 2026
+    Info: Elapsed time: 00:15:26
+    Info: Total CPU time (on all processors): 00:06:03
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in /project/tsmc65/users/perezba/ws/AlwaysSudxIneq/logs/experiment-domain/rtl_work/ineqsudx_scan/qsyn_output_files/ineqsudx_scan.map.smsg.
+
+

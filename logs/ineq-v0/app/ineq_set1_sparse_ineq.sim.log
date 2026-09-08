@@ -1,5 +1,5 @@
 xrun command: xrun -sv -f $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f -UNBUFFERED -delay_trigger +define+XMEM_INTRFC +define+MAX10_FPGA +define+CRNT_XLR=ineqsudx_scan
-TOOL:	xrun(64)	23.09-s013: Started on Sep 08, 2026 at 13:23:04 UTC
+TOOL:	xrun(64)	23.09-s013: Started on Sep 08, 2026 at 13:32:05 UTC
 xrun(64): 23.09-s013: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
 xmsim: *W,RNMBF: Failed to re-read the args file:  $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f.  This could result in the loss of user defined plus options.
 Loading snapshot worklib.k5_tb:sv .................... Done
@@ -16,10 +16,10 @@ uart_tb.sv: Remote Python changed UART clk_div_cntr value to     4 (decimal)
 uart_tb.sv: Remote Python changed UART ns_per_bit_actual from 8680.000000 to 50.000000 
 
 
- 46780875ns uart_tb.sv: Detected remote quit command. Quitting 
+ 42840945ns uart_tb.sv: Detected remote quit command. Quitting 
 
 
-Simulation complete via $finish(1) at time 46780875 NS + 1
+Simulation complete via $finish(1) at time 42840945 NS + 1
 /project/tsmc65/shared/k5_share/kuntz5/src/tb/k5_uart_tb.sv:305                                     $finish ;
 xcelium> exit
-TOOL:	xrun(64)	23.09-s013: Exiting on Sep 08, 2026 at 13:23:51 UTC  (total: 00:00:47)
+TOOL:	xrun(64)	23.09-s013: Exiting on Sep 08, 2026 at 13:32:53 UTC  (total: 00:00:48)

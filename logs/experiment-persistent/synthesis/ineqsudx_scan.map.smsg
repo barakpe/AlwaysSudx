@@ -1,0 +1,2 @@
+Warning (10268): Verilog HDL information at ineqsudx_scan_solver.sv(236): always construct contains both blocking and non-blocking assignments File: /project/tsmc65/users/perezba/ws/AlwaysSudxIneq/logs/experiment-persistent/rtl_work/ineqsudx_scan/ineqsudx_scan_solver.sv Line: 236
+Info (10281): Verilog HDL Declaration information at ineqsudx_scan_solver.sv(15): object "DOMAIN" differs only in case from object "domain" in the same scope File: /project/tsmc65/users/perezba/ws/AlwaysSudxIneq/logs/experiment-persistent/rtl_work/ineqsudx_scan/ineqsudx_scan_solver.sv Line: 15

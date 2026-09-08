@@ -56,5 +56,35 @@ for i in range(300):
             board[c] |= code << shift
     generated.append(record('generated_'+str(i), board))
 (OUT / 'generated.txt').write_text(''.join(generated))
+
+# Add constraints to independently checked difficult classic solutions. This
+# complements the patterned Latin-square generator with different puzzle roots.
+solutions = {}
+for line in (ROOT / 'logs/ineq-v0/classic/cycles.txt').read_text().splitlines():
+    parts = line.split()
+    if parts[0].startswith('top95_'):
+        solutions[parts[0]] = [int(x) for x in parts[-1]]
+heldout = []
+for line in classic:
+    name, _, encoded = line.split()
+    if name not in solutions:
+        continue
+    solution = solutions[name]
+    givens = [int(encoded[i:i+2], 16) for i in range(0,162,2)]
+    for density in [0.05, 0.2, 0.75]:
+        board = list(givens)
+        for c in range(81):
+            for shift, neighbor, valid in [(6,c+1,c%9<8), (4,c+9,c//9<8)]:
+                if valid and rng.random() < density:
+                    board[c] |= (1 if solution[c]<solution[neighbor] else 2) << shift
+        heldout.append(record(name+'_ineq_'+str(density), board))
+(OUT / 'heldout.txt').write_text(''.join(heldout))
+
+rejects = []
+for i, line in enumerate((ROOT / 'bench/puzzles/unsat.txt').read_text().splitlines()):
+    if len(line) >= 81:
+        rejects.append(record('classic_unsat_'+str(i), [int(x,16) if x != '.' else 0 for x in line[:81]], 1))
+(OUT / 'rejects.txt').write_text(''.join(rejects))
 print('Prepared {} official, {} classic, {} generated boards'.format(
     len(official), len(classic), len(generated)))
+print('Added {} difficult inequality boards and {} rejection cases'.format(len(heldout),len(rejects)))

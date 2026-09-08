@@ -1,0 +1,16 @@
+Analysis & Synthesis Status : Successful - Tue Sep  8 13:32:17 2026
+Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+Revision Name : ineqsudx_scan
+Top-level Entity Name : qsyn_dummy_xlr_wrap
+Family : MAX 10
+Total logic elements : 25,552
+    Total combinational functions : 24,882
+    Dedicated logic registers : 3,468
+Total registers : 3468
+Total pins : 120
+Total virtual pins : 0
+Total memory bits : 60,264
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0
+UFM blocks : 0
+ADC blocks : 0

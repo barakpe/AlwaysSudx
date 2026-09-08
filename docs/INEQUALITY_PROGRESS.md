@@ -37,3 +37,33 @@ synthesis is in progress; no frequency or bitstream claim is made yet.
 Results will be recorded per immutable tag. Core cycles are diagnostic only;
 competition score uses the course application's cycles / standalone Fmax.
 Timing, area, routing, and correctness decide which experiment is retained.
+
+## Architectural experiments
+
+The persistent-value architecture passes all official cases and reduces some
+inequality rounds, but maps to 25,552 LEs and uses a 729-bit-wide snapshot RAM.
+The domain-only redesign passes 4,341 RTL executions (21 official, 3,700 classic,
+300 generated, 285 difficult inequality, 35 known unsatisfiable). It reduces
+mean core cycles on the 19 solvable official boards from 54.00 to 33.37, and on
+285 difficult inequality holdouts from 91.89 to 45.08. Its initial wide-memory
+mapping uses 26,455 LEs. These are cycle/area measurements, not timed score wins.
+
+Descending digit order and inequality-degree MRV ties were tested on all 21
+boards. Both hurt the overall supplied set, so the simple ascending/raster
+policy remains. Population-count sharing was simulated with identical official
+results, but its initial synthesis was stopped with the other wide-RAM designs.
+
+The physical memory constraint matters: classic full-system reports show
+166/182 M9Ks already allocated despite only 79% of raw memory bits being used.
+A 729-bit-wide simple dual-port snapshot costs at least 21 more blocks. Wide
+snapshot experiments were stopped before timing signoff; their partial build
+logs do not establish a usable bitstream or Fmax.
+
+The revised snapshot is 243 bits wide and 243 words deep. Three beats save the
+same 59,049 meaningful bits, expected to occupy seven M9Ks. Writes overlap the
+two MRV selection cycles and the guess cycle. Restoring a nonempty alternative
+costs two extra cycles; exhausted frames skip unnecessary reads. Decision-stack
+writes now use an explicit if/else-if to infer a single RAM write port.
+
+A separate build worktree will preserve v0's source while its standalone fitter
+runs. All source snapshots remain immutable during their builds.
