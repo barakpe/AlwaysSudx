@@ -2,8 +2,9 @@
 
 The selected implementation improves the unweighted mean application
 cycles/Fmax by **24.76%** over the first working inequality baseline. All 19
-supplied solvable application cases pass both course checkers. These are
-simulation measurements; physical execution of the variant is pending.
+supplied solvable application cases pass both course checkers. The user has confirmed these simulation measurements on physical hardware,
+including exact cycle agreement and both checker results on every solvable case.
+See [the hardware validation record](INEQUALITY_V2_HARDWARE_VALIDATION.md).
 
 ## Milestone comparison
 
@@ -108,9 +109,9 @@ This is signoff under the **course's constraint coverage**, not a claim that
 every external interface has separately specified board timing. Shared timing
 scripts and constraints were not modified.
 
-The SOF and SVF are ready for the user's DE10-Lite test. Physical execution of
-this variant is still pending. RTL/application simulation and successful
-routing do not replace that final board confirmation.
+The user has completed the DE10-Lite hardware test: all 19 solvable boards and
+both expected rejections match simulation cycle for cycle. The hardware report
+confirms the published SOF and all nine source fingerprints.
 
 The reported 4.6697 us is the **competition-normalized measurement**. At a
 physical 50 MHz clock, the mean measured cycle count corresponds to 6.5021 us.

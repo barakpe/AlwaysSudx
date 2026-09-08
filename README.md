@@ -10,8 +10,8 @@ Standalone synthesis achieves **69.62 MHz** using **22,580 fitted LEs**.
 The full-system image meets its configured **50 MHz** clock, using **35,152
 fitted LEs**. Across the 19 supplied solvable cases, mean application cycles/Fmax
 falls from **6.2066 to 4.6697 us (24.76%)** versus the inequality baseline.
-This is an unweighted development comparison; physical execution of the variant
-is pending. Standalone Fmax is not the programmed board clock.
+This is an unweighted development comparison. The user has now confirmed all
+21 application outcomes on hardware, with exact simulation cycle agreement. Standalone Fmax is not the programmed board clock.
 
 ## Read the design
 

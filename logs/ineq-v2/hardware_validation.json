@@ -1,0 +1,149 @@
+{
+  "release_tag": "ineq-v2",
+  "build_commit": "c91d5985ea680edba047db4333e969ba43738f01",
+  "sof_sha256": "79b39f50f2c760e94aaf8bedc81ee28e2e3cd6a727d711dced1c6cde31178b3e",
+  "validation_origin": "User-provided laptop-agent hardware report",
+  "raw_hardware_logs_supplied": false,
+  "board": "DE10-Lite 10M50DA",
+  "programmer": "USB-Blaster [USB-1]",
+  "uart": "COM3",
+  "detected_clock_mhz": 50,
+  "hardware_execution_tested": true,
+  "source_fingerprints_matched": 9,
+  "solvable_runs": [
+    {
+      "board": "20blanks",
+      "cycles": 267,
+      "basic_checker": "PASSED",
+      "inequality_checker": "PASSED"
+    },
+    {
+      "board": "51blanks",
+      "cycles": 291,
+      "basic_checker": "PASSED",
+      "inequality_checker": "PASSED"
+    },
+    {
+      "board": "easy1",
+      "cycles": 267,
+      "basic_checker": "PASSED",
+      "inequality_checker": "PASSED"
+    },
+    {
+      "board": "hard1",
+      "cycles": 579,
+      "basic_checker": "PASSED",
+      "inequality_checker": "PASSED"
+    },
+    {
+      "board": "ineq/dev/p5_presolved",
+      "cycles": 267,
+      "basic_checker": "PASSED",
+      "inequality_checker": "PASSED"
+    },
+    {
+      "board": "ineq/set0/ascend",
+      "cycles": 267,
+      "basic_checker": "PASSED",
+      "inequality_checker": "PASSED"
+    },
+    {
+      "board": "ineq/set0/plain",
+      "cycles": 483,
+      "basic_checker": "PASSED",
+      "inequality_checker": "PASSED"
+    },
+    {
+      "board": "ineq/set0/single",
+      "cycles": 291,
+      "basic_checker": "PASSED",
+      "inequality_checker": "PASSED"
+    },
+    {
+      "board": "ineq/set0/sparse1",
+      "cycles": 267,
+      "basic_checker": "PASSED",
+      "inequality_checker": "PASSED"
+    },
+    {
+      "board": "ineq/set1/easy1",
+      "cycles": 291,
+      "basic_checker": "PASSED",
+      "inequality_checker": "PASSED"
+    },
+    {
+      "board": "ineq/set1/easy2",
+      "cycles": 291,
+      "basic_checker": "PASSED",
+      "inequality_checker": "PASSED"
+    },
+    {
+      "board": "ineq/set1/hard1",
+      "cycles": 315,
+      "basic_checker": "PASSED",
+      "inequality_checker": "PASSED"
+    },
+    {
+      "board": "ineq/set1/hard2",
+      "cycles": 339,
+      "basic_checker": "PASSED",
+      "inequality_checker": "PASSED"
+    },
+    {
+      "board": "ineq/set1/hard3",
+      "cycles": 339,
+      "basic_checker": "PASSED",
+      "inequality_checker": "PASSED"
+    },
+    {
+      "board": "ineq/set1/hard4",
+      "cycles": 291,
+      "basic_checker": "PASSED",
+      "inequality_checker": "PASSED"
+    },
+    {
+      "board": "ineq/set1/medium1",
+      "cycles": 291,
+      "basic_checker": "PASSED",
+      "inequality_checker": "PASSED"
+    },
+    {
+      "board": "ineq/set1/medium2",
+      "cycles": 315,
+      "basic_checker": "PASSED",
+      "inequality_checker": "PASSED"
+    },
+    {
+      "board": "ineq/set1/medium3",
+      "cycles": 315,
+      "basic_checker": "PASSED",
+      "inequality_checker": "PASSED"
+    },
+    {
+      "board": "ineq/set1/sparse_ineq",
+      "cycles": 411,
+      "basic_checker": "PASSED",
+      "inequality_checker": "PASSED"
+    }
+  ],
+  "expected_rejections": [
+    {
+      "board": "ineq/dev/p6_contradiction",
+      "cycles": 267,
+      "reported_non_solved": true,
+      "false_pass": false
+    },
+    {
+      "board": "ineq/dev/p7_impossible",
+      "cycles": 267,
+      "reported_non_solved": true,
+      "false_pass": false
+    }
+  ],
+  "simulation_cycle_mismatches": 0,
+  "reported_log_errors": 0,
+  "reported_log_warnings": 0,
+  "mean_cycles": 325.10526315789474,
+  "normalized_time_us": 4.669710760670708,
+  "physical_time_us": 6.502105263157895
+}

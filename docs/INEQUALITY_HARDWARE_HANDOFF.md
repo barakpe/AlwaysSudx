@@ -1,6 +1,7 @@
 # Inequality Sudoku hardware handoff
 
-Hardware execution of this variant is pending. The canonical development
+The user has validated ineq-v2 on hardware: all 21 expected outcomes pass,
+with exact simulation cycle agreement. See [the validation record](INEQUALITY_V2_HARDWARE_VALIDATION.md). The canonical development
 branch is `hackathon/ineq`; milestone tags preserve earlier source states. The **ineq-v2** release has completed cloud synthesis, fitting, routing, and
 passing full-system timing at **50 MHz**, and is ready for the DE10-Lite test.
 The previously validated classic v5 bitstream is a separate accelerator.
