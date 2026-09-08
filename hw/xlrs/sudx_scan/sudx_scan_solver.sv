@@ -3,7 +3,7 @@
 // whole level in parallel, then retries its saved alternative digit. Givens
 // and root-level deductions have depth zero and are never undone.
 module sudx_scan_solver #(
-    parameter bit HIDDEN_SINGLES = 1'b0
+    parameter bit HIDDEN_SINGLES = 1'b1
 ) (
     input logic clk, rst_n, start,
     input logic [8:0][8:0][3:0] puzzle_in,
