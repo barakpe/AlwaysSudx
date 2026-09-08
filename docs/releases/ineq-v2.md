@@ -5,7 +5,7 @@ Pipelined inequality Sudoku solver, ready for DE10-Lite hardware testing.
 - Full system: **50 MHz configured clock**, **51.88 MHz Fmax**, **35,152 fitted LEs**, **173/182 M9Ks**.
 - Worst setup slack **+0.725 ns**; every reported timing category passes under the unmodified course constraints. External-port constraint coverage is described in the results document.
 - **4,347 RTL executions pass**: 4,306 solved cases and 41 expected rejections. All 19 solvable full-application cases pass both course checkers; both impossible development applications correctly report non-solved.
-- **Physical hardware execution is pending**. Classic v5's prior hardware confirmation applies to the separate classic release.
+- **Physical hardware execution now passes**: the user reports all 21 outcomes correct on a DE10-Lite at 50 MHz, with exact simulation cycle counts. The SOF and all nine installed source fingerprints match. See the attached subsequent hardware validation record; raw hardware logs were not supplied in this cloud session.
 
 Download the SOF for programming and the source ZIP for the matching application, updated shared checker, boards, and LF source files. The SVF, actual course-generated synthesis TGZ, compact submission-source ZIP, detailed explanation, results, handoff, and provenance are also attached. The final weighted unseen-case report must be completed when the course releases those cases and weights.
 
@@ -17,3 +17,5 @@ Read [the detailed design explanation](https://github.com/barakpe/AlwaysSudx/blo
 SOF SHA-256
 79b39f50f2c760e94aaf8bedc81ee28e2e3cd6a727d711dced1c6cde31178b3e
 ```
+
+The original build assets and checksums are unchanged. Their build-time `hardware_execution_tested: false` status is superseded by the attached `INEQUALITY_V2_HARDWARE_VALIDATION.md` and `hardware_validation.json`. `HARDWARE_SHA256SUMS` covers these two added records.
