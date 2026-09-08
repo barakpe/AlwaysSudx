@@ -1,0 +1,25 @@
+{
+  "build_commit": "68c26eab05adaa383599cf40bf04977f40c20bc8",
+  "accelerator": "ineqsudx_scan",
+  "source_sha256": {
+    "hw/xlrs/ineqsudx_scan/ineqsudx_scan_solver.sv": "16f7325a5c92a548d136e94e845e823ff5659bc3a35872991f79ca84c21f3e8f",
+    "hw/xlrs/ineqsudx_scan/ineqsudx_def_pkg.sv": "fe861910d220ae5822ff15638b1e43ec19c3610b8a91de1d67f75b768e1a9bb5",
+    "hw/xlrs/ineqsudx_scan/ineqsudx_scan.sv": "a63bec9f8b286d6e55004bef34d626dfd83a296382abb4ffaf951ef3450888cc",
+    "hw/xlrs/ineqsudx_scan/ineqsudx_scan.f": "fe8ced2d5af584b90d5bbf45b2a035544df34d0c01c02f9d17ba5428d10bd374",
+    "sw/apps/ineqsudx_scan/ineqsudx_scan.h": "b95d01cbd7fa43f7f4e8bac326d94f7c165199d894b60c23ca111c5afdd2466a",
+    "sw/apps/ineqsudx_scan/ineqsudx_scan_enums.svh": "8042cdb02ba0d426713e779fe1f64ac32167b01ff14c7df9eb21fb4d1fb7198e",
+    "sw/apps/ineqsudx_scan/ineqsudx_scan.c": "81b768475bda72e5ddd02078da1029258518ca6fe6028bf895c30b13f5fe7bb1",
+    "sw/apps/sud_shared/sud_lib.c": "7575111fec58136feae4eebe1f1d2321e44f6c111c3bbc3b6dfa3a3213391a3d",
+    "sw/apps/sud_shared/sud_lib.h": "aea657dd59a4c5a725db2d3f59cc79b0b0a8a19defaa0bebbf8831c6086dfb39"
+  },
+  "hardware_execution_tested": false,
+  "course_reference_commit": "a9573fc7c554776876bfd1677d1d285be646b321",
+  "source_capture_utc": "2026-09-08T13:50:54.226319Z",
+  "full_system_timing_passed": false,
+  "full_system_fmax_mhz": 40.98,
+  "standalone_fmax_mhz": 45.55,
+  "programming_files_sha256": {
+    "k5_xbox_ineqsudx_scan.sof": "a9062de938ef3f795ba5184e6247d48e1fdf493f7ae527db5edbc2bea522296d",
+    "k5_xbox_ineqsudx_scan.svf": "6ea0f57a908db7ae8a676c7a52e0456af96218d42811047d71e5cac28f5465b5"
+  }
+}
