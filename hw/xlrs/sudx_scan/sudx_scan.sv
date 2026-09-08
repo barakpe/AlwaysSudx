@@ -127,12 +127,15 @@ module sudx_scan (
         mem_intf_read.mem_start_addr = xmem_board_addr + next_load_start_idx ;  
       
         if (mem_intf_read.mem_valid) begin
-          integer i;
-          for (i=0;i<32;i++) begin
-             if ((loaded_start_idx+i) < MUM_BOARD_ELEM)
-               board_flat_ps[loaded_start_idx+i] = mem_intf_read.mem_data[i][3:0] ;
-          end
-          
+          // The course protocol transfers exactly 32 + 32 + 17 bytes.
+          // Fixed slices avoid synthesizing a general 81-cell write crossbar.
+          case (loaded_start_idx)
+            7'd0:  for (int i=0; i<32; i++) board_flat_ps[i]    = mem_intf_read.mem_data[i][3:0];
+            7'd32: for (int i=0; i<32; i++) board_flat_ps[32+i] = mem_intf_read.mem_data[i][3:0];
+            7'd64: for (int i=0; i<17; i++) board_flat_ps[64+i] = mem_intf_read.mem_data[i][3:0];
+            default: ;
+          endcase
+
           board_ps = board_flat_ps;
                                         
           if ((next_load_start_idx+32) >= MUM_BOARD_ELEM) // Overwrite default 32
@@ -170,22 +173,13 @@ module sudx_scan (
 
         if (mem_intf_write.mem_req) begin
 
-          for (int i=0;i<32;i++) begin
-          
-             // Bug Fix by Bar Ivry 27/8/2026
-             // WRONG:
-             // if ((stored_start_idx+i) < MUM_BOARD_ELEM) 
-             //   mem_intf_write.mem_data[i][3:0] = solver_puzzle_out_flat[stored_start_idx+i] ;               
-
-
-
-
-
-
-             // FIXED:
-             if ((next_store_start_idx+i) < MUM_BOARD_ELEM)
-               mem_intf_write.mem_data[i][3:0] = solver_puzzle_out_flat[next_store_start_idx+i] ;
-          end
+          // Use the NEXT request index, retaining the course's STORE bug fix.
+          case (next_store_start_idx)
+            7'd0:  for (int i=0; i<32; i++) mem_intf_write.mem_data[i][3:0] = solver_puzzle_out_flat[i];
+            7'd32: for (int i=0; i<32; i++) mem_intf_write.mem_data[i][3:0] = solver_puzzle_out_flat[32+i];
+            7'd64: for (int i=0; i<17; i++) mem_intf_write.mem_data[i][3:0] = solver_puzzle_out_flat[64+i];
+            default: ;
+          endcase
         end
 
       end

@@ -90,3 +90,16 @@ variable-index loading and storing despite the fixed three-burst protocol.
 The resetless decision stack infers 1,215 useful RAM bits. Its mixed-port RAM
 warning is reviewed: read and write happen in different FSM states, with the
 same clock, so no read-during-write collision is reachable.
+
+## v3: fixed-burst wrapper
+
+The unchanged three-transaction protocol now uses fixed 0/32/64 slices. Synthesis
+maps to **17,027 LEs**, down from 23,949. K5 hard1 still passes at **603 cycles**.
+This milestone is area-checked only; no standalone Fmax is claimed for v3.
+
+## v4: explicit cell write sources
+
+The separately tested cell-register rewrite preserves all 95 naked-batch cycle
+counts and solutions. With the original wrapper it maps to **21,322 LEs**, versus
+23,949 before the rewrite. It is now combined with v3's fixed-burst wrapper.
+Final frequency and bitstream validation are performed on the next milestone.
