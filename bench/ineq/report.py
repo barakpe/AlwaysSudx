@@ -2,6 +2,7 @@
 """Read measured logs only; never estimate an unavailable frequency or score."""
 import json
 import re
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -46,7 +47,8 @@ def summary(path):
 
 
 measurements = {}
-for milestone in ['ineq-v0', 'ineq-v1', 'ineq-v2']:
+versions = sys.argv[1:] or ['ineq-v0', 'ineq-v1', 'ineq-v2', 'ineq-v3']
+for milestone in versions:
     base = ROOT / 'logs' / milestone
     reports = base / 'synthesis'
     data = {'rtl': {}, 'application': apps(base / 'app')}
@@ -64,6 +66,9 @@ for milestone in ['ineq-v0', 'ineq-v1', 'ineq-v2']:
     data['fmax_mhz'] = frequency(reports / 'ineqsudx_scan.sta.rpt')
     data['map'] = summary(reports / 'ineqsudx_scan.map.summary')
     data['fit'] = summary(reports / 'ineqsudx_scan.fit.summary')
+    hardware = base / 'hardware_validation.json'
+    data['hardware_execution_tested'] = hardware.exists() and \
+        json.loads(hardware.read_text()).get('hardware_execution_tested', False)
     if data['fmax_mhz']:
         for app in data['application'].values():
             app['score_us'] = app['cycles']/data['fmax_mhz']
@@ -71,8 +76,8 @@ for milestone in ['ineq-v0', 'ineq-v1', 'ineq-v2']:
 
 (ROOT / 'logs/inequality_measurements.json').write_text(json.dumps(measurements, indent=2)+'\n')
 names = sorted(set().union(*(set(v['application']) for v in measurements.values())))
-print('| Board | v0 app cycles | v1 app cycles | v2 app cycles |')
-print('|---|---:|---:|---:|')
+print('| Board | ' + ' | '.join(v+' app cycles' for v in versions) + ' |')
+print('|---|' + '---:|' * len(versions))
 for name in names:
     values = [str(measurements[m]['application'].get(name,{}).get('cycles','—'))
               for m in measurements]

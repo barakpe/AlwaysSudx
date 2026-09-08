@@ -165,7 +165,8 @@
       "Total PLLs": "0 / 4 ( 0 % )",
       "UFM blocks": "0 / 1 ( 0 % )",
       "ADC blocks": "0 / 2 ( 0 % )"
-    }
+    },
+    "hardware_execution_tested": false
   },
   "ineq-v1": {
     "rtl": {
@@ -347,7 +348,8 @@
       "Total PLLs": "0 / 4 ( 0 % )",
       "UFM blocks": "0 / 1 ( 0 % )",
       "ADC blocks": "0 / 2 ( 0 % )"
-    }
+    },
+    "hardware_execution_tested": false
   },
   "ineq-v2": {
     "rtl": {
@@ -529,6 +531,7 @@
       "Total PLLs": "0 / 4 ( 0 % )",
       "UFM blocks": "0 / 1 ( 0 % )",
       "ADC blocks": "0 / 2 ( 0 % )"
-    }
+    },
+    "hardware_execution_tested": true
   }
 }

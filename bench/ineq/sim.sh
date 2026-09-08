@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 SUDX_BOARD="$1"
 SUDX_EXPECT="${3:-solved}"
+SUDX_ALT_XLRS="${4:-}"
+if [ -n "$SUDX_ALT_XLRS" ]; then SUDX_ALT_XLRS="$(realpath "$SUDX_ALT_XLRS")"; fi
 SUDX_LABEL="${SUDX_BOARD//\//_}"
 SUDX_OUT="$(realpath -m "$2")"
 source "$(dirname "$0")/../env.sh"
 set -e
+if [ -n "$SUDX_ALT_XLRS" ]; then export MY_K5_XLRS="$SUDX_ALT_XLRS"; fi
 mkdir -p "$SUDX_OUT"
+sha256sum "$MY_K5_XLRS/ineqsudx_scan/"*.sv > "$SUDX_OUT/$SUDX_LABEL.sources.sha256"
 cd "$MY_K5_PROJ/sim"
 launch_k5_sim ineqsudx_scan > "$SUDX_OUT/$SUDX_LABEL.sim.log" 2>&1 &
 SUDX_SIM_PID=$!

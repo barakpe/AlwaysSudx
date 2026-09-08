@@ -39,8 +39,8 @@ A splits it:
 No reset is needed for the added registers: SCAN always writes them before the
 state machine can use them. All 4,347 RTL executions match v2 byte for byte in
 the result logs, including cycles, solved grids, guesses, and rollback counts.
-Frequency and physical area must still be measured; extra registers alone do
-not establish a speed improvement.
+Mapped logic is 22,825 LEs with 3,171 registers; final fitted area and frequency
+are still being measured. Extra registers alone do not establish a speed win.
 
 ## B: a triplet hierarchy across existing cycles
 
@@ -62,6 +62,9 @@ preserves raster-order ties because every group contains a contiguous ordered
 range of cells, and equal counts always select the earlier entry. The result is
 the same lexicographic minimum `(candidate count, cell index)` as v2.
 
+All 4,347 RTL result records also match v2 byte for byte for this experiment.
+Mapped logic is 23,279 LEs with 3,032 registers; final timing is pending.
+
 The parent-domain snapshot still uses exactly the same three writes in
 PICK_ROWS, PICK_CELL, and PLACE. Pipeline registers contain selection metadata;
 they do not change the saved search state or its restore sequence.
@@ -77,3 +80,25 @@ clock is acceptable if needed; timing must pass at the clock actually used.
 
 The v2 bitstream is retained throughout. The experiments are on the
 `hackathon/mrv-pipeline` branch until a measured winner is selected.
+
+## Course constraint-path issue
+
+The installed `qsyn_xlr.py` writes an SDC reference to `QSYN/basic.sdc`, but the
+installed file is at `QSYN/util/basic.sdc`. The latter specifies a 20 ns clock
+and external I/O delays. The missing path makes the standalone timing tool
+fall back to a derived clock, as already seen in v2. This was reported to the
+user for forwarding to staff. No shared scripts, constraints, or compilation
+options were changed. The comparisons continue to use the same supplied flow.
+
+## Reproduce the full application tests for a frozen experiment
+
+The optional second argument to the local suite wrapper selects the isolated
+RTL tree through the normal `MY_K5_XLRS` environment variable. It does not change
+the application or timer. Each application log has an adjacent source-hash file.
+
+```bash
+bash bench/ineq/all_apps.sh logs/experiment-mrv-counts/app \
+    logs/experiment-mrv-counts/rtl_work
+bash bench/ineq/all_apps.sh logs/experiment-mrv-triplets/app \
+    logs/experiment-mrv-triplets/rtl_work
+```
