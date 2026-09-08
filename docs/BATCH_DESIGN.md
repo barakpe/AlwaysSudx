@@ -1,4 +1,4 @@
-# Batch solver hypothesis
+# Final batch solver architecture
 
 The new architecture stores one nine-bit digit mask per cell (zero means empty).
 A propagation round has two clock cycles: recompute row/column/box occupancy and
@@ -34,13 +34,14 @@ The next occupancy pass detects duplicate digits explicitly. A cell forced to
 two different digits and a missing unit digit with no available home are also
 contradictions. An apparently full grid is accepted only after these checks.
 
-## Measurement sequence
+## Implementation steps
 
-1. v0: unmodified course MRV algorithm, interface names adapted.
-2. v1: balanced minimum tree, identical search and cycle counts.
-3. v2 hypothesis: batched naked singles, decision-depth rollback, pipelined MRV.
-4. v3 hypothesis: enable hidden singles on the same batch architecture.
+The git tags preserve the measured progression: v0 course MRV, v1 balanced MRV,
+v2 naked-single batching with depth rollback, v3 fixed wrapper burst slices,
+v4 explicit cell write sources, and v5 hidden-single batching. Details and evidence
+are in RESULTS.md. The final source is built into a full-system bitstream.
 
-The drafts are hypotheses until their exact source passes synthesis, regression
-and the course K5 integration test. Frequency and cycle reductions are reported
-separately, then combined using the assignment's score.
+Each fixed-index cell register has explicit load, forced-placement, guess, retry
+and clear enables. Their input sources are mutually exclusive by FSM state and
+combined with AND/OR logic. Initial digits are decoded by equality, avoiding a
+variable shifter. The algorithm and cycle counts are unchanged by this rewrite.

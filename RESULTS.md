@@ -1,105 +1,118 @@
-# Measured results
+# AlwaysSudx results — final v5
 
-No hardware execution has been performed for AlwaysSudx.
+**Bitstream built. Full system meets its default 50 MHz clock. Hardware execution
+has not yet been performed.** All production changes are Verilog; the course C
+application, register protocol and 32+32+17-byte transactions are preserved.
 
-| Version | Architecture | Core cycles easy / 20 / 51 / hard1 | Standalone MHz | Mapped / fitted LEs | top95 mean / worst core cycles |
-|---|---|---|---|---|---|
-| v0 | Course MRV, serial minimum chain | 86 / 103 / 134 / 981 | 4.98 | 13,026 / 12,200 | 35,957.46 / 596,919 |
-| v1 | Balanced MRV tournament | 86 / 103 / 134 / 981 | 25.57 | 13,408 / 12,645 | 35,957.46 / 596,919 |
-| v2 | Naked-single batches, depth rollback | 8 / 8 / 24 / 334 | 72.81 | 23,949 / 23,691 | 18,852.95 / 350,711 |
+## Measured milestones
 
-Application cycle counts are stored in each version's `*.app.log`. These include
-setup/load and the course polling granularity; they are not the direct core cycles
-in the table. Compare like timing windows when using cycles / standalone MHz.
+Application score is the unmodified course app's reported cycles divided by
+standalone `qsyn_xlr` Fmax. Its window includes setup, load, solve and store.
 
-## v0 evidence and warnings
+| Tag | Change | hard1 core cycles | hard1 app cycles | Standalone MHz | Mapped / fitted LEs | App score, us |
+|---|---|---:|---:|---:|---:|---:|
+| v0 | Course MRV baseline | 981 | 1,251 | 4.98 | 13,026 / 12,200 | 251.20 |
+| v1 | Balanced MRV tournament | 981 | 1,251 | 25.57 | 13,408 / 12,645 | 48.92 |
+| v2 | Naked-single batches; depth rollback | 334 | 603 | 72.81 | 23,949 / 23,691 | 8.28 |
+| v3 | Fixed-burst wrapper datapath | 334 | 603 | not measured | 17,199 / — | — |
+| v4 | Explicit cell write sources | 334 | not measured | not measured | see isolated test below | — |
+| **v5** | **Add batched hidden singles** | **217** | **483** | **58.10** | **17,389 / 17,219** | **8.31** |
 
-All 95 top95 boards and the four course boards pass the independent RTL checker.
-Raw per-board cycles and complete solutions are in `logs/v0/{repo4,top95}/cycles.txt`.
-Synthesis, fit, STA and critical paths are in `logs/v0/synthesis/`.
+v5 improves the MRV baseline score **30.22x**. v2 remains 0.4% better on hard1
+alone, but has excessive area and much poorer difficult-board search. v5 is the
+recommended balanced result across boards, resource use and hardware readiness.
+Intermediate v3/v4 experiments measured area and correctness without repeating
+full timing runs; their frequencies and scores are deliberately not inferred.
 
-The course `qsyn_xlr` installation references missing `$QSYN/basic.sdc`. Quartus
-therefore derives a clock and reports Fmax; **this does not demonstrate closure at
-50 MHz**. The same warning is present in the saved opus synthesis reports. We keep
-the course command and constraints unchanged for comparability. Full-system timing
-must be evaluated with `comp_fpga` before selecting an operating clock.
+The isolated v4 representation experiment, using the original course wrapper,
+reduced mapped LEs from 23,949 to **21,322** with identical top95 cycles and grids.
+Raw evidence: `logs/compact-draft/`. The v4 commit combines this change with v3.
 
-Other baseline warnings: course wrapper truncates its 32-bit board address to the
-16-bit XMEM address and burst sizes to six bits (all bursts are <=32). Dummy wrapper
-read-pulse inputs are undriven, and unused/dangling ports and constant output bits
-are reported. These belong to the supplied wrapper/harness. The retained course
-MRV `busy` output is intentionally unconnected. No inferred latch is reported.
+## Final K5 application checks
 
-## Comparison target
-
-AlwaysSud `explore/opus5-phases` (`5a227db`) promotes `s2fastmrv`: 26.36 MHz,
-28,396 mapped / 27,714 fitted LEs. Its published direct-RTL counts are
-6 / 23 / 54 / 193 using its original testbench edge convention. We will re-run
-that solver with this repository's checker before claiming a performance win.
-
-Baseline K5 application: all four final checkers PASS. Whole-window cycles
-(easy1 / 20blanks / 51blanks / hard1): **363 / 363 / 411 / 1,251**.
-The hard1 assignment score is **251.20 us** (1,251 / 4.98).
-
-## v1: balanced tournament
-
-Seven comparison levels replace the serial 81-cell chain. Raster tie-breaking
-and all 95 cycle counts/solutions are unchanged. Standalone frequency rises
-from 4.98 to 25.57 MHz (**5.13x**). The K5 hard1 window remains 1,251 cycles,
-so its score falls from 251.20 to **48.92 us**. Quartus required explicit
-generate blocks and separately declared genvars; the failed syntax logs are
-retained. Course harness/constraint warnings remain as described above.
-
-## Algorithm-only batch experiments (frequency pending)
-
-The batch design passes the same 510 puzzles. Adding hidden singles changes only
-its `HIDDEN_SINGLES` parameter; it reduces search work considerably:
-
-| Core cycles | Naked batch | Hidden batch | Opus, identical checker |
+| Board | Direct solver cycles | Reported application cycles | Application score at 58.10 MHz |
 |---|---:|---:|---:|
-| hard1 | 334 | 217 | 193 |
-| top95 mean | 18,852.95 | 628.51 | 792.01 |
-| top95 worst | 350,711 | 3,895 | 4,329 |
-| Generated 400 mean | 454.74 | 50.61 | 89.32 |
-| Held-out 11 mean | 552.27 | 112.18 | 209.82 |
-| Published holdout 3,191 mean | not run | 387.55 | 561.81 |
-| Published holdout 3,191 p95 | not run | 1,210 | 1,672 |
-| Published holdout 3,191 worst | not run | 15,786 | 17,116 |
+| easy1 | 6 | 267 | 4.60 us |
+| 20blanks | 6 | 267 | 4.60 us |
+| 51blanks | 14 | 291 | 5.01 us |
+| hard1 | 217 | 483 | 8.31 us |
 
-All these are RTL measurements, not software algorithm predictions. Sets may
-overlap, so 510 + 3,191 is a count of test executions, not distinct puzzles.
-The published holdout comes from the pre-existing AlwaysSud set; it was not
-regenerated to favor this implementation. The hidden draft also passes solved,
-empty, single-blank boards and 35 invalid/unsatisfiable inputs. Thirty-two added
-UNSAT inputs have nonconflicting givens and were independently checked by a
-Python MRV backtracking solver before RTL testing.
+All four course application final checkers PASS. Logs: `logs/v5/*.app.log` and
+`*.sim.log`. Polling quantizes app cycles; direct solver cycles are a different
+measurement window and must not be substituted for the reported app score.
 
-The initial naked batch maps to 23,949 LEs and 1,215 RAM bits. This motivates an
-isolated representation change: fixed-index cell registers with explicit
-mutually exclusive write sources, replacing the inferred large cell-write muxes.
+## Comparison with the user's opus branch
 
-## v2: batch architecture
+Reference: AlwaysSud `explore/opus5-phases`, commit `5a227db`, `s2fastmrv`, MODE=2.
+Its source is preserved under `bench/opus/` and was rerun with the exact same RTL
+checker, falling-edge stimulus and cycle-count convention as the new solver.
+Every result below passed givens, digit range, row, column and box checks.
 
-K5 hard1 passes at **603 application cycles / 72.81 MHz = 8.28 us**, a 5.91x
-improvement over v1. Standalone fitting completes in 9m49s. Area is above the
-course's approximately 20K accelerator guidance, so this is an experimental
-milestone, not the recommended hardware version. The hierarchy report attributes
-7,108 combinational functions to the supplied wrapper alone, chiefly general
-variable-index loading and storing despite the fixed three-burst protocol.
+| Set | Runs | Opus mean core cycles | v5 mean core cycles | Opus worst | v5 worst |
+|---|---:|---:|---:|---:|---:|
+| top95 | 95 | 792.01 | 628.51 | 4,329 | 3,895 |
+| Generated classic | 400 | 89.32 | 50.61 | 663 | 373 |
+| Difficult heldout | 11 | 209.82 | 112.18 | 473 | 242 |
+| Published holdout | 3,191 | 561.81 | 387.55 | 17,116 | 15,786 |
 
-The resetless decision stack infers 1,215 useful RAM bits. Its mixed-port RAM
-warning is reviewed: read and write happen in different FSM states, with the
-same clock, so no read-during-write collision is reachable.
+Using each accelerator's measured standalone Fmax (opus **26.36 MHz**, v5
+**58.10 MHz**), the published-set mean core time is **21.31 us → 6.67 us**, a
+**3.20x improvement**. Its worst core time improves **649.32 us → 271.70 us**.
+For hard1 the core comparison is **7.32 us → 3.73 us**, about **1.96x**.
 
-## v3: fixed-burst wrapper
+These are **core-time comparisons**, not directly comparable whole-application
+scores: the opus C driver has different split timing windows. Opus frequency
+comes from its checked-in standalone report; its RTL cycles were remeasured here.
+No new physical-board performance claim is made.
 
-The unchanged three-transaction protocol now uses fixed 0/32/64 slices. Synthesis
-maps to **17,027 LEs**, down from 23,949. K5 hard1 still passes at **603 cycles**.
-This milestone is area-checked only; no standalone Fmax is claimed for v3.
+## Correctness coverage
 
-## v4: explicit cell write sources
+The exact final source passes **3,704 solvable-board executions**: four course
+boards, top95, 400 generated, 11 difficult holdouts, three corner cases, and 3,191
+published holdouts. Sets can overlap; this is not a count of unique puzzles.
+It also correctly rejects **35 invalid or unsatisfiable inputs**, including
+nonconflicting givens requiring failed-search rollback. The 32 added contradictory
+puzzles were independently proven unsatisfiable by Python MRV search before RTL
+checking. Corners include an already solved board, an empty board and one blank.
+All final per-board cycles and grids are in `logs/v5/{standard,published,unsat}/`.
 
-The separately tested cell-register rewrite preserves all 95 naked-batch cycle
-counts and solutions. With the original wrapper it maps to **21,322 LEs**, versus
-23,949 before the rewrite. It is now combined with v3's fixed-burst wrapper.
-Final frequency and bitstream validation are performed on the next milestone.
+## FPGA implementation
+
+| Measurement | Final result |
+|---|---:|
+| Accelerator fitted LEs | 17,219 / 49,760 |
+| Accelerator registers / RAM bits | 2,999 / 1,215 |
+| Standalone Fmax used for scoring | 58.10 MHz |
+| Full-system mapped / fitted LEs | 28,516 / 28,186 |
+| Full-system RAM | 1,328,823 bits (79%) |
+| Full-system Fmax | 52.11 MHz |
+| Configured hardware clock | 50 MHz, course default |
+| Worst reported setup slack | +0.809 ns |
+| Worst reported hold slack across corners | +0.141 ns |
+| Bitstreams | `.sof` and `.svf` generated |
+
+All reported full-system timing-summary slacks are positive. The full build took
+about **37 minutes**, including a roughly 27-minute fit. This is a completed build,
+not an estimate of feasibility. Standalone fitting took 18m20s and logged
+congestion/retry warnings before successful completion; routing time can vary.
+
+Programming files are in `hw/gen_fpga/prog_files/`. Build source is commit
+**f5a9e9a**; the final tag also contains reports/documentation without changing RTL.
+`logs/v5/build_source.json` records SHA-256 hashes of all RTL/file-list inputs and
+both programming artifacts. Raw standalone and system reports are archived in
+`logs/v5/synthesis/` and `logs/v5/fpga/`.
+
+## Tool-flow limitations and warning review
+
+The installed course `qsyn_xlr` references missing `$QSYN/basic.sdc`; Quartus derives
+a clock to report Fmax. The saved opus reports have the same issue. No course
+constraints or scripts were altered. **Full-system timing independently passes the
+actual 50 MHz constraints**, as shown above.
+
+Course dummy-wrapper dangling/read-pulse inputs, constant pins and unused signals
+remain visible in standalone reports. The course wrapper truncates its board
+address to the 16-bit XMEM interface and burst sizes to six bits (bursts <=32).
+The stack infers mixed-port RAM: read and write occur in mutually exclusive states
+on the same clock, so the reported undefined read-during-write case is unreachable.
+No inferred latch is reported. Remaining tool warnings are preserved in raw logs;
+this report does not claim a warning-free build.

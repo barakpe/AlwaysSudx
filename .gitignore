@@ -12,3 +12,4 @@ __pycache__/
 **/rtl_work/
 /hw/xlrs/*/*.tgz
 /sw/apps/*/build/
+/artifacts/

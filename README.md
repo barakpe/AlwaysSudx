@@ -1,71 +1,78 @@
 # AlwaysSudx
 
-Independent classic 9x9 Sudoku accelerator experiments for DDP26 K5-XBOX.
-The baseline is the course `claude_mrv` solver behind the **unchanged, corrected
-course `sudx_scan` wrapper and C application**. Accelerator/app name stays
-`sudx_scan`; this repository is an isolated K5 project tree.
+Classic 9x9 Sudoku accelerator for DDP26 K5-XBOX. **Final version: v5.**
 
-Only synthesizable Verilog changes between algorithm milestones. The C driver,
-host protocol, clock constraints, course commands and timing window remain fixed.
-Scripts and testbench in `bench/` automate measurement and validate every given,
-row, column and box. There is no puzzle-specific logic in the accelerator.
+- hard1 course score: **8.31 us**, versus **251.20 us** for our course MRV baseline.
+- **3.20x better mean core cycles/Fmax than opus** on 3,191 published holdout runs.
+- **17,219 accelerator LEs**, **58.10 MHz** standalone Fmax.
+- Full-system `.sof` and `.svf` built; **50 MHz timing passes**.
+- 3,704 solvable-board runs, 35 rejection tests, and all four course app checks pass.
+- Physical FPGA testing is the remaining user-side validation.
 
-## Course flow
+[Measurements and caveats](RESULTS.md) · [Readable architecture](docs/BATCH_DESIGN.md)
+· [Hardware handoff](docs/HARDWARE_HANDOFF.md)
 
-From this repository, source `bench/env.sh` to select this K5 project. It uses the
-installed course environment; no global setup files are changed.
+## Algorithm
 
-```
+The solver applies naked and hidden singles to all forced cells in a batch.
+When propagation stalls, a pipelined MRV tournament chooses a guess. Only guesses
+enter a small RAM stack. Per-cell depth tags let rollback clear an entire failed
+level in parallel. Balanced mask trees detect occupancy, duplicates, hidden singles
+and missing-digit contradictions. Contradictions take priority over completion.
+
+The wrapper retains the course register protocol and 32+32+17-byte transactions;
+fixed slices replace expensive general indexing. Only production Verilog changed.
+The C driver and shared library remain byte-for-byte course copies.
+
+## Course commands
+
+This repository is an isolated K5 tree. Accelerator and app names remain
+`sudx_scan` so the C application needs no changes. Source this in each terminal:
+
+```sh
 source bench/env.sh
+```
+
+It loads the installed course environment, then selects this repository without
+changing account setup. Synthesis:
+
+```sh
 cd "$MY_K5_XLRS/sudx_scan"
 qsyn_xlr sudx_scan -all
 ```
 
-Two terminals, each with the same environment:
+Simulation, terminal one:
 
-```
+```sh
 set_k5_terminal
 launch_k5_sim sudx_scan
 ```
 
-```
+Terminal two:
+
+```sh
 set_k5_terminal
 launch_k5_app sudx_scan -asl sud_shared -gpv hard1
 ```
 
-Full bitstream:
+`bash bench/fpga.sh` runs the course `comp_fpga sudx_scan` command and collects its
+Desktop-linked output back into this repository. Existing artifacts are protected
+from overwrite. Generated files live in `hw/gen_fpga/prog_files/`.
 
-```
-cd "$MY_K5_PROJ/hw/gen_fpga"
-comp_fpga sudx_scan
-```
+Regression automation uses the same Xcelium tool: `bench/rtl.sh`, plus the unchanged
+K5 flow via `bench/sim.sh`. No substitute FPGA synthesis tool or puzzle-specific
+hardware is used.
 
-The expected output is `hw/gen_fpga/prog_files/k5_xbox_sudx_scan.sof`.
-Hardware programming and measurements require the laptop and physical FPGA.
+## Git history and provenance
 
-## Measurement
+`v0` is the verified course MRV baseline; `v1` balances selection; `v2` introduces
+batch propagation; `v3` reduces wrapper area; `v4` simplifies cell writes; `v5` adds
+hidden singles and is fully built. Each change is a separate commit. Intermediate
+area-only milestones are explicitly marked in RESULTS.md.
 
-Assignment score: **reported application cycles / standalone qsyn_xlr Fmax MHz**.
-Our course application times setup, load, solve and store together. The existing
-AlwaysSud opus branch uses split timers, so its solve-window numbers must not be
-compared directly with our whole-window numbers. Direct solver cycles offer an
-additional consistent comparison, explicitly separate from the course score.
-
-`v0` identifies the verified course MRV baseline. Each later milestone has a
-separate commit, raw logs and a result entry. A simulation pass does not establish
-timing closure or successful FPGA execution.
-
-## Provenance
-
-- Course baseline: local `ex3.1`, commit
-  `7b86385457f066c5a1872778cacd5f64ab6415de`,
-  https://github.com/DDP26-summer/ex3.1 .
-- `v0` solver changes are only the module name and output port name needed by
-  the course wrapper. The unused `busy` output is retained.
-- Assignment and FPGA guides copied from the user's AlwaysSud repositories.
-- Regression puzzles copied from AlwaysSud `explore/opus5-phases` at
-  `5a227db`. `repo4`: four course boards; `top95`: published difficult boards;
-  `ho_hardest`: existing held-out difficult boards; `gen_classic_min`: existing
-  generated classic boards. These are test inputs, never hardware constants.
-- Existing performance comparison target: `s2fastmrv`, standalone **26.36 MHz**,
-  **28,396 mapped / 27,714 fitted LEs**, per its checked-in synthesis result.
+Course source: local ex3.1 commit `7b86385457f066c5a1872778cacd5f64ab6415de`,
+https://github.com/DDP26-summer/ex3.1 . Baseline adaptation only renamed the MRV
+module and output port. Course documents were copied from the user's AlwaysSud
+repositories. Comparison RTL and original puzzle sets come from AlwaysSud opus
+commit `5a227db`. Puzzle data is used only by verification, never as hardware
+constants. This repository is local; nothing was pushed to GitHub.

@@ -7,4 +7,4 @@ source /apps/common/bin/startProject.bash tsmc65 >/dev/null 2>&1
 export MY_K5_PROJ="$SUDX_ROOT"
 export MY_K5_XLRS="$MY_K5_PROJ/hw/xlrs"
 export K5_SW_APPS="$MY_K5_PROJ/sw/apps"
-
+alias set_k5_terminal='cd "$MY_K5_PROJ/sim"'
