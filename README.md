@@ -7,9 +7,11 @@ The selected variant is **ineq-v2**, a pipelined domain-propagation solver with
 packed RAM snapshots. It passes **4,347 RTL executions**, including classic
 Sudoku, inequality Sudoku, encoding corner cases, and expected rejections.
 Standalone synthesis achieves **69.62 MHz** using **22,580 fitted LEs**.
-Full-system build status and actual application performance are recorded in the
-results and release notes; standalone Fmax is not a claim about the programmed
-board clock.
+The full-system image meets its configured **50 MHz** clock, using **35,152
+fitted LEs**. Across the 19 supplied solvable cases, mean application cycles/Fmax
+falls from **6.2066 to 4.6697 us (24.76%)** versus the inequality baseline.
+This is an unweighted development comparison; physical execution of the variant
+is pending. Standalone Fmax is not the programmed board clock.
 
 ## Read the design
 

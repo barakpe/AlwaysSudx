@@ -32,6 +32,8 @@ for file, marker in [
     ('map_k5_xbox_rc3.log','Analysis & Synthesis was successful'),
     ('fit_k5_xbox_rc3.log','Fitter was successful'),
     ('sta_k5_xbox_rc3.log','Timing Analyzer was successful'),
+    ('asm.log','Assembler was successful'),
+    ('cpf.log','Convert_programming_file was successful'),
 ]:
     log = gen / 'output_files' / file
     assert log.stat().st_mtime >= started, 'Stale full-system log: '+file
@@ -60,6 +62,10 @@ for extension in ['sof','svf']:
     artifact = gen / 'prog_files' / ('k5_xbox_ineqsudx_scan.'+extension)
     assert artifact.stat().st_size > 0
     assert artifact.stat().st_mtime >= started, 'Stale programming artifact: '+artifact.name
-    print(hashlib.sha256(artifact.read_bytes()).hexdigest(), artifact.name)
+    digest = hashlib.sha256(artifact.read_bytes()).hexdigest()
+    if 'programming_files_sha256' in record:
+        assert digest == record['programming_files_sha256'][artifact.name], \
+            'Programming artifact differs from the build record'
+    print(digest, artifact.name)
 print('Source identity, standalone completion, and full-system timing PASS')
 print('Minimum reported full-system slack:', min(slacks), 'ns')

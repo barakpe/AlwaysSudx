@@ -15,7 +15,28 @@
   "hardware_execution_tested": false,
   "source_capture_utc": "2026-09-08T18:11:17.101652Z",
   "course_reference_commit": "a9573fc7c554776876bfd1677d1d285be646b321",
-  "standalone_output_dir": "logs/experiment-pipelined/rtl_work/ineqsudx_scan/qsyn_output_files",
+  "standalone_output_dir": "logs/ineq-v2/synthesis",
   "standalone_fmax_mhz": 69.62,
-  "configured_physical_clock_mhz": 50
+  "configured_physical_clock_mhz": 50,
+  "full_system_timing_passed": true,
+  "full_system_fmax_mhz": 51.88,
+  "full_system_fitted_les": 35152,
+  "full_system_m9ks": 173,
+  "full_system_m9ks_available": 182,
+  "full_system_registers": 4276,
+  "full_system_memory_bits": 1387872,
+  "full_system_minimum_slack_ns": {
+    "Setup": 0.725,
+    "Hold": 0.147,
+    "Recovery": 11.916,
+    "Removal": 0.072,
+    "Minimum Pulse Width": 9.326
+  },
+  "build_finished_utc": "2026-09-08T18:50:12Z",
+  "full_system_fitter_elapsed": "00:31:13",
+  "timing_constraint_scope": "Unmodified course constraints; all clocks constrained; 12 input ports and 59 output ports have no external delay constraints.",
+  "programming_files_sha256": {
+    "k5_xbox_ineqsudx_scan.sof": "79b39f50f2c760e94aaf8bedc81ee28e2e3cd6a727d711dced1c6cde31178b3e",
+    "k5_xbox_ineqsudx_scan.svf": "a7e443f1007f350cbe0892fdb43cbda19b4115a543e17bdba5b63225c8ee9934"
+  }
 }

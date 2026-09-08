@@ -1,8 +1,8 @@
 # Inequality Sudoku hardware handoff
 
 Hardware execution of this variant is pending. The canonical development
-branch is `hackathon/ineq`; milestone tags preserve earlier source states. Use a release only after its
-notes explicitly report a completed build with passing full-system timing.
+branch is `hackathon/ineq`; milestone tags preserve earlier source states. The **ineq-v2** release has completed cloud synthesis, fitting, routing, and
+passing full-system timing at **50 MHz**, and is ready for the DE10-Lite test.
 The previously validated classic v5 bitstream is a separate accelerator.
 
 ## Install the variant
@@ -25,7 +25,14 @@ previous shared directory first. The new shared library is required to check
 inequalities; a classic-only checker is insufficient.
 
 Install `k5_xbox_ineqsudx_scan.sof` in the laptop's FPGA programming-files folder.
-The release also provides its SVF. Use the course's normal programming flow for
+The release also provides its SVF. This image runs at **50 MHz**.
+
+```text
+SOF SHA-256:
+79b39f50f2c760e94aaf8bedc81ee28e2e3cd6a727d711dced1c6cde31178b3e
+Build source commit:
+c91d5985ea680edba047db4333e969ba43738f01
+``` Use the course's normal programming flow for
 the DE10-Lite and confirm the selected image has `ineqsudx_scan` in its name.
 
 Before programming, verify SHA256SUMS. The release manifest identifies the build

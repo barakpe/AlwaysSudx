@@ -84,9 +84,33 @@ remains a separate submission candidate on `main`.
 ## Physical build
 
 Standalone synthesis, fitting, and timing completed on the exact v2 RTL.
-Full-system place-and-route is in progress at the default configured 50 MHz.
-A programming release requires passing timing at its actual configured clock.
-No physical-board execution of this variant is claimed yet.
+Full-system synthesis, fitting, routing, timing analysis, assembly, and SVF
+conversion have completed. The image is configured for **50 MHz**, with
+**51.88 MHz full-system Fmax** under the unchanged course constraints.
+
+| Physical measurement | Result |
+|---|---:|
+| Fitted logic | 35,152 / 49,760 LEs (71%) |
+| Registers | 4,276 |
+| Embedded RAM blocks | 173 / 182 M9Ks (95%) |
+| Memory bits | 1,387,872 / 1,677,312 (83%) |
+| Worst setup slack | +0.725 ns |
+| Worst hold slack | +0.147 ns |
+| Worst recovery slack | +11.916 ns |
+| Worst removal slack | +0.072 ns |
+| Worst minimum-pulse-width slack | +9.326 ns |
+| Fitter elapsed time | 31 min 13 s, including one congestion retry |
+
+All reported timing categories pass. The supplied constraints leave 12 external
+input ports and 59 output ports without external delay constraints (switches,
+key, UART GPIO, LEDs, and displays); the report has zero unconstrained clocks.
+This is signoff under the **course's constraint coverage**, not a claim that
+every external interface has separately specified board timing. Shared timing
+scripts and constraints were not modified.
+
+The SOF and SVF are ready for the user's DE10-Lite test. Physical execution of
+this variant is still pending. RTL/application simulation and successful
+routing do not replace that final board confirmation.
 
 The reported 4.6697 us is the **competition-normalized measurement**. At a
 physical 50 MHz clock, the mean measured cycle count corresponds to 6.5021 us.

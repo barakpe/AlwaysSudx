@@ -63,7 +63,7 @@ snapshot experiments were stopped before timing signoff; their partial build
 logs do not establish a usable bitstream or Fmax.
 
 The revised snapshot is 243 bits wide and 243 words deep. Three beats save the
-same 59,049 meaningful bits, expected to occupy seven M9Ks. Writes overlap the
+same 59,049 meaningful bits, occupying seven M9Ks in the fitted domain engine. Writes overlap the
 two MRV selection cycles and the guess cycle. Restoring a nonempty alternative
 costs two extra cycles; exhausted frames skip unnecessary reads. Decision-stack
 writes now use an explicit if/else-if to infer a single RAM write port.
@@ -76,7 +76,7 @@ A separate build worktree preserves v0's source during physical experiments. All
 |---|---:|---:|---|
 | ineq-v0: value-based baseline | 51.77 MHz | 24,875 | No full build requested for this baseline |
 | ineq-v1: packed domain engine | 45.55 MHz | 24,517 | Bitstream generated; 40.98 MHz, does not meet its configured 50 MHz timing |
-| ineq-v2: pipelined domain engine | 69.62 MHz | 22,580 | Full build in progress |
+| ineq-v2: pipelined domain engine | 69.62 MHz | 22,580 | 50 MHz timing passes; 51.88 MHz full-system Fmax |
 
 v1 is preserved as an instructive failed physical-design direction. Its SOF/SVF
 are archived locally under artifacts/ineq-v1-timing-failed, not recommended for
@@ -96,3 +96,23 @@ no shared-source edits are necessary. A negative timing slack only disqualifies
 that image at its configured clock, not the underlying solver architecture.
 v1's 19-case unweighted mean score is 6.6936 us versus v0's 6.2066 us, so reducing
 its configured clock would not reverse this standalone-score comparison.
+
+## Completed v2 programming build
+
+The default 50 MHz full-system build completed on 8 September at 18:50 UTC.
+It fits in 35,152 LEs and 173/182 M9Ks. The fitter retried once after regional
+congestion and finished in 31 minutes 13 seconds. Full-system Fmax is 51.88 MHz;
+setup slack is +0.725 ns and every reported timing category is nonnegative.
+The supplied external-port timing coverage is documented in the results file.
+SOF/SVF hashes and all source fingerprints are in `logs/ineq-v2/build_source.json`.
+The course TGZ's archived RTL matches the tagged build source byte for byte.
+
+The standalone course tool retains its `src_ref` source snapshots inside the
+TGZ and removes the temporary source directory afterward. For the final audit,
+those exact three files were recovered from the TGZ into the tracked standalone
+report directory and checked against the build commit; they were not recreated
+from the current working tree.
+
+All 19 solvable K5 application tests pass both checkers. The two impossible
+application tests correctly report non-solved, both at 267 cycles. Physical
+execution of the inequality image is pending the user's laptop/board test.
