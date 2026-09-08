@@ -147,13 +147,42 @@ module sudx_scan_solver #(
         end
     end
 
+    wire propagate = state == APPLY && !conflict_q && !(|dead_cell) && !(|no_home);
+    generate
+        for (c = 0; c < 81; c++) begin : CELL_REGISTERS
+            wire load_cell = state == INIT;
+            wire force_cell = propagate && forced_cell[c];
+            wire guess_cell = state == PLACE && chosen_cell == 7'(c);
+            wire retry_cell = state == BACK_APPLY && alternatives != 0 && top_cell == 7'(c);
+            wire clear_cell = state == BACK_APPLY && assigned_depth[c] == depth;
+            wire write_cell = load_cell || force_cell || guess_cell || retry_cell || clear_cell;
+            wire [8:0] input_digit;
+            for (k = 0; k < 9; k++) begin : DECODE
+                assign input_digit[k] = input_flat[c] == 4'(k+1);
+            end
+            // Sources are mutually exclusive by state. Clear contributes zero.
+            wire [8:0] next_digit = ({9{load_cell}} & input_digit)
+                                 | ({9{force_cell}} & forced[c])
+                                 | ({9{guess_cell}} & chosen_digit)
+                                 | ({9{retry_cell}} & retry_digit);
+            always_ff @(posedge clk or negedge rst_n) begin
+                if (!rst_n) begin value[c] <= 0; assigned_depth[c] <= 0; end
+                else begin
+                    if (write_cell) value[c] <= next_digit;
+                    if (load_cell) assigned_depth[c] <= 0;
+                    else if (guess_cell) assigned_depth[c] <= depth+7'd1;
+                    else if (force_cell) assigned_depth[c] <= depth;
+                end
+            end
+        end
+    endgenerate
+
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             state <= IDLE;
             done <= 0; success <= 0; depth <= 0;
-            value <= '0; candidate <= '0; empty_q <= '0; used_q <= '0;
+            candidate <= '0; empty_q <= '0; used_q <= '0;
             invalid_input <= 0; conflict_q <= 0; chosen_cell <= 0;
-            for (int c = 0; c < 81; c++) assigned_depth[c] <= 0;
             for (int r = 0; r < 9; r++) begin
                 row_count_q[r] <= 15;
                 row_index_q[r] <= 0;
@@ -165,8 +194,6 @@ module sudx_scan_solver #(
                     logic bad;
                     bad = 0;
                     for (int c = 0; c < 81; c++) begin
-                        value[c] <= input_flat[c] == 0 ? 9'd0 : (9'd1 << (input_flat[c]-4'd1));
-                        assigned_depth[c] <= 0;
                         bad = bad | (input_flat[c] > 9);
                     end
                     invalid_input <= bad;
@@ -189,10 +216,6 @@ module sudx_scan_solver #(
                     if (conflict_q || (|dead_cell) || (|no_home)) state <= BACK_READ;
                     else if (!(|empty_q)) state <= FINISH_OK;
                     else if (|forced_cell) begin
-                        for (int c = 0; c < 81; c++) if (forced_cell[c]) begin
-                            value[c] <= forced[c];
-                            assigned_depth[c] <= depth;
-                        end
                         state <= SCAN;
                     end else state <= PICK_ROWS;
                 end
@@ -208,19 +231,11 @@ module sudx_scan_solver #(
                     state <= PLACE;
                 end
                 PLACE: begin
-                    for (int c = 0; c < 81; c++) if (chosen_cell == 7'(c)) begin
-                        value[c] <= chosen_digit;
-                        assigned_depth[c] <= depth+7'd1;
-                    end
                     depth <= depth+7'd1;
                     state <= SCAN;
                 end
                 BACK_READ: state <= depth == 0 ? FINISH_FAIL : BACK_APPLY;
                 BACK_APPLY: begin
-                    for (int c = 0; c < 81; c++) begin
-                        if (assigned_depth[c] == depth) value[c] <= 0;
-                        if (top_cell == 7'(c) && alternatives != 0) value[c] <= retry_digit;
-                    end
                     if (alternatives != 0) state <= SCAN;
                     else begin
                         depth <= depth-7'd1;
