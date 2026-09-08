@@ -292,7 +292,7 @@ cycles may therefore leave the application count unchanged on a particular
 board. A frequency improvement can still improve the competition score.
 Conversely, a design with fewer cycles can lose if its added logic lowers Fmax.
 
-The full-system clock remains the course default. Its timing reports answer
+The selected build currently targets the course default 50 MHz system clock. Its timing reports answer
 whether that actual FPGA system meets its clock requirement. Standalone Fmax
 answers a different question and is the frequency used in the competition.
 
@@ -312,3 +312,32 @@ solutions; they must satisfy the original givens and every constraint.
 
 Source snapshots, result logs, synthesis reports, and final artifact hashes
 provide the link from an experiment to its measurements and bitstream.
+
+## Explaining the changes in a few sentences
+
+```text
+v0: Start from the proven classic solver and add inequality propagation.
+    It works, but rebuilding candidates throws away useful deductions.
+
+Persistent candidates: Keep deductions and save them before guessing.
+    Less repeated work, but separate values and domains duplicate state.
+
+Domain-only: A one-bit domain already represents an assigned digit.
+    Combine Sudoku and inequality propagation over this single state.
+
+Packed snapshots: RAM blocks have fixed shapes, not just bit capacities.
+    Save three narrower beats, using cycles already spent selecting a guess.
+
+v1: Fewer cycles do not guarantee a better result.
+    Its long combinational path loses enough frequency to lose cycles/Fmax.
+
+v2: Register unit summaries before pruning the cell domains.
+    More cycles on some boards, but a shorter path and better measured score.
+```
+
+The experiment sources are preserved rather than presented as independently
+proven optimizations. For example, descending candidate order and choosing
+higher-degree cells on MRV ties both performed worse on the supplied set.
+A different puzzle distribution can favor different choices. These experiments
+help avoid assuming that the first architecture is best, but they do not prove
+that the selected implementation is globally optimal.

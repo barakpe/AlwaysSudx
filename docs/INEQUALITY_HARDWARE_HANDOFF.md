@@ -1,6 +1,7 @@
 # Inequality Sudoku hardware handoff
 
-Hardware execution of this variant is pending. Use a release only after its
+Hardware execution of this variant is pending. The canonical development
+branch is `hackathon/ineq`; milestone tags preserve earlier source states. Use a release only after its
 notes explicitly report a completed build with passing full-system timing.
 The previously validated classic v5 bitstream is a separate accelerator.
 
@@ -76,3 +77,26 @@ lower-clock build is explicitly identified). Competition score
 uses application cycles divided by the standalone `qsyn_xlr` Fmax. These are
 different measurements: a standalone Fmax above 50 MHz does not mean this SOF
 runs the board above 50 MHz.
+
+## What to return after testing
+
+Please save the complete application output for each board, including both
+checker messages. A compact record should use names rather than positional
+lists:
+
+```text
+Release/tag:
+SOF SHA-256:
+Board and programmer:
+Detected system clock:
+
+Board argument                 Cycles     Basic checker    Inequality checker
+ineq/set0/single                291        PASSED           PASSED
+ineq/set1/sparse_ineq           411        PASSED           PASSED
+hard1                          579        PASSED           PASSED
+```
+
+The rows above are **v2 simulation reference values**, not a hardware test
+report. Run the remaining cases from `INEQUALITY_RESULTS.md` too. Preserve any
+unexpected output in full so a protocol mismatch can be distinguished from a
+solver or checker failure.

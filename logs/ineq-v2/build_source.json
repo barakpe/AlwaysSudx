@@ -16,5 +16,6 @@
   "source_capture_utc": "2026-09-08T18:11:17.101652Z",
   "course_reference_commit": "a9573fc7c554776876bfd1677d1d285be646b321",
   "standalone_output_dir": "logs/experiment-pipelined/rtl_work/ineqsudx_scan/qsyn_output_files",
-  "standalone_fmax_mhz": 69.62
+  "standalone_fmax_mhz": 69.62,
+  "configured_physical_clock_mhz": 50
 }
