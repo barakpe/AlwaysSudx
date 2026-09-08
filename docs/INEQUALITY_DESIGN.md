@@ -209,6 +209,13 @@ snapshot memory holds 59,049 meaningful bits before FPGA block allocation
 overhead. Actual M9K utilization must be read from the fitter, since raw bit
 counts alone do not predict the number of memory blocks consumed.
 
+The deployable implementation packs a snapshot into three 243-bit beats.
+The first two writes overlap the MRV stages and the third overlaps the guess.
+Thus packing adds no guess cycles. Retry restoration reads the three beats
+through one synchronous RAM port, adding two cycles for a successful retry.
+Exhausted stack frames skip the unnecessary remainder of the read sequence.
+A separate small RAM holds decisions, using explicit mutually exclusive writes.
+
 The RAM uses synchronous read and write, with no reset of its contents.
 Resetting the stack depth invalidates old entries. A separate read cycle
 fetches a parent snapshot before the restore cycle uses it. These access

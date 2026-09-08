@@ -1,7 +1,6 @@
-// Batched constraint propagation with a decision-only RAM stack.
-// Every forced assignment carries its decision depth. Backtracking clears a
-// whole level in parallel, then retries its saved alternative digit. Givens
-// and root-level deductions have depth zero and are never undone.
+// Inequality Sudoku using nine-bit domains and a packed synchronous RAM stack.
+// Each round narrows all domains in parallel. Singleton domains are assigned
+// digits. MRV guesses save a parent snapshot; retries restore it completely.
 module ineqsudx_scan_solver #(
     parameter bit HIDDEN_SINGLES = 1'b1
 ) (
@@ -11,23 +10,25 @@ module ineqsudx_scan_solver #(
     output logic done, success,
     output logic [8:0][8:0][3:0] solved_puzzle
 );
+    // Domain-only search: singleton domains ARE assigned digits. Every round
+    // performs Sudoku peer elimination, hidden singles, and inequality cuts.
+    // Parent domains live in synchronous RAM; rollback restores a full state.
     typedef enum logic [3:0] {
-        IDLE, INIT, SCAN, DOMAIN, APPLY, PICK_ROWS, PICK_CELL, PLACE,
-        BACK_READ, BACK_APPLY, FINISH_OK, FINISH_FAIL
+        IDLE, INIT, DOMAIN, PICK_ROWS, PICK_CELL, PLACE,
+        BACK_READ, BACK_READ1, BACK_READ2, BACK_APPLY, FINISH_OK, FINISH_FAIL
     } state_t;
+    localparam state_t SCAN = DOMAIN; // Profiling alias for the common testbench.
     state_t state;
-
-    logic [80:0][8:0] value;
-    logic [6:0] assigned_depth [0:80];
-    logic [6:0] depth;
-    logic [80:0][8:0] candidate;
-    logic [80:0] empty_q;
-    logic [26:0][8:0] used_q;
-    logic invalid_input, conflict_q;
+    logic [80:0][8:0] domain;
     wire [80:0][3:0] input_flat = puzzle_in;
     logic [80:0][3:0] output_flat;
     assign solved_puzzle = output_flat;
-
+    wire [80:0] singleton, empty_q, changed, cell_dead;
+    wire [80:0][8:0] singleton_value, next_domain;
+    wire [26:0][8:0] occupied, duplicate, support, multiple, unique_digit;
+    wire [26:0] unit_dead;
+    logic invalid_input;
+    genvar u, k, c, r, n;
     function automatic logic [8:0] first_digit(input logic [8:0] v);
         // Prefix reductions make the one-hot priority explicit.
         for (int d = 0; d < 9; d++) begin
@@ -63,13 +64,11 @@ module ineqsudx_scan_solver #(
             default: return 9'h1ff;
         endcase
     endfunction
-    wire [80:0][8:0] domain, pruned;
-    wire [80:0] domain_changed, domain_dead, edge_present;
+    wire [80:0][8:0] pruned;
     genvar i;
     generate
         for (i=0; i<81; i++) begin : INEQUALITIES
             wire [8:0] left_mask, right_mask, up_mask, down_mask;
-            assign domain[i] = value[i] | candidate[i];
             if (i%9 < 8) begin
                 assign right_mask = allowed(domain[i+1], relations[i][3:2]);
             end else assign right_mask = 9'h1ff;
@@ -84,54 +83,39 @@ module ineqsudx_scan_solver #(
                 assign up_mask = allowed(domain[i-9], {relations[i-9][0],relations[i-9][1]});
             end else assign up_mask = 9'h1ff;
             assign pruned[i] = domain[i] & left_mask & right_mask & up_mask & down_mask;
-            assign domain_changed[i] = pruned[i] != domain[i];
-            assign domain_dead[i] = pruned[i] == 0;
-            assign edge_present[i] = ((i%9 < 8) && (^relations[i][3:2]))
-                                   || ((i/9 < 8) && (^relations[i][1:0]));
         end
     endgenerate
 
-    // Recompute occupancy from the board; bulk rollback needs no mask undo log.
-    wire [26:0][8:0] occupied, duplicate, support, multiple, unique_digit;
-    wire [26:0] bad_unit, no_home;
-    genvar u, k, c, r, n;
     generate
-        for (u = 0; u < 27; u++) begin : UNITS
+        for (u=0; u<27; u++) begin : UNITS
             wire [8:0][8:0] values, candidates;
-            for (k = 0; k < 9; k++) begin : MEMBERS
+            for (k=0; k<9; k++) begin : MEMBERS
                 localparam integer C = unit_cell(u,k);
-                assign values[k] = value[C];
-                assign candidates[k] = candidate[C];
+                assign values[k] = singleton_value[C];
+                assign candidates[k] = domain[C];
             end
             ineqsudx_union9 board_union(values, occupied[u], duplicate[u]);
             ineqsudx_union9 candidate_union(candidates, support[u], multiple[u]);
             assign unique_digit[u] = support[u] & ~multiple[u];
-            assign bad_unit[u] = |duplicate[u];
-            assign no_home[u] = |(~(used_q[u] | support[u]));
+            assign unit_dead[u] = (|duplicate[u]) || (support[u] != 9'h1ff);
+        end
+        for (c=0; c<81; c++) begin : CELLS
+            localparam integer R=c/9, C=c%9, B=(R/3)*3+C/3;
+            wire [8:0] hidden = HIDDEN_SINGLES ? domain[c] &
+                (unique_digit[R] | unique_digit[9+C] | unique_digit[18+B]) : 9'd0;
+            wire [8:0] peer_allowed = singleton[c] ? 9'h1ff :
+                ~(occupied[R] | occupied[9+C] | occupied[18+B]);
+            assign singleton[c] = domain[c] != 0 && domain[c] == first_digit(domain[c]);
+            assign singleton_value[c] = singleton[c] ? domain[c] : 9'd0;
+            assign empty_q[c] = !singleton[c];
+            assign next_domain[c] = pruned[c] & peer_allowed &
+                                  ((hidden != 0) ? hidden : 9'h1ff);
+            assign cell_dead[c] = (next_domain[c] == 0) || (hidden != first_digit(hidden));
+            assign changed[c] = next_domain[c] != domain[c];
         end
     endgenerate
-
-    wire [80:0][8:0] forced;
-    wire [80:0] forced_cell, dead_cell;
-    generate
-        for (c = 0; c < 81; c++) begin : CELLS
-            localparam integer R = c/9;
-            localparam integer C = c%9;
-            localparam integer B = (R/3)*3+C/3;
-            wire [8:0] naked = (candidate[c] == first_digit(candidate[c]))
-                               ? candidate[c] : 9'd0;
-            wire [8:0] hidden = HIDDEN_SINGLES
-                ? candidate[c] & (unique_digit[R] | unique_digit[9+C] | unique_digit[18+B])
-                : 9'd0;
-            assign forced[c] = naked | hidden;
-            assign forced_cell[c] = |forced[c];
-            assign dead_cell[c] = (empty_q[c] && candidate[c] == 0)
-                || (forced[c] != first_digit(forced[c]));
-        end
-    endgenerate
-
-    // MRV is used only when propagation stalls. Split its tournament at row
-    // boundaries so selection does not lengthen every propagation cycle.
+    // Two registered MRV stages choose the least ambiguous unresolved cell.
+    // Their cycles also save the first two snapshot beats, hiding write cost.
     wire [3:0] row_count [0:8][1:31];
     wire [6:0] row_index [0:8][1:31];
     logic [3:0] row_count_q [0:8];
@@ -143,7 +127,7 @@ module ineqsudx_scan_solver #(
             for (k = 0; k < 16; k++) begin : LEAF
                 if (k < 9) begin : REAL_CELL
                     assign row_count[r][16+k] = empty_q[r*9+k]
-                        ? count9(candidate[r*9+k]) : 4'd15;
+                        ? count9(domain[r*9+k]) : 4'd15;
                     assign row_index[r][16+k] = 7'(r*9+k);
                 end else begin : PAD
                     assign row_count[r][16+k] = 4'd15;
@@ -172,13 +156,48 @@ module ineqsudx_scan_solver #(
         end
     endgenerate
 
-    logic [6:0] chosen_cell;
-    wire [8:0] chosen_mask = candidate[chosen_cell];
+    logic [6:0] depth, chosen_cell;
+    wire [8:0] chosen_mask = domain[chosen_cell];
     wire [8:0] chosen_digit = first_digit(chosen_mask);
-    // A stack entry is {cell index, not-yet-tried candidate bits}. Only guesses
-    // consume entries. Resetless synchronous read/write permits M9K inference.
-    logic [15:0] decisions [0:80];
+    logic [15:0] decisions[0:80];
+    // Three 27-cell beats pack 243 bits x 243 words into seven M9Ks,
+    // instead of 21 M9Ks for a 729-bit-wide, 81-word memory.
+    logic [242:0] snapshots[0:242];
+    logic [242:0] snapshot_q;
+    wire [7:0] snapshot_addr = {1'b0,depth} + {depth,1'b0};
+    logic snapshot_write;
+    logic [7:0] snapshot_write_addr, snapshot_read_addr;
+    logic [242:0] snapshot_write_data;
+    always_comb begin
+        snapshot_write = 1;
+        snapshot_write_addr = snapshot_addr;
+        snapshot_write_data = domain[26:0];
+        case (state)
+            PICK_ROWS: ;
+            PICK_CELL: begin
+                snapshot_write_addr = snapshot_addr+8'd1;
+                snapshot_write_data = domain[53:27];
+            end
+            PLACE: begin
+                snapshot_write_addr = snapshot_addr+8'd2;
+                snapshot_write_data = domain[80:54];
+            end
+            default: snapshot_write = 0;
+        endcase
+        snapshot_read_addr = snapshot_addr-8'd3;
+        if (state == BACK_READ1) snapshot_read_addr = snapshot_addr-8'd2;
+        if (state == BACK_READ2) snapshot_read_addr = snapshot_addr-8'd1;
+    end
+    // One synchronous write and one synchronous read port, inferred normally.
+    always_ff @(posedge clk) begin
+        if (rst_n) begin
+            if (snapshot_write) snapshots[snapshot_write_addr] <= snapshot_write_data;
+            if (depth != 0 && (state == BACK_READ || state == BACK_READ1 || state == BACK_READ2))
+                snapshot_q <= snapshots[snapshot_read_addr];
+        end
+    end
     logic [15:0] top;
+    logic [53:0][8:0] saved_domains;
     wire [6:0] top_cell = top[15:9];
     wire [8:0] alternatives = top[8:0];
     wire [8:0] retry_digit = first_digit(alternatives);
@@ -188,112 +207,79 @@ module ineqsudx_scan_solver #(
                 decisions[depth] <= {chosen_cell, chosen_mask & ~chosen_digit};
             else if (state == BACK_APPLY && alternatives != 0)
                 decisions[depth-7'd1] <= {top_cell, alternatives & ~retry_digit};
-            if (state == BACK_READ && depth != 0) top <= decisions[depth-7'd1];
+            if (state == BACK_READ && depth != 0) begin
+                top <= decisions[depth-7'd1];
+            end
+            if (state == BACK_READ1) saved_domains[26:0] <= snapshot_q;
+            if (state == BACK_READ2) saved_domains[53:27] <= snapshot_q;
         end
     end
-
-    wire propagate = state == APPLY && !conflict_q && !(|dead_cell) && !(|no_home);
     generate
-        for (c = 0; c < 81; c++) begin : CELL_REGISTERS
+        for (c=0; c<81; c++) begin : DOMAIN_REGISTERS
             wire load_cell = state == INIT;
-            wire force_cell = propagate && forced_cell[c];
+            wire reduce_cell = state == DOMAIN;
             wire guess_cell = state == PLACE && chosen_cell == 7'(c);
-            wire retry_cell = state == BACK_APPLY && alternatives != 0 && top_cell == 7'(c);
-            wire clear_cell = state == BACK_APPLY && assigned_depth[c] == depth;
-            wire write_cell = load_cell || force_cell || guess_cell || retry_cell || clear_cell;
-            wire [8:0] input_digit;
-            for (k = 0; k < 9; k++) begin : DECODE
-                assign input_digit[k] = input_flat[c] == 4'(k+1);
+            wire restore_cell = state == BACK_APPLY && alternatives != 0;
+            wire [8:0] initial_domain;
+            for (k=0; k<9; k++) begin : DECODE
+                assign initial_domain[k] = input_flat[c] == 0 || input_flat[c] == 4'(k+1);
             end
-            // Sources are mutually exclusive by state. Clear contributes zero.
-            wire [8:0] next_digit = ({9{load_cell}} & input_digit)
-                                 | ({9{force_cell}} & forced[c])
-                                 | ({9{guess_cell}} & chosen_digit)
-                                 | ({9{retry_cell}} & retry_digit);
+            wire [8:0] parent_domain;
+            if (c < 54) assign parent_domain = saved_domains[c];
+            else assign parent_domain = snapshot_q[(c-54)*9 +: 9];
+            wire [8:0] restored = top_cell == 7'(c) ? retry_digit : parent_domain;
+            // Mutually exclusive sources, with explicit register enable.
+            wire [8:0] write_domain = ({9{load_cell}} & initial_domain)
+                | ({9{reduce_cell}} & next_domain[c])
+                | ({9{guess_cell}} & chosen_digit)
+                | ({9{restore_cell}} & restored);
             always_ff @(posedge clk or negedge rst_n) begin
-                if (!rst_n) begin value[c] <= 0; assigned_depth[c] <= 0; end
-                else begin
-                    if (write_cell) value[c] <= next_digit;
-                    if (load_cell) assigned_depth[c] <= 0;
-                    else if (guess_cell) assigned_depth[c] <= depth+7'd1;
-                    else if (force_cell) assigned_depth[c] <= depth;
-                end
+                if (!rst_n) domain[c] <= 0;
+                else if (load_cell || reduce_cell || guess_cell || restore_cell)
+                    domain[c] <= write_domain;
             end
         end
     endgenerate
-
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            state <= IDLE;
-            done <= 0; success <= 0; depth <= 0;
-            candidate <= '0; empty_q <= '0; used_q <= '0;
-            invalid_input <= 0; conflict_q <= 0; chosen_cell <= 0;
-            for (int r = 0; r < 9; r++) begin
-                row_count_q[r] <= 15;
-                row_index_q[r] <= 0;
-            end
+            state <= IDLE; depth <= 0; done <= 0; success <= 0;
+            chosen_cell <= 0; invalid_input <= 0;
+            for (int r=0; r<9; r++) begin row_count_q[r] <= 15; row_index_q[r] <= 0; end
         end else begin
             case (state)
                 IDLE: if (start) state <= INIT;
                 INIT: begin
                     logic bad;
-                    bad = 0;
-                    for (int c = 0; c < 81; c++) begin
-                        bad = bad | (input_flat[c] > 9);
-                    end
+                    bad=0;
+                    for (int c=0; c<81; c++) bad |= input_flat[c]>9;
                     invalid_input <= bad;
                     depth <= 0; done <= 0; success <= 0;
-                    state <= SCAN;
-                end
-                SCAN: begin
-                    for (int c = 0; c < 81; c++) begin
-                        candidate[c] <= value[c] != 0 ? 9'd0 :
-                            ~(occupied[c/9] | occupied[9+c%9] | occupied[18+(c/27)*3+(c%9)/3]);
-                        empty_q[c] <= value[c] == 0;
-                    end
-                    used_q <= occupied;
-                    conflict_q <= (|bad_unit) | invalid_input;
-                    state <= (|edge_present) ? DOMAIN : APPLY;
+                    state <= DOMAIN;
                 end
                 DOMAIN: begin
-                    // Deletions are monotone here. SCAN rebuilds candidates
-                    // after placements/rollback, discarding failed-branch cuts.
-                    for (int c=0; c<81; c++)
-                        candidate[c] <= empty_q[c] ? pruned[c] : 9'd0;
-                    if (conflict_q || (|domain_dead)) state <= BACK_READ;
-                    else if (!(|domain_changed)) state <= APPLY;
-                end
-                APPLY: begin
-                    // Contradictions must win over completion, including when
-                    // a batch assigned conflicting forced digits in a unit.
-                    if (conflict_q || (|dead_cell) || (|no_home)) state <= BACK_READ;
-                    else if (!(|empty_q)) state <= FINISH_OK;
-                    else if (|forced_cell) begin
-                        state <= SCAN;
-                    end else state <= PICK_ROWS;
+                    if (invalid_input || (|unit_dead) || (|cell_dead)) state <= BACK_READ;
+                    else if (&singleton) state <= FINISH_OK;
+                    else if (!(|changed)) state <= PICK_ROWS;
                 end
                 PICK_ROWS: begin
-                    for (int r = 0; r < 9; r++) begin
+                    for (int r=0; r<9; r++) begin
                         row_count_q[r] <= row_count[r][1];
                         row_index_q[r] <= row_index[r][1];
                     end
                     state <= PICK_CELL;
                 end
-                PICK_CELL: begin
-                    chosen_cell <= global_index[1];
-                    state <= PLACE;
+                PICK_CELL: begin chosen_cell <= global_index[1]; state <= PLACE; end
+                PLACE: begin depth <= depth+7'd1; state <= DOMAIN; end
+                BACK_READ: state <= depth == 0 ? FINISH_FAIL : BACK_READ1;
+                BACK_READ1: begin
+                    // An exhausted frame needs no restored domains.
+                    if (alternatives == 0) begin depth <= depth-7'd1; state <= BACK_READ; end
+                    else state <= BACK_READ2;
                 end
-                PLACE: begin
-                    depth <= depth+7'd1;
-                    state <= SCAN;
-                end
-                BACK_READ: state <= depth == 0 ? FINISH_FAIL : BACK_APPLY;
+                BACK_READ2: state <= BACK_APPLY;
                 BACK_APPLY: begin
-                    if (alternatives != 0) state <= SCAN;
-                    else begin
-                        depth <= depth-7'd1;
-                        state <= BACK_READ;
-                    end
+                    if (alternatives != 0) state <= DOMAIN;
+                    else begin depth <= depth-7'd1; state <= BACK_READ; end
                 end
                 FINISH_OK: begin done <= 1; success <= 1; end
                 FINISH_FAIL: begin done <= 1; success <= 0; end
@@ -302,9 +288,9 @@ module ineqsudx_scan_solver #(
         end
     end
     always_comb begin
-        for (int c = 0; c < 81; c++) begin
-            output_flat[c] = 0;
-            for (int d = 0; d < 9; d++) if (value[c][d]) output_flat[c] = 4'(d+1);
+        for (int c=0; c<81; c++) begin
+            output_flat[c]=0;
+            for (int d=0; d<9; d++) if (domain[c][d]) output_flat[c]=4'(d+1);
         end
     end
 endmodule
