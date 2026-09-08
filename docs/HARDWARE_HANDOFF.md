@@ -3,6 +3,9 @@
 The full K5-XBOX build completed at the default **50 MHz** and passes reported
 setup/hold checks. It has not yet run on the physical board.
 
+Read [the complete design explanation](DESIGN_WALKTHROUGH.md) for the
+reasoning, code examples, and measured tradeoffs behind each version.
+
 ## Files to download
 
 - `hw/gen_fpga/prog_files/k5_xbox_sudx_scan.sof`
@@ -10,8 +13,10 @@ setup/hold checks. It has not yet run on the physical board.
 - `sw/apps/sudx_scan/` and `sw/apps/sud_shared/` (the unchanged course app/library)
 - `logs/v5/build_source.json` for source and artifact SHA-256 fingerprints
 
-The convenience bundle `artifacts/AlwaysSudx-v5.zip` contains the programming
-files, source, course application, documentation and fingerprints.
+The GitHub v5 release provides `AlwaysSudx-v5.zip`, the standalone `.sof` and
+`.svf`, the design walkthrough, and SHA-256 checksums. The bundle contains the
+tracked project files and programming artifacts. Intermediate releases preserve
+source/measurement milestones; only v5 has verified bitstreams from this work.
 
 Put the programming file in your laptop's `$MY_K5_PROJ/fpga_prog_files/` and the two
 application folders under `$MY_K5_PROJ/sw/apps/`, following the course guide.

@@ -9,7 +9,8 @@ Classic 9x9 Sudoku accelerator for DDP26 K5-XBOX. **Final version: v5.**
 - 3,704 solvable-board runs, 35 rejection tests, and all four course app checks pass.
 - Physical FPGA testing is the remaining user-side validation.
 
-[Measurements and caveats](RESULTS.md) · [Readable architecture](docs/BATCH_DESIGN.md)
+[Full design walkthrough with code examples](docs/DESIGN_WALKTHROUGH.md)
+· [Measurements and caveats](RESULTS.md) · [Readable architecture](docs/BATCH_DESIGN.md)
 · [Hardware handoff](docs/HARDWARE_HANDOFF.md)
 
 ## Algorithm
@@ -75,4 +76,5 @@ https://github.com/DDP26-summer/ex3.1 . Baseline adaptation only renamed the MRV
 module and output port. Course documents were copied from the user's AlwaysSud
 repositories. Comparison RTL and original puzzle sets come from AlwaysSud opus
 commit `5a227db`. Puzzle data is used only by verification, never as hardware
-constants. This repository is local; nothing was pushed to GitHub.
+constants. GitHub: https://github.com/barakpe/AlwaysSudx . Programming artifacts are
+published as release assets; generated build caches are not source-controlled.
