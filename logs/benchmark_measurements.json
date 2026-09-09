@@ -1,0 +1,132 @@
+{
+  "course_inputs": {
+    "course_commit": "f430fcffd5321bfe35a32c2cf1f997356e8285b1",
+    "board_order": [
+      "std/hard5",
+      "std/hard8",
+      "ineq/set0/single",
+      "ineq/set0/ascend",
+      "ineq/set0/plain",
+      "ineq/set1/sparse_ineq",
+      "ineq/set2/superhardA",
+      "ineq/set2/xsparse2"
+    ],
+    "sha256": {
+      "sw/apps/sud_shared/sudoku_input_std/hard5.txt": "f21311acddf2e550793c0a86f6ead2ed9939d847488cfdf418bb332b65d395d8",
+      "sw/apps/sud_shared/sudoku_input_std/hard8.txt": "4a65c912a833fb7150477e0b6fa4af2732adcba3153332972a35badeb0387ac2",
+      "sw/apps/sud_shared/sudoku_input_ineq/set0/single.txt": "a91ff2d836e82048057c3164eae3209df943ecefbb340e3268bc351c885045e6",
+      "sw/apps/sud_shared/sudoku_input_ineq/set0/ascend.txt": "ad35f52b88342bcd597543d67557ac5604c38e4ae7066bea5132bf2d7521d5f9",
+      "sw/apps/sud_shared/sudoku_input_ineq/set0/plain.txt": "511e2d6610bdc265e412f764f94f8417ada77f24dc51e4a6c839a734cc8de8b5",
+      "sw/apps/sud_shared/sudoku_input_ineq/set1/sparse_ineq.txt": "7be913c7ff6284fd89669bf8b62d823c6542c9b43e618ba38af3e8db7fb5a98b",
+      "sw/apps/sud_shared/sudoku_input_ineq/set2/superhardA.txt": "e415f49d3d23a070d3cf3b398cc6b2341bf2cb59c85218440cbc01e5aef9e55d",
+      "sw/apps/sud_shared/sudoku_input_ineq/set2/xsparse2.txt": "c9d01fe066918bdb9f4482ac91482e02be63cfb1a818cd2d3daa4fe3048e7f44"
+    }
+  },
+  "versions": {
+    "ineq-v3": {
+      "boards": {
+        "std/hard5": {
+          "application_cycles": 315,
+          "basic_checker": "PASSED",
+          "inequality_checker": "PASSED"
+        },
+        "std/hard8": {
+          "application_cycles": 315,
+          "basic_checker": "PASSED",
+          "inequality_checker": "PASSED"
+        },
+        "ineq/set0/single": {
+          "application_cycles": 291,
+          "basic_checker": "PASSED",
+          "inequality_checker": "PASSED"
+        },
+        "ineq/set0/ascend": {
+          "application_cycles": 267,
+          "basic_checker": "PASSED",
+          "inequality_checker": "PASSED"
+        },
+        "ineq/set0/plain": {
+          "application_cycles": 483,
+          "basic_checker": "PASSED",
+          "inequality_checker": "PASSED"
+        },
+        "ineq/set1/sparse_ineq": {
+          "application_cycles": 411,
+          "basic_checker": "PASSED",
+          "inequality_checker": "PASSED"
+        },
+        "ineq/set2/superhardA": {
+          "application_cycles": 315,
+          "basic_checker": "PASSED",
+          "inequality_checker": "PASSED"
+        },
+        "ineq/set2/xsparse2": {
+          "application_cycles": 435,
+          "basic_checker": "PASSED",
+          "inequality_checker": "PASSED"
+        }
+      },
+      "standalone_fmax_mhz": 73.09,
+      "total_cycles": 2832,
+      "normalized_total_us": 38.74675058147489,
+      "physical_total_us_at_50mhz": 56.64,
+      "build_commit": "87822a64f9b4ce90bdf57405dfb68d066fac8d10",
+      "sof_sha256": "26b6c7b175fb2cbf00d1ecc2aee249142a3be5f567892209cb9ef0a48173efbe",
+      "hardware_execution_tested": false
+    },
+    "ineq-v4": {
+      "boards": {
+        "std/hard5": {
+          "application_cycles": 339,
+          "basic_checker": "PASSED",
+          "inequality_checker": "PASSED"
+        },
+        "std/hard8": {
+          "application_cycles": 339,
+          "basic_checker": "PASSED",
+          "inequality_checker": "PASSED"
+        },
+        "ineq/set0/single": {
+          "application_cycles": 315,
+          "basic_checker": "PASSED",
+          "inequality_checker": "PASSED"
+        },
+        "ineq/set0/ascend": {
+          "application_cycles": 267,
+          "basic_checker": "PASSED",
+          "inequality_checker": "PASSED"
+        },
+        "ineq/set0/plain": {
+          "application_cycles": 555,
+          "basic_checker": "PASSED",
+          "inequality_checker": "PASSED"
+        },
+        "ineq/set1/sparse_ineq": {
+          "application_cycles": 459,
+          "basic_checker": "PASSED",
+          "inequality_checker": "PASSED"
+        },
+        "ineq/set2/superhardA": {
+          "application_cycles": 339,
+          "basic_checker": "PASSED",
+          "inequality_checker": "PASSED"
+        },
+        "ineq/set2/xsparse2": {
+          "application_cycles": 507,
+          "basic_checker": "PASSED",
+          "inequality_checker": "PASSED"
+        }
+      },
+      "standalone_fmax_mhz": 87.83,
+      "total_cycles": 3120,
+      "normalized_total_us": 35.52316975976318,
+      "physical_total_us_at_50mhz": 62.4,
+      "build_commit": "fe873baef82bd15b7de963415be563fbc2970c10",
+      "sof_sha256": "4b314fe4b63bbf681aad6f24318f02ea9cc091137472427cc767bd019b8a51e1",
+      "hardware_execution_tested": false
+    }
+  },
+  "selected_for_this_benchmark": "ineq-v4",
+  "v4_normalized_time_reduction_percent": 8.319615898972776,
+  "direct_rtl_all_eight_pass": true
+}

@@ -64,11 +64,3 @@ launch_k5_app ineqsudx_scan -asl sud_shared -gpv ineq/set2/xsparse2
 Use the reference counts in the table for the selected release. Save both
 checker outputs on every row. See the release handoff for programming and
 source provenance checks.
-
-## Build and earlier development evidence
-
-Both releases completed full-system routing and timing at their configured
-50 MHz clock. v3 uses 34,571 LEs (57.46 MHz full-system Fmax); v4 uses 34,627 LEs
-(56.58 MHz full-system Fmax). Each uses 173/182 M9Ks. The score above uses
-standalone Fmax. Earlier 19-case comparisons are archived in
-`INEQUALITY_V3_DEVELOPMENT_RESULTS.md`.

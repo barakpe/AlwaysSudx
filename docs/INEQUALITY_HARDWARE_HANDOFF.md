@@ -1,5 +1,9 @@
 # Inequality Sudoku hardware handoff — ineq-v3
 
+**Benchmark update:** all eight course rows are now measured. See [complete
+benchmark results](BENCHMARK_RESULTS.md) and `benchmark-ineq-v3-complete.xlsx`.
+Earlier development averages and partial workbooks below are historical.
+
 v3 has completed cloud synthesis, fitting, routing, and timing at **50 MHz**.
 Its physical hardware execution is pending. The user has already validated
 v2 on all 21 cases; see [that record](INEQUALITY_V2_HARDWARE_VALIDATION.md).
@@ -48,7 +52,7 @@ working files, or use the LF files from the release ZIP.
 set_k5_terminal
 launch_k5_app ineqsudx_scan -asl sud_shared -gpv ineq/set0/single
 launch_k5_app ineqsudx_scan -asl sud_shared -gpv ineq/set1/sparse_ineq
-launch_k5_app ineqsudx_scan -asl sud_shared -gpv hard1
+launch_k5_app ineqsudx_scan -asl sud_shared -gpv std/hard5
 ```
 
 Each board runs as a separate invocation. There must be two passing results:
@@ -75,7 +79,7 @@ launch_k5_app ineqsudx_scan -asl sud_shared -gpv ineq/dev/p6_contradiction
 launch_k5_app ineqsudx_scan -asl sud_shared -gpv ineq/dev/p7_impossible
 ```
 
-Test all `set0` and `set1` boards and the four original classic boards. A valid
+For the submission, run exactly the eight boards in `BENCHMARK_RESULTS.md`. A valid
 grid may differ from another solver's grid when the puzzle has multiple
 solutions. Preserve the application logs as the hardware validation record.
 
@@ -102,7 +106,7 @@ Detected system clock:
 Board argument                 Cycles     Basic checker    Inequality checker
 ineq/set0/single                291        PASSED           PASSED
 ineq/set1/sparse_ineq           411        PASSED           PASSED
-hard1                          579        PASSED           PASSED
+std/hard5                      315        PASSED           PASSED
 ```
 
 The rows above are **v3 simulation reference values**, not a hardware test

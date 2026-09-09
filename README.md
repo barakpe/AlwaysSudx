@@ -1,22 +1,22 @@
 # AlwaysSudx — inequality Sudoku on FPGA
 
-This branch contains the hackathon inequality variant, `ineqsudx_scan`.
-The hardware-validated classic v5 remains on `main` and tag `v5`.
+The complete eight-board course benchmark selects **ineq-v4**:
+**3,120 cycles / 87.83 MHz = 35.5232 us**, 8.32% lower normalized time than
+v3's **2,832 cycles / 73.09 MHz = 38.7468 us**. Both versions pass both course
+checkers on all eight boards. [Results and exact rows](docs/BENCHMARK_RESULTS.md).
 
-The selected variant is **ineq-v3**, which registers MRV candidate counts during
-an existing propagation cycle. It matches v2 across **4,347 RTL executions**
-and all 19 solvable course application cases, while raising standalone Fmax
-from **69.62 to 73.09 MHz** and lowering standalone area to **21,968 fitted LEs**.
+This branch retains v3. The selected v4 is on `hackathon/propagation-pipeline`
+and release `ineq-v4`.
 
-Mean normalized time is **4.4480 us**, 4.75% lower than v2 and 28.34% lower than
-the first inequality baseline on the unweighted 19-case development set.
-The full system fits **34,571 LEs** and passes timing at its configured **50 MHz**.
-At that physical clock, cycle counts and execution time are unchanged from v2.
-The user has hardware-validated v2; **v3 hardware execution is pending**.
+Both images meet full-system timing at their configured 50 MHz. v4 uses
+34,627 full-system LEs, with 56.58 MHz full-system Fmax. Its eight-board physical
+time at 50 MHz is 62.40 us versus v3's 56.64 us. The improvement is in the course
+score using standalone Fmax. v3/v4 hardware testing is pending; the user's full
+hardware validation applies to v2. The classic v5 remains on `main`.
 
-The course has published a benchmark spreadsheet but not the four unseen puzzle
-files it names. See [benchmark status](docs/BENCHMARK_STATUS.md); partial totals
-are explicitly marked and do not claim a complete competition score.
+Use the complete workbook for the selected release. Only the eight inequality
+rows contribute; the unrelated project column is blank. Earlier partial sheets
+and 19-case development averages are retained as historical evidence.
 
 ## Read the design
 
