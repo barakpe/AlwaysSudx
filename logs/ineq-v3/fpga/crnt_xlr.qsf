@@ -1,0 +1,9 @@
+set_global_assignment -name VERILOG_MACRO "HOST_REGS_INTRF"
+set_global_assignment -name SEARCH_PATH /project/tsmc65/users/perezba/ws/AlwaysSudxIneqBuild/sw/apps/ineqsudx_scan
+
+set_global_assignment -name SYSTEMVERILOG_FILE /project/tsmc65/users/perezba/ws/AlwaysSudxIneqBuild/hw/xlrs/ineqsudx_scan/ineqsudx_def_pkg.sv
+
+set_global_assignment -name SYSTEMVERILOG_FILE /project/tsmc65/users/perezba/ws/AlwaysSudxIneqBuild/hw/xlrs/ineqsudx_scan/ineqsudx_scan.sv
+
+set_global_assignment -name SYSTEMVERILOG_FILE /project/tsmc65/users/perezba/ws/AlwaysSudxIneqBuild/hw/xlrs/ineqsudx_scan/ineqsudx_scan_solver.sv
+set_global_assignment -name VERILOG_MACRO "CRNT_XLR=ineqsudx_scan"

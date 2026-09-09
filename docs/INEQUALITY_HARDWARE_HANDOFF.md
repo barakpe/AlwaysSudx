@@ -1,10 +1,9 @@
-# Inequality Sudoku hardware handoff
+# Inequality Sudoku hardware handoff — ineq-v3
 
-The user has validated ineq-v2 on hardware: all 21 expected outcomes pass,
-with exact simulation cycle agreement. See [the validation record](INEQUALITY_V2_HARDWARE_VALIDATION.md). The canonical development
-branch is `hackathon/ineq`; milestone tags preserve earlier source states. The **ineq-v2** release has completed cloud synthesis, fitting, routing, and
-passing full-system timing at **50 MHz**, and is ready for the DE10-Lite test.
-The previously validated classic v5 bitstream is a separate accelerator.
+v3 has completed cloud synthesis, fitting, routing, and timing at **50 MHz**.
+Its physical hardware execution is pending. The user has already validated
+v2 on all 21 cases; see [that record](INEQUALITY_V2_HARDWARE_VALIDATION.md).
+The v3 simulation reference counts are identical to v2's hardware counts.
 
 ## Install the variant
 
@@ -30,9 +29,9 @@ The release also provides its SVF. This image runs at **50 MHz**.
 
 ```text
 SOF SHA-256:
-79b39f50f2c760e94aaf8bedc81ee28e2e3cd6a727d711dced1c6cde31178b3e
+26b6c7b175fb2cbf00d1ecc2aee249142a3be5f567892209cb9ef0a48173efbe
 Build source commit:
-c91d5985ea680edba047db4333e969ba43738f01
+87822a64f9b4ce90bdf57405dfb68d066fac8d10
 ``` Use the course's normal programming flow for
 the DE10-Lite and confirm the selected image has `ineqsudx_scan` in its name.
 
@@ -104,7 +103,7 @@ ineq/set1/sparse_ineq           411        PASSED           PASSED
 hard1                          579        PASSED           PASSED
 ```
 
-The rows above are **v2 simulation reference values**, not a hardware test
+The rows above are **v3 simulation reference values**, not a hardware test
 report. Run the remaining cases from `INEQUALITY_RESULTS.md` too. Preserve any
 unexpected output in full so a protocol mismatch can be distinguished from a
 solver or checker failure.

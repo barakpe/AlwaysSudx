@@ -533,5 +533,188 @@
       "ADC blocks": "0 / 2 ( 0 % )"
     },
     "hardware_execution_tested": true
+  },
+  "ineq-v3": {
+    "rtl": {
+      "official": {
+        "executions": 21,
+        "solved": 19,
+        "rejected": 2,
+        "mean_core_cycles": 55.68421052631579,
+        "max_core_cycles": 309
+      },
+      "classic": {
+        "executions": 3700,
+        "solved": 3700,
+        "rejected": 0,
+        "mean_core_cycles": 488.35432432432435,
+        "max_core_cycles": 21304
+      },
+      "generated": {
+        "executions": 300,
+        "solved": 300,
+        "rejected": 0,
+        "mean_core_cycles": 287.4633333333333,
+        "max_core_cycles": 33690
+      },
+      "heldout": {
+        "executions": 285,
+        "solved": 285,
+        "rejected": 0,
+        "mean_core_cycles": 78.79298245614035,
+        "max_core_cycles": 1219
+      },
+      "rejects": {
+        "executions": 35,
+        "solved": 0,
+        "rejected": 35,
+        "mean_core_cycles": null,
+        "max_core_cycles": null
+      },
+      "contract": {
+        "executions": 6,
+        "solved": 2,
+        "rejected": 4,
+        "mean_core_cycles": 4.0,
+        "max_core_cycles": 4
+      }
+    },
+    "application": {
+      "ineq_set0_single": {
+        "cycles": 291,
+        "passed": true,
+        "score_us": 3.981392803393077
+      },
+      "ineq_dev_p5_presolved": {
+        "cycles": 267,
+        "passed": true,
+        "score_us": 3.6530305103297303
+      },
+      "51blanks": {
+        "cycles": 291,
+        "passed": true,
+        "score_us": 3.981392803393077
+      },
+      "ineq_set1_medium3": {
+        "cycles": 315,
+        "passed": true,
+        "score_us": 4.309755096456423
+      },
+      "ineq_set1_hard1": {
+        "cycles": 315,
+        "passed": true,
+        "score_us": 4.309755096456423
+      },
+      "ineq_set0_sparse1": {
+        "cycles": 267,
+        "passed": true,
+        "score_us": 3.6530305103297303
+      },
+      "ineq_set1_easy2": {
+        "cycles": 291,
+        "passed": true,
+        "score_us": 3.981392803393077
+      },
+      "ineq_set1_medium2": {
+        "cycles": 315,
+        "passed": true,
+        "score_us": 4.309755096456423
+      },
+      "ineq_set1_hard4": {
+        "cycles": 291,
+        "passed": true,
+        "score_us": 3.981392803393077
+      },
+      "ineq_set1_sparse_ineq": {
+        "cycles": 411,
+        "passed": true,
+        "score_us": 5.623204268709809
+      },
+      "easy1": {
+        "cycles": 267,
+        "passed": true,
+        "score_us": 3.6530305103297303
+      },
+      "hard1": {
+        "cycles": 579,
+        "passed": true,
+        "score_us": 7.921740320153235
+      },
+      "ineq_set0_ascend": {
+        "cycles": 267,
+        "passed": true,
+        "score_us": 3.6530305103297303
+      },
+      "ineq_set1_hard2": {
+        "cycles": 339,
+        "passed": true,
+        "score_us": 4.63811738951977
+      },
+      "20blanks": {
+        "cycles": 267,
+        "passed": true,
+        "score_us": 3.6530305103297303
+      },
+      "ineq_set0_plain": {
+        "cycles": 483,
+        "passed": true,
+        "score_us": 6.608291147899849
+      },
+      "ineq_set1_medium1": {
+        "cycles": 291,
+        "passed": true,
+        "score_us": 3.981392803393077
+      },
+      "ineq_set1_easy1": {
+        "cycles": 291,
+        "passed": true,
+        "score_us": 3.981392803393077
+      },
+      "ineq_set1_hard3": {
+        "cycles": 339,
+        "passed": true,
+        "score_us": 4.63811738951977
+      }
+    },
+    "fmax_mhz": 73.09,
+    "map": {
+      "Analysis & Synthesis Status": "Successful - Tue Sep  8 23:18:43 2026",
+      "Quartus Prime Version": "24.1std.0 Build 1077 03/04/2025 SC Lite Edition",
+      "Revision Name": "ineqsudx_scan",
+      "Top-level Entity Name": "qsyn_dummy_xlr_wrap",
+      "Family": "MAX 10",
+      "Total logic elements": "22,825",
+      "    Total combinational functions": "21,669",
+      "    Dedicated logic registers": "3,171",
+      "Total registers": "3171",
+      "Total pins": "120",
+      "Total virtual pins": "0",
+      "Total memory bits": "60,264",
+      "Embedded Multiplier 9-bit elements": "0",
+      "Total PLLs": "0",
+      "UFM blocks": "0",
+      "ADC blocks": "0"
+    },
+    "fit": {
+      "Fitter Status": "Successful - Wed Sep  9 00:16:19 2026",
+      "Quartus Prime Version": "24.1std.0 Build 1077 03/04/2025 SC Lite Edition",
+      "Revision Name": "ineqsudx_scan",
+      "Top-level Entity Name": "qsyn_dummy_xlr_wrap",
+      "Family": "MAX 10",
+      "Device": "10M50DAF484C7G",
+      "Timing Models": "Final",
+      "Total logic elements": "21,968 / 49,760 ( 44 % )",
+      "    Total combinational functions": "21,670 / 49,760 ( 44 % )",
+      "    Dedicated logic registers": "3,171 / 49,760 ( 6 % )",
+      "Total registers": "3171",
+      "Total pins": "120 / 360 ( 33 % )",
+      "Total virtual pins": "0",
+      "Total memory bits": "60,264 / 1,677,312 ( 4 % )",
+      "Embedded Multiplier 9-bit elements": "0 / 288 ( 0 % )",
+      "Total PLLs": "0 / 4 ( 0 % )",
+      "UFM blocks": "0 / 1 ( 0 % )",
+      "ADC blocks": "0 / 2 ( 0 % )"
+    },
+    "hardware_execution_tested": false
   }
 }

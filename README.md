@@ -3,21 +3,28 @@
 This branch contains the hackathon inequality variant, `ineqsudx_scan`.
 The hardware-validated classic v5 remains on `main` and tag `v5`.
 
-The selected variant is **ineq-v2**, a pipelined domain-propagation solver with
-packed RAM snapshots. It passes **4,347 RTL executions**, including classic
-Sudoku, inequality Sudoku, encoding corner cases, and expected rejections.
-Standalone synthesis achieves **69.62 MHz** using **22,580 fitted LEs**.
-The full-system image meets its configured **50 MHz** clock, using **35,152
-fitted LEs**. Across the 19 supplied solvable cases, mean application cycles/Fmax
-falls from **6.2066 to 4.6697 us (24.76%)** versus the inequality baseline.
-This is an unweighted development comparison. The user has now confirmed all
-21 application outcomes on hardware, with exact simulation cycle agreement. Standalone Fmax is not the programmed board clock.
+The selected variant is **ineq-v3**, which registers MRV candidate counts during
+an existing propagation cycle. It matches v2 across **4,347 RTL executions**
+and all 19 solvable course application cases, while raising standalone Fmax
+from **69.62 to 73.09 MHz** and lowering standalone area to **21,968 fitted LEs**.
+
+Mean normalized time is **4.4480 us**, 4.75% lower than v2 and 28.34% lower than
+the first inequality baseline on the unweighted 19-case development set.
+The full system fits **34,571 LEs** and passes timing at its configured **50 MHz**.
+At that physical clock, cycle counts and execution time are unchanged from v2.
+The user has hardware-validated v2; **v3 hardware execution is pending**.
+
+The course has published a benchmark spreadsheet but not the four unseen puzzle
+files it names. See [benchmark status](docs/BENCHMARK_STATUS.md); partial totals
+are explicitly marked and do not claim a complete competition score.
 
 ## Read the design
 
 - [Simple, detailed design explanation](docs/INEQUALITY_DESIGN.md): masks,
   inequalities, propagation, hidden singles, MRV, rollback, RAM packing, and why
   adding a pipeline stage improved the result.
+- [MRV pipeline experiments](docs/MRV_PIPELINE_EXPERIMENTS.md): the scheduling
+  invariant, the two tested selection circuits, and measured outcomes.
 - [Results](docs/INEQUALITY_RESULTS.md): named-board application counts and
   cycles/Fmax comparisons, with measured timing and resources.
 - [Experiment history](docs/INEQUALITY_PROGRESS.md): what was tried, retained,
@@ -93,7 +100,8 @@ below 50 MHz is acceptable when that ratio improves.
 ## Versions and releases
 
 `ineq-v0` preserves the first verified baseline; `ineq-v1` records the packed
-domain redesign; `ineq-v2` records the pipeline improvement. Experimental sources
+domain redesign; `ineq-v2` records domain propagation pipelining; `ineq-v3` records registered
+MRV counts without additional cycles. Experimental sources
 and measurements remain under `bench/ineq/experiments` and `logs/experiment-*`.
 
 Use the GitHub release assets for programming files, the course submission TGZ,

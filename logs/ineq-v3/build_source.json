@@ -1,0 +1,42 @@
+{
+  "build_commit": "87822a64f9b4ce90bdf57405dfb68d066fac8d10",
+  "accelerator": "ineqsudx_scan",
+  "source_sha256": {
+    "hw/xlrs/ineqsudx_scan/ineqsudx_scan_solver.sv": "443abd396bb7e3e8070f2370b18b7f181eb58063a1335af9314e1ecc418ae662",
+    "hw/xlrs/ineqsudx_scan/ineqsudx_def_pkg.sv": "fe861910d220ae5822ff15638b1e43ec19c3610b8a91de1d67f75b768e1a9bb5",
+    "hw/xlrs/ineqsudx_scan/ineqsudx_scan.sv": "a63bec9f8b286d6e55004bef34d626dfd83a296382abb4ffaf951ef3450888cc",
+    "hw/xlrs/ineqsudx_scan/ineqsudx_scan.f": "fe8ced2d5af584b90d5bbf45b2a035544df34d0c01c02f9d17ba5428d10bd374",
+    "sw/apps/ineqsudx_scan/ineqsudx_scan.h": "b95d01cbd7fa43f7f4e8bac326d94f7c165199d894b60c23ca111c5afdd2466a",
+    "sw/apps/ineqsudx_scan/ineqsudx_scan_enums.svh": "8042cdb02ba0d426713e779fe1f64ac32167b01ff14c7df9eb21fb4d1fb7198e",
+    "sw/apps/ineqsudx_scan/ineqsudx_scan.c": "81b768475bda72e5ddd02078da1029258518ca6fe6028bf895c30b13f5fe7bb1",
+    "sw/apps/sud_shared/sud_lib.c": "7575111fec58136feae4eebe1f1d2321e44f6c111c3bbc3b6dfa3a3213391a3d",
+    "sw/apps/sud_shared/sud_lib.h": "aea657dd59a4c5a725db2d3f59cc79b0b0a8a19defaa0bebbf8831c6086dfb39"
+  },
+  "hardware_execution_tested": false,
+  "source_capture_utc": "2026-09-09T06:02:05.344072Z",
+  "course_reference_commit": "a9573fc7c554776876bfd1677d1d285be646b321",
+  "standalone_output_dir": "logs/ineq-v3/synthesis",
+  "standalone_fmax_mhz": 73.09,
+  "configured_physical_clock_mhz": 50,
+  "full_system_timing_passed": true,
+  "full_system_fmax_mhz": 57.46,
+  "full_system_fitted_les": 34571,
+  "full_system_registers": 4600,
+  "full_system_m9ks": 173,
+  "full_system_m9ks_available": 182,
+  "full_system_memory_bits": 1387872,
+  "full_system_minimum_slack_ns": {
+    "Setup": 2.596,
+    "Hold": 0.106,
+    "Recovery": 13.259,
+    "Removal": 0.396,
+    "Minimum Pulse Width": 9.325
+  },
+  "full_system_fitter_elapsed": "00:26:33",
+  "timing_constraint_scope": "Unmodified course constraints; all clocks constrained; 12 input ports and 59 output ports lack external delay constraints.",
+  "programming_files_sha256": {
+    "k5_xbox_ineqsudx_scan.sof": "26b6c7b175fb2cbf00d1ecc2aee249142a3be5f567892209cb9ef0a48173efbe",
+    "k5_xbox_ineqsudx_scan.svf": "745855c42b2f4993b2f5299263f5b9b42566905fd4d4223f0e686e5849237e88"
+  },
+  "build_finished_utc": "2026-09-09T06:34:25Z"
+}

@@ -1,7 +1,9 @@
 # How the inequality solver works
 
 This document explains the inequality variant, the unsuccessful experiments,
-and the selected pipelined domain engine (`ineq-v2`). Measured results are in
+and the pipelined domain engine introduced in `ineq-v2`. The selected `ineq-v3`
+adds registered MRV counts; its change is described below and in
+[the MRV experiment walkthrough](MRV_PIPELINE_EXPERIMENTS.md). Measured results are in
 `INEQUALITY_RESULTS.md`; build status and the experiment history are in
 `INEQUALITY_PROGRESS.md`.
 
@@ -341,3 +343,28 @@ higher-degree cells on MRV ties both performed worse on the supplied set.
 A different puzzle distribution can favor different choices. These experiments
 help avoid assuming that the first architecture is best, but they do not prove
 that the selected implementation is globally optimal.
+
+## v3: shorten MRV without adding cycles
+
+The v2 timing report's worst 20 paths end in the MRV row-selection registers.
+They combine candidate counting with the row tournament. v3 calculates and
+registers the candidate counts during SCAN, before the row tournament uses them.
+
+```systemverilog
+// SCAN always runs before a stable DOMAIN can enter MRV selection.
+always_ff @(posedge clk)
+    if (state == SCAN)
+        cell_count_q[c] <= singleton[c] ? 4'd15 : count9(domain[c]);
+```
+
+DOMAIN proceeds to MRV only when candidate domains do not change. Therefore
+these earlier counts are still correct when PICK_ROWS uses them. If domains
+change, propagation repeats and overwrites the counts before they can be used.
+No extra cycle, guess, or snapshot operation is introduced.
+
+The measured result is 73.09 MHz versus 69.62 MHz, with all application cycles
+unchanged. Normalized mean time falls 4.75%. Fitted standalone area also falls
+from 22,580 to 21,968 LEs despite adding 324 registers: placement and logic
+packing determine area, not the register count alone. The full-system image
+passes its configured 50 MHz clock. Actual 50 MHz execution time stays the same;
+the gain here is in the course-normalized cycles/Fmax measurement.

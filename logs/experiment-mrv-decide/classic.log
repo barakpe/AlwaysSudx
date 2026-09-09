@@ -1,0 +1,154 @@
+SOFTINCLUDE $XPEDION/aa/cds.lib
+|
+xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20260616.1/cds.site.lib,25): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
+|
+xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20260616.1/cds.site.lib,27): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $XPEDION/aa/cds.lib
+|
+xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20260616.1/cds.site.lib,25): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
+|
+xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20260616.1/cds.site.lib,27): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $XPEDION/aa/cds.lib
+|
+xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20260616.1/cds.site.lib,25): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
+|
+xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20260616.1/cds.site.lib,27): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $XPEDION/aa/cds.lib
+|
+xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20260616.1/cds.site.lib,25): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
+|
+xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20260616.1/cds.site.lib,27): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $XPEDION/aa/cds.lib
+|
+xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20260616.1/cds.site.lib,25): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
+|
+xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20260616.1/cds.site.lib,27): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $XPEDION/aa/cds.lib
+|
+xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20260616.1/cds.site.lib,25): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
+|
+xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20260616.1/cds.site.lib,27): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $XPEDION/aa/cds.lib
+|
+xmvlog: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20260616.1/cds.site.lib,25): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
+|
+xmvlog: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20260616.1/cds.site.lib,27): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $XPEDION/aa/cds.lib
+|
+xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20260616.1/cds.site.lib,25): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
+|
+xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20260616.1/cds.site.lib,27): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $XPEDION/aa/cds.lib
+|
+xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20260616.1/cds.site.lib,25): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
+|
+xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20260616.1/cds.site.lib,27): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $XPEDION/aa/cds.lib
+|
+xmelab: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20260616.1/cds.site.lib,25): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
+|
+xmelab: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20260616.1/cds.site.lib,27): cds.lib Invalid environment variable ''.
+	Top level design units:
+		tb_solver
+SOFTINCLUDE $XPEDION/aa/cds.lib
+|
+xmvlog_cg: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20260616.1/cds.site.lib,25): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
+|
+xmvlog_cg: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20260616.1/cds.site.lib,27): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $XPEDION/aa/cds.lib
+|
+xmsim: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20260616.1/cds.site.lib,25): cds.lib Invalid environment variable ''.
+SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
+|
+xmsim: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20260616.1/cds.site.lib,27): cds.lib Invalid environment variable ''.
+xcelium> source /tools/cadence/XCELIUM/23.09.013/tools/xcelium/files/xmsimrc
+xcelium> run
+PASS 50 puzzles
+PASS 100 puzzles
+PASS 150 puzzles
+PASS 200 puzzles
+PASS 250 puzzles
+PASS 300 puzzles
+PASS 350 puzzles
+PASS 400 puzzles
+PASS 450 puzzles
+PASS 500 puzzles
+PASS 550 puzzles
+PASS 600 puzzles
+PASS 650 puzzles
+PASS 700 puzzles
+PASS 750 puzzles
+PASS 800 puzzles
+PASS 850 puzzles
+PASS 900 puzzles
+PASS 950 puzzles
+PASS 1000 puzzles
+PASS 1050 puzzles
+PASS 1100 puzzles
+PASS 1150 puzzles
+PASS 1200 puzzles
+PASS 1250 puzzles
+PASS 1300 puzzles
+PASS 1350 puzzles
+PASS 1400 puzzles
+PASS 1450 puzzles
+PASS 1500 puzzles
+PASS 1550 puzzles
+PASS 1600 puzzles
+PASS 1650 puzzles
+PASS 1700 puzzles
+PASS 1750 puzzles
+PASS 1800 puzzles
+PASS 1850 puzzles
+PASS 1900 puzzles
+PASS 1950 puzzles
+PASS 2000 puzzles
+PASS 2050 puzzles
+PASS 2100 puzzles
+PASS 2150 puzzles
+PASS 2200 puzzles
+PASS 2250 puzzles
+PASS 2300 puzzles
+PASS 2350 puzzles
+PASS 2400 puzzles
+PASS 2450 puzzles
+PASS 2500 puzzles
+PASS 2550 puzzles
+PASS 2600 puzzles
+PASS 2650 puzzles
+PASS 2700 puzzles
+PASS 2750 puzzles
+PASS 2800 puzzles
+PASS 2850 puzzles
+PASS 2900 puzzles
+PASS 2950 puzzles
+PASS 3000 puzzles
+PASS 3050 puzzles
+PASS 3100 puzzles
+PASS 3150 puzzles
+PASS 3200 puzzles
+PASS 3250 puzzles
+PASS 3300 puzzles
+PASS 3350 puzzles
+PASS 3400 puzzles
+PASS 3450 puzzles
+PASS 3500 puzzles
+PASS 3550 puzzles
+PASS 3600 puzzles
+PASS 3650 puzzles
+PASS 3700 puzzles
+REGRESSION PASS: 3700 puzzles
+Simulation complete via $finish(1) at time 24446596 NS + 0
+/data/project/tsmc65/users/perezba/ws/AlwaysSudxIneqBuild/bench/ineq/tb_solver.sv:101         $finish;
+xcelium> exit
