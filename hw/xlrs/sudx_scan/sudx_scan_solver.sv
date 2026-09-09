@@ -147,7 +147,15 @@ module sudx_scan_solver #(
         end
     end
 
-    wire propagate = state == APPLY && !conflict_q && !(|dead_cell) && !(|no_home);
+    // The board-wide contradiction reduction decides the next state only. It is
+    // deliberately kept out of the cell write enables: gating 81 cells with it put
+    // an 81-input OR and its ~1300-bit fanout in series with the hidden-single
+    // tree. Applying forced digits during a contradicted round is harmless because
+    // forced[c] is nonzero only for empty cells, every such write is tagged with the
+    // current depth, and a contradiction always leads to BACK_APPLY clearing exactly
+    // that depth before anything reads the board again.
+    wire contradiction = conflict_q || (|dead_cell) || (|no_home);
+    wire propagate = state == APPLY;
     generate
         for (c = 0; c < 81; c++) begin : CELL_REGISTERS
             wire load_cell = state == INIT;
@@ -213,7 +221,7 @@ module sudx_scan_solver #(
                 APPLY: begin
                     // Contradictions must win over completion, including when
                     // a batch assigned conflicting forced digits in a unit.
-                    if (conflict_q || (|dead_cell) || (|no_home)) state <= BACK_READ;
+                    if (contradiction) state <= BACK_READ;
                     else if (!(|empty_q)) state <= FINISH_OK;
                     else if (|forced_cell) begin
                         state <= SCAN;
