@@ -117,3 +117,13 @@ A improves normalized time by 4.75% versus v2 and uses 612 fewer fitted LEs.
 B is preserved as a measured alternative. The largest remaining path now
 includes propagation's global state decision, rather than the original MRV
 candidate-count path. A v3 programming build is the next validation step.
+
+
+## Follow-on propagation candidate
+
+v4 combines the triplet MRV circuit with a registered propagation decision
+stage. It reaches 87.83 MHz standalone, adding one cycle per propagation round.
+The 19-case application mean is 3.9604 us normalized, but larger corpora have
+worse mean solver-only time. The completed v4 build, explanation, and artifacts
+are preserved separately on `hackathon/propagation-pipeline` and release
+`ineq-v4`. This branch retains v3's registered-count implementation.

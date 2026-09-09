@@ -32,7 +32,9 @@ SOF SHA-256:
 26b6c7b175fb2cbf00d1ecc2aee249142a3be5f567892209cb9ef0a48173efbe
 Build source commit:
 87822a64f9b4ce90bdf57405dfb68d066fac8d10
-``` Use the course's normal programming flow for
+```
+
+Use the course's normal programming flow for
 the DE10-Lite and confirm the selected image has `ineqsudx_scan` in its name.
 
 Before programming, verify SHA256SUMS. The release manifest identifies the build
