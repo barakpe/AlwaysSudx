@@ -1,11 +1,18 @@
 # How the inequality solver works
 
 This document explains the inequality variant, the unsuccessful experiments,
-and the pipelined domain engine introduced in `ineq-v2`. The selected `ineq-v3`
+and the pipelined domain engine introduced in `ineq-v2`. `ineq-v3`
 adds registered MRV counts; its change is described below and in
 [the MRV experiment walkthrough](MRV_PIPELINE_EXPERIMENTS.md). Measured results are in
 `INEQUALITY_RESULTS.md`; build status and the experiment history are in
 `INEQUALITY_PROGRESS.md`.
+
+This branch implements **ineq-v4**, which instead uses the triplet MRV circuit
+and adds a DECIDE cycle after each DOMAIN cycle. Read the base explanation
+below, then [the v4 walkthrough](PROPAGATION_PIPELINE_EXPERIMENT.md) for its
+motivation, code, correctness invariant, and measured tradeoff. The descriptions
+of v2/v3 scheduling below refer to those versions; v4's schedule is
+`SCAN -> DOMAIN -> DECIDE`.
 
 ## What stays the same
 

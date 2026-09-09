@@ -1,9 +1,9 @@
-# Inequality Sudoku hardware handoff — ineq-v3
+# Inequality Sudoku hardware handoff — ineq-v4
 
-v3 has completed cloud synthesis, fitting, routing, and timing at **50 MHz**.
+v4 has completed cloud synthesis, fitting, routing, and timing at **50 MHz**.
 Its physical hardware execution is pending. The user has already validated
 v2 on all 21 cases; see [that record](INEQUALITY_V2_HARDWARE_VALIDATION.md).
-The v3 simulation reference counts are identical to v2's hardware counts.
+v4 has different reference counts; use the named table in this release.
 
 ## Install the variant
 
@@ -29,10 +29,12 @@ The release also provides its SVF. This image runs at **50 MHz**.
 
 ```text
 SOF SHA-256:
-26b6c7b175fb2cbf00d1ecc2aee249142a3be5f567892209cb9ef0a48173efbe
+4b314fe4b63bbf681aad6f24318f02ea9cc091137472427cc767bd019b8a51e1
 Build source commit:
-87822a64f9b4ce90bdf57405dfb68d066fac8d10
-``` Use the course's normal programming flow for
+fe873baef82bd15b7de963415be563fbc2970c10
+```
+
+Use the course's normal programming flow for
 the DE10-Lite and confirm the selected image has `ineqsudx_scan` in its name.
 
 Before programming, verify SHA256SUMS. The release manifest identifies the build
@@ -98,12 +100,12 @@ Board and programmer:
 Detected system clock:
 
 Board argument                 Cycles     Basic checker    Inequality checker
-ineq/set0/single                291        PASSED           PASSED
-ineq/set1/sparse_ineq           411        PASSED           PASSED
-hard1                          579        PASSED           PASSED
+ineq/set0/single                315        PASSED           PASSED
+ineq/set1/sparse_ineq           459        PASSED           PASSED
+hard1                          675        PASSED           PASSED
 ```
 
-The rows above are **v3 simulation reference values**, not a hardware test
+The rows above are **v4 simulation reference values**, not a hardware test
 report. Run the remaining cases from `INEQUALITY_RESULTS.md` too. Preserve any
 unexpected output in full so a protocol mismatch can be distinguished from a
 solver or checker failure.

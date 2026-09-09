@@ -48,7 +48,7 @@ for ext in ['sof', 'svf']:
 shutil.copy2(str(tgz), str(out))
 for name in ['INEQUALITY_DESIGN.md', 'INEQUALITY_RESULTS.md', 'INEQUALITY_HARDWARE_HANDOFF.md']:
     shutil.copy2(str(ROOT / 'docs' / name), str(out))
-for name in ['MRV_PIPELINE_EXPERIMENTS.md', 'BENCHMARK_STATUS.md',
+for name in ['MRV_PIPELINE_EXPERIMENTS.md', 'PROPAGATION_PIPELINE_EXPERIMENT.md', 'BENCHMARK_STATUS.md',
              'benchmark-'+version+'-partial.xlsx']:
     if (ROOT / 'docs' / name).exists():
         shutil.copy2(str(ROOT / 'docs' / name), str(out))

@@ -1,10 +1,14 @@
-# Inequality Sudoku results — ineq-v3
+# Inequality Sudoku results — ineq-v4
 
-v3 registers MRV candidate counts during the existing SCAN cycle. It preserves
-v2's algorithm, search decisions, solved grids, and measured application cycles.
-Its higher standalone Fmax reduces normalized time by **4.75% versus v2** and
-**28.34% versus the original inequality baseline**, on the 19-board unweighted
-development comparison. This is not the complete official benchmark total.
+v4 adds a registered DECIDE stage after local domain pruning. It reaches
+**87.83 MHz standalone Fmax**, at the cost of one extra core cycle per propagation
+round. On the 19 supplied solvable application cases, normalized mean time is
+**3.9604 us**, 10.96% lower than v3 and 15.19% lower than hardware-validated v2.
+This is an unweighted development comparison, not the full competition score.
+
+v4 is the best measured candidate for the available short application tests.
+v3 remains available because its mean solver-only time is better on the larger
+regression corpora. Neither design is proven globally optimal.
 
 ## Measured milestones
 
@@ -14,96 +18,100 @@ development comparison. This is not the complete official benchmark total.
 | ineq-v1 | 304.8947 | 45.55 MHz | 6.6936 us | 24,517 |
 | ineq-v2 | 325.1053 | 69.62 MHz | 4.6697 us | 22,580 |
 | ineq-v3 | 325.1053 | 73.09 MHz | 4.4480 us | 21,968 |
+| ineq-v4 | 347.8421 | 87.83 MHz | 3.9604 us | 22,289 |
 
-The alternative triplet MRV hierarchy also passed, but reached 72.47 MHz and
-4.4861 us at identical application cycles. Registered counts is the measured
-winner. See [the experiment explanation](MRV_PIPELINE_EXPERIMENTS.md).
+## Application reference counts
 
-## Application and hardware reference counts
+All 19 v4 simulations pass both supplied checkers. Physical execution of **v4
+is pending**. v2's hardware results do not establish v4 hardware execution.
 
-All 19 v3 simulation runs pass both supplied checkers. The user has physically
-confirmed these same counts for v2; physical execution of **v3 is pending**.
+| Board | v3 app cycles | v4 app cycles | v4 normalized time |
+|---|---:|---:|---:|
+| `20blanks` | 267 | 291 | 3.3132 us |
+| `51blanks` | 291 | 291 | 3.3132 us |
+| `easy1` | 267 | 291 | 3.3132 us |
+| `hard1` | 579 | 675 | 7.6853 us |
+| `ineq/dev/p5_presolved` | 267 | 267 | 3.0400 us |
+| `ineq/set0/ascend` | 267 | 267 | 3.0400 us |
+| `ineq/set0/plain` | 483 | 555 | 6.3190 us |
+| `ineq/set0/single` | 291 | 315 | 3.5865 us |
+| `ineq/set0/sparse1` | 267 | 291 | 3.3132 us |
+| `ineq/set1/easy1` | 291 | 291 | 3.3132 us |
+| `ineq/set1/easy2` | 291 | 315 | 3.5865 us |
+| `ineq/set1/hard1` | 315 | 315 | 3.5865 us |
+| `ineq/set1/hard2` | 339 | 363 | 4.1330 us |
+| `ineq/set1/hard3` | 339 | 363 | 4.1330 us |
+| `ineq/set1/hard4` | 291 | 315 | 3.5865 us |
+| `ineq/set1/medium1` | 291 | 291 | 3.3132 us |
+| `ineq/set1/medium2` | 315 | 339 | 3.8597 us |
+| `ineq/set1/medium3` | 315 | 315 | 3.5865 us |
+| `ineq/set1/sparse_ineq` | 411 | 459 | 5.2260 us |
 
-| Board | v2 and v3 app cycles | v3 normalized time |
-|---|---:|---:|
-| `20blanks` | 267 | 3.6530 us |
-| `51blanks` | 291 | 3.9814 us |
-| `easy1` | 267 | 3.6530 us |
-| `hard1` | 579 | 7.9217 us |
-| `ineq/dev/p5_presolved` | 267 | 3.6530 us |
-| `ineq/set0/ascend` | 267 | 3.6530 us |
-| `ineq/set0/plain` | 483 | 6.6083 us |
-| `ineq/set0/single` | 291 | 3.9814 us |
-| `ineq/set0/sparse1` | 267 | 3.6530 us |
-| `ineq/set1/easy1` | 291 | 3.9814 us |
-| `ineq/set1/easy2` | 291 | 3.9814 us |
-| `ineq/set1/hard1` | 315 | 4.3098 us |
-| `ineq/set1/hard2` | 339 | 4.6381 us |
-| `ineq/set1/hard3` | 339 | 4.6381 us |
-| `ineq/set1/hard4` | 291 | 3.9814 us |
-| `ineq/set1/medium1` | 291 | 3.9814 us |
-| `ineq/set1/medium2` | 315 | 4.3098 us |
-| `ineq/set1/medium3` | 315 | 4.3098 us |
-| `ineq/set1/sparse_ineq` | 411 | 5.6232 us |
+The two impossible cases, `ineq/dev/p6_contradiction` and
+`ineq/dev/p7_impossible`, both report `App reported non-solved.` at 267 cycles.
+They are excluded from the performance mean.
 
-Both impossible development cases must report `App reported non-solved.`.
-They are excluded from the performance mean; their v3 application logs are in
-`logs/ineq-v3/app-rejects/`.
+## Correctness and broader performance
 
-## Correctness coverage
+All **4,347 direct RTL executions** pass: 21 official, 3,700 classic,
+300 generated inequality, 285 difficult inequality, 35 rejection, and six
+contract cases. These comprise **4,306 solved and 41 expected rejections**;
+executions need not be distinct puzzles. Outcomes match v3. Solved grids,
+propagation rounds, guesses, and rollback counts match, and each solved record
+adds exactly one core cycle per propagation round. Rejection logs record the
+outcome and cycles, not full search counters.
 
-v3 matches all **4,347** v2 direct RTL result records byte for byte: cycles,
-solved grids, propagation rounds, guesses, and rollback counts. Coverage is
-21 official cases, 3,700 classic cases, 300 generated inequality cases,
-285 difficult inequality cases, 35 expected rejections, and six encoding or
-contradiction corner cases: **4,306 solved and 41 expected rejections**.
-These are executions, not necessarily distinct puzzles.
+Mean solver-only time on the 3,700-case classic corpus rises from 6.6815 us
+(v3) to 7.4885 us (v4), about 12.08% worse. The other larger corpora show the
+same direction. These core measurements exclude application overhead and
+must not be substituted for a complete application benchmark. Read the
+[experiment walkthrough](PROPAGATION_PIPELINE_EXPERIMENT.md) for the intuition,
+actual RTL, correctness invariant, and break-even calculation.
 
 ## Completed physical build
 
-| Measurement | v3 result |
+| Measurement | v4 result |
 |---|---:|
 | Configured physical clock | 50 MHz |
-| Full-system Fmax | 57.46 MHz |
-| Full-system fitted LEs | 34,571 / 49,760 (69%) |
-| Registers | 4,600 |
+| Full-system Fmax | 56.58 MHz |
+| Full-system fitted LEs | 34,627 / 49,760 (70%) |
+| Registers | 4,705 |
 | M9Ks | 173 / 182 (95%) |
 | Memory bits | 1,387,872 / 1,677,312 (83%) |
-| Worst setup slack | +2.596 ns |
-| Worst hold slack | +0.106 ns |
-| Worst recovery slack | +13.259 ns |
-| Worst removal slack | +0.396 ns |
-| Worst minimum pulse width slack | +9.325 ns |
-| Fitter elapsed time | 26 min 33 s |
+| Worst setup slack | +2.326 ns |
+| Worst hold slack | +0.102 ns |
+| Worst recovery slack | +12.754 ns |
+| Worst removal slack | +0.536 ns |
+| Worst minimum pulse width slack | +9.329 ns |
+| Fitter elapsed time | 28 min 38 s |
 
-Synthesis, fitting, timing analysis, assembly, and SVF conversion pass. All
-reported timing categories pass under the unmodified course constraints.
-Those constraints leave 12 external input ports and 59 output ports without
-external delay constraints; there are zero unconstrained clocks. See the raw
-reports under `logs/ineq-v3/fpga/` for the actual constraint coverage.
+The fitter retried after congestion, then completed successfully. Synthesis,
+fitting, timing analysis, assembly, and SVF conversion pass. All reported timing
+categories pass under the unmodified course constraints. Those constraints leave
+12 external input ports and 59 output ports without external delay constraints;
+there are zero unconstrained clocks. Raw reports are in `logs/ineq-v4/fpga/`.
+Programming-file generation finished on 9 September 2026 at 08:03:14 UTC.
 
-**Physical latency at 50 MHz is unchanged:** the 325.1053-cycle mean is 6.5021 us.
-The 4.4480 us figure divides by the standalone 73.09 MHz Fmax for course scoring.
-The full-system report's 57.46 MHz is headroom, not this image's programmed clock.
-The source and bitstreams passed the provenance audit; hardware execution of
-v3 still needs the user's board test. [v2's hardware confirmation](INEQUALITY_V2_HARDWARE_VALIDATION.md)
-applies to v2, whose original release assets remain unchanged.
+**Physical mean latency at 50 MHz is 6.9568 us**, compared with 6.5021 us for
+v3 and v2. The improvement is in the course-normalized metric using standalone
+Fmax. Neither 87.83 MHz standalone Fmax nor 56.58 MHz full-system headroom is
+this image's programmed clock. Hardware execution still needs the user's test.
 
 ## Official benchmark status
 
-The course spreadsheet now names four unseen puzzle files that are not yet in
-the repository. The known inequality rows are `ineq/set0/single`,
-`ineq/set0/ascend`, `ineq/set0/plain`, and `ineq/set1/sparse_ineq`.
-Their v3 subtotal is **1,452 cycles / 73.09 MHz = 19.8659 us**. This subtotal
-omits the four unavailable cases and is not a final competition score.
-See [the benchmark status](BENCHMARK_STATUS.md) and the marked partial workbook
-`benchmark-ineq-v3-partial.xlsx`. The original template is preserved separately.
+The available inequality benchmark rows are single, ascend, plain, and
+sparse_ineq. They total **1,596 cycles / 87.83 MHz = 18.1715 us**, 8.53% lower
+than v3's 19.8659 us subtotal. Four named unseen files remain unavailable:
+`std/hard5`, `std/hard8`, `ineq/set2/superhardA`, and `ineq/set2/xsparse2`.
+The subtotal is not a final score. See [benchmark status](BENCHMARK_STATUS.md)
+and `benchmark-ineq-v4-partial.xlsx`, which leaves the missing cells blank.
 
-## Evidence
+## Reproducible evidence
 
-`logs/ineq-v3/build_source.json` records exact source fingerprints, the build
-commit, configured clock, resource counts, timing, and programming-file hashes.
-`logs/ineq-v3/app/` contains the actual course application runs and their frozen
-source identities. `logs/inequality_measurements.json` is generated by
-`python3 bench/ineq/report.py`. [Earlier v2 results](INEQUALITY_V2_RESULTS.md)
-and the experiment sources remain available for comparison.
+`logs/ineq-v4/build_source.json` records the build commit, all nine source
+fingerprints, timing, resources, configured clock, and programming hashes.
+`BUILD_AUDIT.txt` verifies the actual source identities and successful build
+stages. `comparison.json` records the checked regression comparison.
+`app/` and `app-rejects/` contain the course application logs and source hashes.
+`logs/inequality_measurements.json` is generated by `bench/ineq/report.py`.
+[The v3 results](INEQUALITY_V3_RESULTS.md) and its separate release are preserved.

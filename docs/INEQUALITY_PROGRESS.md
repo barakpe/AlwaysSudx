@@ -86,7 +86,7 @@ v2 splits each logical propagation round into SCAN (register unit reductions)
 and DOMAIN (apply local cuts and decide progress). Its 4,341 main regression
 executions pass, plus six targeted edge cases: 4,347 total executions, consisting
 of 4,306 solved cases and 41 expected rejections. All 19 solvable official application cases pass both checkers on this exact
-production source. Mean cycles/Fmax is 4.6697 us, 24.76% lower than v0. Hardware execution is pending.
+production source. Mean cycles/Fmax is 4.6697 us, 24.76% lower than v0. Hardware execution was pending at this milestone; the user subsequently validated v2 on all 21 application cases.
 The solver still starts on the SOLVE command; computation and the official
 measurement window retain their original relationship.
 
@@ -114,5 +114,26 @@ report directory and checked against the build commit; they were not recreated
 from the current working tree.
 
 All 19 solvable K5 application tests pass both checkers. The two impossible
-application tests correctly report non-solved, both at 267 cycles. Physical
-execution of the inequality image is pending the user's laptop/board test.
+application tests correctly report non-solved, both at 267 cycles. The user subsequently validated v2 on all 21 application cases; see
+`INEQUALITY_V2_HARDWARE_VALIDATION.md`.
+
+
+## MRV experiments and v4 propagation staging
+
+v3 registers MRV counts in an existing SCAN cycle. Its 4,347 direct RTL records
+are byte-identical to v2, and its standalone Fmax rises to 73.09 MHz. Its full
+50 MHz build passes at 57.46 MHz Fmax. The alternative triplet MRV tree reaches
+72.47 MHz at the same cycles, so v3 keeps registered counts.
+
+v4 revisits the triplet tree and separates DOMAIN's local flag calculation from
+the global decision. The extra DECIDE cycle raises standalone Fmax to 87.83 MHz,
+but costs one cycle per propagation round. All 4,347 outcomes and search paths
+remain consistent; all 19 solvable application cases pass both checkers, and
+both impossible cases report non-solved at 267 cycles. See
+`PROPAGATION_PIPELINE_EXPERIMENT.md` for the benefit on short application tests
+and the cost on broader solver-only tests. v3 remains independently available.
+
+The v4 full-system build completed on 9 September at 08:03 UTC. The fitter
+retried after routing congestion and finished in 28 minutes 38 seconds. It uses
+34,627 LEs and 173/182 M9Ks; full-system Fmax is 56.58 MHz, meeting the configured
+50 MHz clock. Source and programming artifacts pass the provenance audit.

@@ -31,82 +31,22 @@
       }
     },
     "application": {
-      "ineq_set1_easy2": {
-        "cycles": 291,
-        "passed": true,
-        "score_us": 5.621016032451227
-      },
-      "ineq_set0_sparse1": {
-        "cycles": 267,
-        "passed": true,
-        "score_us": 5.157427081321228
-      },
-      "ineq_set1_medium3": {
+      "ineq_set1_hard1": {
         "cycles": 315,
         "passed": true,
         "score_us": 6.084604983581224
+      },
+      "ineq_set1_medium1": {
+        "cycles": 291,
+        "passed": true,
+        "score_us": 5.621016032451227
       },
       "51blanks": {
         "cycles": 291,
         "passed": true,
         "score_us": 5.621016032451227
       },
-      "ineq_set1_hard4": {
-        "cycles": 315,
-        "passed": true,
-        "score_us": 6.084604983581224
-      },
-      "ineq_set0_single": {
-        "cycles": 315,
-        "passed": true,
-        "score_us": 6.084604983581224
-      },
-      "ineq_set1_medium2": {
-        "cycles": 315,
-        "passed": true,
-        "score_us": 6.084604983581224
-      },
       "easy1": {
-        "cycles": 267,
-        "passed": true,
-        "score_us": 5.157427081321228
-      },
-      "ineq_set1_hard1": {
-        "cycles": 315,
-        "passed": true,
-        "score_us": 6.084604983581224
-      },
-      "hard1": {
-        "cycles": 483,
-        "passed": true,
-        "score_us": 9.32972764149121
-      },
-      "ineq_dev_p5_presolved": {
-        "cycles": 267,
-        "passed": true,
-        "score_us": 5.157427081321228
-      },
-      "ineq_set1_easy1": {
-        "cycles": 291,
-        "passed": true,
-        "score_us": 5.621016032451227
-      },
-      "ineq_set1_hard3": {
-        "cycles": 363,
-        "passed": true,
-        "score_us": 7.01178288584122
-      },
-      "ineq_set0_plain": {
-        "cycles": 411,
-        "passed": true,
-        "score_us": 7.938960788101216
-      },
-      "ineq_set1_sparse_ineq": {
-        "cycles": 411,
-        "passed": true,
-        "score_us": 7.938960788101216
-      },
-      "20blanks": {
         "cycles": 267,
         "passed": true,
         "score_us": 5.157427081321228
@@ -116,15 +56,75 @@
         "passed": true,
         "score_us": 5.157427081321228
       },
+      "ineq_set1_hard4": {
+        "cycles": 315,
+        "passed": true,
+        "score_us": 6.084604983581224
+      },
+      "ineq_set1_easy2": {
+        "cycles": 291,
+        "passed": true,
+        "score_us": 5.621016032451227
+      },
+      "hard1": {
+        "cycles": 483,
+        "passed": true,
+        "score_us": 9.32972764149121
+      },
+      "ineq_set1_medium2": {
+        "cycles": 315,
+        "passed": true,
+        "score_us": 6.084604983581224
+      },
+      "ineq_dev_p5_presolved": {
+        "cycles": 267,
+        "passed": true,
+        "score_us": 5.157427081321228
+      },
+      "20blanks": {
+        "cycles": 267,
+        "passed": true,
+        "score_us": 5.157427081321228
+      },
       "ineq_set1_hard2": {
         "cycles": 363,
         "passed": true,
         "score_us": 7.01178288584122
       },
-      "ineq_set1_medium1": {
+      "ineq_set1_hard3": {
+        "cycles": 363,
+        "passed": true,
+        "score_us": 7.01178288584122
+      },
+      "ineq_set1_sparse_ineq": {
+        "cycles": 411,
+        "passed": true,
+        "score_us": 7.938960788101216
+      },
+      "ineq_set1_easy1": {
         "cycles": 291,
         "passed": true,
         "score_us": 5.621016032451227
+      },
+      "ineq_set0_single": {
+        "cycles": 315,
+        "passed": true,
+        "score_us": 6.084604983581224
+      },
+      "ineq_set1_medium3": {
+        "cycles": 315,
+        "passed": true,
+        "score_us": 6.084604983581224
+      },
+      "ineq_set0_sparse1": {
+        "cycles": 267,
+        "passed": true,
+        "score_us": 5.157427081321228
+      },
+      "ineq_set0_plain": {
+        "cycles": 411,
+        "passed": true,
+        "score_us": 7.938960788101216
       }
     },
     "fmax_mhz": 51.77,
@@ -214,12 +214,32 @@
       }
     },
     "application": {
-      "ineq_set0_plain": {
-        "cycles": 411,
+      "ineq_set1_hard1": {
+        "cycles": 291,
         "passed": true,
-        "score_us": 9.02305159165752
+        "score_us": 6.388583973655324
       },
-      "ineq_set1_medium1": {
+      "ineq_set1_sparse_ineq": {
+        "cycles": 363,
+        "passed": true,
+        "score_us": 7.9692645444566415
+      },
+      "20blanks": {
+        "cycles": 267,
+        "passed": true,
+        "score_us": 5.861690450054885
+      },
+      "ineq_set0_ascend": {
+        "cycles": 267,
+        "passed": true,
+        "score_us": 5.861690450054885
+      },
+      "ineq_set1_medium2": {
+        "cycles": 291,
+        "passed": true,
+        "score_us": 6.388583973655324
+      },
+      "easy1": {
         "cycles": 267,
         "passed": true,
         "score_us": 5.861690450054885
@@ -228,71 +248,6 @@
         "cycles": 267,
         "passed": true,
         "score_us": 5.861690450054885
-      },
-      "ineq_set0_single": {
-        "cycles": 291,
-        "passed": true,
-        "score_us": 6.388583973655324
-      },
-      "ineq_set1_easy1": {
-        "cycles": 267,
-        "passed": true,
-        "score_us": 5.861690450054885
-      },
-      "ineq_set1_hard3": {
-        "cycles": 315,
-        "passed": true,
-        "score_us": 6.915477497255764
-      },
-      "20blanks": {
-        "cycles": 267,
-        "passed": true,
-        "score_us": 5.861690450054885
-      },
-      "ineq_set1_hard2": {
-        "cycles": 315,
-        "passed": true,
-        "score_us": 6.915477497255764
-      },
-      "hard1": {
-        "cycles": 483,
-        "passed": true,
-        "score_us": 10.603732162458837
-      },
-      "ineq_set1_sparse_ineq": {
-        "cycles": 363,
-        "passed": true,
-        "score_us": 7.9692645444566415
-      },
-      "easy1": {
-        "cycles": 267,
-        "passed": true,
-        "score_us": 5.861690450054885
-      },
-      "ineq_set1_easy2": {
-        "cycles": 291,
-        "passed": true,
-        "score_us": 6.388583973655324
-      },
-      "ineq_set1_hard4": {
-        "cycles": 291,
-        "passed": true,
-        "score_us": 6.388583973655324
-      },
-      "ineq_set0_ascend": {
-        "cycles": 267,
-        "passed": true,
-        "score_us": 5.861690450054885
-      },
-      "51blanks": {
-        "cycles": 291,
-        "passed": true,
-        "score_us": 6.388583973655324
-      },
-      "ineq_set1_medium2": {
-        "cycles": 291,
-        "passed": true,
-        "score_us": 6.388583973655324
       },
       "ineq_set0_sparse1": {
         "cycles": 267,
@@ -304,10 +259,55 @@
         "passed": true,
         "score_us": 6.388583973655324
       },
-      "ineq_set1_hard1": {
+      "ineq_set1_hard4": {
         "cycles": 291,
         "passed": true,
         "score_us": 6.388583973655324
+      },
+      "ineq_set1_easy2": {
+        "cycles": 291,
+        "passed": true,
+        "score_us": 6.388583973655324
+      },
+      "ineq_set1_medium1": {
+        "cycles": 267,
+        "passed": true,
+        "score_us": 5.861690450054885
+      },
+      "hard1": {
+        "cycles": 483,
+        "passed": true,
+        "score_us": 10.603732162458837
+      },
+      "ineq_set0_single": {
+        "cycles": 291,
+        "passed": true,
+        "score_us": 6.388583973655324
+      },
+      "ineq_set1_hard2": {
+        "cycles": 315,
+        "passed": true,
+        "score_us": 6.915477497255764
+      },
+      "ineq_set1_hard3": {
+        "cycles": 315,
+        "passed": true,
+        "score_us": 6.915477497255764
+      },
+      "ineq_set1_easy1": {
+        "cycles": 267,
+        "passed": true,
+        "score_us": 5.861690450054885
+      },
+      "51blanks": {
+        "cycles": 291,
+        "passed": true,
+        "score_us": 6.388583973655324
+      },
+      "ineq_set0_plain": {
+        "cycles": 411,
+        "passed": true,
+        "score_us": 9.02305159165752
       }
     },
     "fmax_mhz": 45.55,
@@ -397,87 +397,42 @@
       }
     },
     "application": {
-      "ineq_set1_medium1": {
-        "cycles": 291,
-        "passed": true,
-        "score_us": 4.179833381212295
-      },
-      "20blanks": {
-        "cycles": 267,
-        "passed": true,
-        "score_us": 3.835104854926745
-      },
-      "hard1": {
-        "cycles": 579,
-        "passed": true,
-        "score_us": 8.316575696638896
-      },
-      "ineq_dev_p5_presolved": {
-        "cycles": 267,
-        "passed": true,
-        "score_us": 3.835104854926745
-      },
-      "ineq_set1_hard1": {
-        "cycles": 315,
-        "passed": true,
-        "score_us": 4.524561907497845
-      },
-      "ineq_set1_easy2": {
-        "cycles": 291,
-        "passed": true,
-        "score_us": 4.179833381212295
-      },
-      "ineq_set0_ascend": {
-        "cycles": 267,
-        "passed": true,
-        "score_us": 3.835104854926745
-      },
-      "ineq_set1_hard4": {
-        "cycles": 291,
-        "passed": true,
-        "score_us": 4.179833381212295
-      },
       "ineq_set1_sparse_ineq": {
         "cycles": 411,
         "passed": true,
         "score_us": 5.903476012640046
-      },
-      "ineq_set1_hard2": {
-        "cycles": 339,
-        "passed": true,
-        "score_us": 4.869290433783395
-      },
-      "ineq_set1_medium2": {
-        "cycles": 315,
-        "passed": true,
-        "score_us": 4.524561907497845
-      },
-      "ineq_set0_plain": {
-        "cycles": 483,
-        "passed": true,
-        "score_us": 6.9376615914966955
-      },
-      "ineq_set1_medium3": {
-        "cycles": 315,
-        "passed": true,
-        "score_us": 4.524561907497845
       },
       "ineq_set0_single": {
         "cycles": 291,
         "passed": true,
         "score_us": 4.179833381212295
       },
-      "ineq_set0_sparse1": {
-        "cycles": 267,
-        "passed": true,
-        "score_us": 3.835104854926745
-      },
       "easy1": {
         "cycles": 267,
         "passed": true,
         "score_us": 3.835104854926745
       },
+      "ineq_set1_medium1": {
+        "cycles": 291,
+        "passed": true,
+        "score_us": 4.179833381212295
+      },
+      "ineq_set1_hard2": {
+        "cycles": 339,
+        "passed": true,
+        "score_us": 4.869290433783395
+      },
       "ineq_set1_easy1": {
+        "cycles": 291,
+        "passed": true,
+        "score_us": 4.179833381212295
+      },
+      "ineq_dev_p5_presolved": {
+        "cycles": 267,
+        "passed": true,
+        "score_us": 3.835104854926745
+      },
+      "51blanks": {
         "cycles": 291,
         "passed": true,
         "score_us": 4.179833381212295
@@ -487,7 +442,52 @@
         "passed": true,
         "score_us": 4.869290433783395
       },
-      "51blanks": {
+      "ineq_set0_plain": {
+        "cycles": 483,
+        "passed": true,
+        "score_us": 6.9376615914966955
+      },
+      "ineq_set0_ascend": {
+        "cycles": 267,
+        "passed": true,
+        "score_us": 3.835104854926745
+      },
+      "ineq_set1_hard1": {
+        "cycles": 315,
+        "passed": true,
+        "score_us": 4.524561907497845
+      },
+      "20blanks": {
+        "cycles": 267,
+        "passed": true,
+        "score_us": 3.835104854926745
+      },
+      "ineq_set1_medium2": {
+        "cycles": 315,
+        "passed": true,
+        "score_us": 4.524561907497845
+      },
+      "ineq_set0_sparse1": {
+        "cycles": 267,
+        "passed": true,
+        "score_us": 3.835104854926745
+      },
+      "hard1": {
+        "cycles": 579,
+        "passed": true,
+        "score_us": 8.316575696638896
+      },
+      "ineq_set1_medium3": {
+        "cycles": 315,
+        "passed": true,
+        "score_us": 4.524561907497845
+      },
+      "ineq_set1_easy2": {
+        "cycles": 291,
+        "passed": true,
+        "score_us": 4.179833381212295
+      },
+      "ineq_set1_hard4": {
         "cycles": 291,
         "passed": true,
         "score_us": 4.179833381212295
@@ -580,17 +580,27 @@
       }
     },
     "application": {
+      "ineq_set1_medium2": {
+        "cycles": 315,
+        "passed": true,
+        "score_us": 4.309755096456423
+      },
+      "easy1": {
+        "cycles": 267,
+        "passed": true,
+        "score_us": 3.6530305103297303
+      },
+      "ineq_set1_hard1": {
+        "cycles": 315,
+        "passed": true,
+        "score_us": 4.309755096456423
+      },
       "ineq_set0_single": {
         "cycles": 291,
         "passed": true,
         "score_us": 3.981392803393077
       },
-      "ineq_dev_p5_presolved": {
-        "cycles": 267,
-        "passed": true,
-        "score_us": 3.6530305103297303
-      },
-      "51blanks": {
+      "ineq_set1_hard4": {
         "cycles": 291,
         "passed": true,
         "score_us": 3.981392803393077
@@ -600,10 +610,10 @@
         "passed": true,
         "score_us": 4.309755096456423
       },
-      "ineq_set1_hard1": {
-        "cycles": 315,
+      "51blanks": {
+        "cycles": 291,
         "passed": true,
-        "score_us": 4.309755096456423
+        "score_us": 3.981392803393077
       },
       "ineq_set0_sparse1": {
         "cycles": 267,
@@ -615,30 +625,10 @@
         "passed": true,
         "score_us": 3.981392803393077
       },
-      "ineq_set1_medium2": {
-        "cycles": 315,
-        "passed": true,
-        "score_us": 4.309755096456423
-      },
-      "ineq_set1_hard4": {
-        "cycles": 291,
-        "passed": true,
-        "score_us": 3.981392803393077
-      },
-      "ineq_set1_sparse_ineq": {
-        "cycles": 411,
-        "passed": true,
-        "score_us": 5.623204268709809
-      },
-      "easy1": {
+      "20blanks": {
         "cycles": 267,
         "passed": true,
         "score_us": 3.6530305103297303
-      },
-      "hard1": {
-        "cycles": 579,
-        "passed": true,
-        "score_us": 7.921740320153235
       },
       "ineq_set0_ascend": {
         "cycles": 267,
@@ -650,30 +640,40 @@
         "passed": true,
         "score_us": 4.63811738951977
       },
-      "20blanks": {
-        "cycles": 267,
-        "passed": true,
-        "score_us": 3.6530305103297303
-      },
-      "ineq_set0_plain": {
-        "cycles": 483,
-        "passed": true,
-        "score_us": 6.608291147899849
-      },
       "ineq_set1_medium1": {
         "cycles": 291,
         "passed": true,
         "score_us": 3.981392803393077
+      },
+      "ineq_dev_p5_presolved": {
+        "cycles": 267,
+        "passed": true,
+        "score_us": 3.6530305103297303
+      },
+      "ineq_set1_hard3": {
+        "cycles": 339,
+        "passed": true,
+        "score_us": 4.63811738951977
       },
       "ineq_set1_easy1": {
         "cycles": 291,
         "passed": true,
         "score_us": 3.981392803393077
       },
-      "ineq_set1_hard3": {
-        "cycles": 339,
+      "hard1": {
+        "cycles": 579,
         "passed": true,
-        "score_us": 4.63811738951977
+        "score_us": 7.921740320153235
+      },
+      "ineq_set1_sparse_ineq": {
+        "cycles": 411,
+        "passed": true,
+        "score_us": 5.623204268709809
+      },
+      "ineq_set0_plain": {
+        "cycles": 483,
+        "passed": true,
+        "score_us": 6.608291147899849
       }
     },
     "fmax_mhz": 73.09,
@@ -707,6 +707,189 @@
       "    Total combinational functions": "21,670 / 49,760 ( 44 % )",
       "    Dedicated logic registers": "3,171 / 49,760 ( 6 % )",
       "Total registers": "3171",
+      "Total pins": "120 / 360 ( 33 % )",
+      "Total virtual pins": "0",
+      "Total memory bits": "60,264 / 1,677,312 ( 4 % )",
+      "Embedded Multiplier 9-bit elements": "0 / 288 ( 0 % )",
+      "Total PLLs": "0 / 4 ( 0 % )",
+      "UFM blocks": "0 / 1 ( 0 % )",
+      "ADC blocks": "0 / 2 ( 0 % )"
+    },
+    "hardware_execution_tested": false
+  },
+  "ineq-v4": {
+    "rtl": {
+      "official": {
+        "executions": 21,
+        "solved": 19,
+        "rejected": 2,
+        "mean_core_cycles": 76.3157894736842,
+        "max_core_cycles": 411
+      },
+      "classic": {
+        "executions": 3700,
+        "solved": 3700,
+        "rejected": 0,
+        "mean_core_cycles": 657.7186486486487,
+        "max_core_cycles": 28150
+      },
+      "generated": {
+        "executions": 300,
+        "solved": 300,
+        "rejected": 0,
+        "mean_core_cycles": 386.42,
+        "max_core_cycles": 44996
+      },
+      "heldout": {
+        "executions": 285,
+        "solved": 285,
+        "rejected": 0,
+        "mean_core_cycles": 109.0701754385965,
+        "max_core_cycles": 1620
+      },
+      "rejects": {
+        "executions": 35,
+        "solved": 0,
+        "rejected": 35,
+        "mean_core_cycles": null,
+        "max_core_cycles": null
+      },
+      "contract": {
+        "executions": 6,
+        "solved": 2,
+        "rejected": 4,
+        "mean_core_cycles": 5.0,
+        "max_core_cycles": 5
+      }
+    },
+    "application": {
+      "ineq_set1_medium3": {
+        "cycles": 315,
+        "passed": true,
+        "score_us": 3.58647386997609
+      },
+      "20blanks": {
+        "cycles": 291,
+        "passed": true,
+        "score_us": 3.313218717977912
+      },
+      "ineq_set0_sparse1": {
+        "cycles": 291,
+        "passed": true,
+        "score_us": 3.313218717977912
+      },
+      "ineq_set1_easy2": {
+        "cycles": 315,
+        "passed": true,
+        "score_us": 3.58647386997609
+      },
+      "hard1": {
+        "cycles": 675,
+        "passed": true,
+        "score_us": 7.6853011499487645
+      },
+      "ineq_set1_hard4": {
+        "cycles": 315,
+        "passed": true,
+        "score_us": 3.58647386997609
+      },
+      "ineq_set1_sparse_ineq": {
+        "cycles": 459,
+        "passed": true,
+        "score_us": 5.22600478196516
+      },
+      "ineq_set1_hard1": {
+        "cycles": 315,
+        "passed": true,
+        "score_us": 3.58647386997609
+      },
+      "ineq_set1_medium2": {
+        "cycles": 339,
+        "passed": true,
+        "score_us": 3.8597290219742684
+      },
+      "ineq_set0_single": {
+        "cycles": 315,
+        "passed": true,
+        "score_us": 3.58647386997609
+      },
+      "ineq_dev_p5_presolved": {
+        "cycles": 267,
+        "passed": true,
+        "score_us": 3.0399635659797335
+      },
+      "ineq_set1_easy1": {
+        "cycles": 291,
+        "passed": true,
+        "score_us": 3.313218717977912
+      },
+      "ineq_set1_hard3": {
+        "cycles": 363,
+        "passed": true,
+        "score_us": 4.132984173972447
+      },
+      "ineq_set0_plain": {
+        "cycles": 555,
+        "passed": true,
+        "score_us": 6.319025389957873
+      },
+      "ineq_set1_medium1": {
+        "cycles": 291,
+        "passed": true,
+        "score_us": 3.313218717977912
+      },
+      "ineq_set1_hard2": {
+        "cycles": 363,
+        "passed": true,
+        "score_us": 4.132984173972447
+      },
+      "ineq_set0_ascend": {
+        "cycles": 267,
+        "passed": true,
+        "score_us": 3.0399635659797335
+      },
+      "51blanks": {
+        "cycles": 291,
+        "passed": true,
+        "score_us": 3.313218717977912
+      },
+      "easy1": {
+        "cycles": 291,
+        "passed": true,
+        "score_us": 3.313218717977912
+      }
+    },
+    "fmax_mhz": 87.83,
+    "map": {
+      "Analysis & Synthesis Status": "Successful - Wed Sep  9 06:51:32 2026",
+      "Quartus Prime Version": "24.1std.0 Build 1077 03/04/2025 SC Lite Edition",
+      "Revision Name": "ineqsudx_scan",
+      "Top-level Entity Name": "qsyn_dummy_xlr_wrap",
+      "Family": "MAX 10",
+      "Total logic elements": "23,097",
+      "    Total combinational functions": "21,942",
+      "    Dedicated logic registers": "3,276",
+      "Total registers": "3276",
+      "Total pins": "120",
+      "Total virtual pins": "0",
+      "Total memory bits": "60,264",
+      "Embedded Multiplier 9-bit elements": "0",
+      "Total PLLs": "0",
+      "UFM blocks": "0",
+      "ADC blocks": "0"
+    },
+    "fit": {
+      "Fitter Status": "Successful - Wed Sep  9 07:15:47 2026",
+      "Quartus Prime Version": "24.1std.0 Build 1077 03/04/2025 SC Lite Edition",
+      "Revision Name": "ineqsudx_scan",
+      "Top-level Entity Name": "qsyn_dummy_xlr_wrap",
+      "Family": "MAX 10",
+      "Device": "10M50DAF484C7G",
+      "Timing Models": "Final",
+      "Total logic elements": "22,289 / 49,760 ( 45 % )",
+      "    Total combinational functions": "21,942 / 49,760 ( 44 % )",
+      "    Dedicated logic registers": "3,276 / 49,760 ( 7 % )",
+      "Total registers": "3276",
       "Total pins": "120 / 360 ( 33 % )",
       "Total virtual pins": "0",
       "Total memory bits": "60,264 / 1,677,312 ( 4 % )",

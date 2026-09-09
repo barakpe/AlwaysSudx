@@ -1,0 +1,56 @@
+{
+  "comparison": "ineq-v3 versus ineq-v4",
+  "groups": {
+    "official": {
+      "executions": 21,
+      "solved": 19,
+      "rejected": 2,
+      "same_outcome": true,
+      "solved_same_grid_and_search": true,
+      "solved_extra_cycles_equal_rounds": true
+    },
+    "classic": {
+      "executions": 3700,
+      "solved": 3700,
+      "rejected": 0,
+      "same_outcome": true,
+      "solved_same_grid_and_search": true,
+      "solved_extra_cycles_equal_rounds": true
+    },
+    "generated": {
+      "executions": 300,
+      "solved": 300,
+      "rejected": 0,
+      "same_outcome": true,
+      "solved_same_grid_and_search": true,
+      "solved_extra_cycles_equal_rounds": true
+    },
+    "heldout": {
+      "executions": 285,
+      "solved": 285,
+      "rejected": 0,
+      "same_outcome": true,
+      "solved_same_grid_and_search": true,
+      "solved_extra_cycles_equal_rounds": true
+    },
+    "rejects": {
+      "executions": 35,
+      "solved": 0,
+      "rejected": 35,
+      "same_outcome": true,
+      "solved_same_grid_and_search": true,
+      "solved_extra_cycles_equal_rounds": true
+    },
+    "contract": {
+      "executions": 6,
+      "solved": 2,
+      "rejected": 4,
+      "same_outcome": true,
+      "solved_same_grid_and_search": true,
+      "solved_extra_cycles_equal_rounds": true
+    }
+  },
+  "solvable_application_runs": 19,
+  "expected_rejection_application_runs": 2,
+  "application_source_fingerprints_match_v4": true
+}

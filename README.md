@@ -3,22 +3,26 @@
 This branch contains the hackathon inequality variant, `ineqsudx_scan`.
 The hardware-validated classic v5 remains on `main` and tag `v5`.
 
-The selected variant is **ineq-v3**, which registers MRV candidate counts during
-an existing propagation cycle. It matches v2 across **4,347 RTL executions**
-and all 19 solvable course application cases, while raising standalone Fmax
-from **69.62 to 73.09 MHz** and lowering standalone area to **21,968 fitted LEs**.
+This branch contains **ineq-v4**, a propagation pipeline candidate. It passes
+**4,347 RTL executions**, all 19 solvable course application cases, and both
+impossible application cases. Standalone Fmax is **87.83 MHz**, with **22,289 LEs**.
+The full system fits **34,627 LEs** and meets its configured **50 MHz** timing.
 
-Mean normalized time is **4.4480 us**, 4.75% lower than v2 and 28.34% lower than
-the first inequality baseline on the unweighted 19-case development set.
-The full system fits **34,571 LEs** and passes timing at its configured **50 MHz**.
-At that physical clock, cycle counts and execution time are unchanged from v2.
-The user has hardware-validated v2; **v3 hardware execution is pending**.
+Mean course-normalized time is **3.9604 us**, 10.96% lower than v3 on the 19-case
+development set. The four available benchmark rows improve by 8.53%. The extra
+cycle per propagation round makes larger solver-only workloads slower on average,
+so **v3 remains on `hackathon/ineq` and its own release**. At the same physical
+50 MHz, v4's mean is 6.9568 us versus v3's 6.5021 us. v4 hardware testing is pending;
+the user's complete hardware validation applies to v2.
 
 The course has published a benchmark spreadsheet but not the four unseen puzzle
 files it names. See [benchmark status](docs/BENCHMARK_STATUS.md); partial totals
 are explicitly marked and do not claim a complete competition score.
 
 ## Read the design
+
+- [v4 explanation with RTL and intuition](docs/PROPAGATION_PIPELINE_EXPERIMENT.md):
+  motivation, register placement, correctness, and when the tradeoff wins.
 
 - [Simple, detailed design explanation](docs/INEQUALITY_DESIGN.md): masks,
   inequalities, propagation, hidden singles, MRV, rollback, RAM packing, and why
@@ -101,7 +105,7 @@ below 50 MHz is acceptable when that ratio improves.
 
 `ineq-v0` preserves the first verified baseline; `ineq-v1` records the packed
 domain redesign; `ineq-v2` records domain propagation pipelining; `ineq-v3` records registered
-MRV counts without additional cycles. Experimental sources
+MRV counts without additional cycles; `ineq-v4` adds a propagation decision stage. Experimental sources
 and measurements remain under `bench/ineq/experiments` and `logs/experiment-*`.
 
 Use the GitHub release assets for programming files, the course submission TGZ,

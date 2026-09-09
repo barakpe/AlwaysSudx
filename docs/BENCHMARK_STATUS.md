@@ -23,3 +23,12 @@ The 19-board unweighted development average is a separate comparison.
 v3 also supports and has passed the four original classic cases, even though
 the template does not require those four in the inequality column. The user
 has been asked for a path/link if the missing puzzles were supplied elsewhere.
+
+
+The separate `benchmark-ineq-v4-partial.xlsx` uses v4's measured variant values:
+315 / 267 / 555 / 459 cycles for single / ascend / plain / sparse_ineq.
+Its known subtotal is **1,596 cycles / 87.83 MHz = 18.1715 us**, 8.53% lower
+than v3's known subtotal. Classic v5's project column is unchanged. Missing
+values stay blank. v4 is a candidate for this supplied-case metric; v3 retains
+better mean solver-only time on the larger regression corpora. Neither partial
+workbook establishes a winner on the unavailable complete benchmark.

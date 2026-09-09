@@ -47,7 +47,7 @@ def summary(path):
 
 
 measurements = {}
-versions = sys.argv[1:] or ['ineq-v0', 'ineq-v1', 'ineq-v2', 'ineq-v3']
+versions = sys.argv[1:] or ['ineq-v0', 'ineq-v1', 'ineq-v2', 'ineq-v3', 'ineq-v4']
 for milestone in versions:
     base = ROOT / 'logs' / milestone
     reports = base / 'synthesis'

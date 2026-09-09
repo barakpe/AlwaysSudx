@@ -1,0 +1,109 @@
+# Inequality Sudoku results — ineq-v3
+
+v3 registers MRV candidate counts during the existing SCAN cycle. It preserves
+v2's algorithm, search decisions, solved grids, and measured application cycles.
+Its higher standalone Fmax reduces normalized time by **4.75% versus v2** and
+**28.34% versus the original inequality baseline**, on the 19-board unweighted
+development comparison. This is not the complete official benchmark total.
+
+## Measured milestones
+
+| Version | Mean app cycles (19 cases) | Standalone Fmax | Mean cycles/Fmax | Standalone fitted LEs |
+|---|---:|---:|---:|---:|
+| ineq-v0 | 321.3158 | 51.77 MHz | 6.2066 us | 24,875 |
+| ineq-v1 | 304.8947 | 45.55 MHz | 6.6936 us | 24,517 |
+| ineq-v2 | 325.1053 | 69.62 MHz | 4.6697 us | 22,580 |
+| ineq-v3 | 325.1053 | 73.09 MHz | 4.4480 us | 21,968 |
+
+The alternative triplet MRV hierarchy also passed, but reached 72.47 MHz and
+4.4861 us at identical application cycles. Registered counts is the measured
+winner. See [the experiment explanation](MRV_PIPELINE_EXPERIMENTS.md).
+
+## Application and hardware reference counts
+
+All 19 v3 simulation runs pass both supplied checkers. The user has physically
+confirmed these same counts for v2; physical execution of **v3 is pending**.
+
+| Board | v2 and v3 app cycles | v3 normalized time |
+|---|---:|---:|
+| `20blanks` | 267 | 3.6530 us |
+| `51blanks` | 291 | 3.9814 us |
+| `easy1` | 267 | 3.6530 us |
+| `hard1` | 579 | 7.9217 us |
+| `ineq/dev/p5_presolved` | 267 | 3.6530 us |
+| `ineq/set0/ascend` | 267 | 3.6530 us |
+| `ineq/set0/plain` | 483 | 6.6083 us |
+| `ineq/set0/single` | 291 | 3.9814 us |
+| `ineq/set0/sparse1` | 267 | 3.6530 us |
+| `ineq/set1/easy1` | 291 | 3.9814 us |
+| `ineq/set1/easy2` | 291 | 3.9814 us |
+| `ineq/set1/hard1` | 315 | 4.3098 us |
+| `ineq/set1/hard2` | 339 | 4.6381 us |
+| `ineq/set1/hard3` | 339 | 4.6381 us |
+| `ineq/set1/hard4` | 291 | 3.9814 us |
+| `ineq/set1/medium1` | 291 | 3.9814 us |
+| `ineq/set1/medium2` | 315 | 4.3098 us |
+| `ineq/set1/medium3` | 315 | 4.3098 us |
+| `ineq/set1/sparse_ineq` | 411 | 5.6232 us |
+
+Both impossible development cases must report `App reported non-solved.`.
+They are excluded from the performance mean; their v3 application logs are in
+`logs/ineq-v3/app-rejects/`.
+
+## Correctness coverage
+
+v3 matches all **4,347** v2 direct RTL result records byte for byte: cycles,
+solved grids, propagation rounds, guesses, and rollback counts. Coverage is
+21 official cases, 3,700 classic cases, 300 generated inequality cases,
+285 difficult inequality cases, 35 expected rejections, and six encoding or
+contradiction corner cases: **4,306 solved and 41 expected rejections**.
+These are executions, not necessarily distinct puzzles.
+
+## Completed physical build
+
+| Measurement | v3 result |
+|---|---:|
+| Configured physical clock | 50 MHz |
+| Full-system Fmax | 57.46 MHz |
+| Full-system fitted LEs | 34,571 / 49,760 (69%) |
+| Registers | 4,600 |
+| M9Ks | 173 / 182 (95%) |
+| Memory bits | 1,387,872 / 1,677,312 (83%) |
+| Worst setup slack | +2.596 ns |
+| Worst hold slack | +0.106 ns |
+| Worst recovery slack | +13.259 ns |
+| Worst removal slack | +0.396 ns |
+| Worst minimum pulse width slack | +9.325 ns |
+| Fitter elapsed time | 26 min 33 s |
+
+Synthesis, fitting, timing analysis, assembly, and SVF conversion pass. All
+reported timing categories pass under the unmodified course constraints.
+Those constraints leave 12 external input ports and 59 output ports without
+external delay constraints; there are zero unconstrained clocks. See the raw
+reports under `logs/ineq-v3/fpga/` for the actual constraint coverage.
+
+**Physical latency at 50 MHz is unchanged:** the 325.1053-cycle mean is 6.5021 us.
+The 4.4480 us figure divides by the standalone 73.09 MHz Fmax for course scoring.
+The full-system report's 57.46 MHz is headroom, not this image's programmed clock.
+The source and bitstreams passed the provenance audit; hardware execution of
+v3 still needs the user's board test. [v2's hardware confirmation](INEQUALITY_V2_HARDWARE_VALIDATION.md)
+applies to v2, whose original release assets remain unchanged.
+
+## Official benchmark status
+
+The course spreadsheet now names four unseen puzzle files that are not yet in
+the repository. The known inequality rows are `ineq/set0/single`,
+`ineq/set0/ascend`, `ineq/set0/plain`, and `ineq/set1/sparse_ineq`.
+Their v3 subtotal is **1,452 cycles / 73.09 MHz = 19.8659 us**. This subtotal
+omits the four unavailable cases and is not a final competition score.
+See [the benchmark status](BENCHMARK_STATUS.md) and the marked partial workbook
+`benchmark-ineq-v3-partial.xlsx`. The original template is preserved separately.
+
+## Evidence
+
+`logs/ineq-v3/build_source.json` records exact source fingerprints, the build
+commit, configured clock, resource counts, timing, and programming-file hashes.
+`logs/ineq-v3/app/` contains the actual course application runs and their frozen
+source identities. `logs/inequality_measurements.json` is generated by
+`python3 bench/ineq/report.py`. [Earlier v2 results](INEQUALITY_V2_RESULTS.md)
+and the experiment sources remain available for comparison.
