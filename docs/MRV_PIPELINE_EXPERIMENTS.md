@@ -102,3 +102,18 @@ bash bench/ineq/all_apps.sh logs/experiment-mrv-counts/app \
 bash bench/ineq/all_apps.sh logs/experiment-mrv-triplets/app \
     logs/experiment-mrv-triplets/rtl_work
 ```
+
+## Completed standalone and application comparison
+
+| Version | Fmax | Fitted LEs | Mean app cycles | Mean cycles/Fmax |
+|---|---:|---:|---:|---:|
+| v2 reference | 69.62 MHz | 22,580 | 325.1053 | 4.6697 us |
+| A: registered counts (selected v3) | 73.09 MHz | 21,968 | 325.1053 | 4.4480 us |
+| B: triplet hierarchy | 72.47 MHz | 22,433 | 325.1053 | 4.4861 us |
+
+Both experiments pass all 19 solvable application tests with exact v2 cycle
+counts and both checkers passing. Both also match all 4,347 direct RTL records.
+A improves normalized time by 4.75% versus v2 and uses 612 fewer fitted LEs.
+B is preserved as a measured alternative. The largest remaining path now
+includes propagation's global state decision, rather than the original MRV
+candidate-count path. A v3 programming build is the next validation step.

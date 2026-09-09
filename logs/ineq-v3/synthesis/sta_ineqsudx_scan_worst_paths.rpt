@@ -1,0 +1,1267 @@
+Info: *******************************************************************
+Info: Running Quartus Prime Timing Analyzer
+    Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+    Info: Copyright (C) 2025  Altera Corporation. All rights reserved.
+    Info: Your use of Altera Corporation's design tools, logic functions 
+    Info: and other software and tools, and any partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Altera Program License 
+    Info: Subscription Agreement, the Altera Quartus Prime License Agreement,
+    Info: the Altera IP License Agreement, or other applicable license
+    Info: agreement, including, without limitation, that your use is for
+    Info: the sole purpose of programming logic devices manufactured by
+    Info: Altera and sold by Altera or its authorized distributors.  Please
+    Info: refer to the Altera Software License Subscription Agreements 
+    Info: on the Quartus Prime software download page.
+    Info: Processing started: Wed Sep  9 00:17:35 2026
+Info: Command: quartus_sta -t /data/project/tsmc65/shared/qsyn/util/report_worst.tcl ineqsudx_scan
+Info: Quartus(args): ineqsudx_scan
+Info (21076): High junction temperature operating condition is not set. Assuming a default value of '85'.
+Info (21076): Low junction temperature operating condition is not set. Assuming a default value of '0'.
+Critical Warning (332012): Synopsys Design Constraints File file not found: '/data/project/tsmc65/shared/qsyn/basic.sdc'. A Synopsys Design Constraints File is required by the Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
+Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
+Info (332105): Deriving Clocks
+    Info (332105): create_clock -period 1.000 -name clk clk
+Info (332143): No user constrained clock uncertainty found in the design. Calling "derive_clock_uncertainty"
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Info (332115): Report Timing: Found 20 setup paths (20 violated).  Worst case slack is -12.682
+    Info (332115): -setup
+    Info (332115): -npaths 20
+    Info (332115): -detail full_path
+    Info (332115): -stdout
+Info (332115): Path #1: Setup slack is -12.682 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115): To Node      : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.126      1.524 RR    IC  ineqsudx_scan|solver|domain[70][7]|clk
+    Info (332115):      3.636      0.510 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.207     uTco  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.000 RR  CELL  ineqsudx_scan|solver|domain[70][7]|q
+    Info (332115):      7.612      3.769 RR    IC  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|dataa
+    Info (332115):      8.021      0.409 RR  CELL  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|combout
+    Info (332115):      9.335      1.314 RR    IC  ineqsudx_scan|solver|Equal2012~1|datac
+    Info (332115):      9.619      0.284 RF  CELL  ineqsudx_scan|solver|Equal2012~1|combout
+    Info (332115):     10.466      0.847 FF    IC  ineqsudx_scan|solver|next_domain[70][0]~2078|datad
+    Info (332115):     10.627      0.161 FR  CELL  ineqsudx_scan|solver|next_domain[70][0]~2078|combout
+    Info (332115):     11.495      0.868 RR    IC  ineqsudx_scan|solver|Equal2013~1|datab
+    Info (332115):     11.937      0.442 RF  CELL  ineqsudx_scan|solver|Equal2013~1|combout
+    Info (332115):     12.179      0.242 FF    IC  ineqsudx_scan|solver|Equal2013~2|datac
+    Info (332115):     12.482      0.303 FF  CELL  ineqsudx_scan|solver|Equal2013~2|combout
+    Info (332115):     12.725      0.243 FF    IC  ineqsudx_scan|solver|always192~43|datac
+    Info (332115):     13.028      0.303 FF  CELL  ineqsudx_scan|solver|always192~43|combout
+    Info (332115):     14.723      1.695 FF    IC  ineqsudx_scan|solver|always192~44|datad
+    Info (332115):     14.854      0.131 FF  CELL  ineqsudx_scan|solver|always192~44|combout
+    Info (332115):     16.102      1.248 FF    IC  ineqsudx_scan|solver|always192~369|datab
+    Info (332115):     16.506      0.404 FF  CELL  ineqsudx_scan|solver|always192~369|combout
+    Info (332115):     16.752      0.246 FF    IC  ineqsudx_scan|solver|Selector2844~1|datac
+    Info (332115):     17.031      0.279 FR  CELL  ineqsudx_scan|solver|Selector2844~1|combout
+    Info (332115):     17.279      0.248 RR    IC  ineqsudx_scan|solver|Selector2846~0|datab
+    Info (332115):     17.644      0.365 RR  CELL  ineqsudx_scan|solver|Selector2846~0|combout
+    Info (332115):     17.644      0.000 RR    IC  ineqsudx_scan|solver|state.PICK_ROWS|d
+    Info (332115):     17.733      0.089 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.546      1.980 RR    IC  ineqsudx_scan|solver|state.PICK_ROWS|clk
+    Info (332115):      5.021      0.475 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115):      5.058      0.037           clock pessimism removed
+    Info (332115):      5.038     -0.020           clock uncertainty
+    Info (332115):      5.051      0.013     uTsu  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Data Arrival Time  :    17.733
+    Info (332115): Data Required Time :     5.051
+    Info (332115): Slack              :   -12.682 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #2: Setup slack is -12.585 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115): To Node      : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.126      1.524 RR    IC  ineqsudx_scan|solver|domain[70][7]|clk
+    Info (332115):      3.636      0.510 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.207     uTco  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.000 RR  CELL  ineqsudx_scan|solver|domain[70][7]|q
+    Info (332115):      7.612      3.769 RR    IC  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|dataa
+    Info (332115):      8.021      0.409 RR  CELL  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|combout
+    Info (332115):      9.335      1.314 RR    IC  ineqsudx_scan|solver|Equal2012~1|datac
+    Info (332115):      9.619      0.284 RF  CELL  ineqsudx_scan|solver|Equal2012~1|combout
+    Info (332115):     10.466      0.847 FF    IC  ineqsudx_scan|solver|next_domain[70][0]~2078|datad
+    Info (332115):     10.627      0.161 FR  CELL  ineqsudx_scan|solver|next_domain[70][0]~2078|combout
+    Info (332115):     11.495      0.868 RR    IC  ineqsudx_scan|solver|Equal2013~1|datab
+    Info (332115):     11.937      0.442 RF  CELL  ineqsudx_scan|solver|Equal2013~1|combout
+    Info (332115):     12.179      0.242 FF    IC  ineqsudx_scan|solver|Equal2013~2|datac
+    Info (332115):     12.482      0.303 FF  CELL  ineqsudx_scan|solver|Equal2013~2|combout
+    Info (332115):     12.725      0.243 FF    IC  ineqsudx_scan|solver|always192~43|datac
+    Info (332115):     13.028      0.303 FF  CELL  ineqsudx_scan|solver|always192~43|combout
+    Info (332115):     14.723      1.695 FF    IC  ineqsudx_scan|solver|always192~44|datad
+    Info (332115):     14.854      0.131 FF  CELL  ineqsudx_scan|solver|always192~44|combout
+    Info (332115):     16.102      1.248 FF    IC  ineqsudx_scan|solver|always192~369|datab
+    Info (332115):     16.506      0.404 FF  CELL  ineqsudx_scan|solver|always192~369|combout
+    Info (332115):     16.752      0.246 FF    IC  ineqsudx_scan|solver|Selector2844~1|datac
+    Info (332115):     17.031      0.279 FR  CELL  ineqsudx_scan|solver|Selector2844~1|combout
+    Info (332115):     17.243      0.212 RR    IC  ineqsudx_scan|solver|Selector2844~2|datac
+    Info (332115):     17.547      0.304 RR  CELL  ineqsudx_scan|solver|Selector2844~2|combout
+    Info (332115):     17.547      0.000 RR    IC  ineqsudx_scan|solver|state.SCAN|d
+    Info (332115):     17.636      0.089 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.546      1.980 RR    IC  ineqsudx_scan|solver|state.SCAN|clk
+    Info (332115):      5.021      0.475 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115):      5.058      0.037           clock pessimism removed
+    Info (332115):      5.038     -0.020           clock uncertainty
+    Info (332115):      5.051      0.013     uTsu  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115): Data Arrival Time  :    17.636
+    Info (332115): Data Required Time :     5.051
+    Info (332115): Slack              :   -12.585 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #3: Setup slack is -12.537 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115): To Node      : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.126      1.524 RR    IC  ineqsudx_scan|solver|domain[70][7]|clk
+    Info (332115):      3.636      0.510 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.207     uTco  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.000 RR  CELL  ineqsudx_scan|solver|domain[70][7]|q
+    Info (332115):      7.612      3.769 RR    IC  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|dataa
+    Info (332115):      8.021      0.409 RR  CELL  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|combout
+    Info (332115):      9.335      1.314 RR    IC  ineqsudx_scan|solver|Equal2012~1|datac
+    Info (332115):      9.619      0.284 RF  CELL  ineqsudx_scan|solver|Equal2012~1|combout
+    Info (332115):     10.466      0.847 FF    IC  ineqsudx_scan|solver|next_domain[70][0]~2078|datad
+    Info (332115):     10.627      0.161 FR  CELL  ineqsudx_scan|solver|next_domain[70][0]~2078|combout
+    Info (332115):     11.423      0.796 RR    IC  ineqsudx_scan|solver|WideOr1163~367|datac
+    Info (332115):     11.707      0.284 RF  CELL  ineqsudx_scan|solver|WideOr1163~367|combout
+    Info (332115):     13.412      1.705 FF    IC  ineqsudx_scan|solver|WideOr1163~369|datad
+    Info (332115):     13.543      0.131 FF  CELL  ineqsudx_scan|solver|WideOr1163~369|combout
+    Info (332115):     13.830      0.287 FF    IC  ineqsudx_scan|solver|WideOr1163~385|dataa
+    Info (332115):     14.189      0.359 FF  CELL  ineqsudx_scan|solver|WideOr1163~385|combout
+    Info (332115):     14.423      0.234 FF    IC  ineqsudx_scan|solver|WideOr1163~401|datad
+    Info (332115):     14.554      0.131 FF  CELL  ineqsudx_scan|solver|WideOr1163~401|combout
+    Info (332115):     16.372      1.818 FF    IC  ineqsudx_scan|solver|WideOr1163~484|datab
+    Info (332115):     16.726      0.354 FF  CELL  ineqsudx_scan|solver|WideOr1163~484|combout
+    Info (332115):     16.961      0.235 FF    IC  ineqsudx_scan|solver|WideOr1163~485|datad
+    Info (332115):     17.092      0.131 FF  CELL  ineqsudx_scan|solver|WideOr1163~485|combout
+    Info (332115):     17.338      0.246 FF    IC  ineqsudx_scan|solver|Selector2844~2|datad
+    Info (332115):     17.499      0.161 FR  CELL  ineqsudx_scan|solver|Selector2844~2|combout
+    Info (332115):     17.499      0.000 RR    IC  ineqsudx_scan|solver|state.SCAN|d
+    Info (332115):     17.588      0.089 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.546      1.980 RR    IC  ineqsudx_scan|solver|state.SCAN|clk
+    Info (332115):      5.021      0.475 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115):      5.058      0.037           clock pessimism removed
+    Info (332115):      5.038     -0.020           clock uncertainty
+    Info (332115):      5.051      0.013     uTsu  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115): Data Arrival Time  :    17.588
+    Info (332115): Data Required Time :     5.051
+    Info (332115): Slack              :   -12.537 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #4: Setup slack is -12.532 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115): To Node      : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.126      1.524 RR    IC  ineqsudx_scan|solver|domain[70][7]|clk
+    Info (332115):      3.636      0.510 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.207     uTco  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.000 RR  CELL  ineqsudx_scan|solver|domain[70][7]|q
+    Info (332115):      7.612      3.769 RR    IC  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|dataa
+    Info (332115):      8.021      0.409 RR  CELL  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|combout
+    Info (332115):      9.335      1.314 RR    IC  ineqsudx_scan|solver|Equal2012~1|datac
+    Info (332115):      9.619      0.284 RF  CELL  ineqsudx_scan|solver|Equal2012~1|combout
+    Info (332115):     10.518      0.899 FF    IC  ineqsudx_scan|solver|next_domain[70][1]|dataa
+    Info (332115):     10.899      0.381 FR  CELL  ineqsudx_scan|solver|next_domain[70][1]|combout
+    Info (332115):     11.368      0.469 RR    IC  ineqsudx_scan|solver|Equal2013~1|dataa
+    Info (332115):     11.787      0.419 RF  CELL  ineqsudx_scan|solver|Equal2013~1|combout
+    Info (332115):     12.029      0.242 FF    IC  ineqsudx_scan|solver|Equal2013~2|datac
+    Info (332115):     12.332      0.303 FF  CELL  ineqsudx_scan|solver|Equal2013~2|combout
+    Info (332115):     12.575      0.243 FF    IC  ineqsudx_scan|solver|always192~43|datac
+    Info (332115):     12.878      0.303 FF  CELL  ineqsudx_scan|solver|always192~43|combout
+    Info (332115):     14.573      1.695 FF    IC  ineqsudx_scan|solver|always192~44|datad
+    Info (332115):     14.704      0.131 FF  CELL  ineqsudx_scan|solver|always192~44|combout
+    Info (332115):     15.952      1.248 FF    IC  ineqsudx_scan|solver|always192~369|datab
+    Info (332115):     16.356      0.404 FF  CELL  ineqsudx_scan|solver|always192~369|combout
+    Info (332115):     16.602      0.246 FF    IC  ineqsudx_scan|solver|Selector2844~1|datac
+    Info (332115):     16.881      0.279 FR  CELL  ineqsudx_scan|solver|Selector2844~1|combout
+    Info (332115):     17.129      0.248 RR    IC  ineqsudx_scan|solver|Selector2846~0|datab
+    Info (332115):     17.494      0.365 RR  CELL  ineqsudx_scan|solver|Selector2846~0|combout
+    Info (332115):     17.494      0.000 RR    IC  ineqsudx_scan|solver|state.PICK_ROWS|d
+    Info (332115):     17.583      0.089 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.546      1.980 RR    IC  ineqsudx_scan|solver|state.PICK_ROWS|clk
+    Info (332115):      5.021      0.475 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115):      5.058      0.037           clock pessimism removed
+    Info (332115):      5.038     -0.020           clock uncertainty
+    Info (332115):      5.051      0.013     uTsu  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Data Arrival Time  :    17.583
+    Info (332115): Data Required Time :     5.051
+    Info (332115): Slack              :   -12.532 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #5: Setup slack is -12.512 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115): To Node      : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.126      1.524 RR    IC  ineqsudx_scan|solver|domain[70][7]|clk
+    Info (332115):      3.636      0.510 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.207     uTco  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.000 RR  CELL  ineqsudx_scan|solver|domain[70][7]|q
+    Info (332115):      7.612      3.769 RR    IC  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|dataa
+    Info (332115):      8.021      0.409 RR  CELL  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|combout
+    Info (332115):      9.335      1.314 RR    IC  ineqsudx_scan|solver|Equal2012~1|datac
+    Info (332115):      9.619      0.284 RF  CELL  ineqsudx_scan|solver|Equal2012~1|combout
+    Info (332115):     10.466      0.847 FF    IC  ineqsudx_scan|solver|next_domain[70][0]~2078|datad
+    Info (332115):     10.627      0.161 FR  CELL  ineqsudx_scan|solver|next_domain[70][0]~2078|combout
+    Info (332115):     11.423      0.796 RR    IC  ineqsudx_scan|solver|WideOr1163~367|datac
+    Info (332115):     11.707      0.284 RF  CELL  ineqsudx_scan|solver|WideOr1163~367|combout
+    Info (332115):     13.412      1.705 FF    IC  ineqsudx_scan|solver|WideOr1163~369|datad
+    Info (332115):     13.543      0.131 FF  CELL  ineqsudx_scan|solver|WideOr1163~369|combout
+    Info (332115):     13.830      0.287 FF    IC  ineqsudx_scan|solver|WideOr1163~385|dataa
+    Info (332115):     14.189      0.359 FF  CELL  ineqsudx_scan|solver|WideOr1163~385|combout
+    Info (332115):     14.423      0.234 FF    IC  ineqsudx_scan|solver|WideOr1163~401|datad
+    Info (332115):     14.554      0.131 FF  CELL  ineqsudx_scan|solver|WideOr1163~401|combout
+    Info (332115):     16.372      1.818 FF    IC  ineqsudx_scan|solver|WideOr1163~484|datab
+    Info (332115):     16.726      0.354 FF  CELL  ineqsudx_scan|solver|WideOr1163~484|combout
+    Info (332115):     16.961      0.235 FF    IC  ineqsudx_scan|solver|WideOr1163~485|datad
+    Info (332115):     17.092      0.131 FF  CELL  ineqsudx_scan|solver|WideOr1163~485|combout
+    Info (332115):     17.338      0.246 FF    IC  ineqsudx_scan|solver|Selector2846~0|datad
+    Info (332115):     17.469      0.131 FF  CELL  ineqsudx_scan|solver|Selector2846~0|combout
+    Info (332115):     17.469      0.000 FF    IC  ineqsudx_scan|solver|state.PICK_ROWS|d
+    Info (332115):     17.563      0.094 FF  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.546      1.980 RR    IC  ineqsudx_scan|solver|state.PICK_ROWS|clk
+    Info (332115):      5.021      0.475 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115):      5.058      0.037           clock pessimism removed
+    Info (332115):      5.038     -0.020           clock uncertainty
+    Info (332115):      5.051      0.013     uTsu  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Data Arrival Time  :    17.563
+    Info (332115): Data Required Time :     5.051
+    Info (332115): Slack              :   -12.512 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #6: Setup slack is -12.435 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115): To Node      : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.126      1.524 RR    IC  ineqsudx_scan|solver|domain[70][7]|clk
+    Info (332115):      3.636      0.510 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.207     uTco  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.000 RR  CELL  ineqsudx_scan|solver|domain[70][7]|q
+    Info (332115):      7.612      3.769 RR    IC  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|dataa
+    Info (332115):      8.021      0.409 RR  CELL  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|combout
+    Info (332115):      9.335      1.314 RR    IC  ineqsudx_scan|solver|Equal2012~1|datac
+    Info (332115):      9.619      0.284 RF  CELL  ineqsudx_scan|solver|Equal2012~1|combout
+    Info (332115):     10.518      0.899 FF    IC  ineqsudx_scan|solver|next_domain[70][1]|dataa
+    Info (332115):     10.899      0.381 FR  CELL  ineqsudx_scan|solver|next_domain[70][1]|combout
+    Info (332115):     11.368      0.469 RR    IC  ineqsudx_scan|solver|Equal2013~1|dataa
+    Info (332115):     11.787      0.419 RF  CELL  ineqsudx_scan|solver|Equal2013~1|combout
+    Info (332115):     12.029      0.242 FF    IC  ineqsudx_scan|solver|Equal2013~2|datac
+    Info (332115):     12.332      0.303 FF  CELL  ineqsudx_scan|solver|Equal2013~2|combout
+    Info (332115):     12.575      0.243 FF    IC  ineqsudx_scan|solver|always192~43|datac
+    Info (332115):     12.878      0.303 FF  CELL  ineqsudx_scan|solver|always192~43|combout
+    Info (332115):     14.573      1.695 FF    IC  ineqsudx_scan|solver|always192~44|datad
+    Info (332115):     14.704      0.131 FF  CELL  ineqsudx_scan|solver|always192~44|combout
+    Info (332115):     15.952      1.248 FF    IC  ineqsudx_scan|solver|always192~369|datab
+    Info (332115):     16.356      0.404 FF  CELL  ineqsudx_scan|solver|always192~369|combout
+    Info (332115):     16.602      0.246 FF    IC  ineqsudx_scan|solver|Selector2844~1|datac
+    Info (332115):     16.881      0.279 FR  CELL  ineqsudx_scan|solver|Selector2844~1|combout
+    Info (332115):     17.093      0.212 RR    IC  ineqsudx_scan|solver|Selector2844~2|datac
+    Info (332115):     17.397      0.304 RR  CELL  ineqsudx_scan|solver|Selector2844~2|combout
+    Info (332115):     17.397      0.000 RR    IC  ineqsudx_scan|solver|state.SCAN|d
+    Info (332115):     17.486      0.089 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.546      1.980 RR    IC  ineqsudx_scan|solver|state.SCAN|clk
+    Info (332115):      5.021      0.475 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115):      5.058      0.037           clock pessimism removed
+    Info (332115):      5.038     -0.020           clock uncertainty
+    Info (332115):      5.051      0.013     uTsu  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115): Data Arrival Time  :    17.486
+    Info (332115): Data Required Time :     5.051
+    Info (332115): Slack              :   -12.435 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #7: Setup slack is -12.356 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115): To Node      : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.126      1.524 RR    IC  ineqsudx_scan|solver|domain[70][7]|clk
+    Info (332115):      3.636      0.510 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.207     uTco  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.000 RR  CELL  ineqsudx_scan|solver|domain[70][7]|q
+    Info (332115):      7.612      3.769 RR    IC  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|dataa
+    Info (332115):      8.021      0.409 RR  CELL  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|combout
+    Info (332115):      9.335      1.314 RR    IC  ineqsudx_scan|solver|Equal2012~1|datac
+    Info (332115):      9.619      0.284 RF  CELL  ineqsudx_scan|solver|Equal2012~1|combout
+    Info (332115):     10.358      0.739 FF    IC  ineqsudx_scan|solver|next_domain[70][3]|datad
+    Info (332115):     10.489      0.131 FF  CELL  ineqsudx_scan|solver|next_domain[70][3]|combout
+    Info (332115):     11.307      0.818 FF    IC  ineqsudx_scan|solver|Equal2013~1|datac
+    Info (332115):     11.586      0.279 FR  CELL  ineqsudx_scan|solver|Equal2013~1|combout
+    Info (332115):     11.788      0.202 RR    IC  ineqsudx_scan|solver|Equal2013~2|datac
+    Info (332115):     12.093      0.305 RR  CELL  ineqsudx_scan|solver|Equal2013~2|combout
+    Info (332115):     12.296      0.203 RR    IC  ineqsudx_scan|solver|always192~43|datac
+    Info (332115):     12.601      0.305 RR  CELL  ineqsudx_scan|solver|always192~43|combout
+    Info (332115):     14.336      1.735 RR    IC  ineqsudx_scan|solver|always192~44|datad
+    Info (332115):     14.502      0.166 RR  CELL  ineqsudx_scan|solver|always192~44|combout
+    Info (332115):     15.756      1.254 RR    IC  ineqsudx_scan|solver|always192~369|datab
+    Info (332115):     16.179      0.423 RR  CELL  ineqsudx_scan|solver|always192~369|combout
+    Info (332115):     16.382      0.203 RR    IC  ineqsudx_scan|solver|Selector2844~1|datac
+    Info (332115):     16.662      0.280 RF  CELL  ineqsudx_scan|solver|Selector2844~1|combout
+    Info (332115):     16.957      0.295 FF    IC  ineqsudx_scan|solver|Selector2846~0|datab
+    Info (332115):     17.313      0.356 FF  CELL  ineqsudx_scan|solver|Selector2846~0|combout
+    Info (332115):     17.313      0.000 FF    IC  ineqsudx_scan|solver|state.PICK_ROWS|d
+    Info (332115):     17.407      0.094 FF  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.546      1.980 RR    IC  ineqsudx_scan|solver|state.PICK_ROWS|clk
+    Info (332115):      5.021      0.475 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115):      5.058      0.037           clock pessimism removed
+    Info (332115):      5.038     -0.020           clock uncertainty
+    Info (332115):      5.051      0.013     uTsu  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Data Arrival Time  :    17.407
+    Info (332115): Data Required Time :     5.051
+    Info (332115): Slack              :   -12.356 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #8: Setup slack is -12.354 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115): To Node      : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.126      1.524 RR    IC  ineqsudx_scan|solver|domain[70][7]|clk
+    Info (332115):      3.636      0.510 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.207     uTco  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.000 RR  CELL  ineqsudx_scan|solver|domain[70][7]|q
+    Info (332115):      7.612      3.769 RR    IC  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|dataa
+    Info (332115):      8.021      0.409 RR  CELL  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|combout
+    Info (332115):      9.335      1.314 RR    IC  ineqsudx_scan|solver|Equal2012~1|datac
+    Info (332115):      9.619      0.284 RF  CELL  ineqsudx_scan|solver|Equal2012~1|combout
+    Info (332115):     10.465      0.846 FF    IC  ineqsudx_scan|solver|next_domain[70][8]~2058|datad
+    Info (332115):     10.596      0.131 FF  CELL  ineqsudx_scan|solver|next_domain[70][8]~2058|combout
+    Info (332115):     11.695      1.099 FF    IC  ineqsudx_scan|solver|Equal2013~2|datab
+    Info (332115):     12.091      0.396 FR  CELL  ineqsudx_scan|solver|Equal2013~2|combout
+    Info (332115):     12.294      0.203 RR    IC  ineqsudx_scan|solver|always192~43|datac
+    Info (332115):     12.599      0.305 RR  CELL  ineqsudx_scan|solver|always192~43|combout
+    Info (332115):     14.334      1.735 RR    IC  ineqsudx_scan|solver|always192~44|datad
+    Info (332115):     14.500      0.166 RR  CELL  ineqsudx_scan|solver|always192~44|combout
+    Info (332115):     15.754      1.254 RR    IC  ineqsudx_scan|solver|always192~369|datab
+    Info (332115):     16.177      0.423 RR  CELL  ineqsudx_scan|solver|always192~369|combout
+    Info (332115):     16.380      0.203 RR    IC  ineqsudx_scan|solver|Selector2844~1|datac
+    Info (332115):     16.660      0.280 RF  CELL  ineqsudx_scan|solver|Selector2844~1|combout
+    Info (332115):     16.955      0.295 FF    IC  ineqsudx_scan|solver|Selector2846~0|datab
+    Info (332115):     17.311      0.356 FF  CELL  ineqsudx_scan|solver|Selector2846~0|combout
+    Info (332115):     17.311      0.000 FF    IC  ineqsudx_scan|solver|state.PICK_ROWS|d
+    Info (332115):     17.405      0.094 FF  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.546      1.980 RR    IC  ineqsudx_scan|solver|state.PICK_ROWS|clk
+    Info (332115):      5.021      0.475 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115):      5.058      0.037           clock pessimism removed
+    Info (332115):      5.038     -0.020           clock uncertainty
+    Info (332115):      5.051      0.013     uTsu  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Data Arrival Time  :    17.405
+    Info (332115): Data Required Time :     5.051
+    Info (332115): Slack              :   -12.354 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #9: Setup slack is -12.265 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115): To Node      : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.126      1.524 RR    IC  ineqsudx_scan|solver|domain[70][7]|clk
+    Info (332115):      3.636      0.510 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.207     uTco  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.000 RR  CELL  ineqsudx_scan|solver|domain[70][7]|q
+    Info (332115):      7.612      3.769 RR    IC  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|dataa
+    Info (332115):      8.021      0.409 RR  CELL  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|combout
+    Info (332115):      9.335      1.314 RR    IC  ineqsudx_scan|solver|Equal2012~1|datac
+    Info (332115):      9.619      0.284 RF  CELL  ineqsudx_scan|solver|Equal2012~1|combout
+    Info (332115):     10.399      0.780 FF    IC  ineqsudx_scan|solver|next_domain[70][2]|datad
+    Info (332115):     10.530      0.131 FF  CELL  ineqsudx_scan|solver|next_domain[70][2]|combout
+    Info (332115):     11.334      0.804 FF    IC  ineqsudx_scan|solver|Equal2013~1|datad
+    Info (332115):     11.495      0.161 FR  CELL  ineqsudx_scan|solver|Equal2013~1|combout
+    Info (332115):     11.697      0.202 RR    IC  ineqsudx_scan|solver|Equal2013~2|datac
+    Info (332115):     12.002      0.305 RR  CELL  ineqsudx_scan|solver|Equal2013~2|combout
+    Info (332115):     12.205      0.203 RR    IC  ineqsudx_scan|solver|always192~43|datac
+    Info (332115):     12.510      0.305 RR  CELL  ineqsudx_scan|solver|always192~43|combout
+    Info (332115):     14.245      1.735 RR    IC  ineqsudx_scan|solver|always192~44|datad
+    Info (332115):     14.411      0.166 RR  CELL  ineqsudx_scan|solver|always192~44|combout
+    Info (332115):     15.665      1.254 RR    IC  ineqsudx_scan|solver|always192~369|datab
+    Info (332115):     16.088      0.423 RR  CELL  ineqsudx_scan|solver|always192~369|combout
+    Info (332115):     16.291      0.203 RR    IC  ineqsudx_scan|solver|Selector2844~1|datac
+    Info (332115):     16.571      0.280 RF  CELL  ineqsudx_scan|solver|Selector2844~1|combout
+    Info (332115):     16.866      0.295 FF    IC  ineqsudx_scan|solver|Selector2846~0|datab
+    Info (332115):     17.222      0.356 FF  CELL  ineqsudx_scan|solver|Selector2846~0|combout
+    Info (332115):     17.222      0.000 FF    IC  ineqsudx_scan|solver|state.PICK_ROWS|d
+    Info (332115):     17.316      0.094 FF  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.546      1.980 RR    IC  ineqsudx_scan|solver|state.PICK_ROWS|clk
+    Info (332115):      5.021      0.475 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115):      5.058      0.037           clock pessimism removed
+    Info (332115):      5.038     -0.020           clock uncertainty
+    Info (332115):      5.051      0.013     uTsu  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Data Arrival Time  :    17.316
+    Info (332115): Data Required Time :     5.051
+    Info (332115): Slack              :   -12.265 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #10: Setup slack is -12.260 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115): To Node      : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.126      1.524 RR    IC  ineqsudx_scan|solver|domain[70][7]|clk
+    Info (332115):      3.636      0.510 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.207     uTco  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.000 RR  CELL  ineqsudx_scan|solver|domain[70][7]|q
+    Info (332115):      7.612      3.769 RR    IC  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|dataa
+    Info (332115):      8.021      0.409 RR  CELL  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|combout
+    Info (332115):      9.335      1.314 RR    IC  ineqsudx_scan|solver|Equal2012~1|datac
+    Info (332115):      9.619      0.284 RF  CELL  ineqsudx_scan|solver|Equal2012~1|combout
+    Info (332115):     10.358      0.739 FF    IC  ineqsudx_scan|solver|next_domain[70][3]|datad
+    Info (332115):     10.489      0.131 FF  CELL  ineqsudx_scan|solver|next_domain[70][3]|combout
+    Info (332115):     11.307      0.818 FF    IC  ineqsudx_scan|solver|Equal2013~1|datac
+    Info (332115):     11.586      0.279 FR  CELL  ineqsudx_scan|solver|Equal2013~1|combout
+    Info (332115):     11.788      0.202 RR    IC  ineqsudx_scan|solver|Equal2013~2|datac
+    Info (332115):     12.093      0.305 RR  CELL  ineqsudx_scan|solver|Equal2013~2|combout
+    Info (332115):     12.296      0.203 RR    IC  ineqsudx_scan|solver|always192~43|datac
+    Info (332115):     12.601      0.305 RR  CELL  ineqsudx_scan|solver|always192~43|combout
+    Info (332115):     14.336      1.735 RR    IC  ineqsudx_scan|solver|always192~44|datad
+    Info (332115):     14.502      0.166 RR  CELL  ineqsudx_scan|solver|always192~44|combout
+    Info (332115):     15.756      1.254 RR    IC  ineqsudx_scan|solver|always192~369|datab
+    Info (332115):     16.179      0.423 RR  CELL  ineqsudx_scan|solver|always192~369|combout
+    Info (332115):     16.382      0.203 RR    IC  ineqsudx_scan|solver|Selector2844~1|datac
+    Info (332115):     16.662      0.280 RF  CELL  ineqsudx_scan|solver|Selector2844~1|combout
+    Info (332115):     16.919      0.257 FF    IC  ineqsudx_scan|solver|Selector2844~2|datac
+    Info (332115):     17.217      0.298 FF  CELL  ineqsudx_scan|solver|Selector2844~2|combout
+    Info (332115):     17.217      0.000 FF    IC  ineqsudx_scan|solver|state.SCAN|d
+    Info (332115):     17.311      0.094 FF  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.546      1.980 RR    IC  ineqsudx_scan|solver|state.SCAN|clk
+    Info (332115):      5.021      0.475 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115):      5.058      0.037           clock pessimism removed
+    Info (332115):      5.038     -0.020           clock uncertainty
+    Info (332115):      5.051      0.013     uTsu  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115): Data Arrival Time  :    17.311
+    Info (332115): Data Required Time :     5.051
+    Info (332115): Slack              :   -12.260 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #11: Setup slack is -12.258 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115): To Node      : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.126      1.524 RR    IC  ineqsudx_scan|solver|domain[70][7]|clk
+    Info (332115):      3.636      0.510 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.207     uTco  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.000 RR  CELL  ineqsudx_scan|solver|domain[70][7]|q
+    Info (332115):      7.612      3.769 RR    IC  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|dataa
+    Info (332115):      8.021      0.409 RR  CELL  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|combout
+    Info (332115):      9.335      1.314 RR    IC  ineqsudx_scan|solver|Equal2012~1|datac
+    Info (332115):      9.619      0.284 RF  CELL  ineqsudx_scan|solver|Equal2012~1|combout
+    Info (332115):     10.465      0.846 FF    IC  ineqsudx_scan|solver|next_domain[70][8]~2058|datad
+    Info (332115):     10.596      0.131 FF  CELL  ineqsudx_scan|solver|next_domain[70][8]~2058|combout
+    Info (332115):     11.695      1.099 FF    IC  ineqsudx_scan|solver|Equal2013~2|datab
+    Info (332115):     12.091      0.396 FR  CELL  ineqsudx_scan|solver|Equal2013~2|combout
+    Info (332115):     12.294      0.203 RR    IC  ineqsudx_scan|solver|always192~43|datac
+    Info (332115):     12.599      0.305 RR  CELL  ineqsudx_scan|solver|always192~43|combout
+    Info (332115):     14.334      1.735 RR    IC  ineqsudx_scan|solver|always192~44|datad
+    Info (332115):     14.500      0.166 RR  CELL  ineqsudx_scan|solver|always192~44|combout
+    Info (332115):     15.754      1.254 RR    IC  ineqsudx_scan|solver|always192~369|datab
+    Info (332115):     16.177      0.423 RR  CELL  ineqsudx_scan|solver|always192~369|combout
+    Info (332115):     16.380      0.203 RR    IC  ineqsudx_scan|solver|Selector2844~1|datac
+    Info (332115):     16.660      0.280 RF  CELL  ineqsudx_scan|solver|Selector2844~1|combout
+    Info (332115):     16.917      0.257 FF    IC  ineqsudx_scan|solver|Selector2844~2|datac
+    Info (332115):     17.215      0.298 FF  CELL  ineqsudx_scan|solver|Selector2844~2|combout
+    Info (332115):     17.215      0.000 FF    IC  ineqsudx_scan|solver|state.SCAN|d
+    Info (332115):     17.309      0.094 FF  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.546      1.980 RR    IC  ineqsudx_scan|solver|state.SCAN|clk
+    Info (332115):      5.021      0.475 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115):      5.058      0.037           clock pessimism removed
+    Info (332115):      5.038     -0.020           clock uncertainty
+    Info (332115):      5.051      0.013     uTsu  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115): Data Arrival Time  :    17.309
+    Info (332115): Data Required Time :     5.051
+    Info (332115): Slack              :   -12.258 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #12: Setup slack is -12.224 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115): To Node      : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.126      1.524 RR    IC  ineqsudx_scan|solver|domain[70][7]|clk
+    Info (332115):      3.636      0.510 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.207     uTco  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.000 RR  CELL  ineqsudx_scan|solver|domain[70][7]|q
+    Info (332115):      7.612      3.769 RR    IC  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|dataa
+    Info (332115):      8.021      0.409 RR  CELL  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|combout
+    Info (332115):      9.335      1.314 RR    IC  ineqsudx_scan|solver|Equal2012~1|datac
+    Info (332115):      9.619      0.284 RF  CELL  ineqsudx_scan|solver|Equal2012~1|combout
+    Info (332115):      9.953      0.334 FF    IC  ineqsudx_scan|solver|next_domain[70][4]|datab
+    Info (332115):     10.309      0.356 FF  CELL  ineqsudx_scan|solver|next_domain[70][4]|combout
+    Info (332115):     10.619      0.310 FF    IC  ineqsudx_scan|solver|Equal2013~0|datab
+    Info (332115):     11.036      0.417 FR  CELL  ineqsudx_scan|solver|Equal2013~0|combout
+    Info (332115):     11.795      0.759 RR    IC  ineqsudx_scan|solver|Equal2013~2|datad
+    Info (332115):     11.961      0.166 RR  CELL  ineqsudx_scan|solver|Equal2013~2|combout
+    Info (332115):     12.164      0.203 RR    IC  ineqsudx_scan|solver|always192~43|datac
+    Info (332115):     12.469      0.305 RR  CELL  ineqsudx_scan|solver|always192~43|combout
+    Info (332115):     14.204      1.735 RR    IC  ineqsudx_scan|solver|always192~44|datad
+    Info (332115):     14.370      0.166 RR  CELL  ineqsudx_scan|solver|always192~44|combout
+    Info (332115):     15.624      1.254 RR    IC  ineqsudx_scan|solver|always192~369|datab
+    Info (332115):     16.047      0.423 RR  CELL  ineqsudx_scan|solver|always192~369|combout
+    Info (332115):     16.250      0.203 RR    IC  ineqsudx_scan|solver|Selector2844~1|datac
+    Info (332115):     16.530      0.280 RF  CELL  ineqsudx_scan|solver|Selector2844~1|combout
+    Info (332115):     16.825      0.295 FF    IC  ineqsudx_scan|solver|Selector2846~0|datab
+    Info (332115):     17.181      0.356 FF  CELL  ineqsudx_scan|solver|Selector2846~0|combout
+    Info (332115):     17.181      0.000 FF    IC  ineqsudx_scan|solver|state.PICK_ROWS|d
+    Info (332115):     17.275      0.094 FF  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.546      1.980 RR    IC  ineqsudx_scan|solver|state.PICK_ROWS|clk
+    Info (332115):      5.021      0.475 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115):      5.058      0.037           clock pessimism removed
+    Info (332115):      5.038     -0.020           clock uncertainty
+    Info (332115):      5.051      0.013     uTsu  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Data Arrival Time  :    17.275
+    Info (332115): Data Required Time :     5.051
+    Info (332115): Slack              :   -12.224 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #13: Setup slack is -12.169 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115): To Node      : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.126      1.524 RR    IC  ineqsudx_scan|solver|domain[70][7]|clk
+    Info (332115):      3.636      0.510 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.207     uTco  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.000 RR  CELL  ineqsudx_scan|solver|domain[70][7]|q
+    Info (332115):      7.612      3.769 RR    IC  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|dataa
+    Info (332115):      8.021      0.409 RR  CELL  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|combout
+    Info (332115):      9.335      1.314 RR    IC  ineqsudx_scan|solver|Equal2012~1|datac
+    Info (332115):      9.619      0.284 RF  CELL  ineqsudx_scan|solver|Equal2012~1|combout
+    Info (332115):     10.399      0.780 FF    IC  ineqsudx_scan|solver|next_domain[70][2]|datad
+    Info (332115):     10.530      0.131 FF  CELL  ineqsudx_scan|solver|next_domain[70][2]|combout
+    Info (332115):     11.334      0.804 FF    IC  ineqsudx_scan|solver|Equal2013~1|datad
+    Info (332115):     11.495      0.161 FR  CELL  ineqsudx_scan|solver|Equal2013~1|combout
+    Info (332115):     11.697      0.202 RR    IC  ineqsudx_scan|solver|Equal2013~2|datac
+    Info (332115):     12.002      0.305 RR  CELL  ineqsudx_scan|solver|Equal2013~2|combout
+    Info (332115):     12.205      0.203 RR    IC  ineqsudx_scan|solver|always192~43|datac
+    Info (332115):     12.510      0.305 RR  CELL  ineqsudx_scan|solver|always192~43|combout
+    Info (332115):     14.245      1.735 RR    IC  ineqsudx_scan|solver|always192~44|datad
+    Info (332115):     14.411      0.166 RR  CELL  ineqsudx_scan|solver|always192~44|combout
+    Info (332115):     15.665      1.254 RR    IC  ineqsudx_scan|solver|always192~369|datab
+    Info (332115):     16.088      0.423 RR  CELL  ineqsudx_scan|solver|always192~369|combout
+    Info (332115):     16.291      0.203 RR    IC  ineqsudx_scan|solver|Selector2844~1|datac
+    Info (332115):     16.571      0.280 RF  CELL  ineqsudx_scan|solver|Selector2844~1|combout
+    Info (332115):     16.828      0.257 FF    IC  ineqsudx_scan|solver|Selector2844~2|datac
+    Info (332115):     17.126      0.298 FF  CELL  ineqsudx_scan|solver|Selector2844~2|combout
+    Info (332115):     17.126      0.000 FF    IC  ineqsudx_scan|solver|state.SCAN|d
+    Info (332115):     17.220      0.094 FF  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.546      1.980 RR    IC  ineqsudx_scan|solver|state.SCAN|clk
+    Info (332115):      5.021      0.475 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115):      5.058      0.037           clock pessimism removed
+    Info (332115):      5.038     -0.020           clock uncertainty
+    Info (332115):      5.051      0.013     uTsu  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115): Data Arrival Time  :    17.220
+    Info (332115): Data Required Time :     5.051
+    Info (332115): Slack              :   -12.169 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #14: Setup slack is -12.166 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115): To Node      : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.126      1.524 RR    IC  ineqsudx_scan|solver|domain[70][7]|clk
+    Info (332115):      3.636      0.510 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.207     uTco  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.000 RR  CELL  ineqsudx_scan|solver|domain[70][7]|q
+    Info (332115):      7.612      3.769 RR    IC  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|dataa
+    Info (332115):      8.021      0.409 RR  CELL  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|combout
+    Info (332115):      9.335      1.314 RR    IC  ineqsudx_scan|solver|Equal2012~1|datac
+    Info (332115):      9.619      0.284 RF  CELL  ineqsudx_scan|solver|Equal2012~1|combout
+    Info (332115):     10.112      0.493 FF    IC  ineqsudx_scan|solver|next_domain[70][5]|dataa
+    Info (332115):     10.435      0.323 FF  CELL  ineqsudx_scan|solver|next_domain[70][5]|combout
+    Info (332115):     10.699      0.264 FF    IC  ineqsudx_scan|solver|Equal2013~0|datac
+    Info (332115):     10.978      0.279 FR  CELL  ineqsudx_scan|solver|Equal2013~0|combout
+    Info (332115):     11.737      0.759 RR    IC  ineqsudx_scan|solver|Equal2013~2|datad
+    Info (332115):     11.903      0.166 RR  CELL  ineqsudx_scan|solver|Equal2013~2|combout
+    Info (332115):     12.106      0.203 RR    IC  ineqsudx_scan|solver|always192~43|datac
+    Info (332115):     12.411      0.305 RR  CELL  ineqsudx_scan|solver|always192~43|combout
+    Info (332115):     14.146      1.735 RR    IC  ineqsudx_scan|solver|always192~44|datad
+    Info (332115):     14.312      0.166 RR  CELL  ineqsudx_scan|solver|always192~44|combout
+    Info (332115):     15.566      1.254 RR    IC  ineqsudx_scan|solver|always192~369|datab
+    Info (332115):     15.989      0.423 RR  CELL  ineqsudx_scan|solver|always192~369|combout
+    Info (332115):     16.192      0.203 RR    IC  ineqsudx_scan|solver|Selector2844~1|datac
+    Info (332115):     16.472      0.280 RF  CELL  ineqsudx_scan|solver|Selector2844~1|combout
+    Info (332115):     16.767      0.295 FF    IC  ineqsudx_scan|solver|Selector2846~0|datab
+    Info (332115):     17.123      0.356 FF  CELL  ineqsudx_scan|solver|Selector2846~0|combout
+    Info (332115):     17.123      0.000 FF    IC  ineqsudx_scan|solver|state.PICK_ROWS|d
+    Info (332115):     17.217      0.094 FF  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.546      1.980 RR    IC  ineqsudx_scan|solver|state.PICK_ROWS|clk
+    Info (332115):      5.021      0.475 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115):      5.058      0.037           clock pessimism removed
+    Info (332115):      5.038     -0.020           clock uncertainty
+    Info (332115):      5.051      0.013     uTsu  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Data Arrival Time  :    17.217
+    Info (332115): Data Required Time :     5.051
+    Info (332115): Slack              :   -12.166 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #15: Setup slack is -12.128 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115): To Node      : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.126      1.524 RR    IC  ineqsudx_scan|solver|domain[70][7]|clk
+    Info (332115):      3.636      0.510 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.207     uTco  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[70][7]
+    Info (332115):      3.843      0.000 RR  CELL  ineqsudx_scan|solver|domain[70][7]|q
+    Info (332115):      7.612      3.769 RR    IC  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|dataa
+    Info (332115):      8.021      0.409 RR  CELL  ineqsudx_scan|solver|CELLS[70].hidden[7]~8|combout
+    Info (332115):      9.335      1.314 RR    IC  ineqsudx_scan|solver|Equal2012~1|datac
+    Info (332115):      9.619      0.284 RF  CELL  ineqsudx_scan|solver|Equal2012~1|combout
+    Info (332115):      9.953      0.334 FF    IC  ineqsudx_scan|solver|next_domain[70][4]|datab
+    Info (332115):     10.309      0.356 FF  CELL  ineqsudx_scan|solver|next_domain[70][4]|combout
+    Info (332115):     10.619      0.310 FF    IC  ineqsudx_scan|solver|Equal2013~0|datab
+    Info (332115):     11.036      0.417 FR  CELL  ineqsudx_scan|solver|Equal2013~0|combout
+    Info (332115):     11.795      0.759 RR    IC  ineqsudx_scan|solver|Equal2013~2|datad
+    Info (332115):     11.961      0.166 RR  CELL  ineqsudx_scan|solver|Equal2013~2|combout
+    Info (332115):     12.164      0.203 RR    IC  ineqsudx_scan|solver|always192~43|datac
+    Info (332115):     12.469      0.305 RR  CELL  ineqsudx_scan|solver|always192~43|combout
+    Info (332115):     14.204      1.735 RR    IC  ineqsudx_scan|solver|always192~44|datad
+    Info (332115):     14.370      0.166 RR  CELL  ineqsudx_scan|solver|always192~44|combout
+    Info (332115):     15.624      1.254 RR    IC  ineqsudx_scan|solver|always192~369|datab
+    Info (332115):     16.047      0.423 RR  CELL  ineqsudx_scan|solver|always192~369|combout
+    Info (332115):     16.250      0.203 RR    IC  ineqsudx_scan|solver|Selector2844~1|datac
+    Info (332115):     16.530      0.280 RF  CELL  ineqsudx_scan|solver|Selector2844~1|combout
+    Info (332115):     16.787      0.257 FF    IC  ineqsudx_scan|solver|Selector2844~2|datac
+    Info (332115):     17.085      0.298 FF  CELL  ineqsudx_scan|solver|Selector2844~2|combout
+    Info (332115):     17.085      0.000 FF    IC  ineqsudx_scan|solver|state.SCAN|d
+    Info (332115):     17.179      0.094 FF  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.546      1.980 RR    IC  ineqsudx_scan|solver|state.SCAN|clk
+    Info (332115):      5.021      0.475 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115):      5.058      0.037           clock pessimism removed
+    Info (332115):      5.038     -0.020           clock uncertainty
+    Info (332115):      5.051      0.013     uTsu  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115): Data Arrival Time  :    17.179
+    Info (332115): Data Required Time :     5.051
+    Info (332115): Slack              :   -12.128 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #16: Setup slack is -12.125 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|unique_digit[7][2]
+    Info (332115): To Node      : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.207      1.605 RR    IC  ineqsudx_scan|solver|unique_digit[7][2]|clk
+    Info (332115):      3.717      0.510 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|unique_digit[7][2]
+    Info (332115):      3.924      0.207     uTco  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|unique_digit[7][2]
+    Info (332115):      3.924      0.000 RR  CELL  ineqsudx_scan|solver|unique_digit[7][2]|q
+    Info (332115):      5.974      2.050 RR    IC  ineqsudx_scan|solver|CELLS[71].hidden[2]~2|datac
+    Info (332115):      6.278      0.304 RR  CELL  ineqsudx_scan|solver|CELLS[71].hidden[2]~2|combout
+    Info (332115):      7.053      0.775 RR    IC  ineqsudx_scan|solver|Equal2041~0|datab
+    Info (332115):      7.495      0.442 RF  CELL  ineqsudx_scan|solver|Equal2041~0|combout
+    Info (332115):      7.744      0.249 FF    IC  ineqsudx_scan|solver|Equal2032~0|datad
+    Info (332115):      7.875      0.131 FF  CELL  ineqsudx_scan|solver|Equal2032~0|combout
+    Info (332115):      8.139      0.264 FF    IC  ineqsudx_scan|solver|Equal2032~1|datac
+    Info (332115):      8.437      0.298 FF  CELL  ineqsudx_scan|solver|Equal2032~1|combout
+    Info (332115):      9.202      0.765 FF    IC  ineqsudx_scan|solver|next_domain[71][8]~3024|datad
+    Info (332115):      9.363      0.161 FR  CELL  ineqsudx_scan|solver|next_domain[71][8]~3024|combout
+    Info (332115):     10.987      1.624 RR    IC  ineqsudx_scan|solver|WideOr1163~58|datad
+    Info (332115):     11.132      0.145 RF  CELL  ineqsudx_scan|solver|WideOr1163~58|combout
+    Info (332115):     14.209      3.077 FF    IC  ineqsudx_scan|solver|WideOr1163~61|datab
+    Info (332115):     14.563      0.354 FF  CELL  ineqsudx_scan|solver|WideOr1163~61|combout
+    Info (332115):     14.986      0.423 FF    IC  ineqsudx_scan|solver|WideOr1163~62|dataa
+    Info (332115):     15.345      0.359 FF  CELL  ineqsudx_scan|solver|WideOr1163~62|combout
+    Info (332115):     15.633      0.288 FF    IC  ineqsudx_scan|solver|WideOr1163~152|dataa
+    Info (332115):     15.992      0.359 FF  CELL  ineqsudx_scan|solver|WideOr1163~152|combout
+    Info (332115):     16.403      0.411 FF    IC  ineqsudx_scan|solver|WideOr1163~485|datac
+    Info (332115):     16.706      0.303 FF  CELL  ineqsudx_scan|solver|WideOr1163~485|combout
+    Info (332115):     16.952      0.246 FF    IC  ineqsudx_scan|solver|Selector2844~2|datad
+    Info (332115):     17.113      0.161 FR  CELL  ineqsudx_scan|solver|Selector2844~2|combout
+    Info (332115):     17.113      0.000 RR    IC  ineqsudx_scan|solver|state.SCAN|d
+    Info (332115):     17.202      0.089 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.546      1.980 RR    IC  ineqsudx_scan|solver|state.SCAN|clk
+    Info (332115):      5.021      0.475 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115):      5.084      0.063           clock pessimism removed
+    Info (332115):      5.064     -0.020           clock uncertainty
+    Info (332115):      5.077      0.013     uTsu  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.SCAN
+    Info (332115): Data Arrival Time  :    17.202
+    Info (332115): Data Required Time :     5.077
+    Info (332115): Slack              :   -12.125 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #17: Setup slack is -12.120 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|unique_digit[11][3]
+    Info (332115): To Node      : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.231      1.629 RR    IC  ineqsudx_scan|solver|unique_digit[11][3]|clk
+    Info (332115):      3.741      0.510 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|unique_digit[11][3]
+    Info (332115):      3.948      0.207     uTco  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|unique_digit[11][3]
+    Info (332115):      3.948      0.000 RR  CELL  ineqsudx_scan|solver|unique_digit[11][3]|q
+    Info (332115):      6.098      2.150 RR    IC  ineqsudx_scan|solver|CELLS[56].hidden[3]~1|datad
+    Info (332115):      6.264      0.166 RR  CELL  ineqsudx_scan|solver|CELLS[56].hidden[3]~1|combout
+    Info (332115):      7.640      1.376 RR    IC  ineqsudx_scan|solver|Equal1741~0|dataa
+    Info (332115):      8.059      0.419 RF  CELL  ineqsudx_scan|solver|Equal1741~0|combout
+    Info (332115):      8.304      0.245 FF    IC  ineqsudx_scan|solver|Equal1732~0|datad
+    Info (332115):      8.435      0.131 FF  CELL  ineqsudx_scan|solver|Equal1732~0|combout
+    Info (332115):      8.714      0.279 FF    IC  ineqsudx_scan|solver|Equal1732~1|datac
+    Info (332115):      9.012      0.298 FF  CELL  ineqsudx_scan|solver|Equal1732~1|combout
+    Info (332115):      9.860      0.848 FF    IC  ineqsudx_scan|solver|next_domain[56][6]|dataa
+    Info (332115):     10.183      0.323 FF  CELL  ineqsudx_scan|solver|next_domain[56][6]|combout
+    Info (332115):     10.512      0.329 FF    IC  ineqsudx_scan|solver|Equal1733~0|dataa
+    Info (332115):     10.914      0.402 FR  CELL  ineqsudx_scan|solver|Equal1733~0|combout
+    Info (332115):     11.155      0.241 RR    IC  ineqsudx_scan|solver|Equal1733~2|dataa
+    Info (332115):     11.564      0.409 RR  CELL  ineqsudx_scan|solver|Equal1733~2|combout
+    Info (332115):     12.336      0.772 RR    IC  ineqsudx_scan|solver|always192~34|datac
+    Info (332115):     12.641      0.305 RR  CELL  ineqsudx_scan|solver|always192~34|combout
+    Info (332115):     14.975      2.334 RR    IC  ineqsudx_scan|solver|always192~368|datab
+    Info (332115):     15.398      0.423 RR  CELL  ineqsudx_scan|solver|always192~368|combout
+    Info (332115):     15.803      0.405 RR    IC  ineqsudx_scan|solver|always192~369|datad
+    Info (332115):     15.969      0.166 RR  CELL  ineqsudx_scan|solver|always192~369|combout
+    Info (332115):     16.172      0.203 RR    IC  ineqsudx_scan|solver|Selector2844~1|datac
+    Info (332115):     16.452      0.280 RF  CELL  ineqsudx_scan|solver|Selector2844~1|combout
+    Info (332115):     16.747      0.295 FF    IC  ineqsudx_scan|solver|Selector2846~0|datab
+    Info (332115):     17.103      0.356 FF  CELL  ineqsudx_scan|solver|Selector2846~0|combout
+    Info (332115):     17.103      0.000 FF    IC  ineqsudx_scan|solver|state.PICK_ROWS|d
+    Info (332115):     17.197      0.094 FF  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.546      1.980 RR    IC  ineqsudx_scan|solver|state.PICK_ROWS|clk
+    Info (332115):      5.021      0.475 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115):      5.084      0.063           clock pessimism removed
+    Info (332115):      5.064     -0.020           clock uncertainty
+    Info (332115):      5.077      0.013     uTsu  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Data Arrival Time  :    17.197
+    Info (332115): Data Required Time :     5.077
+    Info (332115): Slack              :   -12.120 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #18: Setup slack is -12.118 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[17][6]
+    Info (332115): To Node      : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[5][8]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.109      1.507 RR    IC  ineqsudx_scan|solver|domain[17][6]|clk
+    Info (332115):      3.619      0.510 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[17][6]
+    Info (332115):      3.826      0.207     uTco  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[17][6]
+    Info (332115):      3.826      0.000 FF  CELL  ineqsudx_scan|solver|domain[17][6]|q
+    Info (332115):      7.675      3.849 FF    IC  ineqsudx_scan|solver|Mux2~35|datab
+    Info (332115):      8.068      0.393 FF  CELL  ineqsudx_scan|solver|Mux2~35|combout
+    Info (332115):      8.348      0.280 FF    IC  ineqsudx_scan|solver|Mux2~36|datab
+    Info (332115):      8.772      0.424 FF  CELL  ineqsudx_scan|solver|Mux2~36|combout
+    Info (332115):      9.468      0.696 FF    IC  ineqsudx_scan|solver|Mux2~39|datac
+    Info (332115):      9.771      0.303 FF  CELL  ineqsudx_scan|solver|Mux2~39|combout
+    Info (332115):     10.005      0.234 FF    IC  ineqsudx_scan|solver|Mux2~42|datad
+    Info (332115):     10.166      0.161 FR  CELL  ineqsudx_scan|solver|Mux2~42|combout
+    Info (332115):     10.951      0.785 RR    IC  ineqsudx_scan|solver|Mux2~43|datad
+    Info (332115):     11.117      0.166 RR  CELL  ineqsudx_scan|solver|Mux2~43|combout
+    Info (332115):     11.356      0.239 RR    IC  ineqsudx_scan|solver|Mux2~54|dataa
+    Info (332115):     11.793      0.437 RF  CELL  ineqsudx_scan|solver|Mux2~54|combout
+    Info (332115):     12.073      0.280 FF    IC  ineqsudx_scan|solver|Mux2~55|datab
+    Info (332115):     12.477      0.404 FF  CELL  ineqsudx_scan|solver|Mux2~55|combout
+    Info (332115):     12.754      0.277 FF    IC  ineqsudx_scan|solver|chosen_digit[7]~1|datac
+    Info (332115):     13.035      0.281 FR  CELL  ineqsudx_scan|solver|chosen_digit[7]~1|combout
+    Info (332115):     13.272      0.237 RR    IC  ineqsudx_scan|solver|chosen_digit[8]|datad
+    Info (332115):     13.438      0.166 RR  CELL  ineqsudx_scan|solver|chosen_digit[8]|combout
+    Info (332115):     15.561      2.123 RR    IC  ineqsudx_scan|solver|DOMAIN_REGISTERS[5].write_domain[8]~1|datad
+    Info (332115):     15.727      0.166 RR  CELL  ineqsudx_scan|solver|DOMAIN_REGISTERS[5].write_domain[8]~1|combout
+    Info (332115):     16.368      0.641 RR    IC  ineqsudx_scan|solver|DOMAIN_REGISTERS[5].write_domain[8]~3|datad
+    Info (332115):     16.534      0.166 RR  CELL  ineqsudx_scan|solver|DOMAIN_REGISTERS[5].write_domain[8]~3|combout
+    Info (332115):     16.534      0.000 RR    IC  ineqsudx_scan|solver|domain[5][8]|d
+    Info (332115):     16.623      0.089 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[5][8]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.978      1.412 RR    IC  ineqsudx_scan|solver|domain[5][8]|clk
+    Info (332115):      4.453      0.475 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[5][8]
+    Info (332115):      4.512      0.059           clock pessimism removed
+    Info (332115):      4.492     -0.020           clock uncertainty
+    Info (332115):      4.505      0.013     uTsu  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|domain[5][8]
+    Info (332115): Data Arrival Time  :    16.623
+    Info (332115): Data Required Time :     4.505
+    Info (332115): Slack              :   -12.118 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #19: Setup slack is -12.100 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|unique_digit[7][2]
+    Info (332115): To Node      : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.207      1.605 RR    IC  ineqsudx_scan|solver|unique_digit[7][2]|clk
+    Info (332115):      3.717      0.510 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|unique_digit[7][2]
+    Info (332115):      3.924      0.207     uTco  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|unique_digit[7][2]
+    Info (332115):      3.924      0.000 RR  CELL  ineqsudx_scan|solver|unique_digit[7][2]|q
+    Info (332115):      5.974      2.050 RR    IC  ineqsudx_scan|solver|CELLS[71].hidden[2]~2|datac
+    Info (332115):      6.278      0.304 RR  CELL  ineqsudx_scan|solver|CELLS[71].hidden[2]~2|combout
+    Info (332115):      7.053      0.775 RR    IC  ineqsudx_scan|solver|Equal2041~0|datab
+    Info (332115):      7.495      0.442 RF  CELL  ineqsudx_scan|solver|Equal2041~0|combout
+    Info (332115):      7.744      0.249 FF    IC  ineqsudx_scan|solver|Equal2032~0|datad
+    Info (332115):      7.875      0.131 FF  CELL  ineqsudx_scan|solver|Equal2032~0|combout
+    Info (332115):      8.139      0.264 FF    IC  ineqsudx_scan|solver|Equal2032~1|datac
+    Info (332115):      8.437      0.298 FF  CELL  ineqsudx_scan|solver|Equal2032~1|combout
+    Info (332115):      9.202      0.765 FF    IC  ineqsudx_scan|solver|next_domain[71][8]~3024|datad
+    Info (332115):      9.363      0.161 FR  CELL  ineqsudx_scan|solver|next_domain[71][8]~3024|combout
+    Info (332115):     10.987      1.624 RR    IC  ineqsudx_scan|solver|WideOr1163~58|datad
+    Info (332115):     11.132      0.145 RF  CELL  ineqsudx_scan|solver|WideOr1163~58|combout
+    Info (332115):     14.209      3.077 FF    IC  ineqsudx_scan|solver|WideOr1163~61|datab
+    Info (332115):     14.563      0.354 FF  CELL  ineqsudx_scan|solver|WideOr1163~61|combout
+    Info (332115):     14.986      0.423 FF    IC  ineqsudx_scan|solver|WideOr1163~62|dataa
+    Info (332115):     15.345      0.359 FF  CELL  ineqsudx_scan|solver|WideOr1163~62|combout
+    Info (332115):     15.633      0.288 FF    IC  ineqsudx_scan|solver|WideOr1163~152|dataa
+    Info (332115):     15.992      0.359 FF  CELL  ineqsudx_scan|solver|WideOr1163~152|combout
+    Info (332115):     16.403      0.411 FF    IC  ineqsudx_scan|solver|WideOr1163~485|datac
+    Info (332115):     16.706      0.303 FF  CELL  ineqsudx_scan|solver|WideOr1163~485|combout
+    Info (332115):     16.952      0.246 FF    IC  ineqsudx_scan|solver|Selector2846~0|datad
+    Info (332115):     17.083      0.131 FF  CELL  ineqsudx_scan|solver|Selector2846~0|combout
+    Info (332115):     17.083      0.000 FF    IC  ineqsudx_scan|solver|state.PICK_ROWS|d
+    Info (332115):     17.177      0.094 FF  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.546      1.980 RR    IC  ineqsudx_scan|solver|state.PICK_ROWS|clk
+    Info (332115):      5.021      0.475 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115):      5.084      0.063           clock pessimism removed
+    Info (332115):      5.064     -0.020           clock uncertainty
+    Info (332115):      5.077      0.013     uTsu  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Data Arrival Time  :    17.177
+    Info (332115): Data Required Time :     5.077
+    Info (332115): Slack              :   -12.100 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #20: Setup slack is -12.083 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|unique_digit[6][4]
+    Info (332115): To Node      : ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      1.602      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.602      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.201      1.599 RR    IC  ineqsudx_scan|solver|unique_digit[6][4]|clk
+    Info (332115):      3.711      0.510 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|unique_digit[6][4]
+    Info (332115):      3.918      0.207     uTco  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|unique_digit[6][4]
+    Info (332115):      3.918      0.000 RR  CELL  ineqsudx_scan|solver|unique_digit[6][4]|q
+    Info (332115):      6.501      2.583 RR    IC  ineqsudx_scan|solver|CELLS[56].hidden[4]~7|datad
+    Info (332115):      6.667      0.166 RR  CELL  ineqsudx_scan|solver|CELLS[56].hidden[4]~7|combout
+    Info (332115):      8.044      1.377 RR    IC  ineqsudx_scan|solver|Equal1732~0|dataa
+    Info (332115):      8.398      0.354 RF  CELL  ineqsudx_scan|solver|Equal1732~0|combout
+    Info (332115):      8.677      0.279 FF    IC  ineqsudx_scan|solver|Equal1732~1|datac
+    Info (332115):      8.975      0.298 FF  CELL  ineqsudx_scan|solver|Equal1732~1|combout
+    Info (332115):      9.823      0.848 FF    IC  ineqsudx_scan|solver|next_domain[56][6]|dataa
+    Info (332115):     10.146      0.323 FF  CELL  ineqsudx_scan|solver|next_domain[56][6]|combout
+    Info (332115):     10.475      0.329 FF    IC  ineqsudx_scan|solver|Equal1733~0|dataa
+    Info (332115):     10.877      0.402 FR  CELL  ineqsudx_scan|solver|Equal1733~0|combout
+    Info (332115):     11.118      0.241 RR    IC  ineqsudx_scan|solver|Equal1733~2|dataa
+    Info (332115):     11.527      0.409 RR  CELL  ineqsudx_scan|solver|Equal1733~2|combout
+    Info (332115):     12.299      0.772 RR    IC  ineqsudx_scan|solver|always192~34|datac
+    Info (332115):     12.604      0.305 RR  CELL  ineqsudx_scan|solver|always192~34|combout
+    Info (332115):     14.938      2.334 RR    IC  ineqsudx_scan|solver|always192~368|datab
+    Info (332115):     15.361      0.423 RR  CELL  ineqsudx_scan|solver|always192~368|combout
+    Info (332115):     15.766      0.405 RR    IC  ineqsudx_scan|solver|always192~369|datad
+    Info (332115):     15.932      0.166 RR  CELL  ineqsudx_scan|solver|always192~369|combout
+    Info (332115):     16.135      0.203 RR    IC  ineqsudx_scan|solver|Selector2844~1|datac
+    Info (332115):     16.415      0.280 RF  CELL  ineqsudx_scan|solver|Selector2844~1|combout
+    Info (332115):     16.710      0.295 FF    IC  ineqsudx_scan|solver|Selector2846~0|datab
+    Info (332115):     17.066      0.356 FF  CELL  ineqsudx_scan|solver|Selector2846~0|combout
+    Info (332115):     17.066      0.000 FF    IC  ineqsudx_scan|solver|state.PICK_ROWS|d
+    Info (332115):     17.160      0.094 FF  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.708      0.708 RR  CELL  clk~input|o
+    Info (332115):      2.566      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.566      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.546      1.980 RR    IC  ineqsudx_scan|solver|state.PICK_ROWS|clk
+    Info (332115):      5.021      0.475 RR  CELL  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115):      5.084      0.063           clock pessimism removed
+    Info (332115):      5.064     -0.020           clock uncertainty
+    Info (332115):      5.077      0.013     uTsu  ineqsudx_scan:ineqsudx_scan|ineqsudx_scan_solver:solver|state.PICK_ROWS
+    Info (332115): Data Arrival Time  :    17.160
+    Info (332115): Data Required Time :     5.077
+    Info (332115): Slack              :   -12.083 (VIOLATED)
+    Info (332115): ===================================================================
+Info (23030): Evaluation of Tcl script /data/project/tsmc65/shared/qsyn/util/report_worst.tcl was successful
+Info: Quartus Prime Timing Analyzer was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 614 megabytes
+    Info: Processing ended: Wed Sep  9 00:17:38 2026
+    Info: Elapsed time: 00:00:03
+    Info: Total CPU time (on all processors): 00:00:02

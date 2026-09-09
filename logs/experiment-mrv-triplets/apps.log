@@ -1,0 +1,76 @@
+Testing 20blanks
+Sudoku solve                                                   267 cycles
+Solved board PASSED basic Sudoku checker
+Solved board PASSED inequalities checker
+Testing 51blanks
+Sudoku solve                                                   291 cycles
+Solved board PASSED basic Sudoku checker
+Solved board PASSED inequalities checker
+Testing easy1
+Sudoku solve                                                   267 cycles
+Solved board PASSED basic Sudoku checker
+Solved board PASSED inequalities checker
+Testing hard1
+Sudoku solve                                                   579 cycles
+Solved board PASSED basic Sudoku checker
+Solved board PASSED inequalities checker
+Testing ineq/dev/p5_presolved
+Sudoku solve                                                   267 cycles
+Solved board PASSED basic Sudoku checker
+Solved board PASSED inequalities checker
+Testing ineq/set0/ascend
+Sudoku solve                                                   267 cycles
+Solved board PASSED basic Sudoku checker
+Solved board PASSED inequalities checker
+Testing ineq/set0/plain
+Sudoku solve                                                   483 cycles
+Solved board PASSED basic Sudoku checker
+Solved board PASSED inequalities checker
+Testing ineq/set0/single
+Sudoku solve                                                   291 cycles
+Solved board PASSED basic Sudoku checker
+Solved board PASSED inequalities checker
+Testing ineq/set0/sparse1
+Sudoku solve                                                   267 cycles
+Solved board PASSED basic Sudoku checker
+Solved board PASSED inequalities checker
+Testing ineq/set1/easy1
+Sudoku solve                                                   291 cycles
+Solved board PASSED basic Sudoku checker
+Solved board PASSED inequalities checker
+Testing ineq/set1/easy2
+Sudoku solve                                                   291 cycles
+Solved board PASSED basic Sudoku checker
+Solved board PASSED inequalities checker
+Testing ineq/set1/medium1
+Sudoku solve                                                   291 cycles
+Solved board PASSED basic Sudoku checker
+Solved board PASSED inequalities checker
+Testing ineq/set1/medium2
+Sudoku solve                                                   315 cycles
+Solved board PASSED basic Sudoku checker
+Solved board PASSED inequalities checker
+Testing ineq/set1/medium3
+Sudoku solve                                                   315 cycles
+Solved board PASSED basic Sudoku checker
+Solved board PASSED inequalities checker
+Testing ineq/set1/hard1
+Sudoku solve                                                   315 cycles
+Solved board PASSED basic Sudoku checker
+Solved board PASSED inequalities checker
+Testing ineq/set1/hard2
+Sudoku solve                                                   339 cycles
+Solved board PASSED basic Sudoku checker
+Solved board PASSED inequalities checker
+Testing ineq/set1/hard3
+Sudoku solve                                                   339 cycles
+Solved board PASSED basic Sudoku checker
+Solved board PASSED inequalities checker
+Testing ineq/set1/hard4
+Sudoku solve                                                   291 cycles
+Solved board PASSED basic Sudoku checker
+Solved board PASSED inequalities checker
+Testing ineq/set1/sparse_ineq
+Sudoku solve                                                   411 cycles
+Solved board PASSED basic Sudoku checker
+Solved board PASSED inequalities checker

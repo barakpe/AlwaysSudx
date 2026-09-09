@@ -1,0 +1,18 @@
+Fitter Status : Successful - Wed Sep  9 00:16:19 2026
+Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+Revision Name : ineqsudx_scan
+Top-level Entity Name : qsyn_dummy_xlr_wrap
+Family : MAX 10
+Device : 10M50DAF484C7G
+Timing Models : Final
+Total logic elements : 21,968 / 49,760 ( 44 % )
+    Total combinational functions : 21,670 / 49,760 ( 44 % )
+    Dedicated logic registers : 3,171 / 49,760 ( 6 % )
+Total registers : 3171
+Total pins : 120 / 360 ( 33 % )
+Total virtual pins : 0
+Total memory bits : 60,264 / 1,677,312 ( 4 % )
+Embedded Multiplier 9-bit elements : 0 / 288 ( 0 % )
+Total PLLs : 0 / 4 ( 0 % )
+UFM blocks : 0 / 1 ( 0 % )
+ADC blocks : 0 / 2 ( 0 % )

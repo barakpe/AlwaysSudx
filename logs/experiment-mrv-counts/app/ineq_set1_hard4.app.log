@@ -1,0 +1,84 @@
+Compiling Application ineqsudx_scan
+/project/tsmc65/users/perezba/ws/AlwaysSudxIneqBuild/sim
+User Name is perezba , hashed to unique port number 10695
+
+PY: starting up on localhost port 10695
+PY: waiting for a simulation session connection
+PY connection from ('127.0.0.1', 60228)
+PY: received Hello from System-Verilog!
+
+PY: sending data back to the client
+k5_server.py: Detected system clock speed 100 MHz
+Currently Baudrate can be updated only in FPGA , keeping simulation default baudrate 20000000
+PY: Changing UART baudrate  to 20000000
+PY: Changing UART interface clk_div_cntr to 4 (decimal)
+Configuring TB Uart clk_div_cntr to 4
+Server in app_mode, launching ineqsudx_scan
+Loading app ineqsudx_scan for thread 0
+Loading app by sim-fast-back-door mode /project/tsmc65/users/perezba/ws/AlwaysSudxIneqBuild/sw/apps/ineqsudx_scan/build/instr_loadmem.txt
+Loading app by sim-fast-back-door mode /project/tsmc65/users/perezba/ws/AlwaysSudxIneqBuild/sw/apps/ineqsudx_scan/build/data_loadmem.txt
+Enabled thread 0
+DONE launch_app ineqsudx_scan, launch_type = spmt for thread 0
+HELLO SUDOKU SOLVER
+pyshell: Opening file /project/tsmc65/users/perezba/ws/AlwaysSudxIneqBuild/sw/apps/ineqsudx_scan/../sud_shared/sudoku_input_ineq/set1/hard4.txt of type r , file Index is 0
+Loading from app_src_dir/../sud_shared/sudoku_input_ineq/set1/hard4.txt to address 0x40000000 , byte length : 81
+Loaded 81 bytes
+pyshell: Closing file /project/tsmc65/users/perezba/ws/AlwaysSudxIneqBuild/sw/apps/ineqsudx_scan/../sud_shared/sudoku_input_ineq/set1/hard4.txt, file Index is 0
+=== Input ===
++---+---+---+---+---+---+---+---+---+
+| . | . | . | 2 | 6 < . | . | . | . |
++---+---+---+---+---+-V-+---+-^-+-^-+
+| . | 6 > . | . | 5 | . < 9 > . | . |
++---+---+---+---+---+-^-+---+---+---+
+| . | . < 8 < . | 3 | . > . < . > 2 |
++---+---+---#---+---+---#---+---+---+
+| . | 4 | . < 7 | . > . | . < . | 8 |
++---+---+---+---+-V-+---+---+---+---+
+| . | 3 | . | . | . < . | . | . | . |
++-V-+---+-^-+---+---+---+---+-V-+---+
+| 2 | 8 | . > 1 | . | . | . | 3 | 9 |
++-^-+-^-+-V-#---+---+---#-^-+---+---+
+| . | . | . | 6 | 8 | . | . | . | . |
++---+---+---+---+---+---+---+---+---+
+| . | . | . | . | . | . | . | . | . |
++---+-V-+---+---+---+-V-+---+---+---+
+| . | . | . | . | 7 | . | 2 | 9 | 3 |
++---+---+---+---+---+---+---+---+---+
+
+Solving in progress...
+
+Seting up performance measuring
+
+Sudoku solve                                                   291 cycles
+
+=== Application reported Solved ===
++---+---+---+---+---+---+---+---+---+
+| 4 | 7 | 9 | 2 | 6 < 8 | 3 | 1 | 5 |
++---+---+---+---+---+-V-+---+-^-+-^-+
+| 3 | 6 > 2 | 4 | 5 | 1 < 9 > 8 | 7 |
++---+---+---+---+---+-^-+---+---+---+
+| 1 | 5 < 8 < 9 | 3 | 7 > 4 < 6 > 2 |
++---+---+---#---+---+---#---+---+---+
+| 6 | 4 | 5 < 7 | 9 > 3 | 1 < 2 | 8 |
++---+---+---+---+-V-+---+---+---+---+
+| 9 | 3 | 1 | 8 | 2 < 5 | 6 | 7 | 4 |
++-V-+---+-^-+---+---+---+---+-V-+---+
+| 2 | 8 | 7 > 1 | 4 | 6 | 5 | 3 | 9 |
++-^-+-^-+-V-#---+---+---#-^-+---+---+
+| 5 | 9 | 3 | 6 | 8 | 2 | 7 | 4 | 1 |
++---+---+---+---+---+---+---+---+---+
+| 7 | 2 | 4 | 3 | 1 | 9 | 8 | 5 | 6 |
++---+-V-+---+---+---+-V-+---+---+---+
+| 8 | 1 | 6 | 5 | 7 | 4 | 2 | 9 | 3 |
++---+---+---+---+---+---+---+---+---+
+Checking compatibility to original board
+Checking Sudoku rules compatibility
+
+Solved board PASSED basic Sudoku checker
+
+Solved board PASSED inequalities checker
+
+ pyshell: Quitting Application upon sim_finish()/bm_quit_app() message received over UART
+Thread 0 DONE quit_app detected
+No active thread
+Server is Quitting

@@ -1,0 +1,123 @@
+Flow report for ineqsudx_scan
+Wed Sep  9 00:06:11 2026
+Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Flow Summary
+  3. Flow Settings
+  4. Flow Non-Default Global Settings
+  5. Flow Elapsed Time
+  6. Flow OS Summary
+  7. Flow Log
+  8. Flow Messages
+  9. Flow Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2025  Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Altera and sold by Altera or its authorized distributors.  Please
+refer to the Altera Software License Subscription Agreements 
+on the Quartus Prime software download page.
+
+
+
++--------------------------------------------------------------------------------------+
+; Flow Summary                                                                         ;
++------------------------------------+-------------------------------------------------+
+; Flow Status                        ; Successful - Wed Sep  9 00:03:29 2026           ;
+; Quartus Prime Version              ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
+; Revision Name                      ; ineqsudx_scan                                   ;
+; Top-level Entity Name              ; qsyn_dummy_xlr_wrap                             ;
+; Family                             ; MAX 10                                          ;
+; Device                             ; 10M50DAF484C7G                                  ;
+; Timing Models                      ; Final                                           ;
+; Total logic elements               ; 22,433 / 49,760 ( 45 % )                        ;
+;     Total combinational functions  ; 22,124 / 49,760 ( 44 % )                        ;
+;     Dedicated logic registers      ; 3,032 / 49,760 ( 6 % )                          ;
+; Total registers                    ; 3032                                            ;
+; Total pins                         ; 120 / 360 ( 33 % )                              ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 60,264 / 1,677,312 ( 4 % )                      ;
+; Embedded Multiplier 9-bit elements ; 0 / 288 ( 0 % )                                 ;
+; Total PLLs                         ; 0 / 4 ( 0 % )                                   ;
+; UFM blocks                         ; 0 / 1 ( 0 % )                                   ;
+; ADC blocks                         ; 0 / 2 ( 0 % )                                   ;
++------------------------------------+-------------------------------------------------+
+
+
++-----------------------------------------+
+; Flow Settings                           ;
++-------------------+---------------------+
+; Option            ; Setting             ;
++-------------------+---------------------+
+; Start date & time ; 09/08/2026 23:18:45 ;
+; Main task         ; Compilation         ;
+; Revision Name     ; ineqsudx_scan       ;
++-------------------+---------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                                 ;
++--------------------------+----------------------------------------------------------------------------+---------------+-------------+------------+
+; Assignment Name          ; Value                                                                      ; Default Value ; Entity Name ; Section Id ;
++--------------------------+----------------------------------------------------------------------------+---------------+-------------+------------+
+; COMPILER_SIGNATURE_ID    ; 11925173859425.178890952408779                                             ; --            ; --          ; --         ;
+; NUM_PARALLEL_PROCESSORS  ; 1                                                                          ; --            ; --          ; --         ;
+; PROJECT_OUTPUT_DIRECTORY ; qsyn_output_files                                                          ; --            ; --          ; --         ;
+; SEARCH_PATH              ; /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox                            ; --            ; --          ; --         ;
+; SEARCH_PATH              ; /project/tsmc65/users/perezba/ws/AlwaysSudxIneqBuild/sw/apps/ineqsudx_scan ; --            ; --          ; --         ;
+; TOP_LEVEL_ENTITY         ; qsyn_dummy_xlr_wrap                                                        ; ineqsudx_scan ; --          ; --         ;
+; VERILOG_MACRO            ; CRNT_XLR=ineqsudx_scan                                                     ; --            ; --          ; --         ;
+; VERILOG_MACRO            ; HOST_REGS_INTRF                                                            ; --            ; --          ; --         ;
++--------------------------+----------------------------------------------------------------------------+---------------+-------------+------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                        ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis ; 00:04:20     ; 1.0                     ; 616 MB              ; 00:02:24                           ;
+; Fitter               ; 00:40:21     ; 1.0                     ; 1018 MB             ; 00:29:03                           ;
+; Timing Analyzer      ; 00:02:16     ; 1.0                     ; 696 MB              ; 00:01:15                           ;
+; Total                ; 00:46:57     ; --                      ; --                  ; 00:32:42                           ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                                                   ;
++----------------------+------------------------------------------------+-------------+------------+----------------+
+; Module Name          ; Machine Hostname                               ; OS Name     ; OS Version ; Processor type ;
++----------------------+------------------------------------------------+-------------+------------+----------------+
+; Analysis & Synthesis ; ip-10-70-158-198.il-central-1.compute.internal ; Rocky Linux ; 8          ; x86_64         ;
+; Fitter               ; ip-10-70-158-198.il-central-1.compute.internal ; Rocky Linux ; 8          ; x86_64         ;
+; Timing Analyzer      ; ip-10-70-158-198.il-central-1.compute.internal ; Rocky Linux ; 8          ; x86_64         ;
++----------------------+------------------------------------------------+-------------+------------+----------------+
+
+
+------------
+; Flow Log ;
+------------
+quartus_map --read_settings_files=on --write_settings_files=off ineqsudx_scan -c ineqsudx_scan
+quartus_fit --read_settings_files=on --write_settings_files=off ineqsudx_scan -c ineqsudx_scan
+quartus_sta ineqsudx_scan -c ineqsudx_scan
+
+
+
