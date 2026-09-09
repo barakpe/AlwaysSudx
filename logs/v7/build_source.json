@@ -1,0 +1,13 @@
+{
+  "rtl_commit": "5d93fab",
+  "files": {
+    "hw/xlrs/sudx_scan/sudx_def_pkg.sv": "455b13adf5b15ec14a63708cb3796cc4e5f878b966be3cd76f614aced94f885e",
+    "hw/xlrs/sudx_scan/sudx_scan.sv": "c2eb503d6eec9652d0892098607ae03d769c44e3bc0fcec957483815c31c6834",
+    "hw/xlrs/sudx_scan/sudx_scan_solver.sv": "6f50565a6029a77b8bf643004bc047a0b5bf6e8ad72c05ac0da3d830a0e8e3ab",
+    "hw/xlrs/sudx_scan/sudx_scan.f": "f424763835e5c02fca0eeb09722ef46a800b6f894df0bb23f9e86cf93e72ea11"
+  },
+  "artifacts": {
+    "hw/gen_fpga/prog_files/k5_xbox_sudx_scan.sof": "8cbd14691b1442c3278f9133f3bfd5a528ad839383790ad743c6308a0645582d",
+    "hw/gen_fpga/prog_files/k5_xbox_sudx_scan.svf": "20ee95e68b5aac7ad8682b0dcaf1c3ca8ad7e6ccd8162c2a4a15dc62f27eb62a"
+  }
+}

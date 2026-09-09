@@ -1,4 +1,4 @@
-# Running the full batch — classic v5 (`main`)
+# Running the full batch — classic v7 (`main`)
 
 Everything below runs from the repo root on the course RC machine.
 Accelerator name is `sudx_scan`; app name is `sudx_scan` with library `sud_shared`.
@@ -50,11 +50,13 @@ for b in easy1 20blanks 51blanks hard1; do bash bench/sim.sh $b logs/local/app; 
 
 The simulator uses a per-user socket — run boards **sequentially**, not in parallel.
 Reference application cycles: `267 / 267 / 291 / 483` in that board order.
+Note the app polls the done register, so it quantises: v7 solves hard1 in 202
+solver cycles rather than v5's 217, and still reports 483.
 
 ## 3. Standalone synthesis (area + the Fmax used for scoring)
 
 ```sh
-bash bench/synth.sh                 # ≈ 20 min (fit dominates)
+bash bench/synth.sh                 # 10-20 min (fit dominates, and varies)
 ```
 
 Runs `qsyn_xlr sudx_scan -all` in `hw/xlrs/sudx_scan/` and greps the three logs for

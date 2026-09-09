@@ -1,12 +1,13 @@
 # AlwaysSudx
 
-Classic 9x9 Sudoku accelerator for DDP26 K5-XBOX. **Final version: v5.**
+Classic 9x9 Sudoku accelerator for DDP26 K5-XBOX. **Final version: v7.**
 
-- hard1 course score: **8.31 us**, versus **251.20 us** for our course MRV baseline.
-- **3.20x better mean core cycles/Fmax than opus** on 3,191 published holdout runs.
-- **17,219 accelerator LEs**, **58.10 MHz** standalone Fmax.
-- Full-system `.sof` and `.svf` built; **50 MHz timing passes**.
+- hard1 course score: **6.70 us**, versus **251.20 us** for our course MRV baseline.
+- **4.18x better mean core cycles/Fmax than opus** on 3,191 published holdout runs.
+- **17,148 accelerator LEs**, **72.05 MHz** standalone Fmax.
+- Full-system `.sof` and `.svf` built; **50 MHz timing passes** with +2.162 ns setup slack.
 - 3,704 solvable-board runs, 35 rejection tests, and all four course app checks pass.
+- v6 is cycle-identical to v5; v7 removes one cycle per guess with identical grids.
 - Physical FPGA testing is the remaining user-side validation.
 
 [Full design walkthrough with code examples](docs/DESIGN_WALKTHROUGH.md)
@@ -69,8 +70,10 @@ hardware is used.
 
 `v0` is the verified course MRV baseline; `v1` balances selection; `v2` introduces
 batch propagation; `v3` reduces wrapper area; `v4` simplifies cell writes; `v5` adds
-hidden singles and is fully built. Each change is a separate commit. Intermediate
-area-only milestones are explicitly marked in RESULTS.md.
+hidden singles; `v6` takes the contradiction reduction off the cell write enables;
+`v7` folds the MRV row stage into APPLY and is fully built. Each change is a
+separate commit. Intermediate area-only milestones are explicitly marked in
+RESULTS.md, and measured but rejected variants are kept in `logs/experiments/`.
 
 Course source: local ex3.1 commit `7b86385457f066c5a1872778cacd5f64ab6415de`,
 https://github.com/DDP26-summer/ex3.1 . Baseline adaptation only renamed the MRV
