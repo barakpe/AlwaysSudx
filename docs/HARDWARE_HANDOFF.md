@@ -37,6 +37,20 @@ polls the done register, so a saving that small does not reach the reported
 count. Hardware counts remain to be measured; compare identical timing windows
 when evaluating the score.
 
+## The unseen hackathon boards
+
+The nine `std` boards from the hackathon repository are installed under
+`sw/apps/sud_shared/sudoku_input_std/`, so they run with the same command:
+
+```sh
+launch_k5_app sudx_scan -asl sud_shared -gpv std/hard1
+```
+
+Boards are `std/hard1`, `hard2`, `hard3`, `hard5` … `hard10` (there is no
+`hard4`). RTL reference is **315 application cycles for every one of the nine**,
+all passing the final checker. The solver never guesses on these, so expect the
+same count on every board; a differing count on hardware is worth investigating.
+
 ## Trying a faster clock
 
 v5's full system was limited by the accelerator, the only clock domain with

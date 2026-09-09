@@ -83,6 +83,37 @@ solve time exceeds that granularity, which the published-holdout means below
 demonstrate. Direct solver cycles are a different measurement window and must
 not be substituted for the reported app score.
 
+## Unseen hackathon benchmark boards
+
+The nine `sudoku_input_std` boards published in the DDP26 hackathon repository
+(commit `f430fcf`, "added more test cases") were copied unchanged into
+`sw/apps/sud_shared/sudoku_input_std/`. There is no `hard4`.
+
+| Board | Direct solver cycles | Reported application cycles | Score at 72.05 MHz |
+|---|---:|---:|---:|
+| std/hard1 … std/hard10 (all nine) | 34 | 315 | **4.37 us** |
+
+All nine pass the course final checker. Logs: `logs/v7/unseen_app/`, and direct
+RTL cycles and grids in `logs/v7/unseen/`.
+
+Every one of these boards has exactly **17 givens**, the theoretical minimum, but
+they are easy for a batching engine: **the solver never guesses on any of them.**
+Fifteen rounds of batched naked and hidden singles fill the grid and a sixteenth
+round detects completion, so the cost is 2 + 2x16 = 34 cycles, identical on all
+nine. They are nine genuinely distinct puzzles with distinct clue patterns and
+distinct solutions, so the identical cost reflects a shared construction depth,
+not duplicate inputs.
+
+Because nothing is guessed, v7's saving of one cycle per guess does not apply:
+v5 produces byte-identical cycles and grids on this set, which is itself a useful
+independent confirmation that no search occurs. The gain over v5 here is entirely
+the v6 frequency improvement, 315 / 58.10 = 5.42 us against 315 / 72.05 = 4.37 us.
+
+This result was checked three ways before being reported: the RTL testbench's own
+givens/row/column/box checker, an independent Python validator over the recorded
+grids, and an independent Python singles-only propagator that reproduces the
+fifteen-round count exactly.
+
 ## Comparison with the user's opus branch
 
 Reference: AlwaysSud `explore/opus5-phases`, commit `5a227db`, `s2fastmrv`,

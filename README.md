@@ -7,6 +7,7 @@ Classic 9x9 Sudoku accelerator for DDP26 K5-XBOX. **Final version: v7.**
 - **17,148 accelerator LEs**, **72.05 MHz** standalone Fmax.
 - Full-system `.sof` and `.svf` built; **50 MHz timing passes** with +2.162 ns setup slack.
 - 3,704 solvable-board runs, 35 rejection tests, and all four course app checks pass.
+- All 9 unseen hackathon `std` boards pass at **4.37 us** each, with zero guesses.
 - v6 is cycle-identical to v5; v7 removes one cycle per guess with identical grids.
 - Physical FPGA testing is the remaining user-side validation.
 
