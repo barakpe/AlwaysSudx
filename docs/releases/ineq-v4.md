@@ -1,3 +1,17 @@
+Complete eight-board benchmark update (course commit f430fcf):
+
+**ineq-v4: 3,120 cycles / 87.83 MHz = 35.5232 us.**
+**ineq-v3: 2,832 cycles / 73.09 MHz = 38.7468 us.**
+v4 reduces normalized total time by **8.32%**. Both versions pass both supplied checkers on all eight required rows. The spreadsheet's `ineq/set1/sparse_ineq` row is used for the repeated `plain` in the user message.
+
+Use the attached **benchmark-ineq-v4-complete.xlsx** and **BENCHMARK_RESULTS.md**. The new evidence ZIP supplies the eight exact course puzzle files and new test logs; install its `sw/apps/sud_shared` puzzle paths alongside the original source ZIP. **BENCHMARK_SHA256SUMS** covers this supplement. Original release assets and their SHA256SUMS remain unchanged; the earlier partial workbook is superseded.
+
+These are simulation results; v3/v4 hardware execution is still pending. At physical 50 MHz, the eight-board totals are 56.64 us (v3) and 62.40 us (v4), separate from the standalone-normalized score.
+
+---
+
+Original build and development-set details:
+
 Propagation decision pipeline, ready for DE10-Lite hardware testing.
 
 - **87.83 MHz standalone Fmax**, **22,289 standalone fitted LEs**.

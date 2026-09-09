@@ -1,0 +1,51 @@
+{
+  "version": "ineq-v4",
+  "course_commit": "f430fcffd5321bfe35a32c2cf1f997356e8285b1",
+  "build_commit": "fe873baef82bd15b7de963415be563fbc2970c10",
+  "rows": [
+    {
+      "board": "std/hard5",
+      "application_cycles": 339,
+      "checkers_passed": true
+    },
+    {
+      "board": "std/hard8",
+      "application_cycles": 339,
+      "checkers_passed": true
+    },
+    {
+      "board": "ineq/set0/single",
+      "application_cycles": 315,
+      "checkers_passed": true
+    },
+    {
+      "board": "ineq/set0/ascend",
+      "application_cycles": 267,
+      "checkers_passed": true
+    },
+    {
+      "board": "ineq/set0/plain",
+      "application_cycles": 555,
+      "checkers_passed": true
+    },
+    {
+      "board": "ineq/set1/sparse_ineq",
+      "application_cycles": 459,
+      "checkers_passed": true
+    },
+    {
+      "board": "ineq/set2/superhardA",
+      "application_cycles": 339,
+      "checkers_passed": true
+    },
+    {
+      "board": "ineq/set2/xsparse2",
+      "application_cycles": 507,
+      "checkers_passed": true
+    }
+  ],
+  "standalone_fmax_mhz": 87.83,
+  "total_cycles": 3120,
+  "normalized_total_us": 35.52316975976318,
+  "hardware_execution_tested": false
+}
