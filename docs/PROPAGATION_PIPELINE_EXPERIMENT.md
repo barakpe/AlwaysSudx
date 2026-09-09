@@ -1,5 +1,10 @@
 # Extra propagation stage: measured benefit and limits
 
+**Completed benchmark update:** the eight course rows now give v4 a total of
+35.5232 us versus v3's 38.7468 us, an 8.32% reduction. Both pass all eight
+application checks. See [the complete results](BENCHMARK_RESULTS.md). The
+19-case and larger-corpus measurements below explain the original experiment.
+
 The v3 timing bottleneck moved from MRV counting to the path from registered
 hidden-single information, through per-cell pruning, to the global state-machine
 decision. This experiment starts from the triplet MRV alternative and separates
@@ -31,8 +36,8 @@ These are solver-only times, **not full application scores**. The complete
 application includes fixed overhead, which changes the tradeoff. The extra
 stage can win the supplied short application tests while losing average core
 time on broader puzzles. This is why v3 is retained as a separate candidate,
-and why neither result proves a global optimum. Final selection on the official
-benchmark requires the four named but currently unavailable unseen boards.
+and why neither result proves a global optimum. The final eight-board measurements subsequently selected v4 for the course
+score; the broader solver-only tradeoff remains.
 
 All computation still starts at SOLVE and remains inside the unchanged timer.
 The course commands, constraints, C algorithm, and data encoding are unchanged.
@@ -41,8 +46,8 @@ The course commands, constraints, C algorithm, and data encoding are unchanged.
 
 All 19 solvable cases pass both checkers. Mean application cycles are 347.8421;
 normalized time is 3.9604 us at 87.83 MHz. The four available inequality
-benchmark rows total 1596 cycles, or 18.1715 us. The four unseen files are
-still unavailable. The full-system 50 MHz build is complete: 56.58 MHz Fmax,
+benchmark rows total 1596 cycles, or 18.1715 us. The four unseen files were unavailable at that milestone; their later
+measurements are included in `BENCHMARK_RESULTS.md`. The full-system 50 MHz build is complete: 56.58 MHz Fmax,
 34,627 fitted LEs, 173/182 M9Ks, and all reported timing slacks nonnegative.
 Physical hardware execution remains pending.
 
@@ -138,6 +143,6 @@ course checkers. Two negative application runs confirm that contradictions
 report non-solved rather than a false success.
 
 These results support this implementation on the measured cases. They do not
-prove optimality over all architectures or establish the unseen benchmark
-winner. We keep v3 and v4 as separate branches and releases so the final cases
-can decide between their different cycle/frequency tradeoffs.
+prove optimality over all architectures. The subsequently published eight
+benchmark cases select v4 on normalized application time. We keep v3 and v4
+as separate branches and releases to preserve their different tradeoffs.

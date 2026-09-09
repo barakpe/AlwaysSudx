@@ -63,7 +63,8 @@ range of cells, and equal counts always select the earlier entry. The result is
 the same lexicographic minimum `(candidate count, cell index)` as v2.
 
 All 4,347 RTL result records also match v2 byte for byte for this experiment.
-Mapped logic is 23,279 LEs with 3,032 registers; final timing is pending.
+Final fitted logic is 22,433 LEs with 3,032 registers; standalone Fmax is
+72.47 MHz. This loses to the registered-count circuit at identical cycles.
 
 The parent-domain snapshot still uses exactly the same three writes in
 PICK_ROWS, PICK_CELL, and PLACE. Pipeline registers contain selection metadata;
@@ -78,8 +79,8 @@ Then measure its actual application cycles/Fmax and complete a full-system
 programming build with the provided `comp_fpga` utility. A lower configured
 clock is acceptable if needed; timing must pass at the clock actually used.
 
-The v2 bitstream is retained throughout. The experiments are on the
-`hackathon/mrv-pipeline` branch until a measured winner is selected.
+The v2 bitstream is retained throughout. The registered-count experiment was selected as v3 on
+`hackathon/mrv-pipeline`. The later v4 propagation experiment is separate.
 
 ## Course constraint-path issue
 
