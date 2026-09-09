@@ -10,6 +10,7 @@ Classic 9x9 Sudoku accelerator for DDP26 K5-XBOX. **Final version: v5.**
 - Physical FPGA testing is the remaining user-side validation.
 
 [Full design walkthrough with code examples](docs/DESIGN_WALKTHROUGH.md)
+· [How to run the full batch](docs/RUNNING.md)
 · [Measurements and caveats](RESULTS.md) · [Readable architecture](docs/BATCH_DESIGN.md)
 · [Hardware handoff](docs/HARDWARE_HANDOFF.md)
 

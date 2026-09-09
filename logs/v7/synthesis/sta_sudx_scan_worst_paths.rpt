@@ -1,0 +1,1603 @@
+Info: *******************************************************************
+Info: Running Quartus Prime Timing Analyzer
+    Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+    Info: Copyright (C) 2025  Altera Corporation. All rights reserved.
+    Info: Your use of Altera Corporation's design tools, logic functions 
+    Info: and other software and tools, and any partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Altera Program License 
+    Info: Subscription Agreement, the Altera Quartus Prime License Agreement,
+    Info: the Altera IP License Agreement, or other applicable license
+    Info: agreement, including, without limitation, that your use is for
+    Info: the sole purpose of programming logic devices manufactured by
+    Info: Altera and sold by Altera or its authorized distributors.  Please
+    Info: refer to the Altera Software License Subscription Agreements 
+    Info: on the Quartus Prime software download page.
+    Info: Processing started: Wed Sep  9 09:35:05 2026
+Info: Command: quartus_sta -t /data/project/tsmc65/shared/qsyn/util/report_worst.tcl sudx_scan
+Info: Quartus(args): sudx_scan
+Info (21076): High junction temperature operating condition is not set. Assuming a default value of '85'.
+Info (21076): Low junction temperature operating condition is not set. Assuming a default value of '0'.
+Critical Warning (332012): Synopsys Design Constraints File file not found: '/data/project/tsmc65/shared/qsyn/basic.sdc'. A Synopsys Design Constraints File is required by the Timing Analyzer to get proper timing constraints. Without it, the Compiler will not properly optimize the design.
+Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
+Info (332105): Deriving Clocks
+    Info (332105): create_clock -period 1.000 -name clk clk
+Info (332143): No user constrained clock uncertainty found in the design. Calling "derive_clock_uncertainty"
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Info (332115): Report Timing: Found 20 setup paths (20 violated).  Worst case slack is -12.880
+    Info (332115): -setup
+    Info (332115): -npaths 20
+    Info (332115): -detail full_path
+    Info (332115): -stdout
+Info (332115): Path #1: Setup slack is -12.880 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[21][1]
+    Info (332115): To Node      : sudx_scan:sudx_scan|sudx_scan_solver:solver|state.PICK_CELL
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.231      1.568 RR    IC  sudx_scan|solver|candidate[21][1]|clk
+    Info (332115):      3.741      0.510 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[21][1]
+    Info (332115):      3.948      0.207     uTco  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[21][1]
+    Info (332115):      3.948      0.000 FF  CELL  sudx_scan|solver|candidate[21][1]|q
+    Info (332115):      6.377      2.429 FF    IC  sudx_scan|solver|UNITS[12].candidate_union|any_digit[2][1]~2|datac
+    Info (332115):      6.675      0.298 FF  CELL  sudx_scan|solver|UNITS[12].candidate_union|any_digit[2][1]~2|combout
+    Info (332115):      6.967      0.292 FF    IC  sudx_scan|solver|unique_digit[12][1]~809|datab
+    Info (332115):      7.371      0.404 FF  CELL  sudx_scan|solver|unique_digit[12][1]~809|combout
+    Info (332115):      7.610      0.239 FF    IC  sudx_scan|solver|unique_digit[12][1]~813|datad
+    Info (332115):      7.741      0.131 FF  CELL  sudx_scan|solver|unique_digit[12][1]~813|combout
+    Info (332115):      9.712      1.971 FF    IC  sudx_scan|solver|forced[3][1]~865|datac
+    Info (332115):     10.015      0.303 FF  CELL  sudx_scan|solver|forced[3][1]~865|combout
+    Info (332115):     10.317      0.302 FF    IC  sudx_scan|solver|Equal67~0|datab
+    Info (332115):     10.762      0.445 FR  CELL  sudx_scan|solver|Equal67~0|combout
+    Info (332115):     11.009      0.247 RR    IC  sudx_scan|solver|WideOr57~0|dataa
+    Info (332115):     11.431      0.422 RR  CELL  sudx_scan|solver|WideOr57~0|combout
+    Info (332115):     12.489      1.058 RR    IC  sudx_scan|solver|WideOr57~1|datac
+    Info (332115):     12.793      0.304 RR  CELL  sudx_scan|solver|WideOr57~1|combout
+    Info (332115):     13.036      0.243 RR    IC  sudx_scan|solver|WideOr139~2|datac
+    Info (332115):     13.341      0.305 RR  CELL  sudx_scan|solver|WideOr139~2|combout
+    Info (332115):     14.614      1.273 RR    IC  sudx_scan|solver|WideOr139~3|datad
+    Info (332115):     14.780      0.166 RR  CELL  sudx_scan|solver|WideOr139~3|combout
+    Info (332115):     16.050      1.270 RR    IC  sudx_scan|solver|WideOr139~7|datad
+    Info (332115):     16.216      0.166 RR  CELL  sudx_scan|solver|WideOr139~7|combout
+    Info (332115):     16.420      0.204 RR    IC  sudx_scan|solver|WideOr139~15|datad
+    Info (332115):     16.586      0.166 RR  CELL  sudx_scan|solver|WideOr139~15|combout
+    Info (332115):     16.788      0.202 RR    IC  sudx_scan|solver|WideOr139~35|datac
+    Info (332115):     17.093      0.305 RR  CELL  sudx_scan|solver|WideOr139~35|combout
+    Info (332115):     17.484      0.391 RR    IC  sudx_scan|solver|Selector4~1|datac
+    Info (332115):     17.789      0.305 RR  CELL  sudx_scan|solver|Selector4~1|combout
+    Info (332115):     17.789      0.000 RR    IC  sudx_scan|solver|state.PICK_CELL|d
+    Info (332115):     17.878      0.089 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|state.PICK_CELL
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.493      1.866 RR    IC  sudx_scan|solver|state.PICK_CELL|clk
+    Info (332115):      4.968      0.475 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|state.PICK_CELL
+    Info (332115):      5.005      0.037           clock pessimism removed
+    Info (332115):      4.985     -0.020           clock uncertainty
+    Info (332115):      4.998      0.013     uTsu  sudx_scan:sudx_scan|sudx_scan_solver:solver|state.PICK_CELL
+    Info (332115): Data Arrival Time  :    17.878
+    Info (332115): Data Required Time :     4.998
+    Info (332115): Slack              :   -12.880 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #2: Setup slack is -12.863 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[21][1]
+    Info (332115): To Node      : sudx_scan:sudx_scan|sudx_scan_solver:solver|state.SCAN
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.231      1.568 RR    IC  sudx_scan|solver|candidate[21][1]|clk
+    Info (332115):      3.741      0.510 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[21][1]
+    Info (332115):      3.948      0.207     uTco  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[21][1]
+    Info (332115):      3.948      0.000 FF  CELL  sudx_scan|solver|candidate[21][1]|q
+    Info (332115):      6.377      2.429 FF    IC  sudx_scan|solver|UNITS[12].candidate_union|any_digit[2][1]~2|datac
+    Info (332115):      6.675      0.298 FF  CELL  sudx_scan|solver|UNITS[12].candidate_union|any_digit[2][1]~2|combout
+    Info (332115):      6.967      0.292 FF    IC  sudx_scan|solver|unique_digit[12][1]~809|datab
+    Info (332115):      7.371      0.404 FF  CELL  sudx_scan|solver|unique_digit[12][1]~809|combout
+    Info (332115):      7.610      0.239 FF    IC  sudx_scan|solver|unique_digit[12][1]~813|datad
+    Info (332115):      7.741      0.131 FF  CELL  sudx_scan|solver|unique_digit[12][1]~813|combout
+    Info (332115):      9.712      1.971 FF    IC  sudx_scan|solver|forced[3][1]~865|datac
+    Info (332115):     10.015      0.303 FF  CELL  sudx_scan|solver|forced[3][1]~865|combout
+    Info (332115):     10.317      0.302 FF    IC  sudx_scan|solver|Equal67~0|datab
+    Info (332115):     10.762      0.445 FR  CELL  sudx_scan|solver|Equal67~0|combout
+    Info (332115):     11.009      0.247 RR    IC  sudx_scan|solver|WideOr57~0|dataa
+    Info (332115):     11.431      0.422 RR  CELL  sudx_scan|solver|WideOr57~0|combout
+    Info (332115):     12.489      1.058 RR    IC  sudx_scan|solver|WideOr57~1|datac
+    Info (332115):     12.793      0.304 RR  CELL  sudx_scan|solver|WideOr57~1|combout
+    Info (332115):     13.036      0.243 RR    IC  sudx_scan|solver|WideOr139~2|datac
+    Info (332115):     13.341      0.305 RR  CELL  sudx_scan|solver|WideOr139~2|combout
+    Info (332115):     14.614      1.273 RR    IC  sudx_scan|solver|WideOr139~3|datad
+    Info (332115):     14.780      0.166 RR  CELL  sudx_scan|solver|WideOr139~3|combout
+    Info (332115):     16.050      1.270 RR    IC  sudx_scan|solver|WideOr139~7|datad
+    Info (332115):     16.216      0.166 RR  CELL  sudx_scan|solver|WideOr139~7|combout
+    Info (332115):     16.420      0.204 RR    IC  sudx_scan|solver|WideOr139~15|datad
+    Info (332115):     16.586      0.166 RR  CELL  sudx_scan|solver|WideOr139~15|combout
+    Info (332115):     16.788      0.202 RR    IC  sudx_scan|solver|WideOr139~35|datac
+    Info (332115):     17.093      0.305 RR  CELL  sudx_scan|solver|WideOr139~35|combout
+    Info (332115):     17.483      0.390 RR    IC  sudx_scan|solver|Selector2~3|datac
+    Info (332115):     17.767      0.284 RF  CELL  sudx_scan|solver|Selector2~3|combout
+    Info (332115):     17.767      0.000 FF    IC  sudx_scan|solver|state.SCAN|d
+    Info (332115):     17.861      0.094 FF  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|state.SCAN
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.493      1.866 RR    IC  sudx_scan|solver|state.SCAN|clk
+    Info (332115):      4.968      0.475 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|state.SCAN
+    Info (332115):      5.005      0.037           clock pessimism removed
+    Info (332115):      4.985     -0.020           clock uncertainty
+    Info (332115):      4.998      0.013     uTsu  sudx_scan:sudx_scan|sudx_scan_solver:solver|state.SCAN
+    Info (332115): Data Arrival Time  :    17.861
+    Info (332115): Data Required Time :     4.998
+    Info (332115): Slack              :   -12.863 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #3: Setup slack is -12.728 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115): To Node      : sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.139      1.476 RR    IC  sudx_scan|solver|candidate[51][6]|clk
+    Info (332115):      3.649      0.510 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115):      3.856      0.207     uTco  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115):      3.856      0.000 FF  CELL  sudx_scan|solver|candidate[51][6]|q
+    Info (332115):      4.283      0.427 FF    IC  sudx_scan|solver|Add413~1|datab
+    Info (332115):      4.707      0.424 FF  CELL  sudx_scan|solver|Add413~1|combout
+    Info (332115):      5.786      1.079 FF    IC  sudx_scan|solver|Add415~0|datac
+    Info (332115):      6.089      0.303 FF  CELL  sudx_scan|solver|Add415~0|combout
+    Info (332115):      6.374      0.285 FF    IC  sudx_scan|solver|Add415~2|datac
+    Info (332115):      6.677      0.303 FF  CELL  sudx_scan|solver|Add415~2|combout
+    Info (332115):      6.918      0.241 FF    IC  sudx_scan|solver|row_count[5][22][2]~0|datac
+    Info (332115):      7.216      0.298 FF  CELL  sudx_scan|solver|row_count[5][22][2]~0|combout
+    Info (332115):      7.993      0.777 FF    IC  sudx_scan|solver|LessThan85~5|dataa
+    Info (332115):      8.395      0.402 FF  CELL  sudx_scan|solver|LessThan85~5|combout
+    Info (332115):      9.711      1.316 FF    IC  sudx_scan|solver|row_count[5][11][0]~3|dataa
+    Info (332115):     10.100      0.389 FR  CELL  sudx_scan|solver|row_count[5][11][0]~3|combout
+    Info (332115):     10.310      0.210 RR    IC  sudx_scan|solver|LessThan79~1|datac
+    Info (332115):     10.594      0.284 RF  CELL  sudx_scan|solver|LessThan79~1|combout
+    Info (332115):     10.837      0.243 FF    IC  sudx_scan|solver|LessThan79~2|datac
+    Info (332115):     11.140      0.303 FF  CELL  sudx_scan|solver|LessThan79~2|combout
+    Info (332115):     11.385      0.245 FF    IC  sudx_scan|solver|LessThan79~6|datac
+    Info (332115):     11.683      0.298 FF  CELL  sudx_scan|solver|LessThan79~6|combout
+    Info (332115):     11.970      0.287 FF    IC  sudx_scan|solver|row_count[5][5][0]~0|datad
+    Info (332115):     12.131      0.161 FR  CELL  sudx_scan|solver|row_count[5][5][0]~0|combout
+    Info (332115):     12.913      0.782 RR    IC  sudx_scan|solver|LessThan76~0|datab
+    Info (332115):     13.362      0.449 RF  CELL  sudx_scan|solver|LessThan76~0|combout
+    Info (332115):     13.596      0.234 FF    IC  sudx_scan|solver|LessThan76~1|datad
+    Info (332115):     13.727      0.131 FF  CELL  sudx_scan|solver|LessThan76~1|combout
+    Info (332115):     13.965      0.238 FF    IC  sudx_scan|solver|LessThan76~2|datad
+    Info (332115):     14.096      0.131 FF  CELL  sudx_scan|solver|LessThan76~2|combout
+    Info (332115):     14.331      0.235 FF    IC  sudx_scan|solver|LessThan76~3|datad
+    Info (332115):     14.462      0.131 FF  CELL  sudx_scan|solver|LessThan76~3|combout
+    Info (332115):     14.756      0.294 FF    IC  sudx_scan|solver|row_count[5][2][3]~5|datac
+    Info (332115):     15.059      0.303 FF  CELL  sudx_scan|solver|row_count[5][2][3]~5|combout
+    Info (332115):     15.545      0.486 FF    IC  sudx_scan|solver|LessThan75~2|datac
+    Info (332115):     15.848      0.303 FF  CELL  sudx_scan|solver|LessThan75~2|combout
+    Info (332115):     16.084      0.236 FF    IC  sudx_scan|solver|LessThan75~5|datad
+    Info (332115):     16.215      0.131 FF  CELL  sudx_scan|solver|LessThan75~5|combout
+    Info (332115):     16.495      0.280 FF    IC  sudx_scan|solver|LessThan75~7|datab
+    Info (332115):     16.888      0.393 FF  CELL  sudx_scan|solver|LessThan75~7|combout
+    Info (332115):     17.202      0.314 FF    IC  sudx_scan|solver|row_index[5][1][4]~0|datad
+    Info (332115):     17.333      0.131 FF  CELL  sudx_scan|solver|row_index[5][1][4]~0|combout
+    Info (332115):     17.572      0.239 FF    IC  sudx_scan|solver|row_index_q[5][3]~5|datad
+    Info (332115):     17.733      0.161 FR  CELL  sudx_scan|solver|row_index_q[5][3]~5|combout
+    Info (332115):     17.733      0.000 RR    IC  sudx_scan|solver|row_index_q[5][3]|d
+    Info (332115):     17.822      0.089 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.589      1.962 RR    IC  sudx_scan|solver|row_index_q[5][3]|clk
+    Info (332115):      5.064      0.475 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115):      5.101      0.037           clock pessimism removed
+    Info (332115):      5.081     -0.020           clock uncertainty
+    Info (332115):      5.094      0.013     uTsu  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115): Data Arrival Time  :    17.822
+    Info (332115): Data Required Time :     5.094
+    Info (332115): Slack              :   -12.728 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #4: Setup slack is -12.726 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115): To Node      : sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.139      1.476 RR    IC  sudx_scan|solver|candidate[51][6]|clk
+    Info (332115):      3.649      0.510 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115):      3.856      0.207     uTco  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115):      3.856      0.000 FF  CELL  sudx_scan|solver|candidate[51][6]|q
+    Info (332115):      4.283      0.427 FF    IC  sudx_scan|solver|Add413~1|datab
+    Info (332115):      4.707      0.424 FF  CELL  sudx_scan|solver|Add413~1|combout
+    Info (332115):      5.786      1.079 FF    IC  sudx_scan|solver|Add415~0|datac
+    Info (332115):      6.089      0.303 FF  CELL  sudx_scan|solver|Add415~0|combout
+    Info (332115):      6.374      0.285 FF    IC  sudx_scan|solver|Add415~2|datac
+    Info (332115):      6.677      0.303 FF  CELL  sudx_scan|solver|Add415~2|combout
+    Info (332115):      6.918      0.241 FF    IC  sudx_scan|solver|row_count[5][22][2]~0|datac
+    Info (332115):      7.216      0.298 FF  CELL  sudx_scan|solver|row_count[5][22][2]~0|combout
+    Info (332115):      7.993      0.777 FF    IC  sudx_scan|solver|LessThan85~5|dataa
+    Info (332115):      8.395      0.402 FF  CELL  sudx_scan|solver|LessThan85~5|combout
+    Info (332115):      9.711      1.316 FF    IC  sudx_scan|solver|row_count[5][11][0]~3|dataa
+    Info (332115):     10.100      0.389 FR  CELL  sudx_scan|solver|row_count[5][11][0]~3|combout
+    Info (332115):     10.310      0.210 RR    IC  sudx_scan|solver|LessThan79~1|datac
+    Info (332115):     10.594      0.284 RF  CELL  sudx_scan|solver|LessThan79~1|combout
+    Info (332115):     10.837      0.243 FF    IC  sudx_scan|solver|LessThan79~2|datac
+    Info (332115):     11.140      0.303 FF  CELL  sudx_scan|solver|LessThan79~2|combout
+    Info (332115):     11.385      0.245 FF    IC  sudx_scan|solver|LessThan79~6|datac
+    Info (332115):     11.683      0.298 FF  CELL  sudx_scan|solver|LessThan79~6|combout
+    Info (332115):     11.970      0.287 FF    IC  sudx_scan|solver|row_count[5][5][0]~0|datad
+    Info (332115):     12.131      0.161 FR  CELL  sudx_scan|solver|row_count[5][5][0]~0|combout
+    Info (332115):     12.913      0.782 RR    IC  sudx_scan|solver|LessThan76~0|datab
+    Info (332115):     13.362      0.449 RF  CELL  sudx_scan|solver|LessThan76~0|combout
+    Info (332115):     13.596      0.234 FF    IC  sudx_scan|solver|LessThan76~1|datad
+    Info (332115):     13.727      0.131 FF  CELL  sudx_scan|solver|LessThan76~1|combout
+    Info (332115):     13.965      0.238 FF    IC  sudx_scan|solver|LessThan76~2|datad
+    Info (332115):     14.096      0.131 FF  CELL  sudx_scan|solver|LessThan76~2|combout
+    Info (332115):     14.331      0.235 FF    IC  sudx_scan|solver|LessThan76~3|datad
+    Info (332115):     14.462      0.131 FF  CELL  sudx_scan|solver|LessThan76~3|combout
+    Info (332115):     14.756      0.294 FF    IC  sudx_scan|solver|row_count[5][2][3]~5|datac
+    Info (332115):     15.059      0.303 FF  CELL  sudx_scan|solver|row_count[5][2][3]~5|combout
+    Info (332115):     15.545      0.486 FF    IC  sudx_scan|solver|LessThan75~2|datac
+    Info (332115):     15.848      0.303 FF  CELL  sudx_scan|solver|LessThan75~2|combout
+    Info (332115):     16.084      0.236 FF    IC  sudx_scan|solver|LessThan75~5|datad
+    Info (332115):     16.215      0.131 FF  CELL  sudx_scan|solver|LessThan75~5|combout
+    Info (332115):     16.495      0.280 FF    IC  sudx_scan|solver|LessThan75~7|datab
+    Info (332115):     16.888      0.393 FF  CELL  sudx_scan|solver|LessThan75~7|combout
+    Info (332115):     17.200      0.312 FF    IC  sudx_scan|solver|row_count[5][1][3]~3|datad
+    Info (332115):     17.361      0.161 FR  CELL  sudx_scan|solver|row_count[5][1][3]~3|combout
+    Info (332115):     17.565      0.204 RR    IC  sudx_scan|solver|row_count[5][1][0]~0|datad
+    Info (332115):     17.731      0.166 RR  CELL  sudx_scan|solver|row_count[5][1][0]~0|combout
+    Info (332115):     17.731      0.000 RR    IC  sudx_scan|solver|row_count_q[5][0]|d
+    Info (332115):     17.820      0.089 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.589      1.962 RR    IC  sudx_scan|solver|row_count_q[5][0]|clk
+    Info (332115):      5.064      0.475 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115):      5.101      0.037           clock pessimism removed
+    Info (332115):      5.081     -0.020           clock uncertainty
+    Info (332115):      5.094      0.013     uTsu  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115): Data Arrival Time  :    17.820
+    Info (332115): Data Required Time :     5.094
+    Info (332115): Slack              :   -12.726 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #5: Setup slack is -12.709 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115): To Node      : sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.139      1.476 RR    IC  sudx_scan|solver|candidate[51][6]|clk
+    Info (332115):      3.649      0.510 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115):      3.856      0.207     uTco  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115):      3.856      0.000 FF  CELL  sudx_scan|solver|candidate[51][6]|q
+    Info (332115):      4.283      0.427 FF    IC  sudx_scan|solver|Add413~1|datab
+    Info (332115):      4.707      0.424 FF  CELL  sudx_scan|solver|Add413~1|combout
+    Info (332115):      5.786      1.079 FF    IC  sudx_scan|solver|Add415~0|datac
+    Info (332115):      6.089      0.303 FF  CELL  sudx_scan|solver|Add415~0|combout
+    Info (332115):      6.374      0.285 FF    IC  sudx_scan|solver|Add415~2|datac
+    Info (332115):      6.677      0.303 FF  CELL  sudx_scan|solver|Add415~2|combout
+    Info (332115):      6.918      0.241 FF    IC  sudx_scan|solver|row_count[5][22][2]~0|datac
+    Info (332115):      7.216      0.298 FF  CELL  sudx_scan|solver|row_count[5][22][2]~0|combout
+    Info (332115):      7.993      0.777 FF    IC  sudx_scan|solver|LessThan85~5|dataa
+    Info (332115):      8.395      0.402 FF  CELL  sudx_scan|solver|LessThan85~5|combout
+    Info (332115):      9.711      1.316 FF    IC  sudx_scan|solver|row_count[5][11][0]~3|dataa
+    Info (332115):     10.100      0.389 FR  CELL  sudx_scan|solver|row_count[5][11][0]~3|combout
+    Info (332115):     10.310      0.210 RR    IC  sudx_scan|solver|LessThan79~1|datac
+    Info (332115):     10.594      0.284 RF  CELL  sudx_scan|solver|LessThan79~1|combout
+    Info (332115):     10.837      0.243 FF    IC  sudx_scan|solver|LessThan79~2|datac
+    Info (332115):     11.140      0.303 FF  CELL  sudx_scan|solver|LessThan79~2|combout
+    Info (332115):     11.385      0.245 FF    IC  sudx_scan|solver|LessThan79~6|datac
+    Info (332115):     11.683      0.298 FF  CELL  sudx_scan|solver|LessThan79~6|combout
+    Info (332115):     11.970      0.287 FF    IC  sudx_scan|solver|row_count[5][5][0]~0|datad
+    Info (332115):     12.131      0.161 FR  CELL  sudx_scan|solver|row_count[5][5][0]~0|combout
+    Info (332115):     12.913      0.782 RR    IC  sudx_scan|solver|LessThan76~0|datab
+    Info (332115):     13.362      0.449 RF  CELL  sudx_scan|solver|LessThan76~0|combout
+    Info (332115):     13.596      0.234 FF    IC  sudx_scan|solver|LessThan76~1|datad
+    Info (332115):     13.727      0.131 FF  CELL  sudx_scan|solver|LessThan76~1|combout
+    Info (332115):     13.965      0.238 FF    IC  sudx_scan|solver|LessThan76~2|datad
+    Info (332115):     14.096      0.131 FF  CELL  sudx_scan|solver|LessThan76~2|combout
+    Info (332115):     14.331      0.235 FF    IC  sudx_scan|solver|LessThan76~3|datad
+    Info (332115):     14.462      0.131 FF  CELL  sudx_scan|solver|LessThan76~3|combout
+    Info (332115):     14.756      0.294 FF    IC  sudx_scan|solver|row_count[5][2][3]~5|datac
+    Info (332115):     15.037      0.281 FR  CELL  sudx_scan|solver|row_count[5][2][3]~5|combout
+    Info (332115):     15.493      0.456 RR    IC  sudx_scan|solver|LessThan75~0|datac
+    Info (332115):     15.773      0.280 RF  CELL  sudx_scan|solver|LessThan75~0|combout
+    Info (332115):     16.020      0.247 FF    IC  sudx_scan|solver|LessThan75~1|datac
+    Info (332115):     16.323      0.303 FF  CELL  sudx_scan|solver|LessThan75~1|combout
+    Info (332115):     16.566      0.243 FF    IC  sudx_scan|solver|LessThan75~7|datac
+    Info (332115):     16.869      0.303 FF  CELL  sudx_scan|solver|LessThan75~7|combout
+    Info (332115):     17.183      0.314 FF    IC  sudx_scan|solver|row_index[5][1][4]~0|datad
+    Info (332115):     17.314      0.131 FF  CELL  sudx_scan|solver|row_index[5][1][4]~0|combout
+    Info (332115):     17.553      0.239 FF    IC  sudx_scan|solver|row_index_q[5][3]~5|datad
+    Info (332115):     17.714      0.161 FR  CELL  sudx_scan|solver|row_index_q[5][3]~5|combout
+    Info (332115):     17.714      0.000 RR    IC  sudx_scan|solver|row_index_q[5][3]|d
+    Info (332115):     17.803      0.089 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.589      1.962 RR    IC  sudx_scan|solver|row_index_q[5][3]|clk
+    Info (332115):      5.064      0.475 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115):      5.101      0.037           clock pessimism removed
+    Info (332115):      5.081     -0.020           clock uncertainty
+    Info (332115):      5.094      0.013     uTsu  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115): Data Arrival Time  :    17.803
+    Info (332115): Data Required Time :     5.094
+    Info (332115): Slack              :   -12.709 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #6: Setup slack is -12.707 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115): To Node      : sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.139      1.476 RR    IC  sudx_scan|solver|candidate[51][6]|clk
+    Info (332115):      3.649      0.510 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115):      3.856      0.207     uTco  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115):      3.856      0.000 FF  CELL  sudx_scan|solver|candidate[51][6]|q
+    Info (332115):      4.283      0.427 FF    IC  sudx_scan|solver|Add413~1|datab
+    Info (332115):      4.707      0.424 FF  CELL  sudx_scan|solver|Add413~1|combout
+    Info (332115):      5.786      1.079 FF    IC  sudx_scan|solver|Add415~0|datac
+    Info (332115):      6.089      0.303 FF  CELL  sudx_scan|solver|Add415~0|combout
+    Info (332115):      6.374      0.285 FF    IC  sudx_scan|solver|Add415~2|datac
+    Info (332115):      6.677      0.303 FF  CELL  sudx_scan|solver|Add415~2|combout
+    Info (332115):      6.918      0.241 FF    IC  sudx_scan|solver|row_count[5][22][2]~0|datac
+    Info (332115):      7.216      0.298 FF  CELL  sudx_scan|solver|row_count[5][22][2]~0|combout
+    Info (332115):      7.993      0.777 FF    IC  sudx_scan|solver|LessThan85~5|dataa
+    Info (332115):      8.395      0.402 FF  CELL  sudx_scan|solver|LessThan85~5|combout
+    Info (332115):      9.711      1.316 FF    IC  sudx_scan|solver|row_count[5][11][0]~3|dataa
+    Info (332115):     10.100      0.389 FR  CELL  sudx_scan|solver|row_count[5][11][0]~3|combout
+    Info (332115):     10.310      0.210 RR    IC  sudx_scan|solver|LessThan79~1|datac
+    Info (332115):     10.594      0.284 RF  CELL  sudx_scan|solver|LessThan79~1|combout
+    Info (332115):     10.837      0.243 FF    IC  sudx_scan|solver|LessThan79~2|datac
+    Info (332115):     11.140      0.303 FF  CELL  sudx_scan|solver|LessThan79~2|combout
+    Info (332115):     11.385      0.245 FF    IC  sudx_scan|solver|LessThan79~6|datac
+    Info (332115):     11.683      0.298 FF  CELL  sudx_scan|solver|LessThan79~6|combout
+    Info (332115):     11.970      0.287 FF    IC  sudx_scan|solver|row_count[5][5][0]~0|datad
+    Info (332115):     12.131      0.161 FR  CELL  sudx_scan|solver|row_count[5][5][0]~0|combout
+    Info (332115):     12.913      0.782 RR    IC  sudx_scan|solver|LessThan76~0|datab
+    Info (332115):     13.362      0.449 RF  CELL  sudx_scan|solver|LessThan76~0|combout
+    Info (332115):     13.596      0.234 FF    IC  sudx_scan|solver|LessThan76~1|datad
+    Info (332115):     13.727      0.131 FF  CELL  sudx_scan|solver|LessThan76~1|combout
+    Info (332115):     13.965      0.238 FF    IC  sudx_scan|solver|LessThan76~2|datad
+    Info (332115):     14.096      0.131 FF  CELL  sudx_scan|solver|LessThan76~2|combout
+    Info (332115):     14.331      0.235 FF    IC  sudx_scan|solver|LessThan76~3|datad
+    Info (332115):     14.462      0.131 FF  CELL  sudx_scan|solver|LessThan76~3|combout
+    Info (332115):     14.756      0.294 FF    IC  sudx_scan|solver|row_count[5][2][3]~5|datac
+    Info (332115):     15.037      0.281 FR  CELL  sudx_scan|solver|row_count[5][2][3]~5|combout
+    Info (332115):     15.493      0.456 RR    IC  sudx_scan|solver|LessThan75~0|datac
+    Info (332115):     15.773      0.280 RF  CELL  sudx_scan|solver|LessThan75~0|combout
+    Info (332115):     16.020      0.247 FF    IC  sudx_scan|solver|LessThan75~1|datac
+    Info (332115):     16.323      0.303 FF  CELL  sudx_scan|solver|LessThan75~1|combout
+    Info (332115):     16.566      0.243 FF    IC  sudx_scan|solver|LessThan75~7|datac
+    Info (332115):     16.869      0.303 FF  CELL  sudx_scan|solver|LessThan75~7|combout
+    Info (332115):     17.181      0.312 FF    IC  sudx_scan|solver|row_count[5][1][3]~3|datad
+    Info (332115):     17.342      0.161 FR  CELL  sudx_scan|solver|row_count[5][1][3]~3|combout
+    Info (332115):     17.546      0.204 RR    IC  sudx_scan|solver|row_count[5][1][0]~0|datad
+    Info (332115):     17.712      0.166 RR  CELL  sudx_scan|solver|row_count[5][1][0]~0|combout
+    Info (332115):     17.712      0.000 RR    IC  sudx_scan|solver|row_count_q[5][0]|d
+    Info (332115):     17.801      0.089 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.589      1.962 RR    IC  sudx_scan|solver|row_count_q[5][0]|clk
+    Info (332115):      5.064      0.475 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115):      5.101      0.037           clock pessimism removed
+    Info (332115):      5.081     -0.020           clock uncertainty
+    Info (332115):      5.094      0.013     uTsu  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115): Data Arrival Time  :    17.801
+    Info (332115): Data Required Time :     5.094
+    Info (332115): Slack              :   -12.707 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #7: Setup slack is -12.689 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[21][1]
+    Info (332115): To Node      : sudx_scan:sudx_scan|sudx_scan_solver:solver|state.PICK_CELL
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.231      1.568 RR    IC  sudx_scan|solver|candidate[21][1]|clk
+    Info (332115):      3.741      0.510 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[21][1]
+    Info (332115):      3.948      0.207     uTco  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[21][1]
+    Info (332115):      3.948      0.000 FF  CELL  sudx_scan|solver|candidate[21][1]|q
+    Info (332115):      6.377      2.429 FF    IC  sudx_scan|solver|UNITS[12].candidate_union|any_digit[2][1]~2|datac
+    Info (332115):      6.675      0.298 FF  CELL  sudx_scan|solver|UNITS[12].candidate_union|any_digit[2][1]~2|combout
+    Info (332115):      6.967      0.292 FF    IC  sudx_scan|solver|unique_digit[12][1]~809|datab
+    Info (332115):      7.371      0.404 FF  CELL  sudx_scan|solver|unique_digit[12][1]~809|combout
+    Info (332115):      7.610      0.239 FF    IC  sudx_scan|solver|unique_digit[12][1]~813|datad
+    Info (332115):      7.741      0.131 FF  CELL  sudx_scan|solver|unique_digit[12][1]~813|combout
+    Info (332115):      9.712      1.971 FF    IC  sudx_scan|solver|forced[3][1]~865|datac
+    Info (332115):     10.015      0.303 FF  CELL  sudx_scan|solver|forced[3][1]~865|combout
+    Info (332115):     10.317      0.302 FF    IC  sudx_scan|solver|Equal67~0|datab
+    Info (332115):     10.762      0.445 FR  CELL  sudx_scan|solver|Equal67~0|combout
+    Info (332115):     11.009      0.247 RR    IC  sudx_scan|solver|WideOr57~0|dataa
+    Info (332115):     11.431      0.422 RR  CELL  sudx_scan|solver|WideOr57~0|combout
+    Info (332115):     12.493      1.062 RR    IC  sudx_scan|solver|contradiction~133|datac
+    Info (332115):     12.777      0.284 RF  CELL  sudx_scan|solver|contradiction~133|combout
+    Info (332115):     13.150      0.373 FF    IC  sudx_scan|solver|contradiction~136|datac
+    Info (332115):     13.448      0.298 FF  CELL  sudx_scan|solver|contradiction~136|combout
+    Info (332115):     14.992      1.544 FF    IC  sudx_scan|solver|contradiction~147|datab
+    Info (332115):     15.396      0.404 FF  CELL  sudx_scan|solver|contradiction~147|combout
+    Info (332115):     15.638      0.242 FF    IC  sudx_scan|solver|contradiction~148|datac
+    Info (332115):     15.936      0.298 FF  CELL  sudx_scan|solver|contradiction~148|combout
+    Info (332115):     16.396      0.460 FF    IC  sudx_scan|solver|contradiction|dataa
+    Info (332115):     16.798      0.402 FF  CELL  sudx_scan|solver|contradiction|combout
+    Info (332115):     17.057      0.259 FF    IC  sudx_scan|solver|Selector2~2|datad
+    Info (332115):     17.218      0.161 FR  CELL  sudx_scan|solver|Selector2~2|combout
+    Info (332115):     17.432      0.214 RR    IC  sudx_scan|solver|Selector4~1|datad
+    Info (332115):     17.598      0.166 RR  CELL  sudx_scan|solver|Selector4~1|combout
+    Info (332115):     17.598      0.000 RR    IC  sudx_scan|solver|state.PICK_CELL|d
+    Info (332115):     17.687      0.089 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|state.PICK_CELL
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.493      1.866 RR    IC  sudx_scan|solver|state.PICK_CELL|clk
+    Info (332115):      4.968      0.475 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|state.PICK_CELL
+    Info (332115):      5.005      0.037           clock pessimism removed
+    Info (332115):      4.985     -0.020           clock uncertainty
+    Info (332115):      4.998      0.013     uTsu  sudx_scan:sudx_scan|sudx_scan_solver:solver|state.PICK_CELL
+    Info (332115): Data Arrival Time  :    17.687
+    Info (332115): Data Required Time :     4.998
+    Info (332115): Slack              :   -12.689 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #8: Setup slack is -12.688 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[21][1]
+    Info (332115): To Node      : sudx_scan:sudx_scan|sudx_scan_solver:solver|state.SCAN
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.231      1.568 RR    IC  sudx_scan|solver|candidate[21][1]|clk
+    Info (332115):      3.741      0.510 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[21][1]
+    Info (332115):      3.948      0.207     uTco  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[21][1]
+    Info (332115):      3.948      0.000 FF  CELL  sudx_scan|solver|candidate[21][1]|q
+    Info (332115):      6.377      2.429 FF    IC  sudx_scan|solver|UNITS[12].candidate_union|any_digit[2][1]~2|datac
+    Info (332115):      6.675      0.298 FF  CELL  sudx_scan|solver|UNITS[12].candidate_union|any_digit[2][1]~2|combout
+    Info (332115):      6.967      0.292 FF    IC  sudx_scan|solver|unique_digit[12][1]~809|datab
+    Info (332115):      7.371      0.404 FF  CELL  sudx_scan|solver|unique_digit[12][1]~809|combout
+    Info (332115):      7.610      0.239 FF    IC  sudx_scan|solver|unique_digit[12][1]~813|datad
+    Info (332115):      7.741      0.131 FF  CELL  sudx_scan|solver|unique_digit[12][1]~813|combout
+    Info (332115):      9.712      1.971 FF    IC  sudx_scan|solver|forced[3][1]~865|datac
+    Info (332115):     10.015      0.303 FF  CELL  sudx_scan|solver|forced[3][1]~865|combout
+    Info (332115):     10.317      0.302 FF    IC  sudx_scan|solver|Equal67~0|datab
+    Info (332115):     10.762      0.445 FR  CELL  sudx_scan|solver|Equal67~0|combout
+    Info (332115):     11.009      0.247 RR    IC  sudx_scan|solver|WideOr57~0|dataa
+    Info (332115):     11.431      0.422 RR  CELL  sudx_scan|solver|WideOr57~0|combout
+    Info (332115):     12.493      1.062 RR    IC  sudx_scan|solver|contradiction~133|datac
+    Info (332115):     12.777      0.284 RF  CELL  sudx_scan|solver|contradiction~133|combout
+    Info (332115):     13.150      0.373 FF    IC  sudx_scan|solver|contradiction~136|datac
+    Info (332115):     13.448      0.298 FF  CELL  sudx_scan|solver|contradiction~136|combout
+    Info (332115):     14.992      1.544 FF    IC  sudx_scan|solver|contradiction~147|datab
+    Info (332115):     15.396      0.404 FF  CELL  sudx_scan|solver|contradiction~147|combout
+    Info (332115):     15.638      0.242 FF    IC  sudx_scan|solver|contradiction~148|datac
+    Info (332115):     15.936      0.298 FF  CELL  sudx_scan|solver|contradiction~148|combout
+    Info (332115):     16.396      0.460 FF    IC  sudx_scan|solver|contradiction|dataa
+    Info (332115):     16.798      0.402 FF  CELL  sudx_scan|solver|contradiction|combout
+    Info (332115):     17.057      0.259 FF    IC  sudx_scan|solver|Selector2~2|datad
+    Info (332115):     17.218      0.161 FR  CELL  sudx_scan|solver|Selector2~2|combout
+    Info (332115):     17.431      0.213 RR    IC  sudx_scan|solver|Selector2~3|datad
+    Info (332115):     17.597      0.166 RR  CELL  sudx_scan|solver|Selector2~3|combout
+    Info (332115):     17.597      0.000 RR    IC  sudx_scan|solver|state.SCAN|d
+    Info (332115):     17.686      0.089 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|state.SCAN
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.493      1.866 RR    IC  sudx_scan|solver|state.SCAN|clk
+    Info (332115):      4.968      0.475 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|state.SCAN
+    Info (332115):      5.005      0.037           clock pessimism removed
+    Info (332115):      4.985     -0.020           clock uncertainty
+    Info (332115):      4.998      0.013     uTsu  sudx_scan:sudx_scan|sudx_scan_solver:solver|state.SCAN
+    Info (332115): Data Arrival Time  :    17.686
+    Info (332115): Data Required Time :     4.998
+    Info (332115): Slack              :   -12.688 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #9: Setup slack is -12.670 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115): To Node      : sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.139      1.476 RR    IC  sudx_scan|solver|candidate[51][6]|clk
+    Info (332115):      3.649      0.510 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115):      3.856      0.207     uTco  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115):      3.856      0.000 FF  CELL  sudx_scan|solver|candidate[51][6]|q
+    Info (332115):      4.283      0.427 FF    IC  sudx_scan|solver|Add413~1|datab
+    Info (332115):      4.707      0.424 FF  CELL  sudx_scan|solver|Add413~1|combout
+    Info (332115):      5.786      1.079 FF    IC  sudx_scan|solver|Add415~0|datac
+    Info (332115):      6.089      0.303 FF  CELL  sudx_scan|solver|Add415~0|combout
+    Info (332115):      6.374      0.285 FF    IC  sudx_scan|solver|Add415~2|datac
+    Info (332115):      6.677      0.303 FF  CELL  sudx_scan|solver|Add415~2|combout
+    Info (332115):      6.918      0.241 FF    IC  sudx_scan|solver|row_count[5][22][2]~0|datac
+    Info (332115):      7.216      0.298 FF  CELL  sudx_scan|solver|row_count[5][22][2]~0|combout
+    Info (332115):      7.993      0.777 FF    IC  sudx_scan|solver|LessThan85~5|dataa
+    Info (332115):      8.395      0.402 FF  CELL  sudx_scan|solver|LessThan85~5|combout
+    Info (332115):      9.711      1.316 FF    IC  sudx_scan|solver|row_count[5][11][0]~3|dataa
+    Info (332115):     10.100      0.389 FR  CELL  sudx_scan|solver|row_count[5][11][0]~3|combout
+    Info (332115):     10.310      0.210 RR    IC  sudx_scan|solver|LessThan79~1|datac
+    Info (332115):     10.594      0.284 RF  CELL  sudx_scan|solver|LessThan79~1|combout
+    Info (332115):     10.837      0.243 FF    IC  sudx_scan|solver|LessThan79~2|datac
+    Info (332115):     11.140      0.303 FF  CELL  sudx_scan|solver|LessThan79~2|combout
+    Info (332115):     11.385      0.245 FF    IC  sudx_scan|solver|LessThan79~6|datac
+    Info (332115):     11.683      0.298 FF  CELL  sudx_scan|solver|LessThan79~6|combout
+    Info (332115):     11.970      0.287 FF    IC  sudx_scan|solver|row_count[5][5][3]~0|datad
+    Info (332115):     12.101      0.131 FF  CELL  sudx_scan|solver|row_count[5][5][3]~0|combout
+    Info (332115):     12.902      0.801 FF    IC  sudx_scan|solver|LessThan76~0|dataa
+    Info (332115):     13.304      0.402 FF  CELL  sudx_scan|solver|LessThan76~0|combout
+    Info (332115):     13.538      0.234 FF    IC  sudx_scan|solver|LessThan76~1|datad
+    Info (332115):     13.669      0.131 FF  CELL  sudx_scan|solver|LessThan76~1|combout
+    Info (332115):     13.907      0.238 FF    IC  sudx_scan|solver|LessThan76~2|datad
+    Info (332115):     14.038      0.131 FF  CELL  sudx_scan|solver|LessThan76~2|combout
+    Info (332115):     14.273      0.235 FF    IC  sudx_scan|solver|LessThan76~3|datad
+    Info (332115):     14.404      0.131 FF  CELL  sudx_scan|solver|LessThan76~3|combout
+    Info (332115):     14.698      0.294 FF    IC  sudx_scan|solver|row_count[5][2][3]~5|datac
+    Info (332115):     15.001      0.303 FF  CELL  sudx_scan|solver|row_count[5][2][3]~5|combout
+    Info (332115):     15.487      0.486 FF    IC  sudx_scan|solver|LessThan75~2|datac
+    Info (332115):     15.790      0.303 FF  CELL  sudx_scan|solver|LessThan75~2|combout
+    Info (332115):     16.026      0.236 FF    IC  sudx_scan|solver|LessThan75~5|datad
+    Info (332115):     16.157      0.131 FF  CELL  sudx_scan|solver|LessThan75~5|combout
+    Info (332115):     16.437      0.280 FF    IC  sudx_scan|solver|LessThan75~7|datab
+    Info (332115):     16.830      0.393 FF  CELL  sudx_scan|solver|LessThan75~7|combout
+    Info (332115):     17.144      0.314 FF    IC  sudx_scan|solver|row_index[5][1][4]~0|datad
+    Info (332115):     17.275      0.131 FF  CELL  sudx_scan|solver|row_index[5][1][4]~0|combout
+    Info (332115):     17.514      0.239 FF    IC  sudx_scan|solver|row_index_q[5][3]~5|datad
+    Info (332115):     17.675      0.161 FR  CELL  sudx_scan|solver|row_index_q[5][3]~5|combout
+    Info (332115):     17.675      0.000 RR    IC  sudx_scan|solver|row_index_q[5][3]|d
+    Info (332115):     17.764      0.089 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.589      1.962 RR    IC  sudx_scan|solver|row_index_q[5][3]|clk
+    Info (332115):      5.064      0.475 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115):      5.101      0.037           clock pessimism removed
+    Info (332115):      5.081     -0.020           clock uncertainty
+    Info (332115):      5.094      0.013     uTsu  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115): Data Arrival Time  :    17.764
+    Info (332115): Data Required Time :     5.094
+    Info (332115): Slack              :   -12.670 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #10: Setup slack is -12.668 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115): To Node      : sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.139      1.476 RR    IC  sudx_scan|solver|candidate[51][6]|clk
+    Info (332115):      3.649      0.510 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115):      3.856      0.207     uTco  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115):      3.856      0.000 FF  CELL  sudx_scan|solver|candidate[51][6]|q
+    Info (332115):      4.283      0.427 FF    IC  sudx_scan|solver|Add413~1|datab
+    Info (332115):      4.707      0.424 FF  CELL  sudx_scan|solver|Add413~1|combout
+    Info (332115):      5.786      1.079 FF    IC  sudx_scan|solver|Add415~0|datac
+    Info (332115):      6.089      0.303 FF  CELL  sudx_scan|solver|Add415~0|combout
+    Info (332115):      6.374      0.285 FF    IC  sudx_scan|solver|Add415~2|datac
+    Info (332115):      6.677      0.303 FF  CELL  sudx_scan|solver|Add415~2|combout
+    Info (332115):      6.918      0.241 FF    IC  sudx_scan|solver|row_count[5][22][2]~0|datac
+    Info (332115):      7.216      0.298 FF  CELL  sudx_scan|solver|row_count[5][22][2]~0|combout
+    Info (332115):      7.993      0.777 FF    IC  sudx_scan|solver|LessThan85~5|dataa
+    Info (332115):      8.395      0.402 FF  CELL  sudx_scan|solver|LessThan85~5|combout
+    Info (332115):      9.711      1.316 FF    IC  sudx_scan|solver|row_count[5][11][0]~3|dataa
+    Info (332115):     10.100      0.389 FR  CELL  sudx_scan|solver|row_count[5][11][0]~3|combout
+    Info (332115):     10.310      0.210 RR    IC  sudx_scan|solver|LessThan79~1|datac
+    Info (332115):     10.594      0.284 RF  CELL  sudx_scan|solver|LessThan79~1|combout
+    Info (332115):     10.837      0.243 FF    IC  sudx_scan|solver|LessThan79~2|datac
+    Info (332115):     11.140      0.303 FF  CELL  sudx_scan|solver|LessThan79~2|combout
+    Info (332115):     11.385      0.245 FF    IC  sudx_scan|solver|LessThan79~6|datac
+    Info (332115):     11.683      0.298 FF  CELL  sudx_scan|solver|LessThan79~6|combout
+    Info (332115):     11.970      0.287 FF    IC  sudx_scan|solver|row_count[5][5][3]~0|datad
+    Info (332115):     12.101      0.131 FF  CELL  sudx_scan|solver|row_count[5][5][3]~0|combout
+    Info (332115):     12.902      0.801 FF    IC  sudx_scan|solver|LessThan76~0|dataa
+    Info (332115):     13.304      0.402 FF  CELL  sudx_scan|solver|LessThan76~0|combout
+    Info (332115):     13.538      0.234 FF    IC  sudx_scan|solver|LessThan76~1|datad
+    Info (332115):     13.669      0.131 FF  CELL  sudx_scan|solver|LessThan76~1|combout
+    Info (332115):     13.907      0.238 FF    IC  sudx_scan|solver|LessThan76~2|datad
+    Info (332115):     14.038      0.131 FF  CELL  sudx_scan|solver|LessThan76~2|combout
+    Info (332115):     14.273      0.235 FF    IC  sudx_scan|solver|LessThan76~3|datad
+    Info (332115):     14.404      0.131 FF  CELL  sudx_scan|solver|LessThan76~3|combout
+    Info (332115):     14.698      0.294 FF    IC  sudx_scan|solver|row_count[5][2][3]~5|datac
+    Info (332115):     15.001      0.303 FF  CELL  sudx_scan|solver|row_count[5][2][3]~5|combout
+    Info (332115):     15.487      0.486 FF    IC  sudx_scan|solver|LessThan75~2|datac
+    Info (332115):     15.790      0.303 FF  CELL  sudx_scan|solver|LessThan75~2|combout
+    Info (332115):     16.026      0.236 FF    IC  sudx_scan|solver|LessThan75~5|datad
+    Info (332115):     16.157      0.131 FF  CELL  sudx_scan|solver|LessThan75~5|combout
+    Info (332115):     16.437      0.280 FF    IC  sudx_scan|solver|LessThan75~7|datab
+    Info (332115):     16.830      0.393 FF  CELL  sudx_scan|solver|LessThan75~7|combout
+    Info (332115):     17.142      0.312 FF    IC  sudx_scan|solver|row_count[5][1][3]~3|datad
+    Info (332115):     17.303      0.161 FR  CELL  sudx_scan|solver|row_count[5][1][3]~3|combout
+    Info (332115):     17.507      0.204 RR    IC  sudx_scan|solver|row_count[5][1][0]~0|datad
+    Info (332115):     17.673      0.166 RR  CELL  sudx_scan|solver|row_count[5][1][0]~0|combout
+    Info (332115):     17.673      0.000 RR    IC  sudx_scan|solver|row_count_q[5][0]|d
+    Info (332115):     17.762      0.089 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.589      1.962 RR    IC  sudx_scan|solver|row_count_q[5][0]|clk
+    Info (332115):      5.064      0.475 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115):      5.101      0.037           clock pessimism removed
+    Info (332115):      5.081     -0.020           clock uncertainty
+    Info (332115):      5.094      0.013     uTsu  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115): Data Arrival Time  :    17.762
+    Info (332115): Data Required Time :     5.094
+    Info (332115): Slack              :   -12.668 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #11: Setup slack is -12.661 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115): To Node      : sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.139      1.476 RR    IC  sudx_scan|solver|candidate[51][6]|clk
+    Info (332115):      3.649      0.510 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115):      3.856      0.207     uTco  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115):      3.856      0.000 FF  CELL  sudx_scan|solver|candidate[51][6]|q
+    Info (332115):      4.283      0.427 FF    IC  sudx_scan|solver|Add413~1|datab
+    Info (332115):      4.707      0.424 FF  CELL  sudx_scan|solver|Add413~1|combout
+    Info (332115):      5.786      1.079 FF    IC  sudx_scan|solver|Add415~0|datac
+    Info (332115):      6.089      0.303 FF  CELL  sudx_scan|solver|Add415~0|combout
+    Info (332115):      6.374      0.285 FF    IC  sudx_scan|solver|Add415~2|datac
+    Info (332115):      6.677      0.303 FF  CELL  sudx_scan|solver|Add415~2|combout
+    Info (332115):      6.918      0.241 FF    IC  sudx_scan|solver|row_count[5][22][2]~0|datac
+    Info (332115):      7.216      0.298 FF  CELL  sudx_scan|solver|row_count[5][22][2]~0|combout
+    Info (332115):      7.993      0.777 FF    IC  sudx_scan|solver|LessThan85~5|dataa
+    Info (332115):      8.395      0.402 FF  CELL  sudx_scan|solver|LessThan85~5|combout
+    Info (332115):      9.711      1.316 FF    IC  sudx_scan|solver|row_count[5][11][0]~3|dataa
+    Info (332115):     10.100      0.389 FR  CELL  sudx_scan|solver|row_count[5][11][0]~3|combout
+    Info (332115):     10.310      0.210 RR    IC  sudx_scan|solver|LessThan79~1|datac
+    Info (332115):     10.594      0.284 RF  CELL  sudx_scan|solver|LessThan79~1|combout
+    Info (332115):     10.837      0.243 FF    IC  sudx_scan|solver|LessThan79~2|datac
+    Info (332115):     11.140      0.303 FF  CELL  sudx_scan|solver|LessThan79~2|combout
+    Info (332115):     11.385      0.245 FF    IC  sudx_scan|solver|LessThan79~6|datac
+    Info (332115):     11.683      0.298 FF  CELL  sudx_scan|solver|LessThan79~6|combout
+    Info (332115):     11.970      0.287 FF    IC  sudx_scan|solver|row_count[5][5][0]~0|datad
+    Info (332115):     12.131      0.161 FR  CELL  sudx_scan|solver|row_count[5][5][0]~0|combout
+    Info (332115):     12.913      0.782 RR    IC  sudx_scan|solver|LessThan76~0|datab
+    Info (332115):     13.362      0.449 RF  CELL  sudx_scan|solver|LessThan76~0|combout
+    Info (332115):     13.596      0.234 FF    IC  sudx_scan|solver|LessThan76~1|datad
+    Info (332115):     13.727      0.131 FF  CELL  sudx_scan|solver|LessThan76~1|combout
+    Info (332115):     13.965      0.238 FF    IC  sudx_scan|solver|LessThan76~2|datad
+    Info (332115):     14.096      0.131 FF  CELL  sudx_scan|solver|LessThan76~2|combout
+    Info (332115):     14.331      0.235 FF    IC  sudx_scan|solver|LessThan76~3|datad
+    Info (332115):     14.462      0.131 FF  CELL  sudx_scan|solver|LessThan76~3|combout
+    Info (332115):     14.930      0.468 FF    IC  sudx_scan|solver|LessThan75~3|datad
+    Info (332115):     15.091      0.161 FR  CELL  sudx_scan|solver|LessThan75~3|combout
+    Info (332115):     15.296      0.205 RR    IC  sudx_scan|solver|LessThan75~4|datad
+    Info (332115):     15.441      0.145 RF  CELL  sudx_scan|solver|LessThan75~4|combout
+    Info (332115):     15.845      0.404 FF    IC  sudx_scan|solver|LessThan75~5|datac
+    Info (332115):     16.148      0.303 FF  CELL  sudx_scan|solver|LessThan75~5|combout
+    Info (332115):     16.428      0.280 FF    IC  sudx_scan|solver|LessThan75~7|datab
+    Info (332115):     16.821      0.393 FF  CELL  sudx_scan|solver|LessThan75~7|combout
+    Info (332115):     17.135      0.314 FF    IC  sudx_scan|solver|row_index[5][1][4]~0|datad
+    Info (332115):     17.266      0.131 FF  CELL  sudx_scan|solver|row_index[5][1][4]~0|combout
+    Info (332115):     17.505      0.239 FF    IC  sudx_scan|solver|row_index_q[5][3]~5|datad
+    Info (332115):     17.666      0.161 FR  CELL  sudx_scan|solver|row_index_q[5][3]~5|combout
+    Info (332115):     17.666      0.000 RR    IC  sudx_scan|solver|row_index_q[5][3]|d
+    Info (332115):     17.755      0.089 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.589      1.962 RR    IC  sudx_scan|solver|row_index_q[5][3]|clk
+    Info (332115):      5.064      0.475 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115):      5.101      0.037           clock pessimism removed
+    Info (332115):      5.081     -0.020           clock uncertainty
+    Info (332115):      5.094      0.013     uTsu  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115): Data Arrival Time  :    17.755
+    Info (332115): Data Required Time :     5.094
+    Info (332115): Slack              :   -12.661 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #12: Setup slack is -12.659 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115): To Node      : sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.139      1.476 RR    IC  sudx_scan|solver|candidate[51][6]|clk
+    Info (332115):      3.649      0.510 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115):      3.856      0.207     uTco  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115):      3.856      0.000 FF  CELL  sudx_scan|solver|candidate[51][6]|q
+    Info (332115):      4.283      0.427 FF    IC  sudx_scan|solver|Add413~1|datab
+    Info (332115):      4.707      0.424 FF  CELL  sudx_scan|solver|Add413~1|combout
+    Info (332115):      5.786      1.079 FF    IC  sudx_scan|solver|Add415~0|datac
+    Info (332115):      6.089      0.303 FF  CELL  sudx_scan|solver|Add415~0|combout
+    Info (332115):      6.374      0.285 FF    IC  sudx_scan|solver|Add415~2|datac
+    Info (332115):      6.677      0.303 FF  CELL  sudx_scan|solver|Add415~2|combout
+    Info (332115):      6.918      0.241 FF    IC  sudx_scan|solver|row_count[5][22][2]~0|datac
+    Info (332115):      7.216      0.298 FF  CELL  sudx_scan|solver|row_count[5][22][2]~0|combout
+    Info (332115):      7.993      0.777 FF    IC  sudx_scan|solver|LessThan85~5|dataa
+    Info (332115):      8.395      0.402 FF  CELL  sudx_scan|solver|LessThan85~5|combout
+    Info (332115):      9.711      1.316 FF    IC  sudx_scan|solver|row_count[5][11][0]~3|dataa
+    Info (332115):     10.100      0.389 FR  CELL  sudx_scan|solver|row_count[5][11][0]~3|combout
+    Info (332115):     10.310      0.210 RR    IC  sudx_scan|solver|LessThan79~1|datac
+    Info (332115):     10.594      0.284 RF  CELL  sudx_scan|solver|LessThan79~1|combout
+    Info (332115):     10.837      0.243 FF    IC  sudx_scan|solver|LessThan79~2|datac
+    Info (332115):     11.140      0.303 FF  CELL  sudx_scan|solver|LessThan79~2|combout
+    Info (332115):     11.385      0.245 FF    IC  sudx_scan|solver|LessThan79~6|datac
+    Info (332115):     11.683      0.298 FF  CELL  sudx_scan|solver|LessThan79~6|combout
+    Info (332115):     11.970      0.287 FF    IC  sudx_scan|solver|row_count[5][5][0]~0|datad
+    Info (332115):     12.131      0.161 FR  CELL  sudx_scan|solver|row_count[5][5][0]~0|combout
+    Info (332115):     12.913      0.782 RR    IC  sudx_scan|solver|LessThan76~0|datab
+    Info (332115):     13.362      0.449 RF  CELL  sudx_scan|solver|LessThan76~0|combout
+    Info (332115):     13.596      0.234 FF    IC  sudx_scan|solver|LessThan76~1|datad
+    Info (332115):     13.727      0.131 FF  CELL  sudx_scan|solver|LessThan76~1|combout
+    Info (332115):     13.965      0.238 FF    IC  sudx_scan|solver|LessThan76~2|datad
+    Info (332115):     14.096      0.131 FF  CELL  sudx_scan|solver|LessThan76~2|combout
+    Info (332115):     14.331      0.235 FF    IC  sudx_scan|solver|LessThan76~3|datad
+    Info (332115):     14.462      0.131 FF  CELL  sudx_scan|solver|LessThan76~3|combout
+    Info (332115):     14.930      0.468 FF    IC  sudx_scan|solver|LessThan75~3|datad
+    Info (332115):     15.091      0.161 FR  CELL  sudx_scan|solver|LessThan75~3|combout
+    Info (332115):     15.296      0.205 RR    IC  sudx_scan|solver|LessThan75~4|datad
+    Info (332115):     15.441      0.145 RF  CELL  sudx_scan|solver|LessThan75~4|combout
+    Info (332115):     15.845      0.404 FF    IC  sudx_scan|solver|LessThan75~5|datac
+    Info (332115):     16.148      0.303 FF  CELL  sudx_scan|solver|LessThan75~5|combout
+    Info (332115):     16.428      0.280 FF    IC  sudx_scan|solver|LessThan75~7|datab
+    Info (332115):     16.821      0.393 FF  CELL  sudx_scan|solver|LessThan75~7|combout
+    Info (332115):     17.133      0.312 FF    IC  sudx_scan|solver|row_count[5][1][3]~3|datad
+    Info (332115):     17.294      0.161 FR  CELL  sudx_scan|solver|row_count[5][1][3]~3|combout
+    Info (332115):     17.498      0.204 RR    IC  sudx_scan|solver|row_count[5][1][0]~0|datad
+    Info (332115):     17.664      0.166 RR  CELL  sudx_scan|solver|row_count[5][1][0]~0|combout
+    Info (332115):     17.664      0.000 RR    IC  sudx_scan|solver|row_count_q[5][0]|d
+    Info (332115):     17.753      0.089 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.589      1.962 RR    IC  sudx_scan|solver|row_count_q[5][0]|clk
+    Info (332115):      5.064      0.475 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115):      5.101      0.037           clock pessimism removed
+    Info (332115):      5.081     -0.020           clock uncertainty
+    Info (332115):      5.094      0.013     uTsu  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115): Data Arrival Time  :    17.753
+    Info (332115): Data Required Time :     5.094
+    Info (332115): Slack              :   -12.659 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #13: Setup slack is -12.658 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115): To Node      : sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.139      1.476 RR    IC  sudx_scan|solver|candidate[51][6]|clk
+    Info (332115):      3.649      0.510 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115):      3.856      0.207     uTco  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115):      3.856      0.000 FF  CELL  sudx_scan|solver|candidate[51][6]|q
+    Info (332115):      4.283      0.427 FF    IC  sudx_scan|solver|Add413~1|datab
+    Info (332115):      4.707      0.424 FF  CELL  sudx_scan|solver|Add413~1|combout
+    Info (332115):      5.786      1.079 FF    IC  sudx_scan|solver|Add415~0|datac
+    Info (332115):      6.089      0.303 FF  CELL  sudx_scan|solver|Add415~0|combout
+    Info (332115):      6.374      0.285 FF    IC  sudx_scan|solver|Add415~2|datac
+    Info (332115):      6.677      0.303 FF  CELL  sudx_scan|solver|Add415~2|combout
+    Info (332115):      6.918      0.241 FF    IC  sudx_scan|solver|row_count[5][22][2]~0|datac
+    Info (332115):      7.216      0.298 FF  CELL  sudx_scan|solver|row_count[5][22][2]~0|combout
+    Info (332115):      7.993      0.777 FF    IC  sudx_scan|solver|LessThan85~5|dataa
+    Info (332115):      8.395      0.402 FF  CELL  sudx_scan|solver|LessThan85~5|combout
+    Info (332115):      9.711      1.316 FF    IC  sudx_scan|solver|row_count[5][11][0]~3|dataa
+    Info (332115):     10.100      0.389 FR  CELL  sudx_scan|solver|row_count[5][11][0]~3|combout
+    Info (332115):     10.310      0.210 RR    IC  sudx_scan|solver|LessThan79~1|datac
+    Info (332115):     10.594      0.284 RF  CELL  sudx_scan|solver|LessThan79~1|combout
+    Info (332115):     10.837      0.243 FF    IC  sudx_scan|solver|LessThan79~2|datac
+    Info (332115):     11.140      0.303 FF  CELL  sudx_scan|solver|LessThan79~2|combout
+    Info (332115):     11.385      0.245 FF    IC  sudx_scan|solver|LessThan79~6|datac
+    Info (332115):     11.683      0.298 FF  CELL  sudx_scan|solver|LessThan79~6|combout
+    Info (332115):     11.970      0.287 FF    IC  sudx_scan|solver|row_count[5][5][3]~0|datad
+    Info (332115):     12.131      0.161 FR  CELL  sudx_scan|solver|row_count[5][5][3]~0|combout
+    Info (332115):     12.902      0.771 RR    IC  sudx_scan|solver|LessThan76~0|dataa
+    Info (332115):     13.324      0.422 RR  CELL  sudx_scan|solver|LessThan76~0|combout
+    Info (332115):     13.528      0.204 RR    IC  sudx_scan|solver|LessThan76~1|datad
+    Info (332115):     13.694      0.166 RR  CELL  sudx_scan|solver|LessThan76~1|combout
+    Info (332115):     13.899      0.205 RR    IC  sudx_scan|solver|LessThan76~2|datad
+    Info (332115):     14.065      0.166 RR  CELL  sudx_scan|solver|LessThan76~2|combout
+    Info (332115):     14.270      0.205 RR    IC  sudx_scan|solver|LessThan76~3|datad
+    Info (332115):     14.436      0.166 RR  CELL  sudx_scan|solver|LessThan76~3|combout
+    Info (332115):     14.681      0.245 RR    IC  sudx_scan|solver|row_count[5][2][3]~5|datac
+    Info (332115):     14.986      0.305 RR  CELL  sudx_scan|solver|row_count[5][2][3]~5|combout
+    Info (332115):     15.442      0.456 RR    IC  sudx_scan|solver|LessThan75~0|datac
+    Info (332115):     15.722      0.280 RF  CELL  sudx_scan|solver|LessThan75~0|combout
+    Info (332115):     15.969      0.247 FF    IC  sudx_scan|solver|LessThan75~1|datac
+    Info (332115):     16.272      0.303 FF  CELL  sudx_scan|solver|LessThan75~1|combout
+    Info (332115):     16.515      0.243 FF    IC  sudx_scan|solver|LessThan75~7|datac
+    Info (332115):     16.818      0.303 FF  CELL  sudx_scan|solver|LessThan75~7|combout
+    Info (332115):     17.132      0.314 FF    IC  sudx_scan|solver|row_index[5][1][4]~0|datad
+    Info (332115):     17.263      0.131 FF  CELL  sudx_scan|solver|row_index[5][1][4]~0|combout
+    Info (332115):     17.502      0.239 FF    IC  sudx_scan|solver|row_index_q[5][3]~5|datad
+    Info (332115):     17.663      0.161 FR  CELL  sudx_scan|solver|row_index_q[5][3]~5|combout
+    Info (332115):     17.663      0.000 RR    IC  sudx_scan|solver|row_index_q[5][3]|d
+    Info (332115):     17.752      0.089 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.589      1.962 RR    IC  sudx_scan|solver|row_index_q[5][3]|clk
+    Info (332115):      5.064      0.475 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115):      5.101      0.037           clock pessimism removed
+    Info (332115):      5.081     -0.020           clock uncertainty
+    Info (332115):      5.094      0.013     uTsu  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115): Data Arrival Time  :    17.752
+    Info (332115): Data Required Time :     5.094
+    Info (332115): Slack              :   -12.658 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #14: Setup slack is -12.656 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115): To Node      : sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.139      1.476 RR    IC  sudx_scan|solver|candidate[51][6]|clk
+    Info (332115):      3.649      0.510 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115):      3.856      0.207     uTco  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115):      3.856      0.000 FF  CELL  sudx_scan|solver|candidate[51][6]|q
+    Info (332115):      4.283      0.427 FF    IC  sudx_scan|solver|Add413~1|datab
+    Info (332115):      4.707      0.424 FF  CELL  sudx_scan|solver|Add413~1|combout
+    Info (332115):      5.786      1.079 FF    IC  sudx_scan|solver|Add415~0|datac
+    Info (332115):      6.089      0.303 FF  CELL  sudx_scan|solver|Add415~0|combout
+    Info (332115):      6.374      0.285 FF    IC  sudx_scan|solver|Add415~2|datac
+    Info (332115):      6.677      0.303 FF  CELL  sudx_scan|solver|Add415~2|combout
+    Info (332115):      6.918      0.241 FF    IC  sudx_scan|solver|row_count[5][22][2]~0|datac
+    Info (332115):      7.216      0.298 FF  CELL  sudx_scan|solver|row_count[5][22][2]~0|combout
+    Info (332115):      7.993      0.777 FF    IC  sudx_scan|solver|LessThan85~5|dataa
+    Info (332115):      8.395      0.402 FF  CELL  sudx_scan|solver|LessThan85~5|combout
+    Info (332115):      9.711      1.316 FF    IC  sudx_scan|solver|row_count[5][11][0]~3|dataa
+    Info (332115):     10.100      0.389 FR  CELL  sudx_scan|solver|row_count[5][11][0]~3|combout
+    Info (332115):     10.310      0.210 RR    IC  sudx_scan|solver|LessThan79~1|datac
+    Info (332115):     10.594      0.284 RF  CELL  sudx_scan|solver|LessThan79~1|combout
+    Info (332115):     10.837      0.243 FF    IC  sudx_scan|solver|LessThan79~2|datac
+    Info (332115):     11.140      0.303 FF  CELL  sudx_scan|solver|LessThan79~2|combout
+    Info (332115):     11.385      0.245 FF    IC  sudx_scan|solver|LessThan79~6|datac
+    Info (332115):     11.683      0.298 FF  CELL  sudx_scan|solver|LessThan79~6|combout
+    Info (332115):     11.970      0.287 FF    IC  sudx_scan|solver|row_count[5][5][3]~0|datad
+    Info (332115):     12.131      0.161 FR  CELL  sudx_scan|solver|row_count[5][5][3]~0|combout
+    Info (332115):     12.902      0.771 RR    IC  sudx_scan|solver|LessThan76~0|dataa
+    Info (332115):     13.324      0.422 RR  CELL  sudx_scan|solver|LessThan76~0|combout
+    Info (332115):     13.528      0.204 RR    IC  sudx_scan|solver|LessThan76~1|datad
+    Info (332115):     13.694      0.166 RR  CELL  sudx_scan|solver|LessThan76~1|combout
+    Info (332115):     13.899      0.205 RR    IC  sudx_scan|solver|LessThan76~2|datad
+    Info (332115):     14.065      0.166 RR  CELL  sudx_scan|solver|LessThan76~2|combout
+    Info (332115):     14.270      0.205 RR    IC  sudx_scan|solver|LessThan76~3|datad
+    Info (332115):     14.436      0.166 RR  CELL  sudx_scan|solver|LessThan76~3|combout
+    Info (332115):     14.681      0.245 RR    IC  sudx_scan|solver|row_count[5][2][3]~5|datac
+    Info (332115):     14.986      0.305 RR  CELL  sudx_scan|solver|row_count[5][2][3]~5|combout
+    Info (332115):     15.442      0.456 RR    IC  sudx_scan|solver|LessThan75~0|datac
+    Info (332115):     15.722      0.280 RF  CELL  sudx_scan|solver|LessThan75~0|combout
+    Info (332115):     15.969      0.247 FF    IC  sudx_scan|solver|LessThan75~1|datac
+    Info (332115):     16.272      0.303 FF  CELL  sudx_scan|solver|LessThan75~1|combout
+    Info (332115):     16.515      0.243 FF    IC  sudx_scan|solver|LessThan75~7|datac
+    Info (332115):     16.818      0.303 FF  CELL  sudx_scan|solver|LessThan75~7|combout
+    Info (332115):     17.130      0.312 FF    IC  sudx_scan|solver|row_count[5][1][3]~3|datad
+    Info (332115):     17.291      0.161 FR  CELL  sudx_scan|solver|row_count[5][1][3]~3|combout
+    Info (332115):     17.495      0.204 RR    IC  sudx_scan|solver|row_count[5][1][0]~0|datad
+    Info (332115):     17.661      0.166 RR  CELL  sudx_scan|solver|row_count[5][1][0]~0|combout
+    Info (332115):     17.661      0.000 RR    IC  sudx_scan|solver|row_count_q[5][0]|d
+    Info (332115):     17.750      0.089 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.589      1.962 RR    IC  sudx_scan|solver|row_count_q[5][0]|clk
+    Info (332115):      5.064      0.475 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115):      5.101      0.037           clock pessimism removed
+    Info (332115):      5.081     -0.020           clock uncertainty
+    Info (332115):      5.094      0.013     uTsu  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115): Data Arrival Time  :    17.750
+    Info (332115): Data Required Time :     5.094
+    Info (332115): Slack              :   -12.656 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #15: Setup slack is -12.640 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[50][5]
+    Info (332115): To Node      : sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.179      1.516 RR    IC  sudx_scan|solver|candidate[50][5]|clk
+    Info (332115):      3.689      0.510 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[50][5]
+    Info (332115):      3.896      0.207     uTco  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[50][5]
+    Info (332115):      3.896      0.000 FF  CELL  sudx_scan|solver|candidate[50][5]|q
+    Info (332115):      4.318      0.422 FF    IC  sudx_scan|solver|Add403~1|dataa
+    Info (332115):      4.746      0.428 FF  CELL  sudx_scan|solver|Add403~1|combout
+    Info (332115):      6.021      1.275 FF    IC  sudx_scan|solver|Add407~0|datab
+    Info (332115):      6.414      0.393 FF  CELL  sudx_scan|solver|Add407~0|combout
+    Info (332115):      6.748      0.334 FF    IC  sudx_scan|solver|row_count[5][21][1]~0|dataa
+    Info (332115):      7.164      0.416 FR  CELL  sudx_scan|solver|row_count[5][21][1]~0|combout
+    Info (332115):      7.403      0.239 RR    IC  sudx_scan|solver|LessThan84~2|datab
+    Info (332115):      7.852      0.449 RF  CELL  sudx_scan|solver|LessThan84~2|combout
+    Info (332115):      8.099      0.247 FF    IC  sudx_scan|solver|LessThan84~4|datac
+    Info (332115):      8.397      0.298 FF  CELL  sudx_scan|solver|LessThan84~4|combout
+    Info (332115):      8.721      0.324 FF    IC  sudx_scan|solver|row_count[5][10][0]~0|dataa
+    Info (332115):      9.149      0.428 FF  CELL  sudx_scan|solver|row_count[5][10][0]~0|combout
+    Info (332115):     10.151      1.002 FF    IC  sudx_scan|solver|LessThan79~1|dataa
+    Info (332115):     10.506      0.355 FF  CELL  sudx_scan|solver|LessThan79~1|combout
+    Info (332115):     10.749      0.243 FF    IC  sudx_scan|solver|LessThan79~2|datac
+    Info (332115):     11.052      0.303 FF  CELL  sudx_scan|solver|LessThan79~2|combout
+    Info (332115):     11.297      0.245 FF    IC  sudx_scan|solver|LessThan79~6|datac
+    Info (332115):     11.595      0.298 FF  CELL  sudx_scan|solver|LessThan79~6|combout
+    Info (332115):     11.882      0.287 FF    IC  sudx_scan|solver|row_count[5][5][0]~0|datad
+    Info (332115):     12.043      0.161 FR  CELL  sudx_scan|solver|row_count[5][5][0]~0|combout
+    Info (332115):     12.825      0.782 RR    IC  sudx_scan|solver|LessThan76~0|datab
+    Info (332115):     13.274      0.449 RF  CELL  sudx_scan|solver|LessThan76~0|combout
+    Info (332115):     13.508      0.234 FF    IC  sudx_scan|solver|LessThan76~1|datad
+    Info (332115):     13.639      0.131 FF  CELL  sudx_scan|solver|LessThan76~1|combout
+    Info (332115):     13.877      0.238 FF    IC  sudx_scan|solver|LessThan76~2|datad
+    Info (332115):     14.008      0.131 FF  CELL  sudx_scan|solver|LessThan76~2|combout
+    Info (332115):     14.243      0.235 FF    IC  sudx_scan|solver|LessThan76~3|datad
+    Info (332115):     14.374      0.131 FF  CELL  sudx_scan|solver|LessThan76~3|combout
+    Info (332115):     14.668      0.294 FF    IC  sudx_scan|solver|row_count[5][2][3]~5|datac
+    Info (332115):     14.971      0.303 FF  CELL  sudx_scan|solver|row_count[5][2][3]~5|combout
+    Info (332115):     15.457      0.486 FF    IC  sudx_scan|solver|LessThan75~2|datac
+    Info (332115):     15.760      0.303 FF  CELL  sudx_scan|solver|LessThan75~2|combout
+    Info (332115):     15.996      0.236 FF    IC  sudx_scan|solver|LessThan75~5|datad
+    Info (332115):     16.127      0.131 FF  CELL  sudx_scan|solver|LessThan75~5|combout
+    Info (332115):     16.407      0.280 FF    IC  sudx_scan|solver|LessThan75~7|datab
+    Info (332115):     16.800      0.393 FF  CELL  sudx_scan|solver|LessThan75~7|combout
+    Info (332115):     17.114      0.314 FF    IC  sudx_scan|solver|row_index[5][1][4]~0|datad
+    Info (332115):     17.245      0.131 FF  CELL  sudx_scan|solver|row_index[5][1][4]~0|combout
+    Info (332115):     17.484      0.239 FF    IC  sudx_scan|solver|row_index_q[5][3]~5|datad
+    Info (332115):     17.645      0.161 FR  CELL  sudx_scan|solver|row_index_q[5][3]~5|combout
+    Info (332115):     17.645      0.000 RR    IC  sudx_scan|solver|row_index_q[5][3]|d
+    Info (332115):     17.734      0.089 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.589      1.962 RR    IC  sudx_scan|solver|row_index_q[5][3]|clk
+    Info (332115):      5.064      0.475 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115):      5.101      0.037           clock pessimism removed
+    Info (332115):      5.081     -0.020           clock uncertainty
+    Info (332115):      5.094      0.013     uTsu  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115): Data Arrival Time  :    17.734
+    Info (332115): Data Required Time :     5.094
+    Info (332115): Slack              :   -12.640 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #16: Setup slack is -12.638 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[50][5]
+    Info (332115): To Node      : sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.179      1.516 RR    IC  sudx_scan|solver|candidate[50][5]|clk
+    Info (332115):      3.689      0.510 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[50][5]
+    Info (332115):      3.896      0.207     uTco  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[50][5]
+    Info (332115):      3.896      0.000 FF  CELL  sudx_scan|solver|candidate[50][5]|q
+    Info (332115):      4.318      0.422 FF    IC  sudx_scan|solver|Add403~1|dataa
+    Info (332115):      4.746      0.428 FF  CELL  sudx_scan|solver|Add403~1|combout
+    Info (332115):      6.021      1.275 FF    IC  sudx_scan|solver|Add407~0|datab
+    Info (332115):      6.414      0.393 FF  CELL  sudx_scan|solver|Add407~0|combout
+    Info (332115):      6.748      0.334 FF    IC  sudx_scan|solver|row_count[5][21][1]~0|dataa
+    Info (332115):      7.164      0.416 FR  CELL  sudx_scan|solver|row_count[5][21][1]~0|combout
+    Info (332115):      7.403      0.239 RR    IC  sudx_scan|solver|LessThan84~2|datab
+    Info (332115):      7.852      0.449 RF  CELL  sudx_scan|solver|LessThan84~2|combout
+    Info (332115):      8.099      0.247 FF    IC  sudx_scan|solver|LessThan84~4|datac
+    Info (332115):      8.397      0.298 FF  CELL  sudx_scan|solver|LessThan84~4|combout
+    Info (332115):      8.721      0.324 FF    IC  sudx_scan|solver|row_count[5][10][0]~0|dataa
+    Info (332115):      9.149      0.428 FF  CELL  sudx_scan|solver|row_count[5][10][0]~0|combout
+    Info (332115):     10.151      1.002 FF    IC  sudx_scan|solver|LessThan79~1|dataa
+    Info (332115):     10.506      0.355 FF  CELL  sudx_scan|solver|LessThan79~1|combout
+    Info (332115):     10.749      0.243 FF    IC  sudx_scan|solver|LessThan79~2|datac
+    Info (332115):     11.052      0.303 FF  CELL  sudx_scan|solver|LessThan79~2|combout
+    Info (332115):     11.297      0.245 FF    IC  sudx_scan|solver|LessThan79~6|datac
+    Info (332115):     11.595      0.298 FF  CELL  sudx_scan|solver|LessThan79~6|combout
+    Info (332115):     11.882      0.287 FF    IC  sudx_scan|solver|row_count[5][5][0]~0|datad
+    Info (332115):     12.043      0.161 FR  CELL  sudx_scan|solver|row_count[5][5][0]~0|combout
+    Info (332115):     12.825      0.782 RR    IC  sudx_scan|solver|LessThan76~0|datab
+    Info (332115):     13.274      0.449 RF  CELL  sudx_scan|solver|LessThan76~0|combout
+    Info (332115):     13.508      0.234 FF    IC  sudx_scan|solver|LessThan76~1|datad
+    Info (332115):     13.639      0.131 FF  CELL  sudx_scan|solver|LessThan76~1|combout
+    Info (332115):     13.877      0.238 FF    IC  sudx_scan|solver|LessThan76~2|datad
+    Info (332115):     14.008      0.131 FF  CELL  sudx_scan|solver|LessThan76~2|combout
+    Info (332115):     14.243      0.235 FF    IC  sudx_scan|solver|LessThan76~3|datad
+    Info (332115):     14.374      0.131 FF  CELL  sudx_scan|solver|LessThan76~3|combout
+    Info (332115):     14.668      0.294 FF    IC  sudx_scan|solver|row_count[5][2][3]~5|datac
+    Info (332115):     14.971      0.303 FF  CELL  sudx_scan|solver|row_count[5][2][3]~5|combout
+    Info (332115):     15.457      0.486 FF    IC  sudx_scan|solver|LessThan75~2|datac
+    Info (332115):     15.760      0.303 FF  CELL  sudx_scan|solver|LessThan75~2|combout
+    Info (332115):     15.996      0.236 FF    IC  sudx_scan|solver|LessThan75~5|datad
+    Info (332115):     16.127      0.131 FF  CELL  sudx_scan|solver|LessThan75~5|combout
+    Info (332115):     16.407      0.280 FF    IC  sudx_scan|solver|LessThan75~7|datab
+    Info (332115):     16.800      0.393 FF  CELL  sudx_scan|solver|LessThan75~7|combout
+    Info (332115):     17.112      0.312 FF    IC  sudx_scan|solver|row_count[5][1][3]~3|datad
+    Info (332115):     17.273      0.161 FR  CELL  sudx_scan|solver|row_count[5][1][3]~3|combout
+    Info (332115):     17.477      0.204 RR    IC  sudx_scan|solver|row_count[5][1][0]~0|datad
+    Info (332115):     17.643      0.166 RR  CELL  sudx_scan|solver|row_count[5][1][0]~0|combout
+    Info (332115):     17.643      0.000 RR    IC  sudx_scan|solver|row_count_q[5][0]|d
+    Info (332115):     17.732      0.089 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.589      1.962 RR    IC  sudx_scan|solver|row_count_q[5][0]|clk
+    Info (332115):      5.064      0.475 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115):      5.101      0.037           clock pessimism removed
+    Info (332115):      5.081     -0.020           clock uncertainty
+    Info (332115):      5.094      0.013     uTsu  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115): Data Arrival Time  :    17.732
+    Info (332115): Data Required Time :     5.094
+    Info (332115): Slack              :   -12.638 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #17: Setup slack is -12.621 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[50][5]
+    Info (332115): To Node      : sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.179      1.516 RR    IC  sudx_scan|solver|candidate[50][5]|clk
+    Info (332115):      3.689      0.510 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[50][5]
+    Info (332115):      3.896      0.207     uTco  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[50][5]
+    Info (332115):      3.896      0.000 FF  CELL  sudx_scan|solver|candidate[50][5]|q
+    Info (332115):      4.318      0.422 FF    IC  sudx_scan|solver|Add403~1|dataa
+    Info (332115):      4.746      0.428 FF  CELL  sudx_scan|solver|Add403~1|combout
+    Info (332115):      6.021      1.275 FF    IC  sudx_scan|solver|Add407~0|datab
+    Info (332115):      6.414      0.393 FF  CELL  sudx_scan|solver|Add407~0|combout
+    Info (332115):      6.748      0.334 FF    IC  sudx_scan|solver|row_count[5][21][1]~0|dataa
+    Info (332115):      7.164      0.416 FR  CELL  sudx_scan|solver|row_count[5][21][1]~0|combout
+    Info (332115):      7.403      0.239 RR    IC  sudx_scan|solver|LessThan84~2|datab
+    Info (332115):      7.852      0.449 RF  CELL  sudx_scan|solver|LessThan84~2|combout
+    Info (332115):      8.099      0.247 FF    IC  sudx_scan|solver|LessThan84~4|datac
+    Info (332115):      8.397      0.298 FF  CELL  sudx_scan|solver|LessThan84~4|combout
+    Info (332115):      8.721      0.324 FF    IC  sudx_scan|solver|row_count[5][10][0]~0|dataa
+    Info (332115):      9.149      0.428 FF  CELL  sudx_scan|solver|row_count[5][10][0]~0|combout
+    Info (332115):     10.151      1.002 FF    IC  sudx_scan|solver|LessThan79~1|dataa
+    Info (332115):     10.506      0.355 FF  CELL  sudx_scan|solver|LessThan79~1|combout
+    Info (332115):     10.749      0.243 FF    IC  sudx_scan|solver|LessThan79~2|datac
+    Info (332115):     11.052      0.303 FF  CELL  sudx_scan|solver|LessThan79~2|combout
+    Info (332115):     11.297      0.245 FF    IC  sudx_scan|solver|LessThan79~6|datac
+    Info (332115):     11.595      0.298 FF  CELL  sudx_scan|solver|LessThan79~6|combout
+    Info (332115):     11.882      0.287 FF    IC  sudx_scan|solver|row_count[5][5][0]~0|datad
+    Info (332115):     12.043      0.161 FR  CELL  sudx_scan|solver|row_count[5][5][0]~0|combout
+    Info (332115):     12.825      0.782 RR    IC  sudx_scan|solver|LessThan76~0|datab
+    Info (332115):     13.274      0.449 RF  CELL  sudx_scan|solver|LessThan76~0|combout
+    Info (332115):     13.508      0.234 FF    IC  sudx_scan|solver|LessThan76~1|datad
+    Info (332115):     13.639      0.131 FF  CELL  sudx_scan|solver|LessThan76~1|combout
+    Info (332115):     13.877      0.238 FF    IC  sudx_scan|solver|LessThan76~2|datad
+    Info (332115):     14.008      0.131 FF  CELL  sudx_scan|solver|LessThan76~2|combout
+    Info (332115):     14.243      0.235 FF    IC  sudx_scan|solver|LessThan76~3|datad
+    Info (332115):     14.374      0.131 FF  CELL  sudx_scan|solver|LessThan76~3|combout
+    Info (332115):     14.668      0.294 FF    IC  sudx_scan|solver|row_count[5][2][3]~5|datac
+    Info (332115):     14.949      0.281 FR  CELL  sudx_scan|solver|row_count[5][2][3]~5|combout
+    Info (332115):     15.405      0.456 RR    IC  sudx_scan|solver|LessThan75~0|datac
+    Info (332115):     15.685      0.280 RF  CELL  sudx_scan|solver|LessThan75~0|combout
+    Info (332115):     15.932      0.247 FF    IC  sudx_scan|solver|LessThan75~1|datac
+    Info (332115):     16.235      0.303 FF  CELL  sudx_scan|solver|LessThan75~1|combout
+    Info (332115):     16.478      0.243 FF    IC  sudx_scan|solver|LessThan75~7|datac
+    Info (332115):     16.781      0.303 FF  CELL  sudx_scan|solver|LessThan75~7|combout
+    Info (332115):     17.095      0.314 FF    IC  sudx_scan|solver|row_index[5][1][4]~0|datad
+    Info (332115):     17.226      0.131 FF  CELL  sudx_scan|solver|row_index[5][1][4]~0|combout
+    Info (332115):     17.465      0.239 FF    IC  sudx_scan|solver|row_index_q[5][3]~5|datad
+    Info (332115):     17.626      0.161 FR  CELL  sudx_scan|solver|row_index_q[5][3]~5|combout
+    Info (332115):     17.626      0.000 RR    IC  sudx_scan|solver|row_index_q[5][3]|d
+    Info (332115):     17.715      0.089 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.589      1.962 RR    IC  sudx_scan|solver|row_index_q[5][3]|clk
+    Info (332115):      5.064      0.475 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115):      5.101      0.037           clock pessimism removed
+    Info (332115):      5.081     -0.020           clock uncertainty
+    Info (332115):      5.094      0.013     uTsu  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115): Data Arrival Time  :    17.715
+    Info (332115): Data Required Time :     5.094
+    Info (332115): Slack              :   -12.621 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #18: Setup slack is -12.619 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[50][5]
+    Info (332115): To Node      : sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.179      1.516 RR    IC  sudx_scan|solver|candidate[50][5]|clk
+    Info (332115):      3.689      0.510 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[50][5]
+    Info (332115):      3.896      0.207     uTco  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[50][5]
+    Info (332115):      3.896      0.000 FF  CELL  sudx_scan|solver|candidate[50][5]|q
+    Info (332115):      4.318      0.422 FF    IC  sudx_scan|solver|Add403~1|dataa
+    Info (332115):      4.746      0.428 FF  CELL  sudx_scan|solver|Add403~1|combout
+    Info (332115):      6.021      1.275 FF    IC  sudx_scan|solver|Add407~0|datab
+    Info (332115):      6.414      0.393 FF  CELL  sudx_scan|solver|Add407~0|combout
+    Info (332115):      6.748      0.334 FF    IC  sudx_scan|solver|row_count[5][21][1]~0|dataa
+    Info (332115):      7.164      0.416 FR  CELL  sudx_scan|solver|row_count[5][21][1]~0|combout
+    Info (332115):      7.403      0.239 RR    IC  sudx_scan|solver|LessThan84~2|datab
+    Info (332115):      7.852      0.449 RF  CELL  sudx_scan|solver|LessThan84~2|combout
+    Info (332115):      8.099      0.247 FF    IC  sudx_scan|solver|LessThan84~4|datac
+    Info (332115):      8.397      0.298 FF  CELL  sudx_scan|solver|LessThan84~4|combout
+    Info (332115):      8.721      0.324 FF    IC  sudx_scan|solver|row_count[5][10][0]~0|dataa
+    Info (332115):      9.149      0.428 FF  CELL  sudx_scan|solver|row_count[5][10][0]~0|combout
+    Info (332115):     10.151      1.002 FF    IC  sudx_scan|solver|LessThan79~1|dataa
+    Info (332115):     10.506      0.355 FF  CELL  sudx_scan|solver|LessThan79~1|combout
+    Info (332115):     10.749      0.243 FF    IC  sudx_scan|solver|LessThan79~2|datac
+    Info (332115):     11.052      0.303 FF  CELL  sudx_scan|solver|LessThan79~2|combout
+    Info (332115):     11.297      0.245 FF    IC  sudx_scan|solver|LessThan79~6|datac
+    Info (332115):     11.595      0.298 FF  CELL  sudx_scan|solver|LessThan79~6|combout
+    Info (332115):     11.882      0.287 FF    IC  sudx_scan|solver|row_count[5][5][0]~0|datad
+    Info (332115):     12.043      0.161 FR  CELL  sudx_scan|solver|row_count[5][5][0]~0|combout
+    Info (332115):     12.825      0.782 RR    IC  sudx_scan|solver|LessThan76~0|datab
+    Info (332115):     13.274      0.449 RF  CELL  sudx_scan|solver|LessThan76~0|combout
+    Info (332115):     13.508      0.234 FF    IC  sudx_scan|solver|LessThan76~1|datad
+    Info (332115):     13.639      0.131 FF  CELL  sudx_scan|solver|LessThan76~1|combout
+    Info (332115):     13.877      0.238 FF    IC  sudx_scan|solver|LessThan76~2|datad
+    Info (332115):     14.008      0.131 FF  CELL  sudx_scan|solver|LessThan76~2|combout
+    Info (332115):     14.243      0.235 FF    IC  sudx_scan|solver|LessThan76~3|datad
+    Info (332115):     14.374      0.131 FF  CELL  sudx_scan|solver|LessThan76~3|combout
+    Info (332115):     14.668      0.294 FF    IC  sudx_scan|solver|row_count[5][2][3]~5|datac
+    Info (332115):     14.949      0.281 FR  CELL  sudx_scan|solver|row_count[5][2][3]~5|combout
+    Info (332115):     15.405      0.456 RR    IC  sudx_scan|solver|LessThan75~0|datac
+    Info (332115):     15.685      0.280 RF  CELL  sudx_scan|solver|LessThan75~0|combout
+    Info (332115):     15.932      0.247 FF    IC  sudx_scan|solver|LessThan75~1|datac
+    Info (332115):     16.235      0.303 FF  CELL  sudx_scan|solver|LessThan75~1|combout
+    Info (332115):     16.478      0.243 FF    IC  sudx_scan|solver|LessThan75~7|datac
+    Info (332115):     16.781      0.303 FF  CELL  sudx_scan|solver|LessThan75~7|combout
+    Info (332115):     17.093      0.312 FF    IC  sudx_scan|solver|row_count[5][1][3]~3|datad
+    Info (332115):     17.254      0.161 FR  CELL  sudx_scan|solver|row_count[5][1][3]~3|combout
+    Info (332115):     17.458      0.204 RR    IC  sudx_scan|solver|row_count[5][1][0]~0|datad
+    Info (332115):     17.624      0.166 RR  CELL  sudx_scan|solver|row_count[5][1][0]~0|combout
+    Info (332115):     17.624      0.000 RR    IC  sudx_scan|solver|row_count_q[5][0]|d
+    Info (332115):     17.713      0.089 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.589      1.962 RR    IC  sudx_scan|solver|row_count_q[5][0]|clk
+    Info (332115):      5.064      0.475 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115):      5.101      0.037           clock pessimism removed
+    Info (332115):      5.081     -0.020           clock uncertainty
+    Info (332115):      5.094      0.013     uTsu  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115): Data Arrival Time  :    17.713
+    Info (332115): Data Required Time :     5.094
+    Info (332115): Slack              :   -12.619 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #19: Setup slack is -12.616 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115): To Node      : sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.139      1.476 RR    IC  sudx_scan|solver|candidate[51][6]|clk
+    Info (332115):      3.649      0.510 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115):      3.856      0.207     uTco  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115):      3.856      0.000 FF  CELL  sudx_scan|solver|candidate[51][6]|q
+    Info (332115):      4.283      0.427 FF    IC  sudx_scan|solver|Add413~1|datab
+    Info (332115):      4.707      0.424 FF  CELL  sudx_scan|solver|Add413~1|combout
+    Info (332115):      5.786      1.079 FF    IC  sudx_scan|solver|Add415~0|datac
+    Info (332115):      6.089      0.303 FF  CELL  sudx_scan|solver|Add415~0|combout
+    Info (332115):      6.374      0.285 FF    IC  sudx_scan|solver|Add415~2|datac
+    Info (332115):      6.677      0.303 FF  CELL  sudx_scan|solver|Add415~2|combout
+    Info (332115):      6.918      0.241 FF    IC  sudx_scan|solver|row_count[5][22][2]~0|datac
+    Info (332115):      7.216      0.298 FF  CELL  sudx_scan|solver|row_count[5][22][2]~0|combout
+    Info (332115):      7.993      0.777 FF    IC  sudx_scan|solver|LessThan85~5|dataa
+    Info (332115):      8.395      0.402 FF  CELL  sudx_scan|solver|LessThan85~5|combout
+    Info (332115):      9.711      1.316 FF    IC  sudx_scan|solver|row_count[5][11][0]~3|dataa
+    Info (332115):     10.100      0.389 FR  CELL  sudx_scan|solver|row_count[5][11][0]~3|combout
+    Info (332115):     10.310      0.210 RR    IC  sudx_scan|solver|LessThan79~1|datac
+    Info (332115):     10.594      0.284 RF  CELL  sudx_scan|solver|LessThan79~1|combout
+    Info (332115):     10.837      0.243 FF    IC  sudx_scan|solver|LessThan79~2|datac
+    Info (332115):     11.140      0.303 FF  CELL  sudx_scan|solver|LessThan79~2|combout
+    Info (332115):     11.385      0.245 FF    IC  sudx_scan|solver|LessThan79~6|datac
+    Info (332115):     11.683      0.298 FF  CELL  sudx_scan|solver|LessThan79~6|combout
+    Info (332115):     11.970      0.287 FF    IC  sudx_scan|solver|row_count[5][5][3]~0|datad
+    Info (332115):     12.131      0.161 FR  CELL  sudx_scan|solver|row_count[5][5][3]~0|combout
+    Info (332115):     12.902      0.771 RR    IC  sudx_scan|solver|LessThan76~0|dataa
+    Info (332115):     13.324      0.422 RR  CELL  sudx_scan|solver|LessThan76~0|combout
+    Info (332115):     13.528      0.204 RR    IC  sudx_scan|solver|LessThan76~1|datad
+    Info (332115):     13.694      0.166 RR  CELL  sudx_scan|solver|LessThan76~1|combout
+    Info (332115):     13.899      0.205 RR    IC  sudx_scan|solver|LessThan76~2|datad
+    Info (332115):     14.065      0.166 RR  CELL  sudx_scan|solver|LessThan76~2|combout
+    Info (332115):     14.270      0.205 RR    IC  sudx_scan|solver|LessThan76~3|datad
+    Info (332115):     14.436      0.166 RR  CELL  sudx_scan|solver|LessThan76~3|combout
+    Info (332115):     14.880      0.444 RR    IC  sudx_scan|solver|LessThan75~3|datad
+    Info (332115):     15.046      0.166 RR  CELL  sudx_scan|solver|LessThan75~3|combout
+    Info (332115):     15.251      0.205 RR    IC  sudx_scan|solver|LessThan75~4|datad
+    Info (332115):     15.396      0.145 RF  CELL  sudx_scan|solver|LessThan75~4|combout
+    Info (332115):     15.800      0.404 FF    IC  sudx_scan|solver|LessThan75~5|datac
+    Info (332115):     16.103      0.303 FF  CELL  sudx_scan|solver|LessThan75~5|combout
+    Info (332115):     16.383      0.280 FF    IC  sudx_scan|solver|LessThan75~7|datab
+    Info (332115):     16.776      0.393 FF  CELL  sudx_scan|solver|LessThan75~7|combout
+    Info (332115):     17.090      0.314 FF    IC  sudx_scan|solver|row_index[5][1][4]~0|datad
+    Info (332115):     17.221      0.131 FF  CELL  sudx_scan|solver|row_index[5][1][4]~0|combout
+    Info (332115):     17.460      0.239 FF    IC  sudx_scan|solver|row_index_q[5][3]~5|datad
+    Info (332115):     17.621      0.161 FR  CELL  sudx_scan|solver|row_index_q[5][3]~5|combout
+    Info (332115):     17.621      0.000 RR    IC  sudx_scan|solver|row_index_q[5][3]|d
+    Info (332115):     17.710      0.089 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.589      1.962 RR    IC  sudx_scan|solver|row_index_q[5][3]|clk
+    Info (332115):      5.064      0.475 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115):      5.101      0.037           clock pessimism removed
+    Info (332115):      5.081     -0.020           clock uncertainty
+    Info (332115):      5.094      0.013     uTsu  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_index_q[5][3]
+    Info (332115): Data Arrival Time  :    17.710
+    Info (332115): Data Required Time :     5.094
+    Info (332115): Slack              :   -12.616 (VIOLATED)
+    Info (332115): ===================================================================
+Info (332115): Path #20: Setup slack is -12.614 (VIOLATED)
+    Info (332115): ===================================================================
+    Info (332115): From Node    : sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115): To Node      : sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115): Launch Clock : clk
+    Info (332115): Latch Clock  : clk
+    Info (332115): Data Arrival Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      0.000      0.000           launch edge time
+    Info (332115):      0.000      0.000           source latency
+    Info (332115):      0.000      0.000           clk
+    Info (332115):      0.000      0.000 RR    IC  clk~input|i
+    Info (332115):      0.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      1.663      0.894 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      1.663      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      3.139      1.476 RR    IC  sudx_scan|solver|candidate[51][6]|clk
+    Info (332115):      3.649      0.510 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115):      3.856      0.207     uTco  sudx_scan:sudx_scan|sudx_scan_solver:solver|candidate[51][6]
+    Info (332115):      3.856      0.000 FF  CELL  sudx_scan|solver|candidate[51][6]|q
+    Info (332115):      4.283      0.427 FF    IC  sudx_scan|solver|Add413~1|datab
+    Info (332115):      4.707      0.424 FF  CELL  sudx_scan|solver|Add413~1|combout
+    Info (332115):      5.786      1.079 FF    IC  sudx_scan|solver|Add415~0|datac
+    Info (332115):      6.089      0.303 FF  CELL  sudx_scan|solver|Add415~0|combout
+    Info (332115):      6.374      0.285 FF    IC  sudx_scan|solver|Add415~2|datac
+    Info (332115):      6.677      0.303 FF  CELL  sudx_scan|solver|Add415~2|combout
+    Info (332115):      6.918      0.241 FF    IC  sudx_scan|solver|row_count[5][22][2]~0|datac
+    Info (332115):      7.216      0.298 FF  CELL  sudx_scan|solver|row_count[5][22][2]~0|combout
+    Info (332115):      7.993      0.777 FF    IC  sudx_scan|solver|LessThan85~5|dataa
+    Info (332115):      8.395      0.402 FF  CELL  sudx_scan|solver|LessThan85~5|combout
+    Info (332115):      9.711      1.316 FF    IC  sudx_scan|solver|row_count[5][11][0]~3|dataa
+    Info (332115):     10.100      0.389 FR  CELL  sudx_scan|solver|row_count[5][11][0]~3|combout
+    Info (332115):     10.310      0.210 RR    IC  sudx_scan|solver|LessThan79~1|datac
+    Info (332115):     10.594      0.284 RF  CELL  sudx_scan|solver|LessThan79~1|combout
+    Info (332115):     10.837      0.243 FF    IC  sudx_scan|solver|LessThan79~2|datac
+    Info (332115):     11.140      0.303 FF  CELL  sudx_scan|solver|LessThan79~2|combout
+    Info (332115):     11.385      0.245 FF    IC  sudx_scan|solver|LessThan79~6|datac
+    Info (332115):     11.683      0.298 FF  CELL  sudx_scan|solver|LessThan79~6|combout
+    Info (332115):     11.970      0.287 FF    IC  sudx_scan|solver|row_count[5][5][3]~0|datad
+    Info (332115):     12.131      0.161 FR  CELL  sudx_scan|solver|row_count[5][5][3]~0|combout
+    Info (332115):     12.902      0.771 RR    IC  sudx_scan|solver|LessThan76~0|dataa
+    Info (332115):     13.324      0.422 RR  CELL  sudx_scan|solver|LessThan76~0|combout
+    Info (332115):     13.528      0.204 RR    IC  sudx_scan|solver|LessThan76~1|datad
+    Info (332115):     13.694      0.166 RR  CELL  sudx_scan|solver|LessThan76~1|combout
+    Info (332115):     13.899      0.205 RR    IC  sudx_scan|solver|LessThan76~2|datad
+    Info (332115):     14.065      0.166 RR  CELL  sudx_scan|solver|LessThan76~2|combout
+    Info (332115):     14.270      0.205 RR    IC  sudx_scan|solver|LessThan76~3|datad
+    Info (332115):     14.436      0.166 RR  CELL  sudx_scan|solver|LessThan76~3|combout
+    Info (332115):     14.880      0.444 RR    IC  sudx_scan|solver|LessThan75~3|datad
+    Info (332115):     15.046      0.166 RR  CELL  sudx_scan|solver|LessThan75~3|combout
+    Info (332115):     15.251      0.205 RR    IC  sudx_scan|solver|LessThan75~4|datad
+    Info (332115):     15.396      0.145 RF  CELL  sudx_scan|solver|LessThan75~4|combout
+    Info (332115):     15.800      0.404 FF    IC  sudx_scan|solver|LessThan75~5|datac
+    Info (332115):     16.103      0.303 FF  CELL  sudx_scan|solver|LessThan75~5|combout
+    Info (332115):     16.383      0.280 FF    IC  sudx_scan|solver|LessThan75~7|datab
+    Info (332115):     16.776      0.393 FF  CELL  sudx_scan|solver|LessThan75~7|combout
+    Info (332115):     17.088      0.312 FF    IC  sudx_scan|solver|row_count[5][1][3]~3|datad
+    Info (332115):     17.249      0.161 FR  CELL  sudx_scan|solver|row_count[5][1][3]~3|combout
+    Info (332115):     17.453      0.204 RR    IC  sudx_scan|solver|row_count[5][1][0]~0|datad
+    Info (332115):     17.619      0.166 RR  CELL  sudx_scan|solver|row_count[5][1][0]~0|combout
+    Info (332115):     17.619      0.000 RR    IC  sudx_scan|solver|row_count_q[5][0]|d
+    Info (332115):     17.708      0.089 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115): Data Required Path:
+    Info (332115): Total (ns)  Incr (ns)     Type  Element
+    Info (332115): ==========  ========= ==  ====  ===================================
+    Info (332115):      1.000      1.000           latch edge time
+    Info (332115):      1.000      0.000           source latency
+    Info (332115):      1.000      0.000           clk
+    Info (332115):      1.000      0.000 RR    IC  clk~input|i
+    Info (332115):      1.769      0.769 RR  CELL  clk~input|o
+    Info (332115):      2.627      0.858 RR    IC  clk~inputclkctrl|inclk[0]
+    Info (332115):      2.627      0.000 RR  CELL  clk~inputclkctrl|outclk
+    Info (332115):      4.589      1.962 RR    IC  sudx_scan|solver|row_count_q[5][0]|clk
+    Info (332115):      5.064      0.475 RR  CELL  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115):      5.101      0.037           clock pessimism removed
+    Info (332115):      5.081     -0.020           clock uncertainty
+    Info (332115):      5.094      0.013     uTsu  sudx_scan:sudx_scan|sudx_scan_solver:solver|row_count_q[5][0]
+    Info (332115): Data Arrival Time  :    17.708
+    Info (332115): Data Required Time :     5.094
+    Info (332115): Slack              :   -12.614 (VIOLATED)
+    Info (332115): ===================================================================
+Info (23030): Evaluation of Tcl script /data/project/tsmc65/shared/qsyn/util/report_worst.tcl was successful
+Info: Quartus Prime Timing Analyzer was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 786 megabytes
+    Info: Processing ended: Wed Sep  9 09:35:12 2026
+    Info: Elapsed time: 00:00:07
+    Info: Total CPU time (on all processors): 00:00:00

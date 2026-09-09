@@ -5,6 +5,14 @@ A propagation round has two clock cycles: recompute row/column/box occupancy and
 register each cell's candidates; then detect contradictions and apply all forced
 assignments. A contradiction takes priority over completion.
 
+The contradiction reduction chooses the next state and nothing else. It is kept
+out of the cell write enables on purpose, because gating 81 cells with it placed
+an 81-input OR and its wide fanout in series with the hidden-single tree. Forced
+digits may therefore be written during a contradicted round; this is harmless,
+since only empty cells are ever forced, every such write carries the current
+decision depth, and the rollback that a contradiction always triggers clears
+exactly that depth before the board is read again.
+
 Naked singles have one candidate. Hidden singles are the sole remaining home for
 a digit in a row, column or box. A balanced union tree tracks which digits occur
 at least once and which occur more than once; the difference identifies hidden
@@ -12,8 +20,12 @@ singles without 81 separate searches through all peers.
 
 When a round has no forced assignments, MRV chooses a cell through two small
 tournaments separated by registers: first within each row, then between rows.
-The following cycle places its lowest candidate. Selection costs extra cycles
-only when a guess is necessary.
+Neither tournament has a cycle of its own. Per-cell candidate counts are
+registered in the same SCAN that produces the candidates, and the row tournament
+is registered during APPLY, where the candidates it reads stay valid until the
+guess is placed; a round that ends in propagation simply discards the result.
+Only the between-rows tournament and the placement remain, so a guess costs two
+cycles rather than three, and MRV is off the critical path entirely.
 
 ## Rollback invariant
 
@@ -38,8 +50,10 @@ contradictions. An apparently full grid is accepted only after these checks.
 
 The git tags preserve the measured progression: v0 course MRV, v1 balanced MRV,
 v2 naked-single batching with depth rollback, v3 fixed wrapper burst slices,
-v4 explicit cell write sources, and v5 hidden-single batching. Details and evidence
-are in RESULTS.md. The final source is built into a full-system bitstream.
+v4 explicit cell write sources, v5 hidden-single batching, v6 the contradiction
+reduction off the write enables, and v7 registered candidate counts with the row
+tournament folded into APPLY. Details and evidence are in RESULTS.md. The final
+source is built into a full-system bitstream.
 
 Each fixed-index cell register has explicit load, forced-placement, guess, retry
 and clear enables. Their input sources are mutually exclusive by FSM state and

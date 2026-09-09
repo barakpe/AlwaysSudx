@@ -21,6 +21,7 @@ module sudx_scan_solver #(
     logic [6:0] depth;
     logic [80:0][8:0] candidate;
     logic [80:0] empty_q;
+    logic [3:0] count_q [0:80];
     logic [26:0][8:0] used_q;
     logic invalid_input, conflict_q;
     wire [80:0][3:0] input_flat = puzzle_in;
@@ -85,9 +86,8 @@ module sudx_scan_solver #(
         end
     endgenerate
 
-    // MRV is used only when propagation stalls. Its tournament is split at row
-    // boundaries so selection does not lengthen every propagation cycle. The row
-    // stage is registered during APPLY rather than in a cycle of its own.
+    // MRV is used only when propagation stalls. Split its tournament at row
+    // boundaries so selection does not lengthen every propagation cycle.
     wire [3:0] row_count [0:8][1:31];
     wire [6:0] row_index [0:8][1:31];
     logic [3:0] row_count_q [0:8];
@@ -98,8 +98,7 @@ module sudx_scan_solver #(
         for (r = 0; r < 9; r++) begin : ROW_MRV
             for (k = 0; k < 16; k++) begin : LEAF
                 if (k < 9) begin : REAL_CELL
-                    assign row_count[r][16+k] = empty_q[r*9+k]
-                        ? count9(candidate[r*9+k]) : 4'd15;
+                    assign row_count[r][16+k] = count_q[r*9+k];
                     assign row_index[r][16+k] = 7'(r*9+k);
                 end else begin : PAD
                     assign row_count[r][16+k] = 4'd15;
@@ -148,13 +147,9 @@ module sudx_scan_solver #(
         end
     end
 
-    // The board-wide contradiction reduction decides the next state only. It is
-    // deliberately kept out of the cell write enables: gating 81 cells with it put
-    // an 81-input OR and its ~1300-bit fanout in series with the hidden-single
-    // tree. Applying forced digits during a contradicted round is harmless because
-    // forced[c] is nonzero only for empty cells, every such write is tagged with the
-    // current depth, and a contradiction always leads to BACK_APPLY clearing exactly
-    // that depth before anything reads the board again.
+    // P1: the board-wide contradiction reduction now feeds only the state
+    // register. Forced writes are unconditional; they carry the current depth
+    // and are cleared by the rollback that a contradiction always triggers.
     wire contradiction = conflict_q || (|dead_cell) || (|no_home);
     wire propagate = state == APPLY;
     generate
@@ -210,20 +205,22 @@ module sudx_scan_solver #(
                     state <= SCAN;
                 end
                 SCAN: begin
+                    logic [8:0] cand_next;
                     for (int c = 0; c < 81; c++) begin
-                        candidate[c] <= value[c] != 0 ? 9'd0 :
+                        cand_next = value[c] != 0 ? 9'd0 :
                             ~(occupied[c/9] | occupied[9+c%9] | occupied[18+(c/27)*3+(c%9)/3]);
+                        candidate[c] <= cand_next;
                         empty_q[c] <= value[c] == 0;
+                        // Sentinel 15 keeps filled cells out of the MRV tournament.
+                        count_q[c] <= value[c] != 0 ? 4'd15 : count9(cand_next);
                     end
                     used_q <= occupied;
                     conflict_q <= (|bad_unit) | invalid_input;
                     state <= APPLY;
                 end
                 APPLY: begin
-                    // The candidates this tournament reads stay valid until the
-                    // guess is placed, so the row stage needs no cycle of its own;
-                    // a round that ends in propagation just discards the result.
-                    // The combinational path is the one v6 already had.
+                    // The row tournament reads candidates that stay valid until
+                    // the guess is placed, so it costs no cycle of its own.
                     for (int r = 0; r < 9; r++) begin
                         row_count_q[r] <= row_count[r][1];
                         row_index_q[r] <= row_index[r][1];
